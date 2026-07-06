@@ -115,7 +115,7 @@ export function Navbar() {
             <div className="relative h-12 w-12 transition-transform duration-300 group-hover:scale-105">
               <Image
                 src="/logo.webp"
-                alt="iNextERP Logo"
+                alt="iNextERP"
                 fill
                 className="object-contain object-center"
                 priority
