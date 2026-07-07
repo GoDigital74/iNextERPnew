@@ -7,6 +7,9 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { Statistics } from "@/components/sections/Statistics";
 import { Resources } from "@/components/sections/Resources";
 import { FaqAndCta } from "@/components/sections/FaqAndCta";
+import { Comparison } from "@/components/sections/Comparison";
+import { Integrations } from "@/components/sections/Integrations";
+
 
 export default function Home() {
   return (
@@ -17,6 +20,8 @@ export default function Home() {
         <TrustedLogos />
         <ProblemSection />
         <DashboardShowcase />
+        <Comparison />
+        <Integrations />
         <ModulesGrid />
         <Testimonials />
         <Statistics />
