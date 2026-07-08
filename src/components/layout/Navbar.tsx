@@ -1,13 +1,26 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Menu, X, ChevronDown, Search } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
-const NAV_LINKS = [
+// Types
+interface DropdownItem {
+  name: string;
+  href: string;
+}
+
+interface NavLink {
+  name: string;
+  href?: string;
+  dropdown?: DropdownItem[];
+}
+
+// Constants
+const NAV_LINKS: NavLink[] = [
   {
     name: "Products",
     href: "/products",
@@ -35,19 +48,117 @@ const NAV_LINKS = [
   { name: "Modules", href: "/modules" },
   { name: "Resources", href: "/resources", dropdown: [] },
   { name: "Pricing", href: "/pricing" },
-];
+] as const;
+
+const SALES_PHONE = "+91 98765 43210";
+
+// Animation variants (memoized outside component)
+const dropdownVariants = {
+  hidden: { opacity: 0, y: 10, scale: 0.98 },
+  visible: { opacity: 1, y: 0, scale: 1 },
+  exit: { opacity: 0, y: 5, scale: 0.98 },
+};
+
+const mobileMenuVariants = {
+  hidden: { x: "100%" },
+  visible: { x: 0 },
+};
+
+const mobileItemVariants = {
+  hidden: { opacity: 0, x: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: { delay: i * 0.05, duration: 0.3 },
+  }),
+};
+
+// Sub-components
+const Logo = ({ onClick }: { onClick?: () => void }) => (
+  <Link href="/" onClick={onClick} className="group flex items-center gap-2">
+    <div className="relative h-12 w-12 transition-transform duration-300 group-hover:scale-105">
+      <Image
+        src="/logo.webp"
+        alt="iNextERP"
+        fill
+        className="object-contain object-center"
+        priority
+        sizes="48px"
+      />
+    </div>
+    <span className="text-xl font-semibold tracking-tight text-white">
+      Next<span className="text-[#1881c4]"> ERP</span>
+    </span>
+  </Link>
+);
+
+const DesktopDropdown = ({ items }: { items: DropdownItem[] }) => (
+  <motion.div
+    variants={dropdownVariants}
+    initial="hidden"
+    animate="visible"
+    exit="exit"
+    transition={{ duration: 0.2, ease: "easeOut" }}
+    className="absolute left-0 top-[calc(100%+12px)] w-[280px] z-50"
+  >
+    <div className="flex w-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0A0A0A]/95 backdrop-blur-xl p-3">
+      {items.map((subLink) => (
+        <Link
+          key={subLink.href}
+          href={subLink.href}
+          className="group flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5 hover:text-[#1881c4]"
+        >
+          {subLink.name}
+          <ArrowRight className="h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
+        </Link>
+      ))}
+    </div>
+  </motion.div>
+);
+
+const MobileDropdown = ({ items, onClose }: { items: DropdownItem[]; onClose: () => void }) => (
+  <motion.div
+    initial={{ height: 0, opacity: 0 }}
+    animate={{ height: "auto", opacity: 1 }}
+    exit={{ height: 0, opacity: 0 }}
+    transition={{ duration: 0.2 }}
+    className="overflow-hidden"
+  >
+    <div className="mb-4 ml-4 flex flex-col gap-4 border-l border-white/10 pl-4 py-2">
+      {items.map((subLink) => (
+        <Link
+          key={subLink.href}
+          href={subLink.href}
+          className="text-base text-gray-400 hover:text-white transition-colors"
+          onClick={onClose}
+        >
+          {subLink.name}
+        </Link>
+      ))}
+    </div>
+  </motion.div>
+);
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hoveredNav, setHoveredNav] = useState<string | null>(null);
-  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(
-    null,
-  );
+  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
   const pathname = usePathname();
 
+  // Scroll handler with throttling
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 40);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -60,36 +171,55 @@ export function Navbar() {
     setHoveredNav(null);
   }, [pathname]);
 
-  // Close mobile menu on escape key
+  // ESC key handler
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMobileOpen(false);
+      if (e.key === "Escape") {
+        setMobileOpen(false);
+        setOpenMobileDropdown(null);
+      }
     };
     document.addEventListener("keydown", handleEsc);
     return () => document.removeEventListener("keydown", handleEsc);
   }, []);
 
-  // Lock body scroll when mobile menu is open
+  // Body overflow control
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [mobileOpen]);
 
+  // Memoized callbacks
   const handleHomeClick = useCallback(() => {
     if (pathname === "/") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [pathname]);
 
-  const toggleMobileDropdown = (navName: string) => {
+  const toggleMobileMenu = useCallback(() => {
+    setMobileOpen((prev) => !prev);
+  }, []);
+
+  const closeMobileMenu = useCallback(() => {
+    setMobileOpen(false);
+  }, []);
+
+  const toggleMobileDropdown = useCallback((navName: string) => {
     setOpenMobileDropdown((prev) => (prev === navName ? null : navName));
-  };
+  }, []);
+
+  // Memoized nav classes
+  const navClasses = useMemo(
+    () =>
+      `relative mx-auto flex max-w-7xl items-center justify-between rounded-2xl px-5 py-3 transition-all duration-500 border ${
+        scrolled || mobileOpen
+          ? "bg-[#0A0A0A]/70 backdrop-blur-xl border-white/10"
+          : "bg-[#0A0A0A]/50 backdrop-blur-md border-white/5"
+      }`,
+    [scrolled, mobileOpen]
+  );
 
   return (
     <>
@@ -99,91 +229,47 @@ export function Navbar() {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-8"
       >
-        <nav
-          className={`relative mx-auto flex max-w-7xl items-center justify-between rounded-2xl px-5 py-3 transition-all duration-500 border ${
-            scrolled || mobileOpen
-              ? "bg-[#0A0A0A]/60 backdrop-blur-xl border-white/10 shadow-lg shadow-black/40"
-              : "bg-[#0A0A0A]/50 backdrop-blur-md border-white/10 shadow-md shadow-black/10"
-          }`}
-        >
-          <Link
-            href="/"
-            onClick={handleHomeClick}
-            className="group flex items-center gap-2" /* Added gap-2 for tight spacing */
-          >
-            {/* Changed w-44 to w-12 to tightly wrap the circular icon */}
-            <div className="relative h-12 w-12 transition-transform duration-300 group-hover:scale-105">
-              <Image
-                src="/logo.webp"
-                alt="iNextERP"
-                fill
-                className="object-contain object-center"
-                priority
-              />
-            </div>
-            <span className="text-xl font-semibold tracking-tight text-white">
-              Next<span className="text-[#1881c4]"> ERP</span>
-            </span>
-          </Link>
+        <nav className={navClasses} role="navigation" aria-label="Main navigation">
+          <Logo onClick={handleHomeClick} />
 
-          {/* Desktop Nav */}
+          {/* Desktop Navigation */}
           <ul className="hidden items-center gap-1 lg:flex">
             {NAV_LINKS.map((link) => {
               const isActive =
-                link.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(link.href || "");
+                link.href === "/" ? pathname === "/" : pathname.startsWith(link.href || "");
               const hasDropdown = link.dropdown && link.dropdown.length > 0;
 
               return (
                 <li
                   key={link.name}
                   className="relative"
-                  onMouseEnter={() => setHoveredNav(link.name)}
-                  onMouseLeave={() => setHoveredNav(null)}
+                  onMouseEnter={() => hasDropdown && setHoveredNav(link.name)}
+                  onMouseLeave={() => hasDropdown && setHoveredNav(null)}
                 >
                   <Link
                     href={hasDropdown ? "#" : link.href || "#"}
                     onClick={link.href === "/" ? handleHomeClick : undefined}
                     className={`flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium transition-colors hover:text-[#1881c4] ${
-                      isActive || hoveredNav === link.name
-                        ? "text-[#1881c4]"
-                        : "text-white"
+                      isActive || hoveredNav === link.name ? "text-[#1881c4]" : "text-white"
                     }`}
+                    aria-current={isActive ? "page" : undefined}
+                    aria-haspopup={hasDropdown ? "true" : undefined}
+                    aria-expanded={hasDropdown && hoveredNav === link.name ? "true" : "false"}
                   >
                     {link.name}
                     {hasDropdown && (
                       <ChevronDown
-                        className={`h-4 w-4 transition-transform duration-300 ${hoveredNav === link.name ? "rotate-180" : ""}`}
+                        className={`h-4 w-4 transition-transform duration-300 ${
+                          hoveredNav === link.name ? "rotate-180" : ""
+                        }`}
+                        aria-hidden="true"
                       />
                     )}
                   </Link>
 
-                  {/* DESKTOP DROPDOWN (No Images) */}
                   {hasDropdown && (
                     <AnimatePresence>
-                      {hoveredNav === link.name && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10, scale: 0.98 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 5, scale: 0.98 }}
-                          transition={{ duration: 0.2, ease: "easeOut" }}
-                          className="absolute left-0 top-full pt-4 w-[280px]"
-                        >
-                          <div className="flex w-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0A0A0A]/80 backdrop-blur-xl shadow-2xl shadow-black/60 p-3">
-                            {link.dropdown?.map((subLink) => (
-                              <Link
-                                key={subLink.name}
-                                href={subLink.href}
-                                className="group flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5 hover:text-[#1881c4]"
-                              >
-                                {subLink.name}
-                                <ArrowRight className="h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
-                              </Link>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
+                      {hoveredNav === link.name && <DesktopDropdown items={link.dropdown!} />}
                     </AnimatePresence>
                   )}
                 </li>
@@ -195,33 +281,34 @@ export function Navbar() {
           <div className="hidden lg:flex items-center gap-4">
             <button
               aria-label="Search"
-              className="text-white hover:text-[#1881c4] transition-colors"
+              className="text-white hover:text-[#1881c4] transition-colors p-2 rounded-lg hover:bg-white/5"
             >
               <Search className="w-5 h-5" />
             </button>
-            <div className="text-sm font-medium text-white border-l border-white/20 pl-4">
-              Sales: +91 98765 43210
-            </div>
+            <a
+              href={`tel:${SALES_PHONE.replace(/\s/g, "")}`}
+              className="text-sm font-medium text-white border-l border-white/20 pl-4 hover:text-[#1881c4] transition-colors"
+            >
+              Sales: {SALES_PHONE}
+            </a>
             <Link
               href="/contact"
-              className="group hidden items-center gap-2 rounded-lg bg-[#1881c4] px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-[#4F7DF3] lg:inline-flex shadow-lg shadow-[#1881c4]/20"
+              className="group inline-flex items-center gap-2 rounded-lg bg-[#1881c4] px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-[#4F7DF3] active:scale-95"
             >
               Book Free Demo
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>
 
-          {/* Mobile Hamburger Button */}
+          {/* Mobile Menu Button */}
           <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/10 lg:hidden"
+            onClick={toggleMobileMenu}
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/10 lg:hidden active:scale-95"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
           >
-            {mobileOpen ? (
-              <X className="h-5 w-5" />
-            ) : (
-              <Menu className="h-5 w-5" />
-            )}
+            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </nav>
       </motion.header>
@@ -235,7 +322,8 @@ export function Navbar() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
-            onClick={() => setMobileOpen(false)}
+            onClick={closeMobileMenu}
+            aria-hidden="true"
           />
         )}
       </AnimatePresence>
@@ -244,27 +332,31 @@ export function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
+            id="mobile-menu"
+            variants={mobileMenuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed right-0 top-0 z-40 flex h-full w-[80vw] max-w-sm flex-col overflow-y-auto bg-[#0A0A0A] pt-24 border-l border-white/10 shadow-2xl lg:hidden custom-scrollbar"
+            className="fixed right-0 top-0 z-40 flex h-full w-[80vw] max-w-sm flex-col overflow-y-auto bg-[#0A0A0A] pt-24 border-l border-white/10 lg:hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile navigation"
           >
             <nav className="flex flex-col gap-1 px-6 pb-20">
               {NAV_LINKS.map((link, i) => {
                 const isActive =
-                  link.href === "/"
-                    ? pathname === "/"
-                    : pathname.startsWith(link.href || "");
+                  link.href === "/" ? pathname === "/" : pathname.startsWith(link.href || "");
                 const hasDropdown = link.dropdown && link.dropdown.length > 0;
                 const isDropdownOpen = openMobileDropdown === link.name;
 
                 return (
                   <motion.div
                     key={link.name}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05, duration: 0.3 }}
+                    custom={i}
+                    variants={mobileItemVariants}
+                    initial="hidden"
+                    animate="visible"
                     className="border-b border-white/5 last:border-0"
                   >
                     {hasDropdown ? (
@@ -272,39 +364,21 @@ export function Navbar() {
                         <button
                           onClick={() => toggleMobileDropdown(link.name)}
                           className={`flex w-full items-center justify-between py-4 pr-4 text-lg font-medium transition-colors hover:text-[#1881c4] ${
-                            isActive || isDropdownOpen
-                              ? "text-[#1881c4]"
-                              : "text-white"
+                            isActive || isDropdownOpen ? "text-[#1881c4]" : "text-white"
                           }`}
+                          aria-expanded={isDropdownOpen}
                         >
                           {link.name}
                           <ChevronDown
                             className={`h-5 w-5 transition-transform duration-300 ${
                               isDropdownOpen ? "rotate-180" : ""
                             }`}
+                            aria-hidden="true"
                           />
                         </button>
                         <AnimatePresence>
                           {isDropdownOpen && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              className="overflow-hidden"
-                            >
-                              <div className="mb-4 ml-4 flex flex-col gap-4 border-l border-white/10 pl-4 py-2">
-                                {link.dropdown?.map((subLink) => (
-                                  <Link
-                                    key={subLink.name}
-                                    href={subLink.href}
-                                    className="text-base text-gray-400 hover:text-white transition-colors"
-                                    onClick={() => setMobileOpen(false)}
-                                  >
-                                    {subLink.name}
-                                  </Link>
-                                ))}
-                              </div>
-                            </motion.div>
+                            <MobileDropdown items={link.dropdown!} onClose={closeMobileMenu} />
                           )}
                         </AnimatePresence>
                       </div>
@@ -312,12 +386,13 @@ export function Navbar() {
                       <Link
                         href={link.href || "#"}
                         onClick={() => {
-                          setMobileOpen(false);
+                          closeMobileMenu();
                           if (link.href === "/") handleHomeClick();
                         }}
                         className={`block py-4 pr-4 text-lg font-medium transition-colors hover:text-[#1881c4] ${
                           isActive ? "text-[#1881c4]" : "text-white"
                         }`}
+                        aria-current={isActive ? "page" : undefined}
                       >
                         {link.name}
                       </Link>
@@ -327,15 +402,19 @@ export function Navbar() {
               })}
             </nav>
 
-            <div className="mt-auto border-t border-white/10 bg-[#0A0A0A] px-6 py-6 sticky bottom-0 z-10">
-              <div className="text-sm font-medium text-gray-400 flex items-center justify-between mb-4">
+            {/* Mobile Footer */}
+            <div className="mt-auto border-t border-white/10 bg-[#0A0A0A] px-6 py-6 sticky bottom-0">
+              <a
+                href={`tel:${SALES_PHONE.replace(/\s/g, "")}`}
+                className="text-sm font-medium text-gray-400 flex items-center justify-between mb-4 hover:text-white transition-colors"
+              >
                 <span>Sales Contact:</span>
-                <span className="text-white">+91 98765 43210</span>
-              </div>
+                <span className="text-white">{SALES_PHONE}</span>
+              </a>
               <Link
                 href="/contact"
-                onClick={() => setMobileOpen(false)}
-                className="group flex w-full items-center justify-center gap-2 rounded-lg bg-[#1881c4] px-6 py-3.5 text-sm font-bold text-white transition-all hover:bg-[#4F7DF3] active:scale-[0.98]"
+                onClick={closeMobileMenu}
+                className="group flex w-full items-center justify-center gap-2 rounded-lg bg-[#1881c4] px-6 py-3.5 text-sm font-bold text-white transition-all hover:bg-[#4F7DF3] active:scale-95"
               >
                 Book Free Demo
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
