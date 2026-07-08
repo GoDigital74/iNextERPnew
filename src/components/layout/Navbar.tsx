@@ -99,9 +99,9 @@ const DesktopDropdown = ({ items }: { items: DropdownItem[] }) => (
     animate="visible"
     exit="exit"
     transition={{ duration: 0.2, ease: "easeOut" }}
-    className="absolute left-0 top-[calc(100%+12px)] w-[280px] z-50"
+    className="absolute left-0 top-[calc(100%+18px)] w-[280px] z-50"
   >
-    <div className="flex w-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0A0A0A]/95 backdrop-blur-xl p-3">
+    <div className="flex w-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0A0A0A]/80 backdrop-blur-xl p-4">
       {items.map((subLink) => (
         <Link
           key={subLink.href}
@@ -215,8 +215,8 @@ export function Navbar() {
     () =>
       `relative mx-auto flex max-w-7xl items-center justify-between rounded-2xl px-5 py-3 transition-all duration-500 border ${
         scrolled || mobileOpen
-          ? "bg-[#0A0A0A]/70 backdrop-blur-xl border-white/10"
-          : "bg-[#0A0A0A]/50 backdrop-blur-md border-white/5"
+          ? "bg-[#0A0A0A]/60 backdrop-blur-xl border-white/10"
+          : "bg-[#0A0A0A]/70 backdrop-blur-md border-white/5"
       }`,
     [scrolled, mobileOpen]
   );
