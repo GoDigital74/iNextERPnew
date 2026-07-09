@@ -12,7 +12,7 @@ import {
   AlertTriangle, CheckCircle2, Check,
   Building2, LayoutTemplate, Timer, Headset
 } from "lucide-react";
-
+ import {  BookOpen, Armchair,  Footprints } from "lucide-react";
 // ==========================================
 // DATA CONSTANTS
 // ==========================================
@@ -25,40 +25,34 @@ const HERO_FEATURES = [
 
 const INDUSTRIES = [
   {
-    title: "Fashion & Garment",
-    desc: "Manage size, color, inventory, production, and multi-location operations efficiently.",
-    image: "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&q=80&w=800",
+    title: "Ethnic Wear",
+    desc: "Manage bespoke sizing, seasonal collections, inventory, and boutique billing seamlessly.",
+    image: "/industries/iNext Ethnic 1.webp",
     icon: Shirt
   },
   {
-    title: "Retail Stores",
-    desc: "Simplify billing, inventory, loyalty programs and customer management.",
-    image: "https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&q=80&w=800",
+    title: "Book Shop",
+    desc: "Track ISBNs, manage authors, organize categories, and streamline sales effortlessly.",
+    image: "/industries/iNext Book 1.webp",
+    icon: BookOpen
+  },
+  {
+    title: "Furnishings Shop",
+    desc: "Manage fabric rolls, custom orders, dimensions, and multi-brand home decor stock.",
+    image: "/industries/iNext fur 1.webp",
+    icon: Armchair
+  },
+  {
+    title: "Readymade Garments",
+    desc: "Easily handle size-color matrix, barcode generation, and multi-store retail billing.",
+    image: "/industries/garment iNext 1.webp",
     icon: ShoppingBag
   },
   {
-    title: "Electronics",
-    desc: "Manage serial numbers, warranty, stock, and multi-brand inventory with ease.",
-    image: "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&q=80&w=800",
-    icon: Smartphone
-  },
-  {
-    title: "FMCG",
-    desc: "Track fast-moving products, distributors, schemes and stocks in real-time.",
-    image: "https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&q=80&w=800",
-    icon: Package
-  },
-  {
-    title: "Wholesale & Distribution",
-    desc: "Streamline purchase, sales, stock transfer and distributor management.",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
-    icon: Truck
-  },
-  {
-    title: "Manufacturing",
-    desc: "Manage production, raw materials, BOM, and finished goods efficiently.",
-    image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?auto=format&fit=crop&q=80&w=800",
-    icon: Factory
+    title: "Footwear",
+    desc: "Efficiently track shoe sizes, styles, pair management, and stock replenishment.",
+    image: "/industries/soe iNext 1.webp",
+    icon: Footprints
   }
 ];
 
