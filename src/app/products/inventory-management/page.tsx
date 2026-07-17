@@ -108,10 +108,9 @@ export default function InventoryManagementPage() {
                {/* FIX 1: Removed the conflicting 'relative' class from this div so 'absolute inset-0' works properly */}
                <div className="absolute inset-0 rounded-2xl shadow-2xl overflow-hidden group">
                   <Image 
-                    src="/products/inventory 2.webp" 
+                    src="/products/Inventory 2.webp" 
                     alt="Dashboard Mockup" 
                     fill 
-                    // FIX 2: Added unoptimized just in case Unsplash isn't configured in your next.config.js
                     unoptimized 
                     className="object-contain transition-all duration-700"
                   />
