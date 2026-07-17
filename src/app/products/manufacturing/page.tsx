@@ -108,7 +108,7 @@ export default function ManufacturingPage() {
                {/* Scaled Image Container */}
                <div className="relative w-full h-full scale-125 lg:scale-x-110 origin-center group">
                   <Image 
-                    src="/products/manufacturing 1.webp" 
+                    src="/products/Manufacturing 1.webp" 
                     alt="Manufacturing Dashboard Mockup" 
                     fill 
                     unoptimized
@@ -186,7 +186,7 @@ export default function ManufacturingPage() {
             <div className="xl:col-span-10 relative w-full h-[400px] md:h-[600px] rounded-[2rem] overflow-hidden shadow-xl border border-gray-200 mt-8 xl:mt-0 bg-gray-100">
               <Image
                 // Update this src to your specific image path (e.g., "/products/manufacturing-tour.webp")
-                src="/products/manufacturing 2.webp" 
+                src="/products/Manufacturing 2.webp" 
                 alt="Manufacturing Product Tour"
                 fill
                 unoptimized
