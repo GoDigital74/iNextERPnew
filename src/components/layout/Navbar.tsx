@@ -21,6 +21,17 @@ interface NavLink {
 
 // Constants
 const NAV_LINKS: NavLink[] = [
+  { name: "About Us", href: "/About-Us" },
+  {
+    name: "Services",
+    href: "/services",
+    dropdown: [
+      { name: "IT Hardware", href: "/services/it-hardware" },
+      { name: "Consumables Items", href: "/services/consumables-items" },
+      { name: "Cloud Service", href: "/services/cloud-service" },
+      { name: "Software / ERP", href: "/services/software-erp" },
+    ],
+  },
   {
     name: "Products",
     href: "/products",
@@ -34,20 +45,10 @@ const NAV_LINKS: NavLink[] = [
       { name: "Integrations", href: "/products/integrations" },
     ],
   },
-  {
-    name: "Services",
-    href: "/services",
-    dropdown: [
-      { name: "IT Hardware", href: "/services/it-hardware" },
-      { name: "Consumables Items", href: "/services/consumables-items" },
-      { name: "Cloud Service", href: "/services/cloud-service" },
-      { name: "Software / ERP", href: "/services/software-erp" },
-    ],
-  },
-  { name: "Industries", href: "/industries", dropdown: [] },
-  { name: "Modules", href: "/modules" },
-  { name: "Resources", href: "/resources", dropdown: [] },
-  { name: "Pricing", href: "/pricing" },
+
+  { name: "Blog", href: "/Blog", dropdown: [] },
+  { name: "Careers", href: "/Careers" },
+  { name: "Contact", href: "/Contact", dropdown: [] },
 ] as const;
 
 const SALES_PHONE = "+91 98765 43210";
@@ -87,7 +88,7 @@ const Logo = ({ onClick }: { onClick?: () => void }) => (
       />
     </div>
     <span className="text-xl font-semibold tracking-tight text-white">
-      Next<span className="text-[#1881c4]"> ERP</span>
+      iNext<span className="text-[#1881c4]"> ERP</span>
     </span>
   </Link>
 );
@@ -116,7 +117,13 @@ const DesktopDropdown = ({ items }: { items: DropdownItem[] }) => (
   </motion.div>
 );
 
-const MobileDropdown = ({ items, onClose }: { items: DropdownItem[]; onClose: () => void }) => (
+const MobileDropdown = ({
+  items,
+  onClose,
+}: {
+  items: DropdownItem[];
+  onClose: () => void;
+}) => (
   <motion.div
     initial={{ height: 0, opacity: 0 }}
     animate={{ height: "auto", opacity: 1 }}
@@ -143,7 +150,9 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hoveredNav, setHoveredNav] = useState<string | null>(null);
-  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
+  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(
+    null,
+  );
   const pathname = usePathname();
 
   // Scroll handler with throttling
@@ -158,7 +167,7 @@ export function Navbar() {
         ticking = true;
       }
     };
-    
+
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -218,7 +227,7 @@ export function Navbar() {
           ? "bg-[#0A0A0A]/60 backdrop-blur-xl border-white/10"
           : "bg-[#0A0A0A]/70 backdrop-blur-md border-white/5"
       }`,
-    [scrolled, mobileOpen]
+    [scrolled, mobileOpen],
   );
 
   return (
@@ -229,14 +238,20 @@ export function Navbar() {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-8"
       >
-        <nav className={navClasses} role="navigation" aria-label="Main navigation">
+        <nav
+          className={navClasses}
+          role="navigation"
+          aria-label="Main navigation"
+        >
           <Logo onClick={handleHomeClick} />
 
           {/* Desktop Navigation */}
           <ul className="hidden items-center gap-1 lg:flex">
             {NAV_LINKS.map((link) => {
               const isActive =
-                link.href === "/" ? pathname === "/" : pathname.startsWith(link.href || "");
+                link.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(link.href || "");
               const hasDropdown = link.dropdown && link.dropdown.length > 0;
 
               return (
@@ -250,11 +265,15 @@ export function Navbar() {
                     href={hasDropdown ? "#" : link.href || "#"}
                     onClick={link.href === "/" ? handleHomeClick : undefined}
                     className={`flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium transition-colors hover:text-[#1881c4] ${
-                      isActive || hoveredNav === link.name ? "text-[#1881c4]" : "text-white"
+                      isActive || hoveredNav === link.name
+                        ? "text-[#1881c4]"
+                        : "text-white"
                     }`}
                     aria-current={isActive ? "page" : undefined}
                     aria-haspopup={hasDropdown ? "true" : undefined}
-                    aria-expanded={hasDropdown && hoveredNav === link.name ? "true" : "false"}
+                    aria-expanded={
+                      hasDropdown && hoveredNav === link.name ? "true" : "false"
+                    }
                   >
                     {link.name}
                     {hasDropdown && (
@@ -269,7 +288,9 @@ export function Navbar() {
 
                   {hasDropdown && (
                     <AnimatePresence>
-                      {hoveredNav === link.name && <DesktopDropdown items={link.dropdown!} />}
+                      {hoveredNav === link.name && (
+                        <DesktopDropdown items={link.dropdown!} />
+                      )}
                     </AnimatePresence>
                   )}
                 </li>
@@ -308,7 +329,11 @@ export function Navbar() {
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
           >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
           </button>
         </nav>
       </motion.header>
@@ -346,7 +371,9 @@ export function Navbar() {
             <nav className="flex flex-col gap-1 px-6 pb-20">
               {NAV_LINKS.map((link, i) => {
                 const isActive =
-                  link.href === "/" ? pathname === "/" : pathname.startsWith(link.href || "");
+                  link.href === "/"
+                    ? pathname === "/"
+                    : pathname.startsWith(link.href || "");
                 const hasDropdown = link.dropdown && link.dropdown.length > 0;
                 const isDropdownOpen = openMobileDropdown === link.name;
 
@@ -364,7 +391,9 @@ export function Navbar() {
                         <button
                           onClick={() => toggleMobileDropdown(link.name)}
                           className={`flex w-full items-center justify-between py-4 pr-4 text-lg font-medium transition-colors hover:text-[#1881c4] ${
-                            isActive || isDropdownOpen ? "text-[#1881c4]" : "text-white"
+                            isActive || isDropdownOpen
+                              ? "text-[#1881c4]"
+                              : "text-white"
                           }`}
                           aria-expanded={isDropdownOpen}
                         >
@@ -378,7 +407,10 @@ export function Navbar() {
                         </button>
                         <AnimatePresence>
                           {isDropdownOpen && (
-                            <MobileDropdown items={link.dropdown!} onClose={closeMobileMenu} />
+                            <MobileDropdown
+                              items={link.dropdown!}
+                              onClose={closeMobileMenu}
+                            />
                           )}
                         </AnimatePresence>
                       </div>

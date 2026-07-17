@@ -61,14 +61,17 @@ export function FaqAndCta() {
             <h2 className="text-3xl font-bold text-foreground mb-8">
               Frequently Asked Questions
             </h2>
-           <Accordion {...({ type: "single", collapsible: true } as any)} className="w-full">
+            <Accordion
+              {...({ type: "single", collapsible: true } as any)}
+              className="w-full"
+            >
               {FAQS.map((faq, index) => (
                 <AccordionItem
                   key={index}
                   value={`item-${index}`}
                   className="border-border"
                 >
-                  <AccordionTrigger className="text-left font-medium hover:text-primary-600 transition-colors">
+                  <AccordionTrigger className="text-left font-medium hover:text-[#1881c4] transition-colors">
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground leading-relaxed">
@@ -80,7 +83,7 @@ export function FaqAndCta() {
           </div>
 
           {/* Right Column: CTA Box */}
-          <div className="bg-primary-600 rounded-3xl p-8 md:p-10 text-white shadow-2xl relative overflow-hidden">
+          <div className="bg-[#1881c4]  rounded-3xl p-8 md:p-10 text-white shadow-2xl relative overflow-hidden">
             {/* Background shapes */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500 rounded-full blur-[80px] -mr-32 -mt-32 pointer-events-none" />
 
