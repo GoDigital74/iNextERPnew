@@ -108,47 +108,15 @@ export default function InventoryManagementPage() {
                {/* FIX 1: Removed the conflicting 'relative' class from this div so 'absolute inset-0' works properly */}
                <div className="absolute inset-0 rounded-2xl shadow-2xl overflow-hidden group">
                   <Image 
-                    src="/products/Inventory 2.webp" 
+                    src="/products/Inventory 1.webp" 
                     alt="Dashboard Mockup" 
                     fill 
                     unoptimized 
                     className="object-contain transition-all duration-700"
                   />
-                  {/* Overlay Gradient to match dark vibe */}
-                  {/* <div className="absolute inset-0 bg-gradient-to-t from-[#060B19] via-transparent to-[#060B19]/50 pointer-events-none" /> */}
-               </div>
+                 </div>
 
-               {/* Floating Alert Cards */}
-               {/* <div className="absolute -bottom-10 left-10 right-10 flex flex-wrap justify-center gap-4 z-20"> */}
-                
-                  {/* Alert 1 */}
-                  {/* <div className="bg-[#1C1A17] border border-yellow-500/20 rounded-xl p-4 flex items-start gap-4 shadow-xl backdrop-blur-md">
-                    <div className="bg-yellow-500/20 p-2 rounded-lg text-yellow-500"><AlertTriangle className="w-5 h-5" /></div>
-                    <div>
-                      <div className="text-yellow-500 font-semibold text-sm">Low Stock Alert</div>
-                      <div className="text-white text-sm mt-1">28 items need attention</div>
-                      <div className="text-gray-400 text-xs mt-1 cursor-pointer hover:text-white">View items &rarr;</div>
-                    </div>
-                  </div> */}
-                  {/* Alert 2 */}
-                  {/* <div className="bg-[#121A2F] border border-blue-500/20 rounded-xl p-4 flex items-start gap-4 shadow-xl backdrop-blur-md hidden md:flex">
-                    <div className="bg-blue-500/20 p-2 rounded-lg text-blue-400"><Package className="w-5 h-5" /></div>
-                    <div>
-                      <div className="text-blue-400 font-semibold text-sm">Stock Incoming</div>
-                      <div className="text-white text-sm mt-1">PO #PO-4587</div>
-                      <div className="text-gray-400 text-xs mt-1">Arriving 24 May</div>
-                    </div>
-                  </div> */}
-                  {/* Alert 3 */}
-                  {/* <div className="bg-[#11241C] border border-green-500/20 rounded-xl p-4 flex items-start gap-4 shadow-xl backdrop-blur-md hidden lg:flex">
-                    <div className="bg-green-500/20 p-2 rounded-lg text-green-400"><CheckCircle2 className="w-5 h-5" /></div>
-                    <div>
-                      <div className="text-green-400 font-semibold text-sm">Transfer Completed</div>
-                      <div className="text-white text-sm mt-1">Warehouse B &rarr; Store 12</div>
-                      <div className="text-gray-400 text-xs mt-1">125 items transferred</div>
-                    </div>
-                  </div> */}
-               {/* </div> */}
+               
             </div>
             
           </div>
@@ -189,7 +157,7 @@ export default function InventoryManagementPage() {
         </div>
       </section>
 
-      {/* 3. PRODUCT TOUR SECTION */}
+    {/* 3. PRODUCT TOUR SECTION */}
       <section className="py-24 bg-[#F8FAFC]">
         <div className="container mx-auto px-6 max-w-[1400px]">
           <div className="grid grid-cols-1 xl:grid-cols-4 gap-12">
@@ -216,46 +184,11 @@ export default function InventoryManagementPage() {
             </div>
 
             {/* Right Content Area (Simulated 3D UI) */}
-            <div className="xl:col-span-3 bg-blue-100/50 rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden flex items-center justify-center min-h-[500px]">
+            <div className="xl:col-span-3 bg-blue-100/50 rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden flex items-center justify-center min-h-[500px] lg:min-h-[600px]">
                {/* Abstract 3D Warehouse representation using image */}
-               <div className="relative w-full max-w-2xl aspect-video rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
-                  <Image src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200" alt="Warehouse" fill className="object-cover" />
-                  {/* Pointers */}
-                  <div className="absolute top-1/4 left-1/4 bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-2">
-                    Warehouse A <div className="w-2 h-2 rounded-full bg-green-400" />
-                  </div>
-                  <div className="absolute bottom-1/3 right-1/4 bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-2">
-                    Warehouse B <div className="w-2 h-2 rounded-full bg-green-400" />
-                  </div>
-               </div>
-
-               {/* Floating UI Elements */}
-               <div className="absolute left-8 top-12 bg-white p-5 rounded-2xl shadow-xl border border-gray-100 w-64 hidden md:block">
-                  <h4 className="text-sm font-bold text-gray-900 mb-4">All Warehouses</h4>
-                  <div className="flex flex-col gap-4">
-                    {[ {n: 'A', v: '4,250', p: '+7.5%'}, {n: 'B', v: '2,980', p: '+12.5%'}, {n: 'C', v: '1,850', p: '-9.3%'} ].map(w => (
-                      <div key={w.n} className="flex justify-between items-center border-b border-gray-50 pb-2 last:border-0 last:pb-0">
-                        <div>
-                          <div className="text-xs text-gray-400">Warehouse {w.n}</div>
-                          <div className="font-bold text-gray-800">{w.v}</div>
-                        </div>
-                        <div className={`text-xs font-bold ${w.p.includes('+') ? 'text-green-500' : 'text-red-500'}`}>{w.p}</div>
-                      </div>
-                    ))}
-                  </div>
-               </div>
-
-               <div className="absolute right-8 bottom-12 bg-white p-5 rounded-2xl shadow-xl border border-gray-100 w-64 hidden lg:block">
-                  <div className="flex gap-3 items-center mb-4">
-                    <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center"><ShoppingCart className="w-5 h-5 text-gray-500"/></div>
-                    <div>
-                      <div className="text-sm font-bold text-gray-900">Embroidered Kurta</div>
-                      <div className="text-xs text-green-500 font-semibold bg-green-50 inline-block px-2 py-0.5 rounded">In Stock</div>
-                    </div>
-                  </div>
-                  <div className="flex justify-between text-xs text-gray-500 mb-2"><span>Available</span> <span className="font-bold text-gray-900">320</span></div>
-                  <div className="flex justify-between text-xs text-gray-500 mb-2"><span>Reserved</span> <span className="font-bold text-gray-900">45</span></div>
-                  <button className="w-full mt-4 py-2 bg-blue-50 text-blue-600 rounded-lg text-xs font-bold">View Stock Details</button>
+               {/* FIX: Increased max-w-2xl to max-w-5xl, added bg-white, and added a slight scale */}
+               <div className="relative w-full max-w-5xl aspect-video rounded-2xl overflow-hidden  scale-105 lg:scale-110 origin-center transition-transform duration-500">
+                  <Image src="/products/Inventory 2.webp" alt="Warehouse" fill className="object-contain" />
                </div>
             </div>
           </div>
