@@ -173,11 +173,20 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close mobile menu on route change
+  // Make the dropdown open by default based on the current active URL route
   useEffect(() => {
     setMobileOpen(false);
-    setOpenMobileDropdown(null);
     setHoveredNav(null);
+
+    // Find if current URL matches any sub-link inside a dropdown
+    const activeParentNav = NAV_LINKS.find(
+      (link) =>
+        link.dropdown &&
+        link.dropdown.some((subLink) => pathname.startsWith(subLink.href))
+    );
+    
+    // Set it to open automatically when on that route
+    setOpenMobileDropdown(activeParentNav ? activeParentNav.name : null);
   }, [pathname]);
 
   // ESC key handler
@@ -262,7 +271,7 @@ export function Navbar() {
                   onMouseLeave={() => hasDropdown && setHoveredNav(null)}
                 >
                   <Link
-                    href={hasDropdown ? "#" : link.href || "#"}
+                    href={ link.href || "#"}
                     onClick={link.href === "/" ? handleHomeClick : undefined}
                     className={`flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium transition-colors hover:text-[#1881c4] ${
                       isActive || hoveredNav === link.name
@@ -386,25 +395,41 @@ export function Navbar() {
                     animate="visible"
                     className="border-b border-white/5 last:border-0"
                   >
-                    {hasDropdown ? (
+                   {hasDropdown ? (
                       <div className="flex flex-col">
-                        <button
-                          onClick={() => toggleMobileDropdown(link.name)}
-                          className={`flex w-full items-center justify-between py-4 pr-4 text-lg font-medium transition-colors hover:text-[#1881c4] ${
+                        <div
+                          className={`flex w-full items-center justify-between py-4 pr-4 text-lg font-medium transition-colors ${
                             isActive || isDropdownOpen
                               ? "text-[#1881c4]"
-                              : "text-white"
+                              : "text-white hover:text-[#1881c4]"
                           }`}
-                          aria-expanded={isDropdownOpen}
                         >
-                          {link.name}
-                          <ChevronDown
-                            className={`h-5 w-5 transition-transform duration-300 ${
-                              isDropdownOpen ? "rotate-180" : ""
-                            }`}
-                            aria-hidden="true"
-                          />
-                        </button>
+                          {/* FIX: Make the text an actual clickable link */}
+                          <Link 
+                            href={link.href || "#"}
+                            onClick={() => {
+                              closeMobileMenu();
+                              if (link.href === "/") handleHomeClick();
+                            }}
+                            className="flex-1 text-left"
+                          >
+                            {link.name}
+                          </Link>
+                          
+                          {/* FIX: Make the chevron a separate button to toggle the dropdown */}
+                          <button
+                            onClick={() => toggleMobileDropdown(link.name)}
+                            className="p-2 -mr-2"
+                            aria-expanded={isDropdownOpen}
+                          >
+                            <ChevronDown
+                              className={`h-5 w-5 transition-transform duration-300 ${
+                                isDropdownOpen ? "rotate-180" : ""
+                              }`}
+                              aria-hidden="true"
+                            />
+                          </button>
+                        </div>
                         <AnimatePresence>
                           {isDropdownOpen && (
                             <MobileDropdown
