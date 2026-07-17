@@ -53,7 +53,7 @@ export default function InventoryManagementPage() {
     <main className="flex-1 flex flex-col w-full bg-[#FAFAFA] font-sans">
       
       {/* 1. HERO SECTION (Dark) */}
-      <section className="relative bg-[#060B19] text-white pt-32 pb-40 overflow-hidden">
+      <section className="relative bg-[#060B19] text-white pt-14 pb-32 overflow-hidden">
         {/* Background Gradients & Effects */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-blue-600/20 blur-[120px] rounded-full" />
@@ -70,11 +70,11 @@ export default function InventoryManagementPage() {
               <div className="inline-flex w-fit items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold tracking-wider text-blue-400 uppercase">
                 Inventory Management
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
+              <h1 className="text-5xl md:text-6xl lg:text-5xl font-bold leading-[1.1] tracking-tight">
                 See it. Track it.<br />
                 Control it. <span className="text-[#1881c4]">Grow.</span>
               </h1>
-              <p className="text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed mt-2">
+              <p className="text-gray-400 text-md md:text-md max-w-xl leading-relaxed mt-2">
                 Real-time inventory control across all your locations. Know what's in stock, what's moving and what needs attention — instantly.
               </p>
               
@@ -106,50 +106,50 @@ export default function InventoryManagementPage() {
             <div className="xl:col-span-7 relative w-full h-[500px] md:h-[700px]">
                {/* Main Dashboard Image */}
                {/* FIX 1: Removed the conflicting 'relative' class from this div so 'absolute inset-0' works properly */}
-               <div className="absolute inset-0 rounded-2xl border border-white/10 bg-[#0B1221] shadow-2xl overflow-hidden group">
+               <div className="absolute inset-0 rounded-2xl shadow-2xl overflow-hidden group">
                   <Image 
-                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1600" 
+                    src="/products/inventory 2.webp" 
                     alt="Dashboard Mockup" 
                     fill 
                     // FIX 2: Added unoptimized just in case Unsplash isn't configured in your next.config.js
                     unoptimized 
-                    className="object-cover opacity-60 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-700"
+                    className="object-contain transition-all duration-700"
                   />
                   {/* Overlay Gradient to match dark vibe */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#060B19] via-transparent to-[#060B19]/50 pointer-events-none" />
+                  {/* <div className="absolute inset-0 bg-gradient-to-t from-[#060B19] via-transparent to-[#060B19]/50 pointer-events-none" /> */}
                </div>
 
                {/* Floating Alert Cards */}
-               <div className="absolute -bottom-10 left-10 right-10 flex flex-wrap justify-center gap-4 z-20">
+               {/* <div className="absolute -bottom-10 left-10 right-10 flex flex-wrap justify-center gap-4 z-20"> */}
                 
                   {/* Alert 1 */}
-                  <div className="bg-[#1C1A17] border border-yellow-500/20 rounded-xl p-4 flex items-start gap-4 shadow-xl backdrop-blur-md">
+                  {/* <div className="bg-[#1C1A17] border border-yellow-500/20 rounded-xl p-4 flex items-start gap-4 shadow-xl backdrop-blur-md">
                     <div className="bg-yellow-500/20 p-2 rounded-lg text-yellow-500"><AlertTriangle className="w-5 h-5" /></div>
                     <div>
                       <div className="text-yellow-500 font-semibold text-sm">Low Stock Alert</div>
                       <div className="text-white text-sm mt-1">28 items need attention</div>
                       <div className="text-gray-400 text-xs mt-1 cursor-pointer hover:text-white">View items &rarr;</div>
                     </div>
-                  </div>
+                  </div> */}
                   {/* Alert 2 */}
-                  <div className="bg-[#121A2F] border border-blue-500/20 rounded-xl p-4 flex items-start gap-4 shadow-xl backdrop-blur-md hidden md:flex">
+                  {/* <div className="bg-[#121A2F] border border-blue-500/20 rounded-xl p-4 flex items-start gap-4 shadow-xl backdrop-blur-md hidden md:flex">
                     <div className="bg-blue-500/20 p-2 rounded-lg text-blue-400"><Package className="w-5 h-5" /></div>
                     <div>
                       <div className="text-blue-400 font-semibold text-sm">Stock Incoming</div>
                       <div className="text-white text-sm mt-1">PO #PO-4587</div>
                       <div className="text-gray-400 text-xs mt-1">Arriving 24 May</div>
                     </div>
-                  </div>
+                  </div> */}
                   {/* Alert 3 */}
-                  <div className="bg-[#11241C] border border-green-500/20 rounded-xl p-4 flex items-start gap-4 shadow-xl backdrop-blur-md hidden lg:flex">
+                  {/* <div className="bg-[#11241C] border border-green-500/20 rounded-xl p-4 flex items-start gap-4 shadow-xl backdrop-blur-md hidden lg:flex">
                     <div className="bg-green-500/20 p-2 rounded-lg text-green-400"><CheckCircle2 className="w-5 h-5" /></div>
                     <div>
                       <div className="text-green-400 font-semibold text-sm">Transfer Completed</div>
                       <div className="text-white text-sm mt-1">Warehouse B &rarr; Store 12</div>
                       <div className="text-gray-400 text-xs mt-1">125 items transferred</div>
                     </div>
-                  </div>
-               </div>
+                  </div> */}
+               {/* </div> */}
             </div>
             
           </div>
@@ -459,7 +459,7 @@ export default function InventoryManagementPage() {
           <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
             
             <div className="lg:w-1/2 text-white">
-              <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
+              <h2 className="text-2xl md:text-4xl font-bold leading-tight mb-6">
                 Take Complete Control<br />of Your Inventory.<br />Drive Growth. Always.
               </h2>
               <p className="text-gray-400 text-lg mb-8 max-w-md">

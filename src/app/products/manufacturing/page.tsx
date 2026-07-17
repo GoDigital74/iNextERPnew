@@ -70,12 +70,12 @@ export default function ManufacturingPage() {
               <div className="inline-flex w-fit items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold tracking-wider text-blue-400 uppercase">
                 Manufacturing
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
+              <h1 className="text-5xl md:text-6xl lg:text-5xl font-semibold leading-[1.1] tracking-tight">
                 Manufacture Smarter.<br />
                 Produce Better.<br />
                 Deliver <span className="text-[#3b82f6]">Faster.</span>
               </h1>
-              <p className="text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed mt-2">
+              <p className="text-gray-400 text-sm md:text-md max-w-md leading-relaxed mt-2">
                 Plan, produce and monitor every operation in real-time. From raw materials to finished goods — NextERP brings complete control to your shop floor.
               </p>
               
@@ -104,42 +104,19 @@ export default function ManufacturingPage() {
             </div>
 
             {/* Right Dashboard Visual (Mockup Simulation) */}
-            <div className="xl:col-span-7 relative w-full h-[500px] md:h-[650px]">
-               {/* Main Dashboard Image */}
-               <div className="absolute inset-0 rounded-2xl border border-white/10 bg-[#0B1221] shadow-2xl overflow-hidden group">
+           <div className="xl:col-span-7 relative w-full h-[400px] md:h-[550px] lg:h-[650px] flex items-center justify-center mt-8 xl:mt-0">
+               {/* Scaled Image Container */}
+               <div className="relative w-full h-full scale-125 lg:scale-x-110 origin-center group">
                   <Image 
-                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1600" 
+                    src="/products/manufacturing 1.webp" 
                     alt="Manufacturing Dashboard Mockup" 
                     fill 
                     unoptimized
-                    className="object-cover opacity-50 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-700"
+                    className="object-contain drop-shadow-2xl transition-all duration-700"
+                    priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#060B19] via-[#060B19]/40 to-transparent pointer-events-none" />
-               </div>
-
-               {/* Floating Alert Cards */}
-               <div className="absolute -bottom-6 left-6 right-6 flex gap-4 z-20 flex-col md:flex-row justify-center">
-                  <div className="bg-[#0F172A]/90 border border-yellow-500/30 rounded-2xl p-4 flex items-center gap-4 shadow-2xl backdrop-blur-md min-w-[260px]">
-                    <div className="bg-yellow-500/20 p-2.5 rounded-full text-yellow-500 shrink-0">
-                      <AlertTriangle className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <div className="text-yellow-400 font-semibold text-xs">Low Stock: Mild Steel</div>
-                      <div className="text-white text-[10px] mt-0.5">Reorder required immediately</div>
-                    </div>
-                  </div>
-                  <div className="bg-[#0F172A]/90 border border-red-500/30 rounded-2xl p-4 flex items-center gap-4 shadow-2xl backdrop-blur-md min-w-[260px] hidden md:flex">
-                    <div className="bg-red-500/20 p-2.5 rounded-full text-red-500 shrink-0">
-                      <Wrench className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <div className="text-red-400 font-semibold text-xs">Machine CNC-02</div>
-                      <div className="text-white text-[10px] mt-0.5">Maintenance due in 2 days</div>
-                    </div>
-                  </div>
                </div>
             </div>
-            
           </div>
         </div>
       </section>
@@ -175,11 +152,11 @@ export default function ManufacturingPage() {
         </div>
       </section>
 
-      {/* 3. PRODUCT TOUR (3D Factory Floor Mockup) */}
+{/* 3. PRODUCT TOUR (3D Factory Floor Mockup) */}
       <section className="py-24 bg-[#F8FAFC]">
         <div className="container mx-auto px-6 max-w-[1400px]">
           
-          <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
+          <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 items-center">
             
             {/* Left Tabs (Col 2) */}
             <div className="xl:col-span-2 flex flex-col gap-6">
@@ -205,81 +182,17 @@ export default function ManufacturingPage() {
               </div>
             </div>
 
-            {/* Desktop UI Center (Col 10) - Factory Floor Graphic */}
-            <div className="xl:col-span-10 relative bg-gray-100 rounded-[2rem] overflow-hidden flex items-center justify-center min-h-[600px] border border-gray-200 shadow-inner">
-               
-               {/* 3D Factory Floor Image (Placeholder) */}
-               <div className="absolute inset-0 opacity-80 mix-blend-multiply">
-                 <Image 
-                    src="https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?auto=format&fit=crop&q=80&w=1600" 
-                    alt="Factory Floor" 
-                    fill 
-                    unoptimized
-                    className="object-cover"
-                 />
-               </div>
-
-               {/* Floating Labels over the factory */}
-               <div className="absolute top-1/4 left-1/4 bg-white p-2 rounded-lg shadow-lg border border-gray-100 text-xs font-bold z-10 flex flex-col gap-1">
-                 <span className="text-gray-900">CNC Machines</span>
-                 <span className="text-green-500 text-[10px] flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-green-500"/> 12 Machines</span>
-               </div>
-               
-               <div className="absolute top-1/3 left-1/2 bg-white p-2 rounded-lg shadow-lg border border-gray-100 text-xs font-bold z-10 flex flex-col gap-1">
-                 <span className="text-gray-900">Assembly Line A</span>
-                 <span className="text-green-500 text-[10px] flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-green-500"/> Running</span>
-               </div>
-
-               <div className="absolute top-1/2 right-1/3 bg-white p-2 rounded-lg shadow-lg border border-gray-100 text-xs font-bold z-10 flex flex-col gap-1">
-                 <span className="text-gray-900">Paint Shop</span>
-                 <span className="text-yellow-500 text-[10px] flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-yellow-500"/> Idle</span>
-               </div>
-
-               <div className="absolute bottom-1/4 left-1/3 bg-white p-2 rounded-lg shadow-lg border border-gray-100 text-xs font-bold z-10 flex flex-col gap-1">
-                 <span className="text-gray-900">Quality Check</span>
-                 <span className="text-blue-500 text-[10px]">In Progress</span>
-               </div>
-
-               {/* Right Side UI Panel overlaying the image */}
-               <div className="absolute right-6 top-6 bottom-6 w-80 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 p-6 flex flex-col z-20">
-                 <div className="flex justify-between items-start mb-6">
-                   <div>
-                     <h4 className="font-bold text-gray-900">Work Order WO-2350</h4>
-                     <div className="text-[10px] text-gray-500 mt-1">Gear Box Assembly</div>
-                   </div>
-                   <span className="bg-green-50 text-green-600 text-[9px] font-bold px-2 py-1 rounded flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-green-500"/> In Progress</span>
-                 </div>
-
-                 <div className="grid grid-cols-2 gap-4 mb-6">
-                   <div>
-                     <div className="text-[10px] text-gray-400">Start Date</div>
-                     <div className="text-xs font-bold text-gray-900">24 Apr 2024</div>
-                   </div>
-                   <div>
-                     <div className="text-[10px] text-gray-400">Due Date</div>
-                     <div className="text-xs font-bold text-gray-900">28 Apr 2024</div>
-                   </div>
-                 </div>
-
-                 <div className="mb-6">
-                   <div className="flex justify-between text-[10px] font-bold text-gray-700 mb-2"><span>Progress</span><span>50%</span></div>
-                   <div className="w-full bg-gray-100 rounded-full h-1.5"><div className="bg-blue-600 h-1.5 rounded-full" style={{width:'50%'}}></div></div>
-                 </div>
-
-                 <div className="flex-1">
-                   <div className="text-[10px] font-bold text-gray-400 uppercase mb-3">Consumption vs Standard</div>
-                   <div className="flex flex-col gap-3 text-xs">
-                     <div className="flex justify-between items-center"><span className="text-gray-600 flex items-center gap-2"><Wrench className="w-3 h-3 text-gray-400"/> Mild Steel</span> <div className="flex items-center gap-2"><span className="font-bold">98 / 100 kg</span><CheckCircle2 className="w-3 h-3 text-green-500"/></div></div>
-                     <div className="flex justify-between items-center"><span className="text-gray-600 flex items-center gap-2"><Layers className="w-3 h-3 text-gray-400"/> Aluminum</span> <div className="flex items-center gap-2"><span className="font-bold">45 / 50 kg</span><CheckCircle2 className="w-3 h-3 text-green-500"/></div></div>
-                     <div className="flex justify-between items-center"><span className="text-gray-600 flex items-center gap-2"><Cog className="w-3 h-3 text-gray-400"/> Bearing</span> <div className="flex items-center gap-2"><span className="font-bold">20 / 20 pcs</span><CheckCircle2 className="w-3 h-3 text-green-500"/></div></div>
-                     <div className="flex justify-between items-center"><span className="text-gray-600 flex items-center gap-2"><Settings className="w-3 h-3 text-gray-400"/> Oil Seal</span> <div className="flex items-center gap-2"><span className="font-bold text-red-500">10 / 12 pcs</span><XCircle className="w-3 h-3 text-red-500"/></div></div>
-                   </div>
-                 </div>
-
-                 <button className="w-full mt-4 py-3 bg-[#3b82f6] text-white rounded-xl text-xs font-bold">View Work Order</button>
-               </div>
+            {/* Right Image Area (Col 10) */}
+            <div className="xl:col-span-10 relative w-full h-[400px] md:h-[600px] rounded-[2rem] overflow-hidden shadow-xl border border-gray-200 mt-8 xl:mt-0 bg-gray-100">
+              <Image
+                // Update this src to your specific image path (e.g., "/products/manufacturing-tour.webp")
+                src="/products/manufacturing 2.webp" 
+                alt="Manufacturing Product Tour"
+                fill
+                unoptimized
+                className="object-cover"
+              />
             </div>
-
           </div>
         </div>
       </section>

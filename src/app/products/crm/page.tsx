@@ -73,20 +73,17 @@ export default function CRMPage() {
               <div className="inline-flex w-fit items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold tracking-wider text-blue-400 uppercase">
                 CRM
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
+              <h1 className="text-5xl md:text-6xl lg:text-5xl font-bold leading-[1.1] tracking-tight">
                 Build Strong Relationships.<br />
                 Close <span className="text-[#3b82f6]">More Deals.</span>
               </h1>
-              <p className="text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed mt-2">
+              <p className="text-gray-400 text-lg md:text-md max-w-md leading-relaxed mt-2">
                 NextERP CRM helps you attract the right leads, build lasting relationships, and close deals faster with complete visibility and automation.
               </p>
               
               <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
                 <button className="w-full sm:w-auto px-8 py-4 bg-[#3b82f6] hover:bg-blue-600 text-white rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] flex items-center justify-center gap-2">
                   Book an Enterprise Demo <ArrowRight className="w-4 h-4" />
-                </button>
-                <button className="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/20 hover:bg-white/5 text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2">
-                  Explore CRM Tour <Play className="w-4 h-4" />
                 </button>
               </div>
 
@@ -101,41 +98,16 @@ export default function CRMPage() {
             </div>
 
             {/* Right Dashboard Visual (Mockup Simulation) */}
-            <div className="xl:col-span-7 relative w-full h-[450px] md:h-[600px]">
-               <div className="absolute inset-0 rounded-2xl border border-white/10 bg-[#0B1221] shadow-2xl overflow-hidden group">
+<div className="xl:col-span-7 relative w-full h-[450px] md:h-[600px] flex items-center justify-center">
+               {/* Replaced 'absolute inset-0' with 'relative w-full h-full' and added scale classes */}
+               <div className="relative w-full h-full scale-110 lg:scale-125 origin-center group">
                   <Image 
-                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1600" 
+                    src="/products/CRM 1 iNext.png" 
                     alt="CRM Dashboard Mockup" 
                     fill 
                     unoptimized
-                    className="object-cover opacity-50 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-700"
+                    className="object-contain drop-shadow-2xl transition-all duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#060B19] via-[#060B19]/40 to-transparent pointer-events-none" />
-               </div>
-
-               {/* Floating Cards */}
-               <div className="absolute -bottom-6 left-10 flex gap-4 z-20 flex-col md:flex-row">
-                  {/* Deal Won Card */}
-                  <div className="bg-[#0F172A]/90 border border-white/10 rounded-2xl p-4 flex items-center gap-4 shadow-2xl backdrop-blur-md min-w-[260px]">
-                    <div className="bg-green-500/20 p-2.5 rounded-full text-green-500 shrink-0">
-                      <Check className="w-5 h-5" strokeWidth={3} />
-                    </div>
-                    <div>
-                      <div className="text-green-400 font-semibold text-xs">Deal Won! 🎉</div>
-                      <div className="text-white text-sm mt-0.5 font-bold">Sunrise Pvt Ltd</div>
-                      <div className="text-gray-400 text-[10px]">Deal Value: ₹ 6,20,000</div>
-                    </div>
-                  </div>
-                  {/* AI Insight Card */}
-                  <div className="bg-[#0F172A]/90 border border-blue-500/30 rounded-2xl p-4 items-center gap-4 shadow-2xl backdrop-blur-md hidden lg:flex min-w-[300px]">
-                    <div className="bg-blue-500/20 p-2.5 rounded-full text-blue-400 shrink-0">
-                      <Sparkles className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <div className="text-blue-400 font-semibold text-xs">AI Insight</div>
-                      <div className="text-gray-300 text-[10px] mt-1 leading-tight">This month, your win rate improved by 27.5%. Focus on Proposal stage to close more deals.</div>
-                    </div>
-                  </div>
                </div>
             </div>
             
@@ -653,3 +625,4 @@ export default function CRMPage() {
     </main>
   );
 }
+

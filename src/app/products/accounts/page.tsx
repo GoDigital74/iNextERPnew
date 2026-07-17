@@ -72,12 +72,12 @@ export default function AccountingPage() {
               <div className="inline-flex w-fit items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold tracking-wider text-blue-400 uppercase">
                 Accounting
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
+              <h1 className="text-5xl md:text-6xl lg:text-6xl font-semibold leading-[1.1] tracking-tight">
                 Accounting<br />
                 That's Accurate.<br />
                 Insights That <span className="text-[#3b82f6]">Grow.</span>
               </h1>
-              <p className="text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed mt-2">
+              <p className="text-gray-400 text-lg md:text-md max-w-md leading-relaxed mt-2">
                 Manage your finances with precision. Automate accounting workflows, stay compliant, and get real-time insights to make smarter business decisions.
               </p>
               
@@ -100,72 +100,16 @@ export default function AccountingPage() {
               </div>
             </div>
 
-            {/* Right Dashboard Visual (Mockup Simulation) */}
-            <div className="xl:col-span-7 relative w-full h-[500px] md:h-[650px]">
-               {/* Main Dashboard Image Layer */}
-               <div className="absolute inset-0 rounded-2xl border border-white/10 bg-[#0B1221] shadow-2xl overflow-hidden group">
-                  <Image 
-                    src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1600" 
-                    alt="Accounting Dashboard Background" 
-                    fill 
-                    unoptimized
-                    className="object-cover opacity-20 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#060B19] via-[#060B19]/80 to-[#060B19]/40 pointer-events-none" />
-               </div>
-
-               {/* Simulated UI Overlays */}
-               <div className="absolute inset-4 md:inset-8 z-20 flex flex-col gap-4">
-                  {/* Top Stats Row */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {[
-                      { title: "Total Income", val: "₹ 1,24,85,000", inc: "+ 12.5%" },
-                      { title: "Total Expenses", val: "₹ 68,45,230", inc: "↓ 8.2%", color: "text-red-500" },
-                      { title: "Net Profit", val: "₹ 56,39,770", inc: "+ 15.6%" },
-                      { title: "Cash in Hand", val: "₹ 18,75,540", inc: "+ 9.1%" }
-                    ].map((stat, i) => (
-                      <div key={i} className="bg-[#0F172A]/80 backdrop-blur-md border border-white/10 rounded-xl p-4 shadow-lg">
-                        <div className="text-[10px] text-gray-400 mb-1">{stat.title}</div>
-                        <div className="text-sm md:text-lg font-bold text-white mb-1">{stat.val}</div>
-                        <div className={`text-[10px] font-bold ${stat.color || 'text-green-500'}`}>{stat.inc} <span className="font-normal text-gray-500">vs last year</span></div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Charts Row */}
-                  <div className="flex gap-4 flex-1">
-                     <div className="flex-1 bg-[#0F172A]/80 backdrop-blur-md border border-white/10 rounded-xl p-4 hidden md:block">
-                        <h4 className="text-xs font-bold text-gray-300 mb-4">Profit & Loss Overview</h4>
-                        {/* Line Chart Simulation */}
-                        <div className="w-full h-32 flex items-end relative border-b border-l border-gray-700 pb-2 pl-2">
-                           <svg className="w-full h-full text-blue-500 absolute bottom-2 left-2" preserveAspectRatio="none" viewBox="0 0 100 100">
-                             <polyline fill="none" stroke="currentColor" strokeWidth="2" points="0,70 20,60 40,65 60,30 80,45 100,20" />
-                           </svg>
-                           <svg className="w-full h-full text-green-500 absolute bottom-2 left-2" preserveAspectRatio="none" viewBox="0 0 100 100">
-                             <polyline fill="none" stroke="currentColor" strokeWidth="2" points="0,50 20,40 40,55 60,20 80,35 100,10" />
-                           </svg>
-                           <div className="flex justify-between w-full absolute -bottom-4 text-[8px] text-gray-500">
-                             <span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span>
-                           </div>
-                        </div>
-                     </div>
-                     <div className="w-64 bg-[#0F172A]/80 backdrop-blur-md border border-white/10 rounded-xl p-4 flex flex-col items-center justify-center">
-                        <h4 className="text-xs font-bold text-gray-300 mb-4 w-full text-left">Expense Breakdown</h4>
-                        {/* Donut Chart Simulation */}
-                        <div className="w-24 h-24 rounded-full border-[8px] border-blue-500 border-r-green-500 border-b-yellow-500 border-l-red-500 flex items-center justify-center mb-4">
-                           <div className="text-center">
-                             <div className="text-[10px] font-bold text-white">₹ 68.45L</div>
-                             <div className="text-[6px] text-gray-400">Total</div>
-                           </div>
-                        </div>
-                        <div className="text-[8px] text-gray-400 w-full space-y-1">
-                          <div className="flex justify-between"><span className="flex items-center gap-1"><div className="w-1.5 h-1.5 bg-blue-500 rounded-full"/> Purchase</span><span>35%</span></div>
-                          <div className="flex justify-between"><span className="flex items-center gap-1"><div className="w-1.5 h-1.5 bg-green-500 rounded-full"/> Employee Cost</span><span>20%</span></div>
-                          <div className="flex justify-between"><span className="flex items-center gap-1"><div className="w-1.5 h-1.5 bg-yellow-500 rounded-full"/> Admin Expenses</span><span>15%</span></div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+            {/* Right Hero Image (Cover on Right Side) */}
+            <div className="xl:col-span-7 relative w-full h-[350px] md:h-[500px] lg:h-[600px] flex items-center justify-center">
+               <Image 
+                 src="/products/accounting 1.webp" 
+                 alt="Accounting Dashboard Cover" 
+                 fill 
+                 unoptimized
+                 className="object-contain drop-shadow-2xl"
+                 priority
+               />
             </div>
             
           </div>

@@ -5,11 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-const TABS = ["Dashboard", "POS Billing", "Inventory Management", "Reports & Analytics"];
+const TABS = ["POS Billing", "Inventory Management", "Reports & Analytics"];
 
 // Map the tabs to their respective images verbatim
 const TAB_IMAGES: Record<string, string> = {
-  "Dashboard": "/dashboard/iNext hero 1.png",
   "POS Billing": "/dashboard/iNext Bill 1.png",
   "Inventory Management": "/dashboard/iNext Inventory 1.png",
   "Reports & Analytics": "/dashboard/iNext Report 1.png",

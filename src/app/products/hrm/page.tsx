@@ -71,22 +71,20 @@ export default function HRMPage() {
               <div className="inline-flex w-fit items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold tracking-wider text-blue-400 uppercase">
                 HRM
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
+              <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight">
                 Empower Your People.<br />
                 Simplify HR.<br />
                 Build a <span className="text-[#3b82f6]">Stronger Culture.</span>
               </h1>
-              <p className="text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed mt-2">
+              <p className="text-gray-400 text-md md:text-md max-w-md leading-relaxed mt-2">
                 NextERP HRM suite automates your HR operations, engages your employees, and helps you build a productive, people-first organization.
               </p>
               
               <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
-                <button className="w-full sm:w-auto px-8 py-4 bg-[#3b82f6] hover:bg-blue-600 text-white rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] flex items-center justify-center gap-2">
+                <button className="w-full sm:w-auto px-4 py-4 bg-[#3b82f6] hover:bg-blue-600 text-white rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] flex items-center justify-center gap-2">
                   Book an Enterprise Demo <ArrowRight className="w-4 h-4" />
                 </button>
-                <button className="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/20 hover:bg-white/5 text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2">
-                  Explore HRM Tour <Play className="w-4 h-4" />
-                </button>
+               
               </div>
 
               {/* Checkmarks */}
@@ -99,36 +97,21 @@ export default function HRMPage() {
               </div>
             </div>
 
-            {/* Right Dashboard Visual (Mockup Simulation) */}
-            <div className="xl:col-span-7 relative w-full h-[500px] md:h-[650px]">
-               {/* Main Dashboard Image */}
-               <div className="absolute inset-0 rounded-2xl border border-white/10 bg-[#0B1221] shadow-2xl overflow-hidden group">
+      {/* Right Dashboard Visual (Mockup Simulation) */}
+            <div className="xl:col-span-7 relative w-full h-[400px] md:h-[550px] lg:h-[650px] flex items-center justify-center mt-8 xl:mt-0">
+               {/* Scaled Image Container */}
+               <div className="relative w-full h-full scale-110 lg:scale-120 origin-center group">
                   <Image 
-                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1600" 
+                    src="/products/HRM iNext 1.png"
                     alt="HR Dashboard Mockup" 
                     fill 
                     unoptimized
-                    className="object-cover opacity-50 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-700"
+                    className="object-contain drop-shadow-2xl transition-all duration-700"
+                    priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#060B19] via-[#060B19]/40 to-transparent pointer-events-none" />
-               </div>
-
-               {/* Floating Approval Toast */}
-               <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 md:left-12 md:translate-x-0 bg-[#0F172A]/90 border border-white/10 rounded-2xl p-4 flex items-center gap-4 shadow-2xl backdrop-blur-md z-20 min-w-[320px]">
-                  <div className="bg-green-500/20 p-2.5 rounded-full text-green-500 shrink-0">
-                    <Check className="w-5 h-5" strokeWidth={3} />
-                  </div>
-                  <div className="flex-1">
-                    <div className="text-green-400 font-semibold text-sm flex justify-between">
-                      Leave Request Approved <span className="text-gray-500 text-xs font-normal">x</span>
-                    </div>
-                    <div className="text-white text-sm mt-0.5 font-medium">Sneha Kapoor</div>
-                    <div className="text-gray-400 text-xs">Casual Leave - 12 Apr 2024</div>
-                  </div>
                </div>
             </div>
-            
-          </div>
+            </div> 
         </div>
       </section>
 
