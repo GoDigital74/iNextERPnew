@@ -102,7 +102,7 @@ export default function HRMPage() {
                {/* Scaled Image Container */}
                <div className="relative w-full h-full scale-110 lg:scale-120 origin-center group">
                   <Image 
-                    src="/products/HRM iNext 1.png"
+                    src="/products/HRM iNext 1.webp"
                     alt="HR Dashboard Mockup" 
                     fill 
                     unoptimized

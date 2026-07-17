@@ -69,7 +69,7 @@ export function Hero() {
             className="relative w-full h-full scale-110 lg:scale-125 origin-center"
           >
             <Image
-              src="/dashboard/iNext hero 1.png"
+              src="/dashboard/iNext hero 1.webp"
               alt="iNextERP Dashboard and Mobile View"
               fill
               unoptimized

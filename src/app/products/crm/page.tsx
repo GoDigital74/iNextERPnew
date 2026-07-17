@@ -102,7 +102,7 @@ export default function CRMPage() {
                {/* Replaced 'absolute inset-0' with 'relative w-full h-full' and added scale classes */}
                <div className="relative w-full h-full scale-110 lg:scale-125 origin-center group">
                   <Image 
-                    src="/products/CRM 1 iNext.png" 
+                    src="/products/CRM 1 iNext.webp" 
                     alt="CRM Dashboard Mockup" 
                     fill 
                     unoptimized
