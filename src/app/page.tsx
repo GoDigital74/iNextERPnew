@@ -13,8 +13,7 @@ import { Integrations } from "@/components/sections/Integrations";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen flex flex-col selection:bg-primary-500 selection:text-white">
-     
+    <div className="relative min-h-screen flex flex-col selection:bg-primary-500 selection:text-white">    
       <main className="flex-1 flex flex-col w-full overflow-hidden">
         <Hero />
         <TrustedLogos />
@@ -27,8 +26,7 @@ export default function Home() {
         <Statistics />
         <Resources />
         <FaqAndCta />
-      </main>
-      
+      </main> 
     </div>
   );
 }

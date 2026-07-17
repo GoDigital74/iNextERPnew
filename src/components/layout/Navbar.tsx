@@ -34,7 +34,7 @@ const NAV_LINKS: NavLink[] = [
   },
   {
     name: "Products",
-    href: "/products",
+    href: "/products/inventory-management",
     dropdown: [
       { name: "Inventory Management", href: "/products/inventory-management" },
       { name: "Points of Sale", href: "/products/points-of-sale" },
