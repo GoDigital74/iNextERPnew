@@ -146,7 +146,7 @@ export default function POSPage() {
             {/* Right Dashboard Visual (POS Monitor Simulation) */}
             <div className="xl:col-span-7 relative w-full h-[500px] md:h-[650px]">
               {/* Main Screen Layer */}
-              <div className="absolute inset-0 rounded-2xl shadow-2xl overflow-hidden group">
+              <div className="absolute inset-0 rounded-2xl overflow-hidden group">
                 <Image
                   src="/products/POS img 1.webp"
                   alt="POS Interface Background"
