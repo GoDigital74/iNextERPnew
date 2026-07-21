@@ -24,7 +24,7 @@ const NAV_LINKS: NavLink[] = [
   { name: "About Us", href: "/about" },
   {
     name: "products",
-    href: "/products",
+    href: "/products/it-hardware",
     dropdown: [
       { name: "IT Hardware", href: "/products/it-hardware" },
       { name: "Consumables Items", href: "/products/consumables-items" },

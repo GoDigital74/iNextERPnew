@@ -79,10 +79,23 @@ export default function BlogPage() {
 
   return (
     <main className="min-h-screen bg-white font-sans text-gray-900">
-      {/* 1. HERO SECTION */}
-      <section className="bg-[#F4F7FB] pt-28 pb-4 px-6 border-b border-blue-100/50">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-[#1881c4] mb-6 leading-tight">
+      {/* 1. HERO SECTION - 👇 Added 'relative' here */}
+      <section className="bg-[#F4F7FB] pt-28 pb-4 px-6 border-b border-blue-100/50 relative">
+        
+        {/* 👇 ADMIN LINK MOVED TO TOP RIGHT CORNER 👇 */}
+        <div className="absolute top-28 right-6 md:right-12">
+          <a
+            href="/studio"
+            className="text-sm font-bold text-[#1881c4] hover:underline"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Admin
+          </a>
+        </div>
+
+        <div className="container mx-auto max-w-6xl text-center">
+          <h1 className="text-3xl md:text-4xl font-extrabold text-[#1881c4] mb-6 leading-tight">
             Insights & Resources for Retail <br className="hidden md:block" />{" "}
             Success
           </h1>
@@ -104,15 +117,6 @@ export default function BlogPage() {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-
-          <a
-            href="/studio"
-            className="text-sm font-bold text-[#1881c4] hover:underline"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Admin
-          </a>
         </div>
       </section>
 
@@ -165,7 +169,6 @@ export default function BlogPage() {
               {filteredPosts.map((post) => (
                 <div
                   key={post._id}
-                  // 👇 FIX: Changed bg-gray-50 to bg-[#F5F5F5]
                   className="group bg-[#F5F5F5] rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-gray-300 flex flex-col"
                 >
                   {/* Image Container */}
@@ -193,7 +196,6 @@ export default function BlogPage() {
                   </div>
 
                   {/* Content Area */}
-                  {/* 👇 FIX: Reduced padding from p-8 to p-5 */}
                   <div className="p-4 flex flex-col flex-1">
                     <h3 className="text-xl font-extrabold text-gray-900 mb-4 leading-snug line-clamp-2 group-hover:text-[#1881c4] transition-colors">
                       {post.title}
