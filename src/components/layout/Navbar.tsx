@@ -21,7 +21,7 @@ interface NavLink {
 
 // Constants
 const NAV_LINKS: NavLink[] = [
-  { name: "About Us", href: "/About-Us" },
+  { name: "About Us", href: "/about" },
   {
     name: "products",
     href: "/products",
@@ -46,9 +46,9 @@ const NAV_LINKS: NavLink[] = [
     ],
   },
 
-  { name: "Blog", href: "/Blog", dropdown: [] },
-  { name: "Careers", href: "/Careers" },
-  { name: "Contact", href: "/Contact", dropdown: [] },
+  { name: "Blog", href: "/blog", dropdown: [] },
+  { name: "Careers", href: "/careers" },
+  { name: "Contact", href: "/contact", dropdown: [] },
 ] as const;
 
 const SALES_PHONE = "+91 98765 43210";
