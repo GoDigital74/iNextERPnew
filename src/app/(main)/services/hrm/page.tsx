@@ -295,7 +295,7 @@
 // // //                   {[ {name:'Attendance', icon: Clock}, {name:'Leave', icon: Calendar}, {name:'Payslip', icon: FileText}, {name:'Helpdesk', icon: Phone} ].map((i, idx) => (
 // // //                     <div key={idx} className="flex flex-col items-center gap-1">
 // // //                       <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center shadow-sm border border-gray-100"><i.icon className="w-5 h-5 text-gray-700"/></div>
-// // //                       <div className="text-[9px] text-gray-600 font-medium">{i.name}</div>
+// // //                       <div className="text-[13px] text-gray-600 font-medium">{i.name}</div>
 // // //                     </div>
 // // //                   ))}
 // // //                 </div>
@@ -323,7 +323,7 @@
 // // //                     <div className="font-bold text-gray-900 text-sm">12 Apr - 15 Apr</div>
 // // //                     <div className="flex justify-between items-center mt-1">
 // // //                       <div className="text-[10px] text-gray-400">Casual Leave</div>
-// // //                       <div className="text-[9px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Approved</div>
+// // //                       <div className="text-[13px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Approved</div>
 // // //                     </div>
 // // //                   </div>
 
@@ -340,10 +340,10 @@
 
 // // //                 {/* Mobile Bottom Nav */}
 // // //                 <div className="absolute bottom-0 inset-x-0 h-16 bg-white border-t border-gray-100 flex justify-around items-center px-4">
-// // //                   <div className="flex flex-col items-center text-blue-600"><LayoutDashboard className="w-5 h-5 mb-1" /><div className="text-[9px] font-bold">Home</div></div>
-// // //                   <div className="flex flex-col items-center text-gray-400"><Users className="w-5 h-5 mb-1" /><div className="text-[9px]">Directory</div></div>
-// // //                   <div className="flex flex-col items-center text-gray-400"><CheckCircle2 className="w-5 h-5 mb-1" /><div className="text-[9px]">Tasks</div></div>
-// // //                   <div className="flex flex-col items-center text-gray-400"><div className="w-5 h-5 mb-1 flex items-center justify-center">•••</div><div className="text-[9px]">More</div></div>
+// // //                   <div className="flex flex-col items-center text-blue-600"><LayoutDashboard className="w-5 h-5 mb-1" /><div className="text-[13px] font-bold">Home</div></div>
+// // //                   <div className="flex flex-col items-center text-gray-400"><Users className="w-5 h-5 mb-1" /><div className="text-[13px]">Directory</div></div>
+// // //                   <div className="flex flex-col items-center text-gray-400"><CheckCircle2 className="w-5 h-5 mb-1" /><div className="text-[13px]">Tasks</div></div>
+// // //                   <div className="flex flex-col items-center text-gray-400"><div className="w-5 h-5 mb-1 flex items-center justify-center">•••</div><div className="text-[13px]">More</div></div>
 // // //                 </div>
 // // //               </div>
 // // //             </div>
@@ -439,7 +439,7 @@
 // // //                <div className="mt-4">
 // // //                  <div className="text-[10px] text-gray-400 mb-1">Total Employees</div>
 // // //                  <div className="text-xl font-bold text-gray-900">1,248</div>
-// // //                  <div className="text-[9px] font-bold text-green-500 mb-4">↑ 12.5% <span className="font-normal text-gray-400">vs last month</span></div>
+// // //                  <div className="text-[13px] font-bold text-green-500 mb-4">↑ 12.5% <span className="font-normal text-gray-400">vs last month</span></div>
 // // //                  {/* Mini Bar Chart */}
 // // //                  <div className="flex items-end justify-between h-8 gap-1">
 // // //                    {[40, 70, 45, 90, 60, 80, 100].map((h, i) => (
@@ -911,7 +911,7 @@
 // //                   {[ {name:'Attendance', icon: Clock}, {name:'Leave', icon: Calendar}, {name:'Payslip', icon: FileText}, {name:'Helpdesk', icon: Phone} ].map((i, idx) => (
 // //                     <div key={idx} className="flex flex-col items-center gap-1 cursor-pointer hover:opacity-80">
 // //                       <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center shadow-sm border border-blue-100"><i.icon className="w-5 h-5 text-blue-600"/></div>
-// //                       <div className="text-[9px] text-gray-600 font-medium">{i.name}</div>
+// //                       <div className="text-[13px] text-gray-600 font-medium">{i.name}</div>
 // //                     </div>
 // //                   ))}
 // //                 </div>
@@ -946,9 +946,9 @@
 
 // //                 {/* Mobile Bottom Nav */}
 // //                 <div className="absolute bottom-0 inset-x-0 h-16 bg-white border-t border-gray-100 flex justify-around items-center px-4">
-// //                   <div className="flex flex-col items-center text-blue-600"><LayoutDashboard className="w-5 h-5 mb-1" /><div className="text-[9px] font-bold">Home</div></div>
-// //                   <div className="flex flex-col items-center text-gray-400"><Users className="w-5 h-5 mb-1" /><div className="text-[9px]">Directory</div></div>
-// //                   <div className="flex flex-col items-center text-gray-400"><CheckCircle2 className="w-5 h-5 mb-1" /><div className="text-[9px]">Tasks</div></div>
+// //                   <div className="flex flex-col items-center text-blue-600"><LayoutDashboard className="w-5 h-5 mb-1" /><div className="text-[13px] font-bold">Home</div></div>
+// //                   <div className="flex flex-col items-center text-gray-400"><Users className="w-5 h-5 mb-1" /><div className="text-[13px]">Directory</div></div>
+// //                   <div className="flex flex-col items-center text-gray-400"><CheckCircle2 className="w-5 h-5 mb-1" /><div className="text-[13px]">Tasks</div></div>
 // //                 </div>
 // //               </div>
 // //             </div>
@@ -1047,7 +1047,7 @@
 // //                <div className="mt-4">
 // //                  <div className="text-[10px] text-gray-400 mb-1">Total Employees</div>
 // //                  <div className="text-xl font-bold text-gray-900">1,248</div>
-// //                  <div className="text-[9px] font-bold text-green-500 mb-4">↑ 12.5% <span className="font-normal text-gray-400">vs last month</span></div>
+// //                  <div className="text-[13px] font-bold text-green-500 mb-4">↑ 12.5% <span className="font-normal text-gray-400">vs last month</span></div>
 // //                  <div className="flex items-end justify-between h-8 gap-1">
 // //                    {[40, 70, 45, 90, 60, 80, 100].map((h, i) => (
 // //                      <div key={i} className={`w-full rounded-t-sm ${i === 6 ? 'bg-blue-600' : 'bg-blue-200'}`} style={{ height: `${h}%` }} />
@@ -1610,7 +1610,7 @@
 //                   {[ {name:'Attendance', icon: Clock}, {name:'Leave', icon: Calendar}, {name:'Payslip', icon: FileText}, {name:'Helpdesk', icon: Phone} ].map((i, idx) => (
 //                     <div key={idx} className="flex flex-col items-center gap-1 cursor-pointer hover:opacity-80">
 //                       <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center shadow-sm border border-blue-100"><i.icon className="w-5 h-5 text-blue-600"/></div>
-//                       <div className="text-[9px] text-gray-600 font-medium">{i.name}</div>
+//                       <div className="text-[13px] text-gray-600 font-medium">{i.name}</div>
 //                     </div>
 //                   ))}
 //                 </div>
@@ -1645,9 +1645,9 @@
 
 //                 {/* Mobile Bottom Nav */}
 //                 <div className="absolute bottom-0 inset-x-0 h-16 bg-white border-t border-gray-100 flex justify-around items-center px-4">
-//                   <div className="flex flex-col items-center text-blue-600"><LayoutDashboard className="w-5 h-5 mb-1" /><div className="text-[9px] font-bold">Home</div></div>
-//                   <div className="flex flex-col items-center text-gray-400"><Users className="w-5 h-5 mb-1" /><div className="text-[9px]">Directory</div></div>
-//                   <div className="flex flex-col items-center text-gray-400"><CheckCircle2 className="w-5 h-5 mb-1" /><div className="text-[9px]">Tasks</div></div>
+//                   <div className="flex flex-col items-center text-blue-600"><LayoutDashboard className="w-5 h-5 mb-1" /><div className="text-[13px] font-bold">Home</div></div>
+//                   <div className="flex flex-col items-center text-gray-400"><Users className="w-5 h-5 mb-1" /><div className="text-[13px]">Directory</div></div>
+//                   <div className="flex flex-col items-center text-gray-400"><CheckCircle2 className="w-5 h-5 mb-1" /><div className="text-[13px]">Tasks</div></div>
 //                 </div>
 //               </div>
 //             </div>
@@ -1746,7 +1746,7 @@
 //                <div className="mt-4">
 //                  <div className="text-[10px] text-gray-400 mb-1">Total Employees</div>
 //                  <div className="text-xl font-bold text-gray-900">1,248</div>
-//                  <div className="text-[9px] font-bold text-green-500 mb-4">↑ 12.5% <span className="font-normal text-gray-400">vs last month</span></div>
+//                  <div className="text-[13px] font-bold text-green-500 mb-4">↑ 12.5% <span className="font-normal text-gray-400">vs last month</span></div>
 //                  <div className="flex items-end justify-between h-8 gap-1">
 //                    {[40, 70, 45, 90, 60, 80, 100].map((h, i) => (
 //                      <div key={i} className={`w-full rounded-t-sm ${i === 6 ? 'bg-blue-600' : 'bg-blue-200'}`} style={{ height: `${h}%` }} />
@@ -2211,7 +2211,7 @@ export default function HRMPage() {
                       <step.icon className="w-4 h-4 md:w-5 md:h-5 stroke-[1.5]" />
                     </div>
                     <div className="font-bold text-gray-900 text-xs mb-1">{step.title}</div>
-                    <div className="text-[9px] md:text-[10px] text-gray-500 leading-tight px-1">{step.desc}</div>
+                    <div className="text-[13px] md:text-[10px] text-gray-500 leading-tight px-1">{step.desc}</div>
                   </div>
                   {idx !== WORKFLOW_STEPS.length - 1 && (
                     <ArrowRight className="hidden lg:block w-3 h-3 text-gray-300 absolute -right-2 top-4" />
@@ -2307,7 +2307,7 @@ export default function HRMPage() {
                   <div className="flex justify-between items-center">
                     <div>
                       <h4 className="font-bold text-sm">Hello, Ritika 👋</h4>
-                      <p className="text-[9px] text-blue-200 mt-0.5">{TOUR_TABS[activeTab].name}</p>
+                      <p className="text-[13px] text-blue-200 mt-0.5">{TOUR_TABS[activeTab].name}</p>
                     </div>
                   </div>
                 </div>
@@ -2322,18 +2322,18 @@ export default function HRMPage() {
                 </div>
 
                 <div className="flex-1 px-5 flex flex-col gap-3 overflow-y-auto pb-16 custom-scrollbar">
-                  <div className="text-[9px] text-gray-500 leading-tight">
+                  <div className="text-[13px] text-gray-500 leading-tight">
                     {TOUR_CONTENT[activeTab].desc.substring(0, 80)}...
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-xl p-3 shadow-sm relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-1 h-full bg-green-500" />
-                    <div className="text-[9px] text-gray-500 mb-0.5">Primary Metric</div>
+                    <div className="text-[13px] text-gray-500 mb-0.5">Primary Metric</div>
                     <div className="font-bold text-gray-900 text-sm">{TOUR_CONTENT[activeTab].metrics[0].v}</div>
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-xl p-3 shadow-sm">
-                    <div className="text-[9px] text-gray-500 mb-0.5">Secondary Metric</div>
+                    <div className="text-[13px] text-gray-500 mb-0.5">Secondary Metric</div>
                     <div className="font-bold text-gray-900 text-sm">{TOUR_CONTENT[activeTab].metrics[1].v}</div>
                   </div>
                 </div>
@@ -2362,9 +2362,9 @@ export default function HRMPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
              
              {/* Feature 1 */}
-             <div className="xl:col-span-1 bg-white border border-gray-100 rounded-xl p-5 hover:shadow-lg transition-all shadow-sm flex flex-col h-[240px]">
+             <div className="xl:col-span-1 bg-white border border-gray-100 rounded-xl p-5 hover:shadow-lg transition-all shadow-sm flex flex-col h-[280px]">
                <h3 className="font-bold text-gray-900 text-xs mb-1.5">Smart Attendance</h3>
-               <p className="text-[9px] text-gray-500 mb-auto leading-relaxed">Biometric, face recognition, and geo-tagged attendance capture — accurate to the location and minute.</p>
+               <p className="text-[13px] text-gray-500 mb-auto leading-relaxed">Biometric, face recognition, and geo-tagged attendance capture — accurate to the location and minute.</p>
                <div className="mt-3 flex justify-center">
                  <div className="w-16 h-16 rounded-full border-4 border-blue-500 border-r-transparent flex flex-col items-center justify-center rotate-45 relative">
                    <Fingerprint className="absolute text-blue-500/20 w-8 h-8 -rotate-45" />
@@ -2376,10 +2376,10 @@ export default function HRMPage() {
              </div>
 
              {/* Feature 2 */}
-             <div className="xl:col-span-1 bg-white border border-gray-100 rounded-xl p-5 hover:shadow-lg transition-all shadow-sm flex flex-col h-[240px]">
+             <div className="xl:col-span-1 bg-white border border-gray-100 rounded-xl p-5 hover:shadow-lg transition-all shadow-sm flex flex-col h-[280px]">
                <h3 className="font-bold text-gray-900 text-xs mb-1.5">Leave Management</h3>
-               <p className="text-[9px] text-gray-500 mb-auto leading-relaxed">Flexible leave policies with self-service application and approval workflows.</p>
-               <div className="mt-3 flex flex-col gap-1.5 text-[9px] text-gray-600">
+               <p className="text-[13px] text-gray-500 mb-auto leading-relaxed">Flexible leave policies with self-service application and approval workflows.</p>
+               <div className="mt-3 flex flex-col gap-1.5 text-[13px] text-gray-600">
                  <div className="flex justify-between border-b pb-1"><span>Casual Leave</span><span className="font-bold text-gray-900">8</span></div>
                  <div className="flex justify-between border-b pb-1"><span>Sick Leave</span><span className="font-bold text-gray-900">6</span></div>
                  <div className="flex justify-between border-b pb-1"><span>Privilege Leave</span><span className="font-bold text-gray-900">10</span></div>
@@ -2388,27 +2388,27 @@ export default function HRMPage() {
              </div>
 
              {/* Feature 3 */}
-             <div className="xl:col-span-1 bg-white border border-gray-100 rounded-xl p-5 hover:shadow-lg transition-all shadow-sm flex flex-col h-[240px]">
+             <div className="xl:col-span-1 bg-white border border-gray-100 rounded-xl p-5 hover:shadow-lg transition-all shadow-sm flex flex-col h-[280px]">
                <h3 className="font-bold text-gray-900 text-xs mb-1.5">Payroll Automation</h3>
-               <p className="text-[9px] text-gray-500 mb-auto leading-relaxed">Accurate payroll processing with tax compliance built in, and instant payslip generation.</p>
+               <p className="text-[13px] text-gray-500 mb-auto leading-relaxed">Accurate payroll processing with tax compliance built in, and instant payslip generation.</p>
                <div className="mt-3">
-                 <div className="text-[9px] text-gray-400 mb-1">This Month Payroll</div>
+                 <div className="text-[13px] text-gray-400 mb-1">This Month Payroll</div>
                  <div className="text-base font-bold text-gray-900 mb-1">₹ 1.48 Cr</div>
                  <div className="h-8 w-full flex items-end mb-1">
                    <svg className="w-full h-full text-blue-500" preserveAspectRatio="none" viewBox="0 0 100 100">
                      <polyline fill="none" stroke="currentColor" strokeWidth="3" points="0,80 20,60 40,70 60,30 80,40 100,10" />
                    </svg>
                  </div>
-                 <div className="text-[9px] font-bold text-green-500">↑ 8.7% <span className="font-normal text-gray-400">vs last month</span></div>
+                 <div className="text-[13px] font-bold text-green-500">↑ 8.7% <span className="font-normal text-gray-400">vs last month</span></div>
                </div>
              </div>
 
              {/* Feature 4 */}
-             <div className="xl:col-span-1 bg-white border border-gray-100 rounded-xl p-5 hover:shadow-lg transition-all shadow-sm flex flex-col h-[240px]">
+             <div className="xl:col-span-1 bg-white border border-gray-100 rounded-xl p-5 hover:shadow-lg transition-all shadow-sm flex flex-col h-[280px]">
                <h3 className="font-bold text-gray-900 text-xs mb-1.5">Performance Mgmt</h3>
-               <p className="text-[9px] text-gray-500 mb-auto leading-relaxed">Set goals, track progress, and conduct structured performance reviews per employee.</p>
+               <p className="text-[13px] text-gray-500 mb-auto leading-relaxed">Set goals, track progress, and conduct structured performance reviews per employee.</p>
                <div className="mt-3">
-                 <div className="flex justify-between text-[9px] font-bold text-gray-900 mb-1"><span>Q2 Goals Progress</span><span>78%</span></div>
+                 <div className="flex justify-between text-[13px] font-bold text-gray-900 mb-1"><span>Q2 Goals Progress</span><span>78%</span></div>
                  <div className="w-full bg-gray-100 rounded-full h-1 mb-4"><div className="bg-blue-600 h-1 rounded-full" style={{width:'78%'}}></div></div>
                  <div className="flex justify-between items-center p-2 bg-gray-50 rounded-lg border border-gray-100">
                    <span className="text-[10px] text-gray-600">Active Goals</span>
@@ -2418,27 +2418,27 @@ export default function HRMPage() {
              </div>
 
              {/* Feature 5 */}
-             <div className="xl:col-span-1 bg-white border border-gray-100 rounded-xl p-5 hover:shadow-lg transition-all shadow-sm flex flex-col h-[240px]">
+             <div className="xl:col-span-1 bg-white border border-gray-100 rounded-xl p-5 hover:shadow-lg transition-all shadow-sm flex flex-col h-[280px]">
                <h3 className="font-bold text-gray-900 text-xs mb-1.5">Recruitment Pipeline</h3>
-               <p className="text-[9px] text-gray-500 mb-auto leading-relaxed">Track candidates from application through interview to onboarding.</p>
+               <p className="text-[13px] text-gray-500 mb-auto leading-relaxed">Track candidates from application through interview to onboarding.</p>
                <div className="mt-3 flex flex-col gap-2">
                  <div className="p-2 bg-blue-50/50 rounded-lg border border-blue-100">
-                   <div className="text-[9px] text-gray-500 mb-0.5">Hired This Month</div>
+                   <div className="text-[13px] text-gray-500 mb-0.5">Hired This Month</div>
                    <div className="text-base font-bold text-gray-900">15</div>
                  </div>
                  <div className="p-2 bg-gray-50 rounded-lg border border-gray-100">
-                   <div className="text-[9px] text-gray-500 mb-0.5">Open Positions</div>
+                   <div className="text-[13px] text-gray-500 mb-0.5">Open Positions</div>
                    <div className="text-base font-bold text-gray-900">8</div>
                  </div>
                </div>
              </div>
 
              {/* Feature 6 */}
-             <div className="xl:col-span-1 bg-white border border-gray-100 rounded-xl p-5 hover:shadow-lg transition-all shadow-sm flex flex-col h-[240px]">
+             <div className="xl:col-span-1 bg-white border border-gray-100 rounded-xl p-5 hover:shadow-lg transition-all shadow-sm flex flex-col h-[280px]">
                <h3 className="font-bold text-gray-900 text-xs mb-1.5">HR Analytics</h3>
-               <p className="text-[9px] text-gray-500 mb-auto leading-relaxed">Real-time headcount, attrition, and workforce trends for data-driven decisions.</p>
+               <p className="text-[13px] text-gray-500 mb-auto leading-relaxed">Real-time headcount, attrition, and workforce trends for data-driven decisions.</p>
                <div className="mt-3">
-                 <div className="text-[9px] text-gray-400 mb-0.5">Total Employees</div>
+                 <div className="text-[13px] text-gray-400 mb-0.5">Total Employees</div>
                  <div className="text-base font-bold text-gray-900">1,248</div>
                  <div className="text-[8px] font-bold text-green-500 mb-2">↑ 12.5%</div>
                  <div className="flex items-end justify-between h-6 gap-1">
@@ -2469,7 +2469,7 @@ export default function HRMPage() {
                 <Landmark className="w-5 h-5" />
               </div>
               <h3 className="text-base font-bold text-gray-900 mb-2">PF, ESI & Professional Tax</h3>
-              <p className="text-gray-600 text-xs leading-relaxed">
+              <p className="text-gray-600 text-md leading-relaxed">
                 Automatic calculation and deduction of Provident Fund, ESI, and Professional Tax as applicable, factored into every single payroll run.
               </p>
             </div>
@@ -2479,7 +2479,7 @@ export default function HRMPage() {
                 <Receipt className="w-5 h-5" />
               </div>
               <h3 className="text-base font-bold text-gray-900 mb-2">TDS on Salary</h3>
-              <p className="text-gray-600 text-xs leading-relaxed">
+              <p className="text-gray-600 text-md leading-relaxed">
                 Income tax (TDS) is calculated per employee based on declared investments and applicable slabs, and reflected accurately in payslips and Form 16 at year-end.
               </p>
             </div>
@@ -2489,7 +2489,7 @@ export default function HRMPage() {
                 <FileBadge className="w-5 h-5" />
               </div>
               <h3 className="text-base font-bold text-gray-900 mb-2">Statutory Reports</h3>
-              <p className="text-gray-600 text-xs leading-relaxed">
+              <p className="text-gray-600 text-md leading-relaxed">
                 Generate PF, ESI, and PT challans and returns directly from your payroll data, drastically reducing manual compliance and filing work.
               </p>
             </div>
@@ -2501,7 +2501,7 @@ export default function HRMPage() {
       <section className="py-16 bg-white border-t border-gray-100">
         <div className="container mx-auto px-6 max-w-[1400px]">
           <div className="text-center mb-10">
-             <div className="text-blue-500 text-xs font-bold uppercase tracking-wider mb-2">Before iNextERP HRM vs After</div>
+             <div className="text-blue-500 text-xl font-bold uppercase tracking-wider mb-2">Before iNextERP HRM vs After</div>
           </div>
 
           <div className="relative bg-white rounded-[2rem] overflow-hidden shadow-xl flex flex-col xl:flex-row border border-gray-100">
@@ -2547,25 +2547,25 @@ export default function HRMPage() {
                     <div className="bg-white border border-gray-100 shadow-md rounded-xl p-3 flex gap-3 items-center">
                       <div className="w-8 h-8 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center"><CheckCircle2 className="w-4 h-4"/></div>
                       <div>
-                        <div className="text-[9px] text-gray-400 font-bold uppercase">Payroll Accuracy</div>
+                        <div className="text-[13px] text-gray-400 font-bold uppercase">Payroll Accuracy</div>
                         <div className="text-sm font-bold text-gray-900">99.8%</div>
-                        <div className="text-[9px] font-bold text-green-500">↑ 12.4%</div>
+                        <div className="text-[13px] font-bold text-green-500">↑ 12.4%</div>
                       </div>
                     </div>
                     <div className="bg-white border border-gray-100 shadow-md rounded-xl p-3 flex gap-3 items-center">
                       <div className="w-8 h-8 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center"><Clock className="w-4 h-4"/></div>
                       <div>
-                        <div className="text-[9px] text-gray-400 font-bold uppercase">Time Saved</div>
+                        <div className="text-[13px] text-gray-400 font-bold uppercase">Time Saved</div>
                         <div className="text-sm font-bold text-gray-900">65%</div>
-                        <div className="text-[9px] font-bold text-green-500">↑ 18.7%</div>
+                        <div className="text-[13px] font-bold text-green-500">↑ 18.7%</div>
                       </div>
                     </div>
                     <div className="bg-white border border-gray-100 shadow-md rounded-xl p-3 flex gap-3 items-center">
                       <div className="w-8 h-8 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center"><Star className="w-4 h-4"/></div>
                       <div>
-                        <div className="text-[9px] text-gray-400 font-bold uppercase">Satisfaction</div>
+                        <div className="text-[13px] text-gray-400 font-bold uppercase">Satisfaction</div>
                         <div className="text-sm font-bold text-gray-900">4.6/5</div>
-                        <div className="text-[9px] font-bold text-green-500">↑ 15.3%</div>
+                        <div className="text-[13px] font-bold text-green-500">↑ 15.3%</div>
                       </div>
                     </div>
                  </div>
