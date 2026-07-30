@@ -609,10 +609,11 @@
 //   );
 // }
 
+
 import type { Metadata } from "next";
 import IntegrationsClient from "./IntegrationsClient";
 
-// --- FAQ DATA & SCHEMA ---
+// --- FAQ SCHEMA FOR SEO ---
 const FAQ_DATA = [
   {
     q: "Which e-commerce platforms does iNextERP integrate with?",
@@ -687,10 +688,10 @@ export const metadata: Metadata = {
     url: "https://www.inexterp.com/services/erp-integrations",
     images: [
       {
-        url: "https://www.inexterp.com/og-integrations.jpg", // Update with actual hosted URL
+        url: "https://www.inexterp.com/og-integrations.jpg", // Replace with actual hosted URL
         width: 1200,
         height: 630,
-        alt: "NextERP Integrations Hub",
+        alt: "NextERP integrations hub connecting Shopify Tally Razorpay and business apps",
       }
     ]
   },
@@ -698,7 +699,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ERP Integrations | Shopify, Tally, Razorpay | iNextERP",
     description: "Connect NextERP with Shopify, Amazon, Tally, Razorpay, WhatsApp & more.",
-    images: ["https://www.inexterp.com/og-integrations.jpg"], // Update with actual hosted URL
+    images: ["https://www.inexterp.com/og-integrations.jpg"], // Replace with actual hosted URL
   }
 };
 

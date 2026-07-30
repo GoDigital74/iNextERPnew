@@ -2151,9 +2151,7 @@ export default function HRMPage() {
               <p className="text-gray-300 text-sm md:text-base max-w-md leading-relaxed mt-1 font-medium">
                 Automate HR operations, engage employees, and build a productive, people-first organization.
               </p>
-              <p className="text-gray-500 text-xs max-w-md leading-relaxed">
-                Automate attendance, payroll & compliance with iNextERP HRM. Integrated biometric tracking & self-service for Indian businesses.
-              </p>
+             
               
               <div className="flex flex-col sm:flex-row items-center gap-3 mt-2">
                 <button className="w-full sm:w-auto px-6 py-3 bg-[#3b82f6] hover:bg-blue-600 text-white rounded-xl text-sm font-bold transition-all shadow-[0_0_15px_rgba(59,130,246,0.3)] flex items-center justify-center gap-2">
