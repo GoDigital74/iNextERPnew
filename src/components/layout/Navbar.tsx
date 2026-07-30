@@ -46,6 +46,17 @@ const NAV_LINKS: NavLink[] = [
     ],
   },
 
+  {
+    name: "Industries",
+    href: "/industries",
+    dropdown: [
+      { name: "FMCG Distribution", href: "/industries/fmcg-manufacturing-erp-software" },
+      { name: "Fashion & Apparel", href: "/industries/apparel-garment-erp-software" },
+      { name: "Wholesale & Distribution", href: "/industries/wholesale-distribution-erp-software" },
+      { name: "Retail Stores", href: "/industries/retail-erp-software" },
+      { name: "Manufacturing", href: "/industries/manufacturing-erp-software" },
+    ],
+  },
   { name: "Blog", href: "/blog", dropdown: [] },
   { name: "Careers", href: "/careers" },
   { name: "Contact", href: "/contact", dropdown: [] },
