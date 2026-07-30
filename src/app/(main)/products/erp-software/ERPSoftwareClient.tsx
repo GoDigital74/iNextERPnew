@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { 
   ArrowRight, 
   ArrowLeft,
@@ -15,7 +16,6 @@ import {
   Briefcase,
   Factory,
   BarChart3,
-  Settings,
   ShoppingBag,
   HeartPulse,
   GraduationCap,
@@ -29,7 +29,13 @@ import {
   TrendingDown,
   Zap,
   Star,
-  Phone
+  Phone,
+  Store,
+  PackageSearch,
+  Truck,
+  Shirt,
+  Plug,
+  ChevronDown
 } from "lucide-react";
 
 // --- DATA CONFIGURATION ---
@@ -42,20 +48,22 @@ const HERO_FEATURES = [
 ];
 
 const DEPARTMENTS = [
-  { icon: Calculator, title: "Finance & Accounting", desc: "Streamline accounting, taxation, budgeting and financial reporting." },
-  { icon: Users, title: "Sales & CRM", desc: "Manage leads, customers, quotations and boost sales performance." },
-  { icon: ShoppingCart, title: "Purchase & Inventory", desc: "Control purchase, stock, warehouses and get real-time visibility." },
-  { icon: Briefcase, title: "HR & Payroll", desc: "Manage employees, payroll, attendance and compliance effortlessly." },
-  { icon: Factory, title: "Manufacturing", desc: "Plan production, manage BOM, work orders and optimize output." },
-  { icon: BarChart3, title: "Reports & Analytics", desc: "Custom dashboards and reports to track what matters." },
+  { icon: Calculator, title: "Finance & Accounting", desc: "Streamline accounting, taxation, budgeting and financial reporting — GST-compliant, GSTR-ready.", link: "/services/accounting-software" },
+  { icon: Users, title: "Sales & CRM", desc: "Manage leads, customers, quotations and pipeline — from first contact to closed deal.", link: "/services/crm-software" },
+  { icon: ShoppingCart, title: "Purchase & Inventory", desc: "Control purchase, stock, and warehouses with real-time visibility across every location.", link: "/services/inventory-management" },
+  { icon: Briefcase, title: "HR & Payroll", desc: "Manage employees, payroll, attendance, and statutory compliance effortlessly.", link: "/services/hrm-software" },
+  { icon: Factory, title: "Manufacturing", desc: "Plan production, manage BOM, work orders, and optimize shop-floor output.", link: "/services/manufacturing-software" },
+  { icon: Store, title: "Point of Sale", desc: "Fast, GST-ready billing that keeps working even when the internet doesn't.", link: "/services/points-of-sale" },
+  { icon: BarChart3, title: "Reports & Analytics", desc: "Custom dashboards and reports across every module, so what matters is always visible.", link: "#" },
+  { icon: Plug, title: "Integrations", desc: "Connect iNextERP with the tools you already use — Shopify, Tally, Razorpay, WhatsApp, and more.", link: "/services/erp-integrations" },
 ];
 
 const INDUSTRIES = [
-  { title: "Manufacturing", desc: "Optimize production and supply chain operations.", icon: Factory, image: "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?auto=format&fit=crop&q=80&w=600" },
-  { title: "Retail & Distribution", desc: "Manage multi-store inventory and customer experience.", icon: ShoppingBag, image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=600" },
-  { title: "Healthcare", desc: "Simplify patient, inventory and compliance management.", icon: HeartPulse, image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=600" },
-  { title: "Education", desc: "Manage academic, finance and student lifecycle.", icon: GraduationCap, image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=600" },
-  { title: "Services", desc: "Streamline projects, resources, and customer delivery.", icon: HeadphonesIcon, image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=600" },
+  { title: "Retail Stores", desc: "Multi-store billing, inventory, and GST compliance for grocery, supermarket, and general retail.", icon: ShoppingBag, image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=600", link: "/industries/retail-store-erp-software" },
+  { title: "FMCG", desc: "Distribution-focused inventory, scheme management, and expiry tracking.", icon: PackageSearch, image: "https://images.unsplash.com/photo-1584473457406-6240486418e9?auto=format&fit=crop&q=80&w=600", link: "/industries/fmcg-erp-software" },
+  { title: "Manufacturing", desc: "Raw material to retail shelf, in one connected system.", icon: Factory, image: "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?auto=format&fit=crop&q=80&w=600", link: "/industries/manufacturing-erp-software" },
+  { title: "Wholesale & Distribution", desc: "Multi-tier stock visibility from warehouse to dealer.", icon: Truck, image: "https://images.unsplash.com/photo-1586528116311-ad8ed3890082?auto=format&fit=crop&q=80&w=600", link: "/industries/wholesale-distribution-erp-software" },
+  { title: "Fashion & Garments", desc: "Size, color, and style-level inventory built for apparel retail.", icon: Shirt, image: "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&q=80&w=600", link: "/industries/apparel-footwear-erp" },
 ];
 
 const STATS = [
@@ -73,7 +81,36 @@ const IMPACT_METRICS = [
   { icon: Star, val: "95%", label: "Customer\nSatisfaction" },
 ];
 
-export default function ERPPage() {
+const FAQ_DATA = [
+  {
+    q: "What does iNextERP include — is it one product or several?",
+    a: "iNextERP is a single platform covering Finance & Accounting, Sales & CRM, Inventory, HR & Payroll, Manufacturing, and POS — all connected under one login, not separate tools stitched together."
+  },
+  {
+    q: "Is iNextERP suitable for small businesses or only large enterprises?",
+    a: "iNextERP scales from a single-location small business to a multi-branch enterprise, so you can start small and grow without switching systems."
+  },
+  {
+    q: "Does iNextERP work for my specific industry?",
+    a: "iNextERP has dedicated features for Retail, FMCG, Manufacturing, Wholesale & Distribution, and Fashion & Garments — explore your industry page for specifics."
+  },
+  {
+    q: "Can I try iNextERP before committing?",
+    a: "Yes, book a free demo to see how iNextERP fits your specific business needs before making a decision."
+  },
+  {
+    q: "Is my business data secure with iNextERP?",
+    a: "Yes, iNextERP uses enterprise-grade security with role-based access, encrypted data transfer, and regular backups."
+  }
+];
+
+export default function ERPSoftwareClient() {
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
   return (
     <main className="w-full bg-[#FAFAFA] font-sans text-gray-900 selection:bg-[#1881c4] selection:text-white">
       
@@ -123,7 +160,7 @@ export default function ERPPage() {
                <div className="absolute inset-0 w-full h-full lg:scale-110 lg:translate-x-8 lg:-translate-y-4 origin-center group">
                  <Image 
                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1600" 
-                   alt="iNextERP Dashboard across multiple devices" 
+                   alt="iNextERP dashboard across multiple devices showing business management software" 
                    fill 
                    unoptimized
                    className="object-contain drop-shadow-2xl object-right"
@@ -137,7 +174,7 @@ export default function ERPPage() {
         </div>
       </section>
 
-      {/* 2. DEPARTMENTS GRID */}
+      {/* 2. DEPARTMENTS GRID (Linking to dedicated service pages) */}
       <section className="py-20 bg-[#FAFAFA]">
         <div className="container mx-auto px-6 max-w-[1400px]">
           <div className="text-center mb-16">
@@ -145,33 +182,33 @@ export default function ERPPage() {
             <p className="text-sm text-gray-500">A unified platform to manage your entire business with ease.</p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {DEPARTMENTS.map((dept, i) => (
-              <div key={i} className="group bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-xl hover:border-[#1881c4]/30 transition-all flex flex-col cursor-pointer">
+              <Link href={dept.link} key={i} className="group bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-xl hover:border-[#1881c4]/30 transition-all flex flex-col cursor-pointer">
                 <div className="w-12 h-12 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center mb-5 text-gray-600 group-hover:bg-[#1881c4]/10 group-hover:text-[#1881c4] group-hover:border-[#1881c4]/20 transition-all">
                   <dept.icon className="w-5 h-5 stroke-[1.5]" />
                 </div>
                 <h3 className="text-sm font-bold text-gray-900 mb-2">{dept.title}</h3>
                 <p className="text-[11px] text-gray-500 leading-relaxed mb-6 flex-1">{dept.desc}</p>
                 <div className="mt-auto flex items-center text-[11px] font-bold text-gray-900 group-hover:text-[#1881c4]">
-                  Learn More <ArrowRight className="w-3 h-3 ml-1.5 group-hover:translate-x-1 transition-transform" />
+                  Explore {dept.title.split(' ')[0]} <ArrowRight className="w-3 h-3 ml-1.5 group-hover:translate-x-1 transition-transform" />
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 3. BUILT FOR EVERY INDUSTRY */}
-      <section className="py-12 bg-white">
+      {/* 3. BUILT FOR EVERY INDUSTRY (Linking to dedicated industry pages) */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-6 max-w-[1400px]">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900">Built for Every Industry</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {INDUSTRIES.map((ind, i) => (
-              <div key={i} className="group relative h-[280px] rounded-2xl overflow-hidden cursor-pointer shadow-sm">
+              <Link href={ind.link} key={i} className="group relative h-[320px] rounded-2xl overflow-hidden cursor-pointer shadow-sm block">
                 <Image 
                   src={ind.image} 
                   alt={ind.title}
@@ -188,23 +225,15 @@ export default function ERPPage() {
                     <ind.icon className="w-4 h-4" />
                   </div>
                   <h3 className="text-sm font-bold mb-1.5">{ind.title}</h3>
-                  <p className="text-[10px] text-gray-300 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">
+                  <p className="text-[10px] text-gray-300 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity mb-4">
                     {ind.desc}
                   </p>
+                  <div className="flex items-center text-[10px] font-bold text-blue-300">
+                    Explore {ind.title} <ArrowRight className="w-3 h-3 ml-1.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
-
-            {/* "And Many More" Card */}
-            <div className="relative h-[280px] rounded-2xl overflow-hidden bg-gradient-to-br from-[#1881c4]/10 to-[#1881c4]/5 border border-[#1881c4]/10 flex flex-col justify-end p-5 cursor-pointer group hover:shadow-md transition-shadow">
-               <div className="w-8 h-8 rounded-full bg-[#1881c4]/20 flex items-center justify-center mb-3 text-[#1881c4]">
-                 <Plus className="w-4 h-4" />
-               </div>
-               <h3 className="text-sm font-bold text-gray-900 mb-1.5">And Many More</h3>
-               <p className="text-[10px] text-gray-600 leading-relaxed">
-                 Flexible. Adaptable. Built for your business.
-               </p>
-            </div>
           </div>
         </div>
       </section>
@@ -240,7 +269,7 @@ export default function ERPPage() {
         </div>
       </section>
 
-      {/* 5. TESTIMONIAL, IMPACT, & PARTNERS GRID */}
+      {/* 5. IMPACT & TESTIMONIAL GRID */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-6 max-w-[1400px]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -250,7 +279,7 @@ export default function ERPPage() {
               <div>
                  <div className="text-4xl text-[#1881c4] font-serif leading-none mb-4">"</div>
                  <p className="text-sm font-semibold text-gray-900 leading-relaxed mb-8">
-                   iNextERP has transformed the way we run our business. Real-time data, better control and seamless operations—all in one platform.
+                   iNextERP has transformed the way we run our business. Real-time data, better control and seamless operations — all in one platform.
                  </p>
               </div>
               <div className="flex items-center justify-between border-t border-gray-100 pt-6">
@@ -263,55 +292,67 @@ export default function ERPPage() {
                      <div className="text-[10px] text-gray-500">CFO, Entex Industries</div>
                    </div>
                  </div>
+                 {/* Decorative arrows */}
                  <div className="flex gap-2">
-                   <button className="w-7 h-7 rounded-full bg-gray-50 hover:bg-gray-100 flex items-center justify-center text-gray-400 transition-colors"><ArrowLeft className="w-3 h-3" /></button>
-                   <button className="w-7 h-7 rounded-full bg-gray-50 hover:bg-gray-100 flex items-center justify-center text-gray-400 transition-colors"><ArrowRight className="w-3 h-3" /></button>
+                   <button className="w-7 h-7 rounded-full bg-gray-50 hover:bg-gray-100 flex items-center justify-center text-gray-400 transition-colors cursor-default"><ArrowLeft className="w-3 h-3" /></button>
+                   <button className="w-7 h-7 rounded-full bg-gray-50 hover:bg-gray-100 flex items-center justify-center text-gray-400 transition-colors cursor-default"><ArrowRight className="w-3 h-3" /></button>
                  </div>
               </div>
             </div>
 
-            {/* Impact Metrics Card (Col 5) */}
-            <div className="lg:col-span-5 bg-[#0B131F] rounded-3xl p-8 lg:p-10 text-white flex flex-col justify-center">
-              <h3 className="text-xl font-bold text-center mb-10">Real Impact. Measurable Growth.</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {/* Impact Metrics Card (Col 8) */}
+            <div className="lg:col-span-8 bg-[#0B131F] rounded-3xl p-8 lg:p-12 text-white flex flex-col justify-center">
+              <h3 className="text-2xl font-bold text-center mb-10">Real Impact. Measurable Growth.</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                 {IMPACT_METRICS.map((metric, i) => (
                   <div key={i} className="flex flex-col items-center text-center">
-                    <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#1881c4] mb-4">
-                      <metric.icon className="w-4 h-4" />
+                    <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#1881c4] mb-4">
+                      <metric.icon className="w-5 h-5" />
                     </div>
-                    <div className="text-2xl font-bold mb-1.5">{metric.val}</div>
-                    <div className="text-[10px] text-gray-400 leading-tight whitespace-pre-line">{metric.label}</div>
+                    <div className="text-3xl font-bold mb-2">{metric.val}</div>
+                    <div className="text-[11px] text-gray-400 leading-snug whitespace-pre-line">{metric.label}</div>
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* Partners Card (Col 3) */}
-            <div className="lg:col-span-3 bg-[#FAFAFA] border border-gray-200 rounded-3xl p-8 flex flex-col justify-between hover:shadow-lg transition-shadow">
-               <div className="w-14 h-14 rounded-2xl bg-white shadow-sm border border-gray-100 flex items-center justify-center text-[#1881c4] mb-6">
-                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-7 h-7">
-                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                 </svg>
-               </div>
-               <div>
-                 <h3 className="text-lg font-bold text-gray-900 mb-2">Our Partners<br/>in Your Growth</h3>
-                 <p className="text-xs text-gray-500 mb-6 leading-relaxed">
-                   Together, we build stronger businesses every day.
-                 </p>
-                 <Link href="#" className="inline-flex items-center text-[11px] font-bold text-gray-900 hover:text-[#1881c4] group">
-                   Become a Partner <ArrowRight className="w-3 h-3 ml-1.5 group-hover:translate-x-1 transition-transform" />
-                 </Link>
-               </div>
             </div>
 
           </div>
         </div>
       </section>
 
-      {/* 6. BOTTOM CTA SECTION */}
-      <section className="py-12 bg-white">
+      {/* 6. FAQ SECTION (Interactive Accordion) */}
+      <section className="py-20 bg-[#F8FAFC]">
+        <div className="container mx-auto px-6 max-w-3xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-10">
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-3">
+            {FAQ_DATA.map((faq, idx) => (
+              <div 
+                key={idx} 
+                className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm cursor-pointer transition-all hover:border-[#1881c4]"
+                onClick={() => toggleFaq(idx)}
+              >
+                <h3 className="text-sm md:text-base font-bold text-gray-900 flex justify-between items-center gap-4">
+                  {faq.q}
+                  <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-300 shrink-0 ${openFaqIndex === idx ? "rotate-180 text-[#1881c4]" : ""}`} />
+                </h3>
+                {openFaqIndex === idx && (
+                  <p className="text-xs md:text-sm text-gray-600 mt-3 leading-relaxed animate-in fade-in slide-in-from-top-2">
+                    {faq.a}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+     {/* 7. BOTTOM CTA SECTION */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-6 max-w-[1400px]">
-          <div className="relative rounded-3xl overflow-hidden bg-[#0a1118] flex flex-col md:flex-row items-center justify-between">
+          {/* FIXED: Changed items-center to items-stretch */}
+          <div className="relative rounded-[2rem] overflow-hidden bg-[#0a1118] flex flex-col md:flex-row items-stretch justify-between shadow-2xl">
             
             {/* Left Content */}
             <div className="md:w-1/2 p-10 lg:p-16 z-10 relative text-white flex flex-col justify-center">
@@ -323,17 +364,18 @@ export default function ERPPage() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="px-6 py-3.5 bg-white hover:bg-gray-100 text-gray-900 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 text-sm shadow-xl">
+                <button className="px-6 py-3.5 bg-white hover:bg-gray-100 text-gray-900 rounded-lg font-bold transition-all flex items-center justify-center gap-2 text-sm shadow-xl">
                   Book a Demo <ArrowRight className="w-4 h-4" />
                 </button>
-                <button className="px-6 py-3.5 bg-transparent border border-white/20 hover:bg-white/10 text-white rounded-lg font-semibold transition-all flex items-center justify-center gap-2 text-sm">
+                <button className="px-6 py-3.5 bg-transparent border border-white/20 hover:bg-white/10 text-white rounded-lg font-bold transition-all flex items-center justify-center gap-2 text-sm">
                   <Phone className="w-4 h-4" /> Talk to Our Expert
                 </button>
               </div>
             </div>
 
             {/* Right Image Background */}
-            <div className="md:w-1/2 h-[300px] md:h-full relative w-full border-l border-white/5">
+            {/* FIXED: Removed h-[300px] md:h-full and replaced with min-h-[300px] */}
+            <div className="md:w-1/2 min-h-[300px] relative w-full border-t md:border-t-0 md:border-l border-white/5">
                <Image 
                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1200" 
                  alt="Business team discussing ERP dashboard" 
@@ -341,7 +383,7 @@ export default function ERPPage() {
                  unoptimized
                  className="object-cover object-right opacity-50 mix-blend-luminosity"
                />
-               <div className="absolute inset-0 bg-gradient-to-r from-[#0a1118] via-[#0a1118]/80 to-transparent" />
+               <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#0a1118] via-[#0a1118]/80 to-transparent" />
             </div>
             
           </div>
@@ -351,4 +393,3 @@ export default function ERPPage() {
     </main>
   );
 }
-

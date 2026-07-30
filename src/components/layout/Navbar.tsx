@@ -29,7 +29,7 @@ const NAV_LINKS: NavLink[] = [
       { name: "IT Hardware", href: "/products/it-hardware" },
       { name: "Consumables Items", href: "/products/consumables-items" },
       { name: "Cloud Service", href: "/products/cloud-service" },
-      { name: "Software / ERP", href: "/products/software-erp" },
+      { name: "Software / ERP", href: "/products/erp-software" },
     ],
   },
   {
@@ -42,7 +42,7 @@ const NAV_LINKS: NavLink[] = [
       { name: "Manufacturing", href: "/services/manufacturing" },
       { name: "CRM", href: "/services/crm" },
       { name: "HRM", href: "/services/hrm" },
-      { name: "Integrations", href: "/services/integrations" },
+      { name: "Integrations", href: "/services/erp-integrations" },
     ],
   },
 
