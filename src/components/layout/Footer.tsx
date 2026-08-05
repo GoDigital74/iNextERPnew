@@ -18,7 +18,7 @@ const FOOTER_LINKS = {
     { name: "Changelog", href: "#" },
   ],
   industries: [
-    { name: "Retail Stores", href: "#" },
+    { name: "Retail industry", href: "#" },
     { name: "FMCG", href: "#" },
     { name: "Manufacturing", href: "#" },
     { name: "Wholesale & Distribution", href: "#" },
@@ -64,14 +64,16 @@ export function Footer() {
             </Link>
 
             <p className="text-sm leading-relaxed text-gray-400 max-w-sm">
-              Transforming retail operations with intelligent inventory solutions that drive growth and efficiency.
+              Transforming retail operations with intelligent inventory
+              solutions that drive growth and efficiency.
             </p>
 
             <div className="flex flex-col gap-3 mt-2">
               <div className="flex items-start gap-3 text-sm hover:text-[#1881c4] transition-colors cursor-pointer">
                 <Phone className="w-5 h-5 text-[#1881c4] shrink-0 mt-0.5" />
                 <span>
-                  Talk to an expert:<br />
+                  Talk to an expert:
+                  <br />
                   8527262031 / 9211995156
                 </span>
               </div>
@@ -82,8 +84,9 @@ export function Footer() {
               <div className="flex items-start gap-3 text-sm hover:text-[#1881c4] transition-colors cursor-pointer">
                 <MapPin className="w-5 h-5 text-[#1881c4] shrink-0 mt-0.5" />
                 <span>
-                  H-43, Sector 63, Noida<br />
-                  Uttar Pradesh 201301 
+                  H-43, Sector 63, Noida
+                  <br />
+                  Uttar Pradesh 201301
                 </span>
               </div>
             </div>

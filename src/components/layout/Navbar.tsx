@@ -27,7 +27,7 @@ const NAV_LINKS: NavLink[] = [
     href: "/products/it-hardware",
     dropdown: [
       { name: "IT Hardware", href: "/products/it-hardware" },
-      { name: "Consumables Items", href: "/products/consumables-items" },
+      { name: "ERP Software", href: "/products/erp-software" },
       { name: "Cloud Service", href: "/products/cloud-service" },
     ],
   },
@@ -49,10 +49,19 @@ const NAV_LINKS: NavLink[] = [
     name: "Industries",
     href: "/industries",
     dropdown: [
-      { name: "FMCG Distribution", href: "/industries/fmcg-manufacturing-erp-software" },
-      { name: "Fashion & Apparel", href: "/industries/apparel-garment-erp-software" },
-      { name: "Wholesale & Distribution", href: "/industries/wholesale-distribution-erp-software" },
-      { name: "Retail Stores", href: "/industries/retail-erp-software" },
+      {
+        name: "FMCG Distribution",
+        href: "/industries/fmcg-manufacturing-erp-software",
+      },
+      {
+        name: "Fashion & Apparel",
+        href: "/industries/apparel-garment-erp-software",
+      },
+      {
+        name: "Wholesale & Distribution",
+        href: "/industries/wholesale-distribution-erp-software",
+      },
+      { name: "Retail industry", href: "/industries/retail-erp-software" },
       { name: "Manufacturing", href: "/industries/manufacturing-erp-software" },
     ],
   },
@@ -60,7 +69,6 @@ const NAV_LINKS: NavLink[] = [
   { name: "Careers", href: "/careers" },
   { name: "Contact", href: "/contact", dropdown: [] },
 ] as const;
-
 
 // Animation variants (memoized outside component)
 const dropdownVariants = {
@@ -191,9 +199,9 @@ export function Navbar() {
     const activeParentNav = NAV_LINKS.find(
       (link) =>
         link.dropdown &&
-        link.dropdown.some((subLink) => pathname.startsWith(subLink.href))
+        link.dropdown.some((subLink) => pathname.startsWith(subLink.href)),
     );
-    
+
     // Set it to open automatically when on that route
     setOpenMobileDropdown(activeParentNav ? activeParentNav.name : null);
   }, [pathname]);
@@ -280,7 +288,7 @@ export function Navbar() {
                   onMouseLeave={() => hasDropdown && setHoveredNav(null)}
                 >
                   <Link
-                    href={ link.href || "#"}
+                    href={link.href || "#"}
                     onClick={link.href === "/" ? handleHomeClick : undefined}
                     className={`flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium transition-colors hover:text-[#1881c4] ${
                       isActive || hoveredNav === link.name
@@ -398,7 +406,7 @@ export function Navbar() {
                     animate="visible"
                     className="border-b border-white/5 last:border-0"
                   >
-                   {hasDropdown ? (
+                    {hasDropdown ? (
                       <div className="flex flex-col">
                         <div
                           className={`flex w-full items-center justify-between py-4 pr-4 text-lg font-medium transition-colors ${
@@ -408,7 +416,7 @@ export function Navbar() {
                           }`}
                         >
                           {/* FIX: Make the text an actual clickable link */}
-                          <Link 
+                          <Link
                             href={link.href || "#"}
                             onClick={() => {
                               closeMobileMenu();
@@ -418,7 +426,7 @@ export function Navbar() {
                           >
                             {link.name}
                           </Link>
-                          
+
                           {/* FIX: Make the chevron a separate button to toggle the dropdown */}
                           <button
                             onClick={() => toggleMobileDropdown(link.name)}

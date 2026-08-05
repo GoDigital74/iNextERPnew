@@ -2,12 +2,12 @@
 
 // import Image from "next/image";
 // import Link from "next/link";
-// import { 
-//   ArrowRight, 
-//   Phone, 
-//   ShieldCheck, 
-//   Truck, 
-//   Wrench, 
+// import {
+//   ArrowRight,
+//   Phone,
+//   ShieldCheck,
+//   Truck,
+//   Wrench,
 //   MessageCircle,
 //   Settings,
 //   Tag,
@@ -39,31 +39,31 @@
 // ];
 
 // const PRODUCTS = [
-//   { 
+//   {
 //     badge: "Best Seller", badgeColor: "bg-blue-600",
 //     name: "Dell PowerEdge T150 Server",
 //     specs: ["Intel Xeon E-2324G", "16GB DDR4 ECC RAM", "2TB 7.2K SATA HDD"],
 //     price: "89,990"
 //   },
-//   { 
+//   {
 //     badge: "New Arrival", badgeColor: "bg-blue-500",
 //     name: "HP ProBook 440 G10",
 //     specs: ["Intel Core i5 13th Gen", "16GB DDR4 RAM", "512GB SSD"],
 //     price: "74,990"
 //   },
-//   { 
+//   {
 //     badge: null,
 //     name: "Lenovo ThinkCentre Neo 50s",
 //     specs: ["Intel Core i5 12th Gen", "8GB DDR4 RAM", "512GB SSD"],
 //     price: "43,990"
 //   },
-//   { 
+//   {
 //     badge: "Popular", badgeColor: "bg-blue-600",
 //     name: "Cisco Business 24 Port Switch",
 //     specs: ["24 x Gigabit Ports", "2 x SFP Uplink", "Rack Mountable"],
 //     price: "16,990"
 //   },
-//   { 
+//   {
 //     badge: null,
 //     name: "TP-Link EAP225 Wi-Fi 5 AP",
 //     specs: ["Dual Band Wi-Fi 5", "Up to 1350 Mbps", "PoE Support"],
@@ -82,7 +82,7 @@
 
 // const INDUSTRIES = [
 //   { title: "Corporate Offices", desc: "Reliable IT infrastructure for seamless operations", icon: Building2 },
-//   { title: "Retail Stores", desc: "POS, billing & security solutions for retail", icon: ShoppingBag },
+//   { title: "Retail industry", desc: "POS, billing & security solutions for retail", icon: ShoppingBag },
 //   { title: "Manufacturing Units", desc: "Rugged systems for demanding environments", icon: Factory },
 //   { title: "Schools & Institutions", desc: "Smart classrooms and computer labs", icon: GraduationCap },
 //   { title: "Hospitals", desc: "Secure & efficient systems for better care", icon: Hospital },
@@ -92,7 +92,7 @@
 // export default function ITHardwarePage() {
 //   return (
 //     <main className="w-full bg-[#FAFAFA] font-sans">
-      
+
 //       {/* 1. HERO SECTION */}
 //       <section className="relative bg-[#060B19] pt-32 pb-24 lg:pt-40 lg:pb-32 overflow-hidden border-b border-white/10">
 //         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
@@ -102,7 +102,7 @@
 
 //         <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
 //           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
+
 //             {/* Left Content */}
 //             <div className="lg:col-span-6 flex flex-col gap-6 text-white">
 //               <div className="text-gray-400 text-xs font-bold tracking-widest uppercase mb-2">
@@ -115,7 +115,7 @@
 //               <p className="text-gray-400 text-base sm:text-lg max-w-lg mt-2 leading-relaxed">
 //                 Power your business with reliable, secure and scalable IT hardware from world-leading brands. Configured. Delivered. Supported by Experts.
 //               </p>
-              
+
 //               <div className="flex flex-col sm:flex-row items-center gap-4 mt-6">
 //                 <button className="w-full sm:w-auto px-8 py-3.5 bg-[#3b82f6] hover:bg-blue-600 text-white rounded-lg font-semibold transition-all flex items-center justify-center gap-2">
 //                   Explore Solutions <ArrowRight className="w-4 h-4" />
@@ -142,10 +142,10 @@
 //             {/* Right Image (Hardware Cluster) */}
 //             <div className="lg:col-span-6 relative w-full h-[300px] sm:h-[450px] lg:h-[550px] flex items-center justify-center">
 //                <div className="relative w-full h-full">
-//                  <Image 
+//                  <Image
 //                    src="/products/hardware-hero.webp" // <-- Ensure you place your transparent hardware cluster image here
-//                    alt="IT Hardware Servers and Devices" 
-//                    fill 
+//                    alt="IT Hardware Servers and Devices"
+//                    fill
 //                    className="object-contain drop-shadow-2xl"
 //                    priority
 //                  />
@@ -159,7 +159,7 @@
 //       <section className="py-20 bg-white">
 //         <div className="container mx-auto px-6 max-w-[1400px]">
 //           <h2 className="text-2xl font-bold text-gray-900 mb-8">Shop by Category</h2>
-          
+
 //           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-[repeat(7,minmax(0,1fr))] gap-4">
 //             {CATEGORIES.map((cat, i) => (
 //               <div key={i} className="group bg-white border border-gray-100 rounded-xl p-5 hover:shadow-lg transition-all cursor-pointer flex flex-col h-full">
@@ -186,7 +186,7 @@
 //                View All Products <ArrowRight className="w-4 h-4" />
 //              </Link>
 //           </div>
-          
+
 //           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
 //             {PRODUCTS.map((prod, i) => (
 //               <div key={i} className="bg-white border border-gray-100 rounded-xl p-5 hover:shadow-xl transition-shadow flex flex-col relative group">
@@ -196,14 +196,14 @@
 //                     {prod.badge}
 //                   </div>
 //                 )}
-                
+
 //                 {/* Product Image Placeholder */}
 //                 <div className="h-40 w-full bg-gray-50 rounded-lg mb-4 flex items-center justify-center group-hover:scale-105 transition-transform">
 //                    <MonitorSmartphone className="w-12 h-12 text-gray-300 stroke-[1]" />
 //                 </div>
-                
+
 //                 <h3 className="text-sm font-bold text-gray-900 leading-tight mb-3 line-clamp-2">{prod.name}</h3>
-                
+
 //                 <ul className="space-y-1 mb-6 mt-auto">
 //                   {prod.specs.map((spec, idx) => (
 //                     <li key={idx} className="text-[10px] text-gray-600 flex items-start gap-1.5">
@@ -212,12 +212,12 @@
 //                     </li>
 //                   ))}
 //                 </ul>
-                
+
 //                 <div className="mb-4">
 //                   <div className="text-[10px] text-gray-500">Starting at</div>
 //                   <div className="text-lg font-bold text-gray-900">₹ {prod.price}</div>
 //                 </div>
-                
+
 //                 <div className="flex gap-2">
 //                   <button className="flex-1 bg-[#3b82f6] hover:bg-blue-600 text-white text-xs font-bold py-2.5 rounded-lg transition-colors">
 //                     Get Quote
@@ -238,7 +238,7 @@
 //           <h2 className="text-2xl md:text-3xl font-bold mb-12 text-center md:text-left">
 //             Why Choose iNextERP for IT Hardware?
 //           </h2>
-          
+
 //           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-8">
 //             {FEATURES.map((feat, i) => (
 //               <div key={i} className="flex items-start gap-4">
@@ -259,7 +259,7 @@
 //       <section className="py-20 bg-white">
 //         <div className="container mx-auto px-6 max-w-[1400px]">
 //           <h2 className="text-2xl font-bold text-gray-900 mb-12 text-center">Solutions for Every Industry</h2>
-          
+
 //           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6">
 //             {INDUSTRIES.map((ind, i) => (
 //               <div key={i} className="group relative">
@@ -306,7 +306,7 @@
 
 //         <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
 //           <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-            
+
 //             <div className="lg:w-1/2">
 //               <div className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-4">
 //                 Not sure what hardware you need?
@@ -317,7 +317,7 @@
 //               <p className="text-gray-400 text-sm mb-8">
 //                 Talk to our specialists for a customized solution.
 //               </p>
-              
+
 //               <div className="flex flex-col sm:flex-row gap-4">
 //                 <button className="px-8 py-3.5 bg-[#3b82f6] hover:bg-blue-600 text-white rounded-lg font-semibold transition-all flex items-center justify-center gap-2">
 //                   Talk to an Expert <ArrowRight className="w-4 h-4" />
@@ -349,11 +349,10 @@
 //           </div>
 //         </div>
 //       </section>
-      
+
 //     </main>
 //   );
 // }
-
 
 import type { Metadata } from "next";
 import ITHardwareClient from "./ITHardwareClient";
@@ -362,80 +361,114 @@ import ITHardwareClient from "./ITHardwareClient";
 const FAQ_DATA = [
   {
     q: "Do you sell genuine, original IT hardware?",
-    a: "Yes, all hardware is 100% genuine, sourced through authorized partnerships with brands like Dell, HP, Lenovo, and Cisco."
+    a: "Yes, all hardware is 100% genuine, sourced through authorized partnerships with brands like Dell, HP, Lenovo, and Cisco.",
   },
   {
     q: "Can I get bulk pricing for office-wide hardware orders?",
-    a: "Yes, competitive pricing is available for bulk orders and long-term business partnerships — request a quote for your specific requirement."
+    a: "Yes, competitive pricing is available for bulk orders and long-term business partnerships — request a quote for your specific requirement.",
   },
   {
     q: "Do you provide installation and setup after purchase?",
-    a: "Yes, end-to-end installation, configuration, and testing is handled by our team as part of the hardware solution."
+    a: "Yes, end-to-end installation, configuration, and testing is handled by our team as part of the hardware solution.",
   },
   {
     q: "Is warranty and AMC support available?",
-    a: "Yes, extended warranty and Annual Maintenance Contract (AMC) options are available for ongoing support and peace of mind."
+    a: "Yes, extended warranty and Annual Maintenance Contract (AMC) options are available for ongoing support and peace of mind.",
   },
   {
     q: "Do you deliver hardware across India?",
-    a: "Yes, we offer safe, secure, and on-time delivery pan-India."
-  }
+    a: "Yes, we offer safe, secure, and on-time delivery pan-India.",
+  },
 ];
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": FAQ_DATA.map(faq => ({
+  mainEntity: FAQ_DATA.map((faq) => ({
     "@type": "Question",
-    "name": faq.q,
-    "acceptedAnswer": {
+    name: faq.q,
+    acceptedAnswer: {
       "@type": "Answer",
-      "text": faq.a
-    }
-  }))
+      text: faq.a,
+    },
+  })),
 };
 
 // --- PRODUCT SCHEMA FOR SEO ---
 // Generates schema for the featured products to enable rich results
 const PRODUCTS = [
-  { name: "Dell PowerEdge T150 Server", desc: "Intel Xeon E-2324G, 16GB DDR4 ECC RAM, 2TB 7.2K SATA HDD enterprise server.", brand: "Dell", price: "89990" },
-  { name: "HP ProBook 440 G10", desc: "Intel Core i5 13th Gen, 16GB DDR4 RAM, 512GB SSD enterprise business laptop.", brand: "HP", price: "74990" },
-  { name: "Lenovo ThinkCentre Neo 50s", desc: "Intel Core i5 12th Gen, 8GB DDR4 RAM, 512GB SSD business desktop.", brand: "Lenovo", price: "43990" },
-  { name: "Cisco Business 24 Port Switch", desc: "24 x Gigabit Ports, 2 x SFP Uplink, Rack Mountable networking switch.", brand: "Cisco", price: "16990" },
-  { name: "TP-Link EAP225 Wi-Fi 5 AP", desc: "Dual Band Wi-Fi 5, Up to 1350 Mbps, PoE Support access point.", brand: "TP-Link", price: "8990" }
+  {
+    name: "Dell PowerEdge T150 Server",
+    desc: "Intel Xeon E-2324G, 16GB DDR4 ECC RAM, 2TB 7.2K SATA HDD enterprise server.",
+    brand: "Dell",
+    price: "89990",
+  },
+  {
+    name: "HP ProBook 440 G10",
+    desc: "Intel Core i5 13th Gen, 16GB DDR4 RAM, 512GB SSD enterprise business laptop.",
+    brand: "HP",
+    price: "74990",
+  },
+  {
+    name: "Lenovo ThinkCentre Neo 50s",
+    desc: "Intel Core i5 12th Gen, 8GB DDR4 RAM, 512GB SSD business desktop.",
+    brand: "Lenovo",
+    price: "43990",
+  },
+  {
+    name: "Cisco Business 24 Port Switch",
+    desc: "24 x Gigabit Ports, 2 x SFP Uplink, Rack Mountable networking switch.",
+    brand: "Cisco",
+    price: "16990",
+  },
+  {
+    name: "TP-Link EAP225 Wi-Fi 5 AP",
+    desc: "Dual Band Wi-Fi 5, Up to 1350 Mbps, PoE Support access point.",
+    brand: "TP-Link",
+    price: "8990",
+  },
 ];
 
-const productSchemas = PRODUCTS.map(prod => ({
+const productSchemas = PRODUCTS.map((prod) => ({
   "@context": "https://schema.org",
   "@type": "Product",
-  "name": prod.name,
-  "description": prod.desc,
-  "brand": {
+  name: prod.name,
+  description: prod.desc,
+  brand: {
     "@type": "Brand",
-    "name": prod.brand
+    name: prod.brand,
   },
-  "offers": {
+  offers: {
     "@type": "Offer",
-    "priceCurrency": "INR",
-    "price": prod.price,
-    "availability": "https://schema.org/InStock",
-    "url": "https://www.inexterp.com/products/it-hardware"
-  }
+    priceCurrency: "INR",
+    price: prod.price,
+    availability: "https://schema.org/InStock",
+    url: "https://www.inexterp.com/products/it-hardware",
+  },
 }));
 
 // --- NEXT.JS METADATA ---
 export const metadata: Metadata = {
   title: "IT Hardware Solutions India | Servers, Laptops & More | iNextERP",
-  description: "Buy genuine enterprise IT hardware — servers, laptops, networking & security. Pan-India delivery, warranty & AMC support. Get a quote today.",
+  description:
+    "Buy genuine enterprise IT hardware — servers, laptops, networking & security. Pan-India delivery, warranty & AMC support. Get a quote today.",
   alternates: {
     canonical: "https://www.inexterp.com/products/it-hardware",
   },
   openGraph: {
     title: "IT Hardware Solutions India | Servers, Laptops & More | iNextERP",
-    description: "Buy genuine enterprise IT hardware — servers, laptops, networking & security. Pan-India delivery, warranty & AMC support. Get a quote today.",
+    description:
+      "Buy genuine enterprise IT hardware — servers, laptops, networking & security. Pan-India delivery, warranty & AMC support. Get a quote today.",
     url: "https://www.inexterp.com/products/it-hardware",
     type: "website",
-    images: [{ url: "/dashboard/iNext hero 1.webp", width: 1200, height: 630, alt: "iNextERP IT hardware solutions" }],
+    images: [
+      {
+        url: "/dashboard/iNext hero 1.webp",
+        width: 1200,
+        height: 630,
+        alt: "iNextERP IT hardware solutions",
+      },
+    ],
   },
 };
 
@@ -454,7 +487,7 @@ export default function ITHardwarePage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       ))}
-      
+
       {/* The Interactive UI Component */}
       <ITHardwareClient />
     </>
