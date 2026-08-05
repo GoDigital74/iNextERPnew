@@ -21,6 +21,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.inexterp.com/industries/retail-erp-software',
   },
+  openGraph: {
+    title: 'Retail Store ERP & POS Software India | iNextERP',
+    description: 'ERP & POS software for grocery, supermarket, bakery & multi-brand retail stores. Offline billing, multi-store sync, GST-ready.',
+    url: 'https://www.inexterp.com/industries/retail-erp-software',
+    type: 'website',
+    images: [{ url: '/products/POS img 1.webp', width: 1200, height: 630, alt: 'iNextERP POS for retail stores' }],
+  },
 };
 
 const faqData = [

@@ -53,6 +53,8 @@ export const metadata: Metadata = {
     title: "Inventory Management Software for Retailers & Manufacturers | NextERP",
     description: "Real-time inventory management software for retailers, manufacturers & distributors. Multi-warehouse tracking, auto reorder, GST billing.",
     url: "https://www.inexterp.com/services/inventory-management",
+    type: "website",
+    images: [{ url: "/products/Inventory 1.webp", width: 1200, height: 630, alt: "iNextERP inventory management dashboard" }],
   },
 };
 

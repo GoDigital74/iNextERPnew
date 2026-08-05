@@ -53,6 +53,8 @@ export const metadata: Metadata = {
     title: "POS Software for Retail Stores, Restaurants & Franchises | NextERP",
     description: "Fast, GST-compliant POS software for retail, restaurants & multi-store businesses. Offline billing, UPI/card payments, real-time inventory sync.",
     url: "https://www.inexterp.com/services/points-of-sale",
+    type: "website",
+    images: [{ url: "/products/POS img 1.webp", width: 1200, height: 630, alt: "iNextERP POS billing dashboard" }],
   },
 };
 

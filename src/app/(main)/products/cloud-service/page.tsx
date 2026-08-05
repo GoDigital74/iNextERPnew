@@ -329,6 +329,7 @@ export const metadata: Metadata = {
       "Secure, scalable cloud infrastructure built to power your iNextERP instance. 99.99% uptime SLA, 24/7 support.",
     url: "https://www.inexterp.com/products/cloud-service",
     type: "website",
+    images: [{ url: "/dashboard/iNext hero 1.webp", width: 1200, height: 630, alt: "iNextERP Cloud hosting infrastructure" }],
   },
 };
 

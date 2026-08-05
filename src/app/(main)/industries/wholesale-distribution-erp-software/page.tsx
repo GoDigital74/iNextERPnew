@@ -20,7 +20,14 @@ export const metadata: Metadata = {
   description: "ERP software for wholesalers & distributors. Multi-tier stock visibility, dealer management, GST billing & purchase automation. Book a free demo.",
   alternates: {
     canonical: "https://www.inexterp.com/industries/wholesale-distribution-erp-software",
-  }
+  },
+  openGraph: {
+    title: "Wholesale & Distribution ERP Software India | iNextERP",
+    description: "ERP software for wholesalers & distributors. Multi-tier stock visibility, dealer management, GST billing & purchase automation.",
+    url: "https://www.inexterp.com/industries/wholesale-distribution-erp-software",
+    type: "website",
+    images: [{ url: "/products/Inventory 1.webp", width: 1200, height: 630, alt: "iNextERP for wholesale and distribution" }],
+  },
 };
 
 const faqs = [

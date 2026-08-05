@@ -29,7 +29,6 @@ const NAV_LINKS: NavLink[] = [
       { name: "IT Hardware", href: "/products/it-hardware" },
       { name: "Consumables Items", href: "/products/consumables-items" },
       { name: "Cloud Service", href: "/products/cloud-service" },
-      { name: "Software / ERP", href: "/products/erp-software" },
     ],
   },
   {
@@ -62,7 +61,6 @@ const NAV_LINKS: NavLink[] = [
   { name: "Contact", href: "/contact", dropdown: [] },
 ] as const;
 
-const SALES_PHONE = "+91 98765 43210";
 
 // Animation variants (memoized outside component)
 const dropdownVariants = {
@@ -242,10 +240,10 @@ export function Navbar() {
   // Memoized nav classes
   const navClasses = useMemo(
     () =>
-      `relative mx-auto flex max-w-7xl items-center justify-between rounded-2xl px-5 py-3 transition-all duration-500 border ${
+      `relative mx-auto flex max-w-7xl items-center justify-between rounded-2xl px-5 py-3 transition-all duration-500 border shadow-lg shadow-black/10 ${
         scrolled || mobileOpen
-          ? "bg-[#0A0A0A]/60 backdrop-blur-xl border-white/10"
-          : "bg-[#0A0A0A]/70 backdrop-blur-md border-white/5"
+          ? "bg-[#0A0A0A]/95 backdrop-blur-xl border-white/10"
+          : "bg-[#0A0A0A]/90 backdrop-blur-xl border-white/10"
       }`,
     [scrolled, mobileOpen],
   );
@@ -326,12 +324,6 @@ export function Navbar() {
             >
               <Search className="w-5 h-5" />
             </button>
-            <a
-              href={`tel:${SALES_PHONE.replace(/\s/g, "")}`}
-              className="text-sm font-medium text-white border-l border-white/20 pl-4 hover:text-[#1881c4] transition-colors"
-            >
-              Sales: {SALES_PHONE}
-            </a>
             <Link
               href="/contact"
               className="group inline-flex items-center gap-2 rounded-lg bg-[#1881c4] px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-[#4F7DF3] active:scale-95"
@@ -472,13 +464,6 @@ export function Navbar() {
 
             {/* Mobile Footer */}
             <div className="mt-auto border-t border-white/10 bg-[#0A0A0A] px-6 py-6 sticky bottom-0">
-              <a
-                href={`tel:${SALES_PHONE.replace(/\s/g, "")}`}
-                className="text-sm font-medium text-gray-400 flex items-center justify-between mb-4 hover:text-white transition-colors"
-              >
-                <span>Sales Contact:</span>
-                <span className="text-white">{SALES_PHONE}</span>
-              </a>
               <Link
                 href="/contact"
                 onClick={closeMobileMenu}

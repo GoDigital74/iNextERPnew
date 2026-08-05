@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, PlayCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
 
 export function Hero() {
   return (
@@ -40,18 +41,11 @@ export function Hero() {
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-4 lg:mt-6">
             <Button
               size="lg"
+              onClick={openCalendlyPopup}
               className="w-full sm:w-auto h-12 px-8 text-base shadow-lg shadow-primary-500/25 transition-transform hover:scale-105"
             >
               Book Free Demo
               <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="w-full sm:w-auto h-12 px-8 text-base bg-white dark:bg-surface-800 transition-transform hover:scale-105"
-            >
-              <PlayCircle className="mr-2 h-4 w-4 text-[#1881c4]" />
-              Watch Product Tour
             </Button>
           </div>
         </motion.div>

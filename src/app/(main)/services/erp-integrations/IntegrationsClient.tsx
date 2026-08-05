@@ -24,7 +24,6 @@ import {
   Database, 
   Clock, 
   Layers,
-  Phone,
   ArrowRightLeft,
   Activity,
   Check,
@@ -680,9 +679,14 @@ export default function IntegrationsClient() {
                 <button className="px-6 py-3.5 bg-[#1881c4] hover:bg-[#12659a] text-white rounded-lg font-bold transition-all flex items-center justify-center gap-2 text-sm shadow-xl">
                   Book an Enterprise Demo <ArrowRight className="w-4 h-4" />
                 </button>
-                <button className="px-6 py-3.5 bg-transparent border border-white/20 hover:bg-white/10 text-white rounded-lg font-bold transition-all flex items-center justify-center gap-2 text-sm">
-                  <Phone className="w-4 h-4" /> Talk to Our Expert
-                </button>
+                <a
+                  href="https://wa.me/919211995156"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3.5 bg-transparent border border-white/20 hover:bg-white/10 text-white rounded-lg font-bold transition-all flex items-center justify-center gap-2 text-sm"
+                >
+                  <MessageCircle className="w-4 h-4" /> Chat on WhatsApp
+                </a>
               </div>
             </div>
 

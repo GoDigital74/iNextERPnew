@@ -6,6 +6,7 @@ import { useState } from "react";
 import {
   ArrowRight,
   Play,
+  MessageCircle,
   CheckCircle2,
   XCircle,
   Scan,
@@ -23,8 +24,6 @@ import {
   Users,
   ChevronRight,
   ChevronDown,
-  MonitorPlay,
-  Phone,
   WifiOff,
   Award,
   CircleDollarSign,
@@ -144,9 +143,6 @@ export default function PointsOfSaleClient() {
                 <button className="w-full sm:w-auto px-6 py-3 bg-[#3b82f6] hover:bg-blue-600 text-white rounded-xl text-sm font-bold transition-all shadow-[0_0_15px_rgba(59,130,246,0.3)] flex items-center justify-center gap-2">
                   Book a Live Demo <ArrowRight className="w-4 h-4" />
                 </button>
-                <button className="w-full sm:w-auto px-6 py-3 bg-transparent border border-white/20 hover:bg-white/5 text-white rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2">
-                  Product Tour <MonitorPlay className="w-4 h-4" />
-                </button>
               </div>
 
               {/* Feature strip */}
@@ -246,9 +242,22 @@ export default function PointsOfSaleClient() {
       <section className="py-20 bg-[#F8FAFC]">
         <div className="container mx-auto px-6 max-w-[1400px]">
           <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
-            
+
+            {/* Mobile Visual Filler (moved to the left on desktop) */}
+            <div className="xl:col-span-3 relative h-[400px] md:h-[500px] flex items-center justify-center order-3 xl:order-1">
+              <div className="relative w-[240px] h-[480px] rounded-[2rem] overflow-hidden shadow-2xl border-[6px] border-gray-900 z-20 bg-black">
+                <Image
+                  src="/products/POS img 2.webp"
+                  alt="NextERP Mobile POS Interface"
+                  fill
+                  unoptimized
+                  className="object-cover"
+                />
+              </div>
+            </div>
+
             {/* Left Tabs */}
-            <div className="xl:col-span-3 flex flex-col gap-4">
+            <div className="xl:col-span-3 flex flex-col gap-4 order-1 xl:order-2">
               <div>
                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight mb-2">
                   Everything You Need.<br />Right Where You Need It.
@@ -274,7 +283,7 @@ export default function PointsOfSaleClient() {
             </div>
 
             {/* Desktop UI Center (Dynamic Content) */}
-            <div className="xl:col-span-6 bg-white rounded-2xl p-6 shadow-xl border border-gray-100 flex flex-col gap-5 transition-all duration-300">
+            <div className="xl:col-span-6 order-2 xl:order-3 bg-white rounded-2xl p-6 shadow-xl border border-gray-100 flex flex-col gap-5 transition-all duration-300">
                <div className="flex justify-between items-center border-b border-gray-50 pb-3">
                  <h3 className="font-bold text-base text-gray-900">{TOUR_CONTENT[activeTab].title}</h3>
                </div>
@@ -309,19 +318,6 @@ export default function PointsOfSaleClient() {
                    </div>
                  </div>
                </div>
-            </div>
-
-            {/* Mobile Visual Filler */}
-            <div className="xl:col-span-3 relative h-[400px] md:h-[500px] flex items-center justify-center">
-              <div className="relative w-[240px] h-[480px] rounded-[2rem] overflow-hidden shadow-2xl border-[6px] border-gray-900 z-20 bg-black">
-                <Image
-                  src="/products/POS img 2.webp"
-                  alt="NextERP Mobile POS Interface"
-                  fill
-                  unoptimized
-                  className="object-cover"
-                />
-              </div>
             </div>
 
           </div>
@@ -598,9 +594,14 @@ export default function PointsOfSaleClient() {
                <button className="px-6 py-3 bg-[#3b82f6] hover:bg-blue-600 text-white rounded-xl text-sm font-bold transition-all shadow-[0_0_20px_rgba(59,130,246,0.4)] flex items-center justify-center gap-2">
                  Book an Enterprise Demo <ArrowRight className="w-4 h-4" />
                </button>
-               <button className="px-6 py-3 bg-transparent text-gray-300 hover:text-white rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 border border-white/10 hover:bg-white/5">
-                 Talk to Our Expert <Phone className="w-4 h-4" />
-               </button>
+               <a
+                 href="https://wa.me/919211995156"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="px-6 py-3 bg-transparent text-gray-300 hover:text-white rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 border border-white/10 hover:bg-white/5"
+               >
+                 Chat on WhatsApp <MessageCircle className="w-4 h-4" />
+               </a>
             </div>
 
           </div>

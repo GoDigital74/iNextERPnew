@@ -3,10 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { 
-  ArrowRight, 
-  Phone, 
-  ShieldCheck, 
+import {
+  ArrowRight,
+  MessageCircle,
+  ShieldCheck,
   Headphones,
   Rocket,
   Globe,
@@ -136,9 +136,14 @@ export default function CloudServiceClient() {
                 <button className="w-full sm:w-auto px-6 py-3 bg-[#1881c4] hover:bg-[#12659a] text-white rounded-xl text-sm font-bold transition-all shadow-[0_0_15px_rgba(24,129,196,0.4)] flex items-center justify-center gap-2">
                   Explore Cloud Solutions <ArrowRight className="w-4 h-4" />
                 </button>
-                <button className="w-full sm:w-auto px-6 py-3 bg-transparent border border-white/20 hover:bg-white/5 text-white rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2">
-                  Talk to an Expert <Phone className="w-4 h-4" />
-                </button>
+                <a
+                  href="https://wa.me/919211995156"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto px-6 py-3 bg-transparent border border-white/20 hover:bg-white/5 text-white rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2"
+                >
+                  Chat on WhatsApp <MessageCircle className="w-4 h-4" />
+                </a>
               </div>
 
               {/* Stats / Trust Badges */}
@@ -336,9 +341,14 @@ export default function CloudServiceClient() {
 
             <div className="flex flex-col sm:flex-row gap-4 shrink-0 w-full md:w-auto">
               {/* Changed Button to Blue */}
-              <button className="px-6 py-3 bg-[#1881c4] hover:bg-[#12659a] text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 text-sm shadow-md">
-                Talk to an Expert <ArrowRight className="w-4 h-4" />
-              </button>
+              <a
+                href="https://wa.me/919211995156"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-[#1881c4] hover:bg-[#12659a] text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 text-sm shadow-md"
+              >
+                Chat on WhatsApp <MessageCircle className="w-4 h-4" />
+              </a>
               <button className="px-6 py-3 bg-white border border-gray-300 hover:bg-gray-50 text-gray-800 rounded-xl font-bold transition-all flex items-center justify-center gap-2 text-sm">
                 <Calendar className="w-4 h-4" /> Schedule a Demo
               </button>

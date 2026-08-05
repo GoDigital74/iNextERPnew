@@ -20,11 +20,8 @@ import {
   Printer,
   Shield,
   Keyboard,
-  Building2,
   ShoppingBag,
   Factory,
-  GraduationCap,
-  Hospital,
   Warehouse,
   ChevronDown
 } from "lucide-react";
@@ -88,11 +85,8 @@ const FEATURES = [
 ];
 
 const INDUSTRIES = [
-  { title: "Corporate Offices", desc: "Reliable IT infrastructure for seamless operations", icon: Building2, link: "#" },
-  { title: "Retail Stores", desc: "POS, billing & security hardware for retail", icon: ShoppingBag, link: "/industries/retail-store-erp-software" },
+  { title: "Retail Stores", desc: "POS, billing & security hardware for retail", icon: ShoppingBag, link: "/industries/retail-erp-software" },
   { title: "Manufacturing Units", desc: "Rugged systems for demanding environments", icon: Factory, link: "/industries/manufacturing-erp-software" },
-  { title: "Schools & Institutions", desc: "Smart classrooms and computer labs", icon: GraduationCap, link: "#" },
-  { title: "Hospitals", desc: "Secure & efficient systems for better care", icon: Hospital, link: "#" },
   { title: "Warehouses", desc: "Barcode, scanning & inventory hardware", icon: Warehouse, link: "/services/inventory-management" },
 ];
 
@@ -155,9 +149,14 @@ export default function ITHardwareClient() {
                 <button className="w-full sm:w-auto px-6 py-3 bg-[#3b82f6] hover:bg-blue-600 text-white rounded-lg text-sm font-semibold transition-all flex items-center justify-center gap-2 shadow-lg">
                   Explore Solutions <ArrowRight className="w-4 h-4" />
                 </button>
-                <button className="w-full sm:w-auto px-6 py-3 bg-transparent border border-white/20 hover:bg-white/5 text-white rounded-lg text-sm font-semibold transition-all flex items-center justify-center gap-2">
-                  Talk to an Expert <Phone className="w-4 h-4" />
-                </button>
+                <a
+                  href="https://wa.me/919211995156"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto px-6 py-3 bg-transparent border border-white/20 hover:bg-white/5 text-white rounded-lg text-sm font-semibold transition-all flex items-center justify-center gap-2"
+                >
+                  Chat on WhatsApp <MessageCircle className="w-4 h-4" />
+                </a>
               </div>
 
               {/* Trust Badges */}
@@ -177,10 +176,10 @@ export default function ITHardwareClient() {
             {/* Right Image (Hardware Cluster) */}
             <div className="lg:col-span-6 relative w-full h-[300px] sm:h-[400px] lg:h-[500px] flex items-center justify-center mt-6 lg:mt-0">
                <div className="relative w-full h-full">
-                 <Image 
-                   src="/products/hardware-hero.webp" // Ensure this image exists in your public folder
-                   alt="enterprise IT hardware servers and devices for business infrastructure" 
-                   fill 
+                 <Image
+                   src="/dashboard/iNext hero 1.webp" // TODO: swap in a dedicated hardware photo when available
+                   alt="enterprise IT hardware servers and devices for business infrastructure"
+                   fill
                    unoptimized
                    className="object-contain drop-shadow-2xl"
                    priority
@@ -302,7 +301,7 @@ export default function ITHardwareClient() {
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Solutions for Every Industry</h2>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {INDUSTRIES.map((ind, i) => (
               <Link href={ind.link} key={i} className="group relative bg-[#F8FAFC] border border-gray-100 rounded-2xl p-6 hover:shadow-lg transition-all flex flex-col items-center text-center">
                 <div className="w-14 h-14 bg-white shadow-sm border border-gray-100 rounded-full flex items-center justify-center text-blue-600 mb-4 group-hover:-translate-y-1 transition-transform">
@@ -372,12 +371,14 @@ export default function ITHardwareClient() {
               </h2>
               
               <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 mt-8">
-                <button className="px-8 py-3.5 bg-[#3b82f6] hover:bg-blue-600 text-white rounded-lg font-bold transition-all flex items-center justify-center gap-2 shadow-lg text-sm">
-                  Talk to an Expert <ArrowRight className="w-4 h-4" />
-                </button>
-                <button className="px-8 py-3.5 bg-green-600 hover:bg-green-700 border border-green-500 text-white rounded-lg font-bold transition-all flex items-center justify-center gap-2 shadow-lg text-sm">
+                <a
+                  href="https://wa.me/919211995156"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-8 py-3.5 bg-green-600 hover:bg-green-700 border border-green-500 text-white rounded-lg font-bold transition-all flex items-center justify-center gap-2 shadow-lg text-sm"
+                >
                   <MessageCircle className="w-4 h-4" /> Chat on WhatsApp
-                </button>
+                </a>
               </div>
             </div>
 
@@ -389,7 +390,7 @@ export default function ITHardwareClient() {
                  <h3 className="text-xl font-bold text-white mb-2">Need a custom quote?</h3>
                  <p className="text-xs text-gray-400 mb-6">Our hardware specialists are ready to help you configure the perfect setup for your team.</p>
                  <div className="text-lg font-bold text-[#3b82f6] bg-[#060B19] py-3 rounded-lg border border-white/5">
-                   +91 8178844159
+                   Talk to an expert: +91 8527262031
                  </div>
                </div>
             </div>

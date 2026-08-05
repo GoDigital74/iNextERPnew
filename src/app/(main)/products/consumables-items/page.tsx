@@ -387,6 +387,7 @@ export const metadata: Metadata = {
     description: "Genuine toners, POS thermal rolls, packaging materials & office essentials. Auto-replenishment & bulk pricing. Pan-India delivery.",
     url: "https://www.inexterp.com/products/consumables-items",
     type: "website",
+    images: [{ url: "/dashboard/iNext hero 1.webp", width: 1200, height: 630, alt: "iNextERP office and POS consumables" }],
   },
 };
 

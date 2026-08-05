@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { Star } from "lucide-react";
 import Image from "next/image";
@@ -32,11 +33,31 @@ const TESTIMONIALS = [
 ];
 
 export function Testimonials() {
-  const [emblaRef] = useEmblaCarousel({
+  const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "center",
     dragFree: true,
   });
+
+  // Auto-advance the carousel right-to-left, pausing while the user interacts
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    let autoplay = true;
+    const onPointerDown = () => {
+      autoplay = false;
+    };
+    emblaApi.on("pointerDown", onPointerDown);
+
+    const interval = setInterval(() => {
+      if (autoplay) emblaApi.scrollNext();
+    }, 3000);
+
+    return () => {
+      clearInterval(interval);
+      emblaApi.off("pointerDown", onPointerDown);
+    };
+  }, [emblaApi]);
 
   return (
     <section className="py-24 bg-surface-50 dark:bg-surface-900 overflow-hidden">

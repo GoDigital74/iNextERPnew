@@ -3,10 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { 
-  ArrowRight, 
-  Phone, 
-  ShieldCheck, 
+import {
+  ArrowRight,
+  ShieldCheck,
   Truck, 
   MessageCircle,
   Printer,
@@ -154,9 +153,14 @@ export default function ConsumablesClient() {
                 <Link href="#categories" className="w-full sm:w-auto px-6 py-3.5 bg-[#3b82f6] hover:bg-blue-600 text-white rounded-lg font-semibold transition-all flex items-center justify-center gap-2 shadow-lg">
                   Explore Catalog <ArrowRight className="w-4 h-4" />
                 </Link>
-                <button className="w-full sm:w-auto px-6 py-3.5 bg-transparent border border-white/20 hover:bg-white/10 text-white rounded-lg font-semibold transition-all flex items-center justify-center gap-2">
-                  Talk to an Expert <Phone className="w-4 h-4" />
-                </button>
+                <a
+                  href="https://wa.me/919211995156"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto px-6 py-3.5 bg-transparent border border-white/20 hover:bg-white/10 text-white rounded-lg font-semibold transition-all flex items-center justify-center gap-2"
+                >
+                  Chat on WhatsApp <MessageCircle className="w-4 h-4" />
+                </a>
               </div>
 
               {/* Trust Badges */}
@@ -368,12 +372,14 @@ export default function ConsumablesClient() {
               </h2>
               
               <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 mt-6">
-                <button className="px-8 py-3.5 bg-[#3b82f6] hover:bg-blue-600 text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(59,130,246,0.3)]">
-                  Talk to an Expert <ArrowRight className="w-4 h-4" />
-                </button>
-                <button className="px-8 py-3.5 bg-green-600 hover:bg-green-700 border border-green-500 text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg">
+                <a
+                  href="https://wa.me/919211995156"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-8 py-3.5 bg-green-600 hover:bg-green-700 border border-green-500 text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg"
+                >
                   <MessageCircle className="w-4 h-4" /> Chat on WhatsApp
-                </button>
+                </a>
               </div>
             </div>
 

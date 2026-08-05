@@ -435,6 +435,7 @@ export const metadata: Metadata = {
     description: "Buy genuine enterprise IT hardware — servers, laptops, networking & security. Pan-India delivery, warranty & AMC support. Get a quote today.",
     url: "https://www.inexterp.com/products/it-hardware",
     type: "website",
+    images: [{ url: "/dashboard/iNext hero 1.webp", width: 1200, height: 630, alt: "iNextERP IT hardware solutions" }],
   },
 };
 

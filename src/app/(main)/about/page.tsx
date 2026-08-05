@@ -1,15 +1,31 @@
-"use client";
-
+import type { Metadata } from "next";
 import Image from "next/image";
-import { 
-  Eye, 
-  Target, 
-  Package, 
-  ShieldCheck, 
-  TrendingUp, 
-  Headphones, 
+import {
+  Eye,
+  Target,
+  Package,
+  ShieldCheck,
+  TrendingUp,
+  Headphones,
   Lightbulb
 } from "lucide-react"; // Notice: Linkedin is removed from here
+
+export const metadata: Metadata = {
+  title: "About Us | iNextERP",
+  description:
+    "iNextERP was built with a simple belief — businesses deserve powerful software that is easy to use, affordable to scale, and built to grow with them.",
+  alternates: {
+    canonical: "https://www.inexterp.com/about",
+  },
+  openGraph: {
+    title: "About Us | iNextERP",
+    description:
+      "iNextERP was built with a simple belief — businesses deserve powerful software that is easy to use, affordable to scale, and built to grow with them.",
+    url: "https://www.inexterp.com/about",
+    type: "website",
+    images: [{ url: "/office.webp", width: 1200, height: 630, alt: "iNextERP office" }],
+  },
+};
 
 // --- CUSTOM SVG COMPONENTS ---
 const LinkedInIcon = ({ className }: { className?: string }) => (
@@ -38,7 +54,6 @@ const TEAM = [
   { name: "Vikram Sharma", role: "Co-Founder & CEO", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400" },
   { name: "Rahul Gupta", role: "Co-Founder & CTO", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400" },
   { name: "Neha Bansal", role: "Head of Product", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" },
-  { name: "Arjun Mehta", role: "Head of Customer Success", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400" },
 ];
 
 export default function AboutPage() {
@@ -197,7 +212,7 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-bold mt-2">The Minds Behind iNextERP</h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {TEAM.map((member, idx) => (
               <div key={idx} className="group flex flex-col items-center bg-gray-50 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300">
                 {/* Profile Image */}

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { ArrowLeft, MapPin, Clock, Briefcase, Mail, FileText } from "lucide-react";
 import { client } from "@/sanity/lib/client";
 import { PortableText } from "@portabletext/react";
@@ -12,6 +13,36 @@ const JOB_QUERY = `*[_type == "job" && slug.current == $slug][0] {
   postedAt,
   description
 }`;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const job = await client.fetch(JOB_QUERY, { slug });
+
+  if (!job) return {};
+
+  const description = `${job.title} — ${job.department || "iNextERP"}${
+    job.location ? ` in ${job.location}` : ""
+  }. Apply now.`;
+
+  return {
+    title: `${job.title} | Careers at iNextERP`,
+    description,
+    alternates: {
+      canonical: `https://www.inexterp.com/careers/${slug}`,
+    },
+    openGraph: {
+      title: `${job.title} | Careers at iNextERP`,
+      description,
+      url: `https://www.inexterp.com/careers/${slug}`,
+      type: "website",
+      images: [{ url: "/office.webp", width: 1200, height: 630, alt: job.title }],
+    },
+  };
+}
 
 export default async function JobDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
   // 1. Await the params (required in newer Next.js versions)

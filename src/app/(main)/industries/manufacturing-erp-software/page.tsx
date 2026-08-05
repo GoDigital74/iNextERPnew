@@ -8,6 +8,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.inexterp.com/industries/manufacturing-erp-software',
   },
+  openGraph: {
+    title: 'Manufacturing ERP for Indian Businesses | iNextERP',
+    description: 'ERP built for manufacturers — from raw material to retail shelf. Production planning, inventory, accounting & distribution in one system.',
+    url: 'https://www.inexterp.com/industries/manufacturing-erp-software',
+    type: 'website',
+    images: [{ url: '/products/Manufacturing 1.webp', width: 1200, height: 630, alt: 'iNextERP for manufacturing businesses' }],
+  },
 };
 
 const faqSchema = {

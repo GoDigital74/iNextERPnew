@@ -3,11 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { 
-  ArrowRight, 
-  Play, 
-  AlertTriangle, 
-  Package, 
+import {
+  ArrowRight,
+  MessageCircle,
+  AlertTriangle,
+  Package,
   RefreshCw, 
   BarChart, 
   ShoppingCart, 
@@ -26,7 +26,6 @@ import {
   Lock,
   Award,
   ChevronDown,
-  Phone,
   Network,
   Server // <-- Added missing import
 } from "lucide-react";
@@ -108,9 +107,6 @@ export default function InventoryClient() {
               <div className="flex flex-col sm:flex-row items-center gap-3 mt-4">
                 <button className="w-full sm:w-auto px-6 py-3 bg-[#1881c4] hover:bg-blue-600 text-white rounded-xl text-sm font-bold transition-all shadow-[0_0_15px_rgba(24,129,196,0.3)] flex items-center justify-center gap-2">
                   Book a Free Demo <ArrowRight className="w-4 h-4" />
-                </button>
-                <button className="w-full sm:w-auto px-6 py-3 bg-transparent border border-white/20 hover:bg-white/5 text-white rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2">
-                  Watch 2-Min Demo <Play className="w-4 h-4" />
                 </button>
               </div>
 
@@ -468,9 +464,14 @@ export default function InventoryClient() {
                <button className="px-6 py-3 bg-[#1881c4] hover:bg-blue-600 text-white rounded-xl text-sm font-bold transition-all shadow-[0_0_20px_rgba(24,129,196,0.4)] flex items-center justify-center gap-2">
                  Book an Enterprise Demo <ArrowRight className="w-4 h-4" />
                </button>
-               <button className="px-6 py-3 bg-transparent text-gray-300 hover:text-white rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 border border-white/10 hover:bg-white/5">
-                 Talk to Our Expert <Phone className="w-4 h-4" />
-               </button>
+               <a
+                 href="https://wa.me/919211995156"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="px-6 py-3 bg-transparent text-gray-300 hover:text-white rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 border border-white/10 hover:bg-white/5"
+               >
+                 Chat on WhatsApp <MessageCircle className="w-4 h-4" />
+               </a>
             </div>
 
           </div>

@@ -16,9 +16,45 @@ const urbanist = Urbanist({
   display: "swap",
 });
 
+const SITE_URL = "https://www.inexterp.com";
+const DEFAULT_OG_IMAGE = "/dashboard/iNext hero 1.webp";
+
 export const metadata: Metadata = {
-  title: "NextERP - Enterprise Management",
-  description: "Complete ERP solution for modern businesses.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "iNextERP - Complete ERP, POS & Business Management Software",
+    template: "%s | iNextERP",
+  },
+  description:
+    "Complete ERP solution for POS, Inventory, Billing, Accounting, CRM & more. Built for Retail, Wholesale, Distribution & Growing Businesses.",
+  icons: {
+    icon: "/logo.webp",
+    shortcut: "/logo.webp",
+    apple: "/logo.webp",
+  },
+  openGraph: {
+    siteName: "iNextERP",
+    type: "website",
+    locale: "en_IN",
+    title: "iNextERP - Complete ERP, POS & Business Management Software",
+    description:
+      "Complete ERP solution for POS, Inventory, Billing, Accounting, CRM & more. Built for Retail, Wholesale, Distribution & Growing Businesses.",
+    images: [
+      {
+        url: DEFAULT_OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "iNextERP Dashboard",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "iNextERP - Complete ERP, POS & Business Management Software",
+    description:
+      "Complete ERP solution for POS, Inventory, Billing, Accounting, CRM & more. Built for Retail, Wholesale, Distribution & Growing Businesses.",
+    images: [DEFAULT_OG_IMAGE],
+  },
 };
 
 export default function RootLayout({

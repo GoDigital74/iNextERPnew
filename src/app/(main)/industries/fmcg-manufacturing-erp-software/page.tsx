@@ -8,6 +8,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.inexterp.com/industries/fmcg-manufacturing-erp-software',
   },
+  openGraph: {
+    title: 'FMCG Manufacturing ERP Software India | iNextERP',
+    description: 'ERP software for FMCG distributors. Scheme management, expiry tracking, fast-moving SKU analytics & GST-ready billing.',
+    url: 'https://www.inexterp.com/industries/fmcg-manufacturing-erp-software',
+    type: 'website',
+    images: [{ url: '/dashboard/iNext hero 1.webp', width: 1200, height: 630, alt: 'iNextERP for FMCG manufacturing' }],
+  },
 };
 
 const faqSchema = {

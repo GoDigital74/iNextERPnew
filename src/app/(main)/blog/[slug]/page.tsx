@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { ArrowLeft, Clock, Calendar, User } from "lucide-react";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
@@ -13,8 +14,39 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
   category,
   publishedAt,
   readTime,
+  excerpt,
   body
 }`;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await client.fetch(POST_QUERY, { slug });
+
+  if (!post) return {};
+
+  const description =
+    post.excerpt || "Read the latest insights from the iNextERP team.";
+  const image = post.mainImage ? urlFor(post.mainImage).width(1200).height(630).url() : "/dashboard/iNext hero 1.webp";
+
+  return {
+    title: `${post.title} | iNextERP Blog`,
+    description,
+    alternates: {
+      canonical: `https://www.inexterp.com/blog/${slug}`,
+    },
+    openGraph: {
+      title: post.title,
+      description,
+      url: `https://www.inexterp.com/blog/${slug}`,
+      type: "article",
+      images: [{ url: image, width: 1200, height: 630, alt: post.title }],
+    },
+  };
+}
 
 // Update the type to indicate params is a Promise
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {

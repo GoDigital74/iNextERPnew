@@ -688,7 +688,7 @@ export const metadata: Metadata = {
     url: "https://www.inexterp.com/services/erp-integrations",
     images: [
       {
-        url: "https://www.inexterp.com/og-integrations.jpg", // Replace with actual hosted URL
+        url: "/dashboard/iNext hero 1.webp",
         width: 1200,
         height: 630,
         alt: "NextERP integrations hub connecting Shopify Tally Razorpay and business apps",
@@ -699,7 +699,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ERP Integrations | Shopify, Tally, Razorpay | iNextERP",
     description: "Connect NextERP with Shopify, Amazon, Tally, Razorpay, WhatsApp & more.",
-    images: ["https://www.inexterp.com/og-integrations.jpg"], // Replace with actual hosted URL
+    images: ["/dashboard/iNext hero 1.webp"],
   }
 };
 

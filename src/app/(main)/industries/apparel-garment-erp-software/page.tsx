@@ -17,6 +17,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.inexterp.com/industries/apparel-garment-erp-software",
   },
+  openGraph: {
+    title: "Fashion & Apparel ERP Software India | iNextERP",
+    description: "ERP software for fashion & garment retailers. Size/color variant inventory, style analytics, exchange management & omnichannel sync.",
+    url: "https://www.inexterp.com/industries/apparel-garment-erp-software",
+    type: "website",
+    images: [{ url: "/industries/garment iNext 1.webp", width: 1200, height: 630, alt: "iNextERP for fashion and apparel retail" }],
+  },
 };
 
 const faqSchema = {

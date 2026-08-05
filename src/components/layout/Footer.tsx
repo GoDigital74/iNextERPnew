@@ -68,11 +68,12 @@ export function Footer() {
             </p>
 
             <div className="flex flex-col gap-3 mt-2">
-              <div className="flex items-center gap-3 text-sm hover:text-[#1881c4] transition-colors cursor-pointer">
-                <Phone className="w-5 h-5 text-[#1881c4]" />
-                8178844159 <br/>
-                  8527262031<br/>
-                      0120-4171793 (Landline)
+              <div className="flex items-start gap-3 text-sm hover:text-[#1881c4] transition-colors cursor-pointer">
+                <Phone className="w-5 h-5 text-[#1881c4] shrink-0 mt-0.5" />
+                <span>
+                  Talk to an expert:<br />
+                  8527262031 / 9211995156
+                </span>
               </div>
               <div className="flex items-center gap-3 text-sm hover:text-[#1881c4] transition-colors cursor-pointer">
                 <Mail className="w-5 h-5 text-[#1881c4]" />
