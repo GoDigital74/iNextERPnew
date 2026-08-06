@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
-import { TrustedLogos } from "@/components/sections/TrustedLogos";
+import { TrustedLogos, type ClientLogo } from "@/components/sections/TrustedLogos";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 import { ProblemSection } from "@/components/sections/ProblemSection";
 import { DashboardShowcase } from "@/components/sections/DashboardShowcase";
 import { ModulesGrid } from "@/components/sections/ModulesGrid";
@@ -28,13 +30,45 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+const LOGO_WALL_QUERY = `*[_type == "logoWall"][0] {
+  logos
+}`;
+
+type LogoWallImage = Parameters<typeof urlFor>[0] & {
+  _key: string;
+  name?: string;
+  alt?: string;
+};
+
+type LogoWallDoc = {
+  logos?: LogoWallImage[];
+};
+
+async function getClientLogos(): Promise<ClientLogo[]> {
+  try {
+    const doc = await client.fetch<LogoWallDoc | null>(LOGO_WALL_QUERY);
+    return (doc?.logos ?? [])
+      .filter((logo) => logo.name)
+      .map((logo) => ({
+        id: logo._key,
+        name: logo.name ?? logo.alt ?? "Client logo",
+        src: urlFor(logo).width(300).url(),
+      }));
+  } catch {
+    // Sanity unreachable/misconfigured — TrustedLogos falls back to its built-in list.
+    return [];
+  }
+}
+
+export default async function Home() {
+  const clientLogos = await getClientLogos();
+
   return (
     <div className="relative min-h-screen flex flex-col selection:bg-primary-500 selection:text-white">
       <CalendlyPopup />
       <main className="flex-1 flex flex-col w-full overflow-hidden">
         <Hero />
-        <TrustedLogos />
+        <TrustedLogos logos={clientLogos} />
         <ProblemSection />
         <DashboardShowcase />
         <Comparison />

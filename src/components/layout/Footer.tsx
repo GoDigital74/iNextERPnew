@@ -59,7 +59,7 @@ export function Footer() {
                 />
               </div>
               <span className="text-xl font-bold tracking-tight text-white transition-colors">
-                Next<span className="text-[#1881c4]"> ERP</span>
+                iNext<span className="text-[#1881c4]"> ERP</span>
               </span>
             </Link>
 

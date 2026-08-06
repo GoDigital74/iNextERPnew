@@ -3,7 +3,13 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const CLIENT_LOGOS = [
+export type ClientLogo = {
+  id: string | number;
+  name: string;
+  src: string;
+};
+
+const CLIENT_LOGOS: ClientLogo[] = [
   { id: 1, name: "Agrawal Saree Center", src: "/clients/AgrawalSareeCenter.webp" },
   { id: 2, name: "Aisha Creation", src: "/clients/Aisha_Creation.webp" },
   { id: 3, name: "Bansal Saree NX", src: "/clients/Bansal Saree NX.webp" },
@@ -29,11 +35,34 @@ const CLIENT_LOGOS = [
 ];
 
 
-export function TrustedLogos() {
-  // Split the hardcoded list into two rows for the marquee
-  const half = Math.ceil(CLIENT_LOGOS.length / 2);
-  const topRow = CLIENT_LOGOS.slice(0, half);
-  const bottomRow = CLIENT_LOGOS.slice(half);
+// Below this count, duplicating logos to fake an infinite scroll just makes
+// the same logo repeat right next to itself — show a plain static row instead.
+const MIN_LOGOS_FOR_MARQUEE = 6;
+
+function LogoTile({ logo }: { logo: ClientLogo }) {
+  return (
+    <div className="relative h-16 w-full md:h-20">
+      <Image
+        src={logo.src}
+        alt={logo.name}
+        fill
+        unoptimized={logo.src.startsWith("http")}
+        className="object-contain opacity-80 transition-all duration-300 group-hover:opacity-100 group-hover:scale-105"
+      />
+    </div>
+  );
+}
+
+export function TrustedLogos({ logos }: { logos?: ClientLogo[] }) {
+  // Prefer logos managed in Sanity Studio; fall back to the built-in list
+  // until at least one Client Logo document is published.
+  const activeLogos = logos && logos.length > 0 ? logos : CLIENT_LOGOS;
+  const canMarquee = activeLogos.length >= MIN_LOGOS_FOR_MARQUEE;
+
+  // Split the list into two rows for the marquee
+  const half = Math.ceil(activeLogos.length / 2);
+  const topRow = activeLogos.slice(0, half);
+  const bottomRow = activeLogos.slice(half);
 
   return (
 <section className="border-y border-slate-200 bg-slate-100 py-8 md:py-8 lg:py-14 overflow-hidden">
@@ -54,63 +83,64 @@ export function TrustedLogos() {
         </motion.div>
       </div>
 
-      {/* Marquee Wrapper */}
-      <div
-        className="relative mx-auto w-full max-w-[100vw] overflow-hidden"
-        style={{
-          WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
-          maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
-        }}
-      >
-        <div className="flex flex-col gap-10 md:gap-14">
-          
-          {/* Row 1 - Moving Left */}
-          <motion.div
-            className="flex w-max"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
-          >
-            {[...topRow, ...topRow].map((partner, idx) => (
-              <div
-                key={`top-${partner.id}-${idx}`}
-                className="group flex shrink-0 items-center justify-center px-4 sm:px-6 md:px-8 w-40 sm:w-48 md:w-56"
-              >
-                <div className="relative h-16 w-full md:h-20">
-                  <Image
-                    src={partner.src}
-                    alt={partner.name}
-                    fill
-                    className="object-contain opacity-80 transition-all duration-300 group-hover:opacity-100 group-hover:scale-105"
-                  />
+      {canMarquee ? (
+        /* Marquee Wrapper */
+        <div
+          className="relative mx-auto w-full max-w-[100vw] overflow-hidden"
+          style={{
+            WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
+            maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
+          }}
+        >
+          <div className="flex flex-col gap-10 md:gap-14">
+            {/* Row 1 - Moving Left */}
+            <motion.div
+              className="flex w-max"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
+            >
+              {[...topRow, ...topRow].map((partner, idx) => (
+                <div
+                  key={`top-${partner.id}-${idx}`}
+                  className="group flex shrink-0 items-center justify-center px-4 sm:px-6 md:px-8 w-40 sm:w-48 md:w-56"
+                >
+                  <LogoTile logo={partner} />
                 </div>
-              </div>
-            ))}
-          </motion.div>
+              ))}
+            </motion.div>
 
-          {/* Row 2 - Moving Right */}
-          <motion.div
-            className="flex w-max"
-            animate={{ x: ["-50%", "0%"] }}
-            transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
-          >
-            {[...bottomRow, ...bottomRow].map((partner, idx) => (
-              <div
-                key={`bottom-${partner.id}-${idx}`}
-                className="group flex shrink-0 items-center justify-center px-4 sm:px-6 md:px-8 w-40 sm:w-48 md:w-56"
-              >
-                <div className="relative h-16 w-full md:h-20">
-                  <Image
-                    src={partner.src}
-                    alt={partner.name}
-                    fill
-                    className="object-contain opacity-80 transition-all duration-300 group-hover:opacity-100 group-hover:scale-105"
-                  />
+            {/* Row 2 - Moving Right */}
+            <motion.div
+              className="flex w-max"
+              animate={{ x: ["-50%", "0%"] }}
+              transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
+            >
+              {[...bottomRow, ...bottomRow].map((partner, idx) => (
+                <div
+                  key={`bottom-${partner.id}-${idx}`}
+                  className="group flex shrink-0 items-center justify-center px-4 sm:px-6 md:px-8 w-40 sm:w-48 md:w-56"
+                >
+                  <LogoTile logo={partner} />
                 </div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      ) : (
+        /* Too few logos to loop cleanly — show them once, centered */
+        <div className="mx-auto max-w-7xl px-6 md:px-8">
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8">
+            {activeLogos.map((partner) => (
+              <div
+                key={partner.id}
+                className="group flex shrink-0 items-center justify-center w-40 sm:w-48 md:w-56"
+              >
+                <LogoTile logo={partner} />
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }

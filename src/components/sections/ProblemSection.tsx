@@ -16,36 +16,60 @@ const PROBLEMS = [
     title: "Stock Mismatch",
     description:
       "Manual processes lead to stock errors and overstocking or stockouts.",
+    image:
+      "https://images.unsplash.com/photo-1749244768351-2726dc23d26c?fm=jpg&q=60&w=600&auto=format&fit=crop",
+    from: "from-orange-500",
+    to: "to-red-500",
   },
   {
     icon: Clock,
     title: "Slow Billing",
     description:
       "Billing takes too much time which affects customer satisfaction.",
+    image:
+      "https://images.unsplash.com/photo-1649209979970-f01d950cc5ed?fm=jpg&q=60&w=600&auto=format&fit=crop",
+    from: "from-amber-500",
+    to: "to-yellow-500",
   },
   {
     icon: Database,
     title: "Excel Dependency",
     description:
       "Important business data stored in Excel leads to errors and data loss.",
+    image:
+      "https://images.unsplash.com/photo-1783115259399-3a5a3e0e4592?fm=jpg&q=60&w=600&auto=format&fit=crop",
+    from: "from-emerald-500",
+    to: "to-green-500",
   },
   {
     icon: Laptop,
     title: "Multiple Software",
     description:
       "Using different tools for departments is expensive and complex.",
+    image:
+      "https://images.unsplash.com/photo-1742199009963-c028d0c5a603?fm=jpg&q=60&w=600&auto=format&fit=crop",
+    from: "from-blue-500",
+    to: "to-indigo-500",
   },
   {
     icon: LineChart,
     title: "No Real-Time Reports",
     description:
       "Delays in reports lead to poor decision-making and missed opportunities.",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?fm=jpg&q=60&w=600&auto=format&fit=crop",
+    from: "from-purple-500",
+    to: "to-fuchsia-500",
   },
   {
     icon: ShieldAlert,
     title: "Data Security Issues",
     description:
       "Business data is at risk due to lack of proper security and backup.",
+    image:
+      "https://images.unsplash.com/photo-1768839720936-87ce3adf2d08?fm=jpg&q=60&w=600&auto=format&fit=crop",
+    from: "from-rose-500",
+    to: "to-pink-500",
   },
 ];
 
@@ -85,17 +109,33 @@ export function ProblemSection() {
               key={index}
               variants={itemVariants}
               whileHover={{ y: -5 }}
-              className="bg-white dark:bg-surface-950 p-6 rounded-2xl border border-border shadow-sm hover:shadow-md hover:border-primary-200 dark:hover:border-primary-900 transition-all duration-300 group"
+              className="relative overflow-hidden p-6 rounded-2xl border border-border shadow-sm hover:shadow-md hover:border-primary-200 dark:hover:border-primary-900 transition-all duration-300 group"
             >
-              <div className="w-12 h-12 rounded-lg bg-red-50 dark:bg-red-950/30 text-red-500 dark:text-red-400 flex items-center justify-center mb-4 group-hover:bg-red-100 transition-colors">
-                <problem.icon className="w-6 h-6" />
+              {/* Card background image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center scale-105 opacity-[0.08] dark:opacity-[0.12] group-hover:opacity-[0.14] dark:group-hover:opacity-20 group-hover:scale-110 transition-all duration-500"
+                style={{ backgroundImage: `url('${problem.image}')` }}
+              />
+              <div className="absolute inset-0 bg-linear-to-br from-white via-white/95 to-white/85 dark:from-surface-950 dark:via-surface-950/95 dark:to-surface-950/85" />
+
+              {/* Content */}
+              <div className="relative">
+                <div className="relative w-16 h-16 mb-4">
+                  <div
+                    className={`absolute inset-0 bg-linear-to-br ${problem.from} ${problem.to} opacity-90 group-hover:scale-110 transition-transform duration-300`}
+                    style={{ borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%" }}
+                  />
+                  <div className="relative w-full h-full flex items-center justify-center text-white drop-shadow-sm">
+                    <problem.icon className="w-7 h-7" />
+                  </div>
+                </div>
+                <h3 className="text-lg font-semibold text-foreground mb-2">
+                  {problem.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {problem.description}
+                </p>
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                {problem.title}
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {problem.description}
-              </p>
             </motion.div>
           ))}
         </motion.div>
