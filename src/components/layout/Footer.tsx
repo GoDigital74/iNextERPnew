@@ -11,7 +11,7 @@ import {
 const FOOTER_LINKS = {
   products: [
     { name: "Features", href: "#" },
-    { name: "Pricing", href: "#" },
+    { name: "Pricing", href: "/pricing" },
     { name: "Integrations", href: "/services/erp-integrations" },
     { name: "Modules", href: "#" },
     { name: "Changelog", href: "#" },

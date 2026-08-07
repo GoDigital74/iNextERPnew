@@ -64,6 +64,7 @@ const NAV_LINKS: NavLink[] = [
       { name: "Manufacturing", href: "/industries/manufacturing-erp-software" },
     ],
   },
+  { name: "Pricing", href: "/pricing" },
   { name: "Blog", href: "/blog" },
   { name: "Careers", href: "/careers" },
   { name: "Contact", href: "/contact" },
