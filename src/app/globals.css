@@ -168,6 +168,100 @@
   .divider-fade {
     @apply h-px w-full bg-gradient-to-r from-transparent via-ink-200 to-transparent;
   }
+
+  /* Deep navy canvas echoing the hero's palette — a flat near-black here made
+     the tier cards read as grey boxes rather than lit glass. */
+  .pricing-section {
+    background: radial-gradient(
+      125% 85% at 50% -10%,
+      #0d5180 0%,
+      #083a5c 28%,
+      #05263c 58%,
+      #031824 100%
+    );
+  }
+
+  /* Standard tier: top-lit translucent glass over the navy. */
+  .pricing-surface {
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.03) 55%,
+      rgba(255, 255, 255, 0.015) 100%
+    );
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.14),
+      0 24px 60px -34px rgba(0, 0, 0, 0.95);
+  }
+  .pricing-surface:hover {
+    border-color: rgba(255, 255, 255, 0.22);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.05) 55%,
+      rgba(255, 255, 255, 0.025) 100%
+    );
+  }
+
+  /* Featured tier: a lit brand panel with an inner top highlight so it reads as
+     raised glass rather than a flat blue rectangle. */
+  .pricing-surface-featured {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0) 45%
+      ),
+      linear-gradient(
+        165deg,
+        #2fa3e2 0%,
+        var(--color-brand-600) 50%,
+        var(--color-brand-800) 100%
+      );
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32);
+  }
+
+  /* Gradient border: a conic wheel spins inside a clipped 1px frame. Rotating
+     the element is a composited transform, so the gradient itself is painted
+     once rather than re-rasterised every frame. */
+  .pricing-ring {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: inherit;
+  }
+  .pricing-ring::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 170%;
+    aspect-ratio: 1;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      var(--color-accent-300) 55deg,
+      #ffffff 90deg,
+      var(--color-brand-200) 130deg,
+      transparent 205deg,
+      transparent 360deg
+    );
+    animation: pricing-ring-spin 6s linear infinite;
+  }
+
+  /* Brand bloom pooled under the featured card. */
+  .pricing-glow {
+    position: absolute;
+    inset: -14% -6%;
+    border-radius: 9999px;
+    background: radial-gradient(
+      closest-side,
+      rgba(24, 129, 196, 0.55),
+      transparent 78%
+    );
+    filter: blur(46px);
+  }
 }
 
 @layer utilities {
@@ -256,6 +350,14 @@
       opacity: 0;
     }
   }
+  @keyframes pricing-ring-spin {
+    from {
+      transform: translate3d(-50%, -50%, 0) rotate(0turn);
+    }
+    to {
+      transform: translate3d(-50%, -50%, 0) rotate(1turn);
+    }
+  }
   @keyframes hero-glow {
     0%,
     100% {
@@ -336,7 +438,8 @@
   @media (prefers-reduced-motion: reduce) {
     .animate-marquee-left,
     .animate-marquee-right,
-    .hero-ambient {
+    .hero-ambient,
+    .pricing-ring::after {
       animation: none;
     }
     /* These two only read as decoration mid-animation — parked, they're just

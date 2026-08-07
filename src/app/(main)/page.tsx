@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
 import { TrustedLogos, type ClientLogo } from "@/components/sections/TrustedLogos";
+import { PricingPlans } from "@/components/sections/PricingPlans";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { ProblemSection } from "@/components/sections/ProblemSection";
@@ -69,6 +70,7 @@ export default async function Home() {
       <main className="flex-1 flex flex-col w-full overflow-hidden">
         <Hero />
         <TrustedLogos logos={clientLogos} showHeading={false} />
+        <PricingPlans />
         <ProblemSection />
         <DashboardShowcase />
         <Comparison />

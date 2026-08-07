@@ -25,6 +25,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
+import { TIERS, priceFor } from "@/lib/pricing";
 
 // --- DATA CONFIGURATION ---
 
@@ -33,68 +34,6 @@ const QUICK_NAV = [
   { name: "Modules", href: "#modules" },
   { name: "Add-ons", href: "#addons" },
   { name: "Commercial Terms", href: "#terms" },
-];
-
-type Tier = {
-  name: string;
-  tagline: string;
-  price: string;
-  unit: string;
-  minimum: string;
-  featured?: boolean;
-  cta: string;
-  features: string[];
-};
-
-const TIERS: Tier[] = [
-  {
-    name: "Starter",
-    tagline: "For single-store businesses getting off spreadsheets",
-    price: "₹1,999",
-    unit: "/ user / month",
-    minimum: "Minimum 2 users",
-    cta: "Book a Demo",
-    features: [
-      "Inventory & billing (POS)",
-      "GST-ready invoicing",
-      "1 location / warehouse",
-      "Standard reports dashboard",
-      "Email support",
-    ],
-  },
-  {
-    name: "Growth",
-    tagline: "For multi-location retail, distribution & manufacturing",
-    price: "₹3,499",
-    unit: "/ user / month",
-    minimum: "Minimum 5 users",
-    featured: true,
-    cta: "Book a Demo",
-    features: [
-      "Everything in Starter, plus:",
-      "Finance & Accounts module",
-      "CRM & sales pipeline",
-      "Multi-location & multi-company",
-      "Real-time analytics dashboard",
-      "Priority support (24/7)",
-    ],
-  },
-  {
-    name: "Enterprise",
-    tagline: "For large, multi-brand operations with custom needs",
-    price: "Custom",
-    unit: "pricing on request",
-    minimum: "Minimum 15 users",
-    cta: "Talk to Sales",
-    features: [
-      "Everything in Growth, plus:",
-      "Manufacturing & HRM modules",
-      "Custom integrations & API access",
-      "Dedicated account manager",
-      "Custom SLA & onboarding",
-      "On-request data residency",
-    ],
-  },
 ];
 
 type ModulePlan = {
@@ -380,14 +319,7 @@ export default function PricingClient() {
             className="mx-auto grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-3"
           >
             {TIERS.map((tier) => {
-              const displayPrice =
-                tier.price === "Custom"
-                  ? tier.price
-                  : billing === "annual"
-                    ? `₹${Math.round(
-                        parseInt(tier.price.replace(/[^0-9]/g, ""), 10) * 0.85,
-                      ).toLocaleString("en-IN")}`
-                    : tier.price;
+              const displayPrice = priceFor(tier, billing);
 
               return (
                 <motion.div
