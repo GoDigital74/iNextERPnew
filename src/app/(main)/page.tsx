@@ -68,7 +68,7 @@ export default async function Home() {
       <CalendlyPopup />
       <main className="flex-1 flex flex-col w-full overflow-hidden">
         <Hero />
-        <TrustedLogos logos={clientLogos} />
+        <TrustedLogos logos={clientLogos} showHeading={false} />
         <ProblemSection />
         <DashboardShowcase />
         <Comparison />

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 export type ClientLogo = {
   id: string | number;
@@ -41,21 +42,25 @@ const MIN_LOGOS_FOR_MARQUEE = 6;
 
 function LogoTile({ logo }: { logo: ClientLogo }) {
   return (
-    <div className="relative flex h-16 w-full items-center justify-center rounded-xl border border-ink-150 bg-white p-3 opacity-80 shadow-sm transition-all duration-300 group-hover:opacity-100 group-hover:border-brand-300 md:h-18">
-      <div className="relative h-full w-full">
-        <Image
-          src={logo.src}
-          alt={logo.name}
-          fill
-          unoptimized={logo.src.startsWith("http")}
-          className="object-contain"
-        />
-      </div>
+    <div className="relative h-10 w-full transition-transform duration-300 group-hover:scale-105 md:h-12">
+      <Image
+        src={logo.src}
+        alt={logo.name}
+        fill
+        unoptimized={logo.src.startsWith("http")}
+        className="object-contain"
+      />
     </div>
   );
 }
 
-export function TrustedLogos({ logos }: { logos?: ClientLogo[] }) {
+export function TrustedLogos({
+  logos,
+  showHeading = true,
+}: {
+  logos?: ClientLogo[];
+  showHeading?: boolean;
+}) {
   // Prefer logos managed in Sanity Studio; fall back to the built-in list
   // until at least one Client Logo document is published.
   const activeLogos = logos && logos.length > 0 ? logos : CLIENT_LOGOS;
@@ -67,23 +72,32 @@ export function TrustedLogos({ logos }: { logos?: ClientLogo[] }) {
   const bottomRow = activeLogos.slice(half);
 
   return (
-    <section className="relative overflow-hidden border-y border-ink-150 bg-ink-50 py-14 md:py-16">
-      <div className="section-container">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
-        >
-          <h2 className="text-3xl font-bold tracking-tight text-ink-900 md:text-4xl">
-            Trusted by Ambitious Brands.
-          </h2>
-          <p className="mt-4 text-base text-ink-500">
-            Driving growth and digital transformation for industry leaders.
-          </p>
-        </motion.div>
-      </div>
+    <section
+      className={cn(
+        "relative overflow-hidden bg-white",
+        showHeading
+          ? "border-y border-ink-150 bg-ink-50 py-14 md:py-16"
+          : "pb-20 pt-14 sm:pt-16 md:pb-24 lg:pt-20",
+      )}
+    >
+      {showHeading && (
+        <div className="section-container">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
+            className="mb-12 text-center"
+          >
+            <h2 className="text-3xl font-bold tracking-tight text-ink-900 md:text-4xl">
+              Trusted by Ambitious Brands.
+            </h2>
+            <p className="mt-4 text-base text-ink-500">
+              Driving growth and digital transformation for industry leaders.
+            </p>
+          </motion.div>
+        </div>
+      )}
 
       {canMarquee ? (
         /* Marquee Wrapper */
