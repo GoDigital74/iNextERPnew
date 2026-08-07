@@ -1,7 +1,4 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export type ClientLogo = {
@@ -47,6 +44,7 @@ function LogoTile({ logo }: { logo: ClientLogo }) {
         src={logo.src}
         alt={logo.name}
         fill
+        sizes="128px"
         unoptimized={logo.src.startsWith("http")}
         className="object-contain"
       />
@@ -82,20 +80,14 @@ export function TrustedLogos({
     >
       {showHeading && (
         <div className="section-container">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6 }}
-            className="mb-12 text-center"
-          >
+          <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold tracking-tight text-ink-900 md:text-4xl">
               Trusted by Ambitious Brands.
             </h2>
             <p className="mt-4 text-base text-ink-500">
               Driving growth and digital transformation for industry leaders.
             </p>
-          </motion.div>
+          </div>
         </div>
       )}
 
@@ -104,11 +96,7 @@ export function TrustedLogos({
         <div className="relative mx-auto w-full max-w-[100vw] overflow-hidden mask-fade-x">
           <div className="flex flex-col gap-10 md:gap-12">
             {/* Row 1 - Moving Left */}
-            <motion.div
-              className="flex w-max"
-              animate={{ x: ["0%", "-50%"] }}
-              transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
-            >
+            <div className="animate-marquee-left flex w-max">
               {[...topRow, ...topRow].map((partner, idx) => (
                 <div
                   key={`top-${partner.id}-${idx}`}
@@ -117,14 +105,10 @@ export function TrustedLogos({
                   <LogoTile logo={partner} />
                 </div>
               ))}
-            </motion.div>
+            </div>
 
             {/* Row 2 - Moving Right */}
-            <motion.div
-              className="flex w-max"
-              animate={{ x: ["-50%", "0%"] }}
-              transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
-            >
+            <div className="animate-marquee-right flex w-max">
               {[...bottomRow, ...bottomRow].map((partner, idx) => (
                 <div
                   key={`bottom-${partner.id}-${idx}`}
@@ -133,7 +117,7 @@ export function TrustedLogos({
                   <LogoTile logo={partner} />
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       ) : (

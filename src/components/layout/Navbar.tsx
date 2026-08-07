@@ -290,10 +290,10 @@ export function Navbar() {
                   <Link
                     href={link.href || "#"}
                     onClick={link.href === "/" ? handleHomeClick : undefined}
-                    className={`flex items-center gap-1 rounded-lg px-3.5 py-2 text-sm font-medium transition-colors hover:text-brand-600 ${
+                    className={`flex items-center gap-1 rounded-lg px-3.5 py-2 text-[16px] font-medium transition-colors hover:text-brand-600 ${
                       isActive || hoveredNav === link.name
                         ? "text-brand-600"
-                        : "text-ink-700"
+                        : "text-ink-900"
                     }`}
                     aria-current={isActive ? "page" : undefined}
                     aria-haspopup={hasDropdown ? "true" : undefined}

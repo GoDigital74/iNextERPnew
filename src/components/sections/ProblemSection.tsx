@@ -105,9 +105,10 @@
 
 "use client";
 
+import Image from "next/image";
 import { motion, Variants } from "framer-motion";
-import { 
-  PackageX, 
+import {
+  PackageX,
   Timer, 
   FileSpreadsheet, 
   Network, 
@@ -206,9 +207,13 @@ export function ProblemSection() {
                 className="group relative flex min-h-[320px] cursor-pointer flex-col justify-end overflow-hidden rounded-3xl border border-ink-150 bg-ink-900 transition-all duration-300 hover:shadow-2xl hover:shadow-brand-500/20"
               >
                 {/* Background Image - Increased opacity for better visibility */}
-                <div 
-                  className="absolute inset-0 z-0 bg-cover bg-center transition-all duration-700 ease-in-out group-hover:scale-110 group-hover:saturate-150 saturate-50 opacity-85"
-                  style={{ backgroundImage: `url(${problem.bgImage})` }}
+                <Image
+                  src={problem.bgImage}
+                  alt=""
+                  aria-hidden
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  className="z-0 object-cover opacity-85 saturate-50 transition-all duration-700 ease-in-out group-hover:scale-110 group-hover:saturate-150"
                 />
 
                 {/* Reduced Gradient Overlay - Now mostly transparent at the top, dark at the very bottom for text */}

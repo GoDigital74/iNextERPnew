@@ -69,6 +69,16 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   const lastTransformsRef = useRef(new Map<number, any>());
   const isUpdatingRef = useRef(false);
   const scrollIdleTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const endElementRef = useRef<HTMLElement | null>(null);
+  // Wrapper offsets are read once per layout change instead of once per scroll
+  // frame — reading getBoundingClientRect() in the same loop that writes
+  // card.style.transform forces a synchronous reflow on every one of the 12
+  // cards, every frame, which is what made scrolling this section janky.
+  const metricsRef = useRef<{ wrapperTops: number[]; endTop: number }>({
+    wrapperTops: [],
+    endTop: 0,
+  });
+  const pointerEventsBlockedRef = useRef(false);
 
   // While actively scrolling, the pinned/stacking cards translate underneath
   // a stationary mouse cursor. That constantly toggles :hover on whichever
@@ -80,10 +90,14 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   const markScrollActivity = useCallback(() => {
     const el = scrollerRef.current;
     if (!el) return;
-    el.style.pointerEvents = "none";
+    if (!pointerEventsBlockedRef.current) {
+      el.style.pointerEvents = "none";
+      pointerEventsBlockedRef.current = true;
+    }
     if (scrollIdleTimeoutRef.current) clearTimeout(scrollIdleTimeoutRef.current);
     scrollIdleTimeoutRef.current = setTimeout(() => {
       if (scrollerRef.current) scrollerRef.current.style.pointerEvents = "";
+      pointerEventsBlockedRef.current = false;
     }, 140);
   }, []);
 
@@ -135,6 +149,13 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     [useWindowScroll]
   );
 
+  const measure = useCallback(() => {
+    metricsRef.current = {
+      wrapperTops: wrappersRef.current.map((wrapper) => getElementOffset(wrapper)),
+      endTop: endElementRef.current ? getElementOffset(endElementRef.current) : 0,
+    };
+  }, [getElementOffset]);
+
   const updateCardTransforms = useCallback(() => {
     if (!cardsRef.current.length || !wrappersRef.current.length || isUpdatingRef.current) return;
 
@@ -144,12 +165,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     const stackPositionPx = parsePercentage(stackPosition, containerHeight);
     const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
 
-    const endElement = useWindowScroll
-      ? (document.querySelector(".scroll-stack-end") as HTMLElement | null)
-      : (scrollerRef.current?.querySelector(".scroll-stack-end") as HTMLElement | null);
-
-    const endElementTop = endElement ? getElementOffset(endElement) : 0;
-    const wrapperTops = wrappersRef.current.map((wrapper) => getElementOffset(wrapper));
+    const { wrapperTops, endTop: endElementTop } = metricsRef.current;
 
     cardsRef.current.forEach((card, i) => {
       if (!card) return;
@@ -235,12 +251,10 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     baseScale,
     rotationAmount,
     blurAmount,
-    useWindowScroll,
     onStackComplete,
     calculateProgress,
     parsePercentage,
     getScrollData,
-    getElementOffset,
   ]);
 
   const setupScroll = useCallback(() => {
@@ -256,13 +270,19 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
           ticking = true;
         }
       };
+      const onResize = () => {
+        measure();
+        updateCardTransforms();
+      };
 
       window.addEventListener("scroll", onScroll, { passive: true });
-      window.addEventListener("resize", onScroll, { passive: true });
+      window.addEventListener("resize", onResize, { passive: true });
       updateCardTransforms();
 
-      // Store references for cleanup
-      (scrollerRef.current as any)._onScroll = onScroll;
+      return () => {
+        window.removeEventListener("scroll", onScroll);
+        window.removeEventListener("resize", onResize);
+      };
     } else {
       const scroller = scrollerRef.current;
       if (!scroller) return;
@@ -286,7 +306,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       animationFrameRef.current = requestAnimationFrame(raf);
       lenisRef.current = lenis;
     }
-  }, [updateCardTransforms, useWindowScroll, markScrollActivity]);
+  }, [updateCardTransforms, useWindowScroll, markScrollActivity, measure]);
 
   useLayoutEffect(() => {
     if (!useWindowScroll && !scrollerRef.current) return;
@@ -305,6 +325,9 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     
     wrappersRef.current = wrappers;
     cardsRef.current = cards;
+    endElementRef.current = (
+      useWindowScroll ? document : scrollerRef.current!
+    ).querySelector(".scroll-stack-end");
     const transformsCache = lastTransformsRef.current;
 
     wrappers.forEach((wrapper, i) => {
@@ -314,18 +337,27 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     });
 
     cards.forEach((card) => {
-      card.style.willChange = "transform, filter";
+      card.style.willChange = "transform";
       card.style.transformOrigin = "top center";
       card.style.transform = "translateZ(0)";
     });
 
-    setupScroll();
+    measure();
+    const teardownScroll = setupScroll();
+
+    // Card art loads lazily and fonts swap in after first paint, both of which
+    // shift the cached wrapper offsets — re-measure instead of re-reading them
+    // every frame.
+    const resizeObserver = new ResizeObserver(() => {
+      measure();
+      updateCardTransforms();
+    });
+    if (scrollerRef.current) resizeObserver.observe(scrollerRef.current);
+    if (useWindowScroll) resizeObserver.observe(document.body);
 
     return () => {
-      if (useWindowScroll) {
-        window.removeEventListener("scroll", (scrollerRef.current as any)?._onScroll);
-        window.removeEventListener("resize", (scrollerRef.current as any)?._onScroll);
-      }
+      teardownScroll?.();
+      resizeObserver.disconnect();
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
@@ -345,6 +377,8 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     itemDistance,
     useWindowScroll,
     setupScroll,
+    measure,
+    updateCardTransforms,
   ]);
 
   return (

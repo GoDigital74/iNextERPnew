@@ -824,7 +824,8 @@
 
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { motion, type Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
@@ -859,10 +860,24 @@ const item: Variants = {
 };
 
 export function Hero() {
-  const reduce = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // The hero's ambience is a stack of large blurred layers. Left running they
+  // keep repainting for the whole session even once the user has scrolled well
+  // past them, so park them the moment the section leaves the viewport.
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => el.classList.toggle("hero-paused", !entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section className="relative overflow-visible bg-[#031824]">
+    <section ref={sectionRef} className="relative overflow-visible bg-[#031824]">
       {/* ========================================================= */}
       {/* BACKGROUND                                                */}
       {/* ========================================================= */}
@@ -876,109 +891,37 @@ export function Hero() {
         }}
       />
 
-      {/* Animated grid */}
-      <motion.div
-        className="absolute inset-0"
+      {/* Animated grid — the mask lives on the wrapper so the pattern layer
+          underneath can be translated by the compositor instead of repainting
+          a full-viewport background-position every frame. */}
+      <div
+        className="hero-ambient hero-anim-grid absolute inset-0 overflow-hidden opacity-[0.12]"
         style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.95) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.95) 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
           maskImage:
             "radial-gradient(ellipse 95% 78% at 50% 6%, black 25%, rgba(0,0,0,0.35) 62%, transparent 100%)",
           WebkitMaskImage:
             "radial-gradient(ellipse 95% 78% at 50% 6%, black 25%, rgba(0,0,0,0.35) 62%, transparent 100%)",
         }}
-        initial={{ opacity: 0 }}
-        animate={
-          reduce
-            ? { opacity: 0.16 }
-            : {
-                opacity: [0.12, 0.24, 0.12],
-                backgroundPosition: ["0px 0px", "64px 64px"],
-              }
-        }
-        transition={{
-          opacity: {
-            repeat: Infinity,
-            duration: 7,
-            ease: "easeInOut",
-          },
-          backgroundPosition: {
-            repeat: Infinity,
-            duration: 14,
-            ease: "linear",
-          },
-        }}
-      />
-
-      {/* Ambient aurora */}
-      <motion.div
-        className="absolute -top-[18%] left-1/2 h-[60%] w-[68%] -translate-x-1/2 rounded-full bg-[#7fd7ff]/30 blur-[160px]"
-        animate={
-          reduce
-            ? undefined
-            : {
-                scale: [1, 1.25, 1],
-                opacity: [0.45, 1, 0.45],
-              }
-        }
-        transition={{
-          repeat: Infinity,
-          duration: 6.5,
-          ease: "easeInOut",
-        }}
-      />
-
-      <motion.div
-        className="absolute bottom-[8%] left-[10%] h-[46%] w-[42%] rounded-full bg-[#1881c4]/45 blur-[150px]"
-        animate={
-          reduce
-            ? undefined
-            : {
-                x: [0, 160, 0],
-                y: [0, -70, 0],
-                scale: [1, 1.18, 1],
-              }
-        }
-        transition={{
-          repeat: Infinity,
-          duration: 12,
-          ease: "easeInOut",
-        }}
-      />
-
-      <motion.div
-        className="absolute bottom-[12%] right-[8%] h-[42%] w-[38%] rounded-full bg-[#38e0d0]/22 blur-[150px]"
-        animate={
-          reduce
-            ? undefined
-            : {
-                x: [0, -140, 0],
-                y: [0, 66, 0],
-                scale: [1.12, 1, 1.12],
-              }
-        }
-        transition={{
-          repeat: Infinity,
-          duration: 14,
-          ease: "easeInOut",
-        }}
-      />
-
-      {/* Light sweep */}
-      {!reduce && (
-        <motion.div
-          className="absolute inset-y-0 w-[32%] -skew-x-12 bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent)]"
-          initial={{ x: "-40%" }}
-          animate={{ x: "280%" }}
-          transition={{
-            repeat: Infinity,
-            duration: 5,
-            ease: "easeInOut",
-            repeatDelay: 2.5,
+      >
+        <div
+          className="hero-ambient hero-anim-grid-drift absolute -inset-16"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.95) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.95) 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
           }}
         />
-      )}
+      </div>
+
+      {/* Ambient aurora */}
+      <div className="hero-ambient hero-anim-aurora absolute -top-[18%] left-1/2 h-[60%] w-[68%] -translate-x-1/2 rounded-full bg-[#7fd7ff]/30 opacity-45 blur-[160px]" />
+
+      <div className="hero-ambient hero-anim-drift-left absolute bottom-[8%] left-[10%] h-[46%] w-[42%] rounded-full bg-[#1881c4]/45 blur-[150px]" />
+
+      <div className="hero-ambient hero-anim-drift-right absolute bottom-[12%] right-[8%] h-[42%] w-[38%] rounded-full bg-[#38e0d0]/22 blur-[150px]" />
+
+      {/* Light sweep */}
+      <div className="hero-ambient hero-anim-sweep absolute inset-y-0 w-[32%] bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent)]" />
 
       {/* Vignette */}
       <div
@@ -1005,20 +948,7 @@ export function Hero() {
           className="inline-flex items-center gap-2.5 rounded-full border border-white/25 bg-white/[0.12] px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white shadow-[0_4px_24px_-8px_rgba(0,0,0,0.5)] backdrop-blur-md"
         >
           <span className="relative flex h-1.5 w-1.5">
-            {!reduce && (
-              <motion.span
-                className="absolute inline-flex h-full w-full rounded-full bg-accent-300"
-                animate={{
-                  scale: [1, 3.2, 1],
-                  opacity: [0.9, 0, 0.9],
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 2,
-                  ease: "easeOut",
-                }}
-              />
-            )}
+            <span className="hero-ambient hero-anim-ping absolute inline-flex h-full w-full rounded-full bg-accent-300" />
 
             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent-300" />
           </span>
@@ -1038,26 +968,13 @@ export function Hero() {
             Smarter. Faster. Better.
 
             {/* Shimmer */}
-            {!reduce && (
-              <motion.span
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-[linear-gradient(100deg,transparent_35%,rgba(255,255,255,0.85)_50%,transparent_65%)] bg-clip-text text-transparent"
-                style={{
-                  backgroundSize: "220% 100%",
-                }}
-                animate={{
-                  backgroundPosition: ["160% 0%", "-60% 0%"],
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 3.2,
-                  ease: "easeInOut",
-                  repeatDelay: 2.2,
-                }}
-              >
-                Smarter. Faster. Better.
-              </motion.span>
-            )}
+            <span
+              aria-hidden
+              className="hero-ambient hero-anim-shimmer pointer-events-none absolute inset-0 bg-[linear-gradient(100deg,transparent_35%,rgba(255,255,255,0.85)_50%,transparent_65%)] bg-clip-text text-transparent"
+              style={{ backgroundSize: "220% 100%" }}
+            >
+              Smarter. Faster. Better.
+            </span>
           </motion.span>
         </h1>
 
@@ -1072,21 +989,10 @@ export function Hero() {
 
         {/* CTA */}
         <motion.div variants={item} className="relative mt-2">
-          {!reduce && (
-            <motion.span
-              aria-hidden
-              className="absolute inset-0 -z-10 rounded-xl bg-white/50 blur-2xl"
-              animate={{
-                opacity: [0.3, 0.85, 0.3],
-                scale: [0.92, 1.18, 0.92],
-              }}
-              transition={{
-                repeat: Infinity,
-                duration: 2.8,
-                ease: "easeInOut",
-              }}
-            />
-          )}
+          <span
+            aria-hidden
+            className="hero-ambient hero-anim-glow absolute inset-0 -z-10 rounded-xl bg-white/50 blur-2xl"
+          />
 
           <button
             onClick={openCalendlyPopup}
@@ -1156,31 +1062,16 @@ export function Hero() {
               ease: [0.16, 1, 0.3, 1],
             }}
           >
-            <motion.div
-              animate={
-                reduce
-                  ? undefined
-                  : {
-                      y: [-6, -20, -6],
-                      scale: [1, 1.015, 1],
-                    }
-              }
-              transition={{
-                repeat: Infinity,
-                duration: 5,
-                ease: "easeInOut",
-              }}
-              className="relative mx-auto aspect-[3/2] w-full max-w-5xl"
-            >
+            <div className="hero-ambient hero-anim-float relative mx-auto aspect-[3/2] w-full max-w-5xl">
               <Image
                 src="/dashboard/inext hero.png"
                 alt="iNextERP Dashboard and Mobile View"
                 fill
-                unoptimized
+                sizes="(min-width: 1024px) 1024px, 100vw"
                 className="object-contain"
                 priority
               />
-            </motion.div>
+            </div>
           </motion.div>
         </div>
 

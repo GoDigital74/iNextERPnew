@@ -113,7 +113,13 @@ export function Testimonials() {
             >
               <div className="mb-4 flex items-center gap-3">
                 <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full ring-2 ring-ink-100">
-                  <Image src={item.avatar} alt={item.name} fill className="object-cover" />
+                  <Image
+                    src={item.avatar}
+                    alt={item.name}
+                    fill
+                    sizes="44px"
+                    className="object-cover"
+                  />
                 </div>
                 <div className="text-left">
                   <h4 className="text-sm font-bold text-ink-900">{item.name}</h4>

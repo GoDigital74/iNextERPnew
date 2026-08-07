@@ -68,6 +68,7 @@ export function Resources() {
                   src={item.image}
                   alt={item.title}
                   fill
+                  sizes="(min-width: 1024px) 320px, (min-width: 768px) 50vw, 100vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-ink-900/30 to-transparent" />

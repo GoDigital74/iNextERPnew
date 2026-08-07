@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import ScrollStack, { ScrollStackItem } from "@/components/ui/ScrollStack";
 import {
   Store,
@@ -128,9 +129,13 @@ export function ModulesGrid() {
                 itemClassName="group flex min-h-70 cursor-pointer flex-col justify-end border border-ink-150 bg-ink-900 transition-shadow duration-300 hover:shadow-2xl hover:shadow-brand-500/20 sm:min-h-80"
               >
                 {/* Background Image */}
-                <div
-                  className="absolute inset-0 z-0 bg-cover bg-center opacity-85 transition-transform duration-700 ease-in-out will-change-transform group-hover:scale-110"
-                  style={{ backgroundImage: `url(${mod.bgImage})` }}
+                <Image
+                  src={mod.bgImage}
+                  alt=""
+                  aria-hidden
+                  fill
+                  sizes="(min-width: 768px) 768px, 100vw"
+                  className="z-0 object-cover opacity-85 transition-transform duration-700 ease-in-out group-hover:scale-110"
                 />
 
                 {/* Gradient Overlay */}

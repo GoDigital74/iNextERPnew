@@ -71,7 +71,7 @@ export function DashboardShowcase() {
                 src={TAB_IMAGES[activeTab]}
                 alt={`${activeTab} Interface`}
                 fill
-                unoptimized
+                sizes="(min-width: 1280px) 1216px, 100vw"
                 className="object-contain p-2 md:p-4"
               />
             </motion.div>
