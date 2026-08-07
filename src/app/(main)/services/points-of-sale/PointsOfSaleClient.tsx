@@ -3,9 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import {
   ArrowRight,
-  Play,
   MessageCircle,
   CheckCircle2,
   XCircle,
@@ -19,15 +19,11 @@ import {
   ShieldCheck,
   RotateCcw,
   BarChart,
-  Search,
   LayoutDashboard,
   Users,
   ChevronRight,
-  ChevronDown,
   WifiOff,
   Award,
-  CircleDollarSign,
-  Building2,
   QrCode,
   ArrowRightLeft,
   Store,
@@ -35,6 +31,13 @@ import {
   Shirt,
   Network,
 } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
 
 // --- WORKFLOW DATA ---
 const WORKFLOW_STEPS = [
@@ -53,7 +56,6 @@ const TOUR_TABS = [
   { name: "Reports", icon: BarChart },
 ];
 
-// --- DYNAMIC TOUR CONTENT ---
 const TOUR_CONTENT = [
   {
     title: "New Sale Dashboard",
@@ -89,7 +91,30 @@ const TOUR_CONTENT = [
   },
 ];
 
-// We pass this data here just for the UI rendering (the actual SEO schema is handled in page.tsx)
+const CORE_HIGHLIGHTS = [
+  { icon: Zap, label: "Blazing Fast Billing", desc: "Bill in seconds, not minutes." },
+  { icon: QrCode, label: "Multiple Payment Modes", desc: "UPI, Cards, Wallets, EMI & more." },
+  { icon: RefreshCw, label: "Real-Time Inventory Sync", desc: "Live stock sync across all outlets." },
+  { icon: Percent, label: "Smart Discounts & Offers", desc: "Run offers that drive sales." },
+  { icon: BarChart, label: "Detailed Analytics", desc: "Know your business, better." },
+];
+
+const CORE_FEATURES = [
+  { icon: Store, title: "Multi-Store Management", desc: "Manage operations across all your retail outlets from a single global dashboard. Keep pricing and stock synced instantly." },
+  { icon: WifiOff, title: "Offline Billing", desc: "Keep processing sales even without an internet connection. Data auto-syncs seamlessly to the cloud when you're back online." },
+  { icon: Award, title: "Loyalty & Membership", desc: "Reward regular customers automatically, configure custom tier systems, and build lasting retail value and retention." },
+  { icon: RotateCcw, title: "Easy Returns & Exchanges", desc: "Process order cancellations, item exchanges, and generate credit notes quickly and directly from the register interface." },
+  { icon: BarChart, title: "Advanced Reports", desc: "Get key metrics on register collections, top-selling items, employee performance, and multi-store profit margins." },
+  { icon: Printer, title: "GST-Compliant Invoicing", desc: "Generate GST-ready invoices automatically with every sale — no manual tax calculation needed, ready for direct filing." },
+];
+
+const INDUSTRIES = [
+  { icon: Store, title: "POS for Retail industry", desc: "Barcode billing, multi-store sync, loyalty programs, and GST-compliant invoicing for apparel, electronics, grocery & general stores.", bg: "bg-brand-50", color: "text-brand-600" },
+  { icon: Utensils, title: "POS for Restaurants & QSRs", desc: "Table management, KOT (Kitchen Order Tickets), split billing, and quick checkout built for food businesses.", bg: "bg-orange-50", color: "text-orange-600" },
+  { icon: Shirt, title: "POS for Fashion & Garments", desc: "Size and color variant billing, easy exchange handling, and season-wise sales reporting for apparel stores.", bg: "bg-accent-50", color: "text-accent-700" },
+  { icon: Network, title: "POS for Multi-Outlet Franchises", desc: "Centralized dashboard to manage billing, inventory, and reports across all franchise locations seamlessly.", bg: "bg-brand-50", color: "text-brand-600" },
+];
+
 const FAQ_DATA = [
   {
     q: "What hardware do I need to run NextERP POS?",
@@ -117,69 +142,101 @@ const FAQ_DATA = [
   },
 ];
 
+// --- ANIMATION VARIANTS ---
+const heroContainer: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+};
+const heroItem: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
+};
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.08 } },
+};
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 28 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+};
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+};
+
 export default function PointsOfSaleClient() {
   const [activeTab, setActiveTab] = useState(0);
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-
-  const toggleFaq = (index: number) => {
-    setOpenFaqIndex(openFaqIndex === index ? null : index);
-  };
 
   return (
     <main className="flex-1 flex flex-col w-full bg-white font-sans">
       {/* 1. HERO SECTION (Dark accent band) */}
       <section className="relative bg-ink-950 text-white pt-28 pb-32 overflow-hidden">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
+            backgroundSize: "56px 56px",
+          }}
+        />
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-brand-600/25 blur-[120px] rounded-full" />
           <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent-600/20 blur-[100px] rounded-full" />
         </div>
 
-        <div className="section-container max-w-[1400px] relative z-10">
-          <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 items-center">
+        <div className="section-container max-w-350 relative z-10">
+          <motion.div
+            variants={heroContainer}
+            initial="hidden"
+            animate="show"
+            className="grid grid-cols-1 xl:grid-cols-12 gap-12 items-center"
+          >
             {/* Left Content */}
             <div className="flex flex-col gap-4 xl:col-span-5">
-              <div className="inline-flex w-fit items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-semibold tracking-wider text-brand-300 uppercase">
+              <motion.div
+                variants={heroItem}
+                className="inline-flex w-fit items-center gap-2 px-4 py-1.5 rounded-full bg-white/8 border border-white/10 text-[11px] font-bold tracking-wider text-brand-300 uppercase backdrop-blur-md"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-accent-400" />
                 POS Software
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
+              </motion.div>
+              <motion.h1 variants={heroItem} className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
                 Smarter POS.
                 <br />
                 Faster Billing.
                 <br />
                 <span className="text-brand-400">Happier Customers.</span>
-              </h1>
-              <p className="text-ink-300 text-base md:text-lg max-w-md leading-relaxed mt-1 font-medium">
-                Lightning-fast billing, real-time inventory sync, and offline
-                mode.
-              </p>
+              </motion.h1>
+              <motion.p variants={heroItem} className="text-ink-300 text-base md:text-lg max-w-md leading-relaxed mt-1 font-medium">
+                Lightning-fast billing, real-time inventory sync, and offline mode.
+              </motion.p>
 
-              <div className="flex flex-col sm:flex-row items-center gap-3 mt-4">
-                <button className="w-full sm:w-auto px-6 py-3 bg-brand-500 hover:bg-brand-400 text-white rounded-xl text-sm font-bold transition-all shadow-[0_0_20px_rgba(24,129,196,0.4)] flex items-center justify-center gap-2">
+              <motion.div variants={heroItem} className="flex flex-col sm:flex-row items-center gap-3 mt-4">
+                <button
+                  onClick={openCalendlyPopup}
+                  className="w-full sm:w-auto px-6 py-3 bg-brand-500 hover:bg-brand-400 text-white rounded-xl text-sm font-bold transition-all shadow-[0_0_20px_rgba(24,129,196,0.4)] flex items-center justify-center gap-2"
+                >
                   Book a Live Demo <ArrowRight className="w-4 h-4" />
                 </button>
-              </div>
+              </motion.div>
 
               {/* Feature strip */}
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-4">
+              <motion.div variants={heroItem} className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-4">
                 {[
                   { name: "Offline Mode", icon: WifiOff },
                   { name: "Multi-store", icon: RefreshCw },
                   { name: "Secure Pay", icon: ShieldCheck },
                   { name: "Easy Returns", icon: RotateCcw },
                 ].map((item, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-1.5 text-xs text-ink-300 font-medium"
-                  >
-                    <item.icon className="w-3.5 h-3.5 text-brand-400 shrink-0" />{" "}
-                    {item.name}
+                  <div key={i} className="flex items-center gap-1.5 text-xs text-ink-300 font-medium">
+                    <item.icon className="w-3.5 h-3.5 text-brand-400 shrink-0" /> {item.name}
                   </div>
                 ))}
-              </div>
+              </motion.div>
             </div>
 
             {/* Right Dashboard Visual */}
-            <div className="xl:col-span-7 relative w-full h-75 md:h-112.5 lg:h-137.5 flex items-center justify-center mt-6 xl:mt-0">
+            <motion.div variants={heroItem} className="xl:col-span-7 relative w-full h-75 md:h-112.5 lg:h-137.5 flex items-center justify-center mt-6 xl:mt-0">
               <div className="relative w-full h-full scale-105 lg:scale-115 origin-center group">
                 <Image
                   src="/products/POS img 1.webp"
@@ -190,111 +247,85 @@ export default function PointsOfSaleClient() {
                   priority
                 />
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* 2. CORE HIGHLIGHTS SECTION */}
       <section className="bg-white border-b border-ink-150 py-8 overflow-hidden">
-        <div className="section-container max-w-[1400px]">
+        <div className="section-container max-w-350">
           <h2 className="sr-only">Everything You Need for Faster Checkout</h2>
-          <div className="flex items-center justify-between gap-8 overflow-x-auto custom-scrollbar pb-2">
-            {[
-              {
-                icon: Zap,
-                label: "Blazing Fast Billing",
-                desc: "Bill in seconds, not minutes.",
-              },
-              {
-                icon: QrCode,
-                label: "Multiple Payment Modes",
-                desc: "UPI, Cards, Wallets, EMI & more.",
-              },
-              {
-                icon: RefreshCw,
-                label: "Real-Time Inventory Sync",
-                desc: "Live stock sync across all outlets.",
-              },
-              {
-                icon: Percent,
-                label: "Smart Discounts & Offers",
-                desc: "Run offers that drive sales.",
-              },
-              {
-                icon: BarChart,
-                label: "Detailed Analytics",
-                desc: "Know your business, better.",
-              },
-            ].map((feat, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-3 shrink-0 min-w-55"
-              >
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            className="flex items-center justify-between gap-8 overflow-x-auto custom-scrollbar pb-2"
+          >
+            {CORE_HIGHLIGHTS.map((feat, i) => (
+              <motion.div key={i} variants={itemVariants} className="flex items-center gap-3 shrink-0 min-w-55">
                 <div className="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600 border border-brand-100">
                   <feat.icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-ink-900">
-                    {feat.label}
-                  </div>
-                  <div className="text-[10px] text-ink-500 leading-normal">
-                    {feat.desc}
-                  </div>
+                  <div className="text-xs font-bold text-ink-900">{feat.label}</div>
+                  <div className="text-[10px] text-ink-500 leading-normal">{feat.desc}</div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* 3. SMART POS WORKFLOW */}
       <section className="py-16 bg-white border-b border-ink-150">
-        <div className="section-container max-w-[1400px]">
+        <div className="section-container max-w-350">
           <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-start">
             <div className="lg:w-1/4 text-center lg:text-left">
-              <h2 className="text-2xl md:text-3xl font-bold text-ink-900 leading-tight">
-                Smart POS Workflow
-              </h2>
-              <p className="text-xs text-ink-500 mt-2">
-                From scanning items to satisfied customers in seconds.
-              </p>
+              <h2 className="text-2xl md:text-3xl font-bold text-ink-900 leading-tight">Smart POS Workflow</h2>
+              <p className="text-xs text-ink-500 mt-2">From scanning items to satisfied customers in seconds.</p>
             </div>
 
-            <div className="lg:w-3/4 w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-6 gap-x-2">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-100px" }}
+              className="lg:w-3/4 w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-6 gap-x-2"
+            >
               {WORKFLOW_STEPS.map((step, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-start lg:items-center justify-center lg:justify-start relative"
-                >
+                <motion.div key={idx} variants={itemVariants} className="flex items-start lg:items-center justify-center lg:justify-start relative">
                   <div className="flex flex-col items-center text-center w-24 md:w-28">
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white border border-ink-150 shadow-sm flex items-center justify-center text-brand-600 mb-3 transition-transform hover:scale-105 relative">
                       <step.icon className="w-4 h-4 md:w-5 md:h-5 stroke-[1.5]" />
                     </div>
-                    <div className="font-bold text-ink-900 text-xs mb-1">
-                      {step.title}
-                    </div>
-                    <div className="text-[9px] md:text-[10px] text-ink-500 leading-tight px-1">
-                      {step.desc}
-                    </div>
+                    <div className="font-bold text-ink-900 text-xs mb-1">{step.title}</div>
+                    <div className="text-[9px] md:text-[10px] text-ink-500 leading-tight px-1">{step.desc}</div>
                   </div>
                   {idx !== WORKFLOW_STEPS.length - 1 && (
                     <ArrowRight className="hidden lg:block w-3 h-3 text-ink-300 absolute -right-2 top-4" />
                   )}
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* 4. PRODUCT TOUR SECTION (Interactive Tabs) */}
       <section className="py-20 bg-ink-50">
-        <div className="section-container max-w-[1400px]">
-          <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
-            {/* Mobile Visual Filler (moved to the left on desktop) */}
+        <div className="section-container max-w-350">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 xl:grid-cols-12 gap-8"
+          >
+            {/* Mobile Visual Filler */}
             <div className="xl:col-span-3 relative h-100 md:h-125 flex items-center justify-center order-3 xl:order-1">
-              <div className="relative w-60 h-120 rounded-[2rem] overflow-hidden shadow-2xl border-6 border-ink-900 z-20 bg-black">
+              <div className="relative w-60 h-120 rounded-4xl overflow-hidden shadow-2xl border-6 border-ink-900 z-20 bg-black">
                 <Image
                   src="/products/POS img 2.webp"
                   alt="NextERP Mobile POS Interface"
@@ -314,8 +345,7 @@ export default function PointsOfSaleClient() {
                   Right Where You Need It.
                 </h2>
                 <p className="text-xs text-ink-500 mb-4">
-                  Navigate seamlessly through the platform. Click below to
-                  explore features.
+                  Navigate seamlessly through the platform. Click below to explore features.
                 </p>
               </div>
               <div className="flex flex-col gap-1">
@@ -326,301 +356,173 @@ export default function PointsOfSaleClient() {
                     className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-semibold transition-all text-left ${i === activeTab ? "bg-brand-500 text-white shadow-md" : "text-ink-600 hover:bg-white hover:shadow-sm border border-transparent"}`}
                   >
                     <div className="flex items-center gap-2">
-                      <tab.icon
-                        className={`w-3.5 h-3.5 ${i === activeTab ? "text-white" : "text-ink-400"}`}
-                      />{" "}
-                      {tab.name}
+                      <tab.icon className={`w-3.5 h-3.5 ${i === activeTab ? "text-white" : "text-ink-400"}`} /> {tab.name}
                     </div>
-                    {i === activeTab && (
-                      <ChevronRight className="w-3.5 h-3.5 opacity-50" />
-                    )}
+                    {i === activeTab && <ChevronRight className="w-3.5 h-3.5 opacity-50" />}
                   </button>
                 ))}
               </div>
             </div>
 
             {/* Desktop UI Center (Dynamic Content) */}
-            <div className="xl:col-span-6 order-2 xl:order-3 card-surface p-6 flex flex-col gap-5 transition-all duration-300">
-              <div className="flex justify-between items-center border-b border-ink-100 pb-3">
-                <h3 className="font-bold text-base text-ink-900">
-                  {TOUR_CONTENT[activeTab].title}
-                </h3>
-              </div>
-
-              <p className="text-xs text-ink-500 mb-1">
-                {TOUR_CONTENT[activeTab].desc}
-              </p>
-
-              <div className="flex justify-around items-center bg-ink-50 rounded-xl p-4 border border-ink-150 mt-2">
-                {TOUR_CONTENT[activeTab].metrics.map((metric, idx) => (
-                  <div key={idx} className="text-center">
-                    <div className="text-[10px] text-ink-400 mb-1">
-                      {metric.l}
-                    </div>
-                    <div className="text-sm font-bold text-ink-900">
-                      {metric.v}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-2">
-                <div className="bg-white rounded-xl p-4 border border-ink-150 flex flex-col items-center justify-center relative shadow-sm h-32 overflow-hidden">
-                  <h5 className="text-[10px] font-bold text-ink-900 absolute top-3 left-3">
-                    Activity Status
-                  </h5>
-                  <div className="w-full h-full pt-6 flex items-end justify-between gap-1 opacity-70">
-                    {[30, 50, 40, 70, 60, 90, 80].map((h, i) => (
-                      <div
-                        key={i}
-                        className="w-full bg-brand-500 rounded-t-sm"
-                        style={{ height: `${h}%` }}
-                      ></div>
-                    ))}
-                  </div>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.25 }}
+                className="xl:col-span-6 order-2 xl:order-3 card-surface p-6 flex flex-col gap-5"
+              >
+                <div className="flex justify-between items-center border-b border-ink-100 pb-3">
+                  <h3 className="font-bold text-base text-ink-900">{TOUR_CONTENT[activeTab].title}</h3>
                 </div>
 
-                <div className="bg-white rounded-xl p-4 border border-ink-150 flex flex-col shadow-sm h-32">
-                  <h5 className="text-[10px] font-bold text-ink-900 mb-3">
-                    Recent Transactions
-                  </h5>
-                  <div className="flex-1 flex flex-col justify-between text-[10px]">
-                    <div className="flex justify-between items-center border-b border-ink-100 pb-1.5">
-                      <span className="text-ink-600">INV-4587</span>
-                      <span className="text-emerald-500 font-bold">₹1,240</span>
+                <p className="text-xs text-ink-500 mb-1">{TOUR_CONTENT[activeTab].desc}</p>
+
+                <div className="flex justify-around items-center bg-ink-50 rounded-xl p-4 border border-ink-150 mt-2">
+                  {TOUR_CONTENT[activeTab].metrics.map((metric, idx) => (
+                    <div key={idx} className="text-center">
+                      <div className="text-[10px] text-ink-400 mb-1">{metric.l}</div>
+                      <div className="text-sm font-bold text-ink-900">{metric.v}</div>
                     </div>
-                    <div className="flex justify-between items-center border-b border-ink-100 pb-1.5">
-                      <span className="text-ink-600">INV-4588</span>
-                      <span className="text-emerald-500 font-bold">₹3,450</span>
+                  ))}
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-2">
+                  <div className="bg-white rounded-xl p-4 border border-ink-150 flex flex-col items-center justify-center relative shadow-sm h-32 overflow-hidden">
+                    <h5 className="text-[10px] font-bold text-ink-900 absolute top-3 left-3">Activity Status</h5>
+                    <div className="w-full h-full pt-6 flex items-end justify-between gap-1 opacity-70">
+                      {[30, 50, 40, 70, 60, 90, 80].map((h, i) => (
+                        <div key={i} className="w-full bg-brand-500 rounded-t-sm" style={{ height: `${h}%` }}></div>
+                      ))}
                     </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-ink-600">INV-4589</span>
-                      <span className="text-emerald-500 font-bold">₹890</span>
+                  </div>
+
+                  <div className="bg-white rounded-xl p-4 border border-ink-150 flex flex-col shadow-sm h-32">
+                    <h5 className="text-[10px] font-bold text-ink-900 mb-3">Recent Transactions</h5>
+                    <div className="flex-1 flex flex-col justify-between text-[10px]">
+                      <div className="flex justify-between items-center border-b border-ink-100 pb-1.5">
+                        <span className="text-ink-600">INV-4587</span>
+                        <span className="text-emerald-500 font-bold">₹1,240</span>
+                      </div>
+                      <div className="flex justify-between items-center border-b border-ink-100 pb-1.5">
+                        <span className="text-ink-600">INV-4588</span>
+                        <span className="text-emerald-500 font-bold">₹3,450</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-ink-600">INV-4589</span>
+                        <span className="text-emerald-500 font-bold">₹890</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
         </div>
       </section>
 
       {/* 5. CORE FEATURES SECTION */}
       <section className="py-20 bg-white">
-        <div className="section-container max-w-[1400px]">
+        <div className="section-container max-w-350">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-ink-900 leading-tight">
-              Powerful POS Features
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-ink-900 leading-tight">Powerful POS Features</h2>
             <p className="text-ink-500 text-sm md:text-base mt-4 max-w-2xl mx-auto">
-              Equipped with everything required to scale your retail operations
-              effortlessly.
+              Equipped with everything required to scale your retail operations effortlessly.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="card-surface card-surface-hover p-8 flex flex-col min-h-75">
-              <div className="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600 mb-6">
-                <Store className="w-6 h-6" />
-              </div>
-              <h3 className="font-bold text-ink-900 text-xl mb-3">
-                Multi-Store Management
-              </h3>
-              <p className="text-sm text-ink-500 leading-relaxed">
-                Manage operations across all your retail outlets from a single
-                global dashboard. Keep pricing and stock synced instantly.
-              </p>
-            </div>
-
-            <div className="card-surface card-surface-hover p-8 flex flex-col min-h-75">
-              <div className="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600 mb-6">
-                <WifiOff className="w-6 h-6" />
-              </div>
-              <h3 className="font-bold text-ink-900 text-xl mb-3">
-                Offline Billing
-              </h3>
-              <p className="text-sm text-ink-500 leading-relaxed">
-                Keep processing sales even without an internet connection. Data
-                auto-syncs seamlessly to the cloud when you're back online.
-              </p>
-            </div>
-
-            <div className="card-surface card-surface-hover p-8 flex flex-col min-h-75">
-              <div className="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600 mb-6">
-                <Award className="w-6 h-6" />
-              </div>
-              <h3 className="font-bold text-ink-900 text-xl mb-3">
-                Loyalty & Membership
-              </h3>
-              <p className="text-sm text-ink-500 leading-relaxed">
-                Reward regular customers automatically, configure custom tier
-                systems, and build lasting retail value and retention.
-              </p>
-            </div>
-
-            <div className="card-surface card-surface-hover p-8 flex flex-col min-h-75">
-              <div className="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600 mb-6">
-                <RotateCcw className="w-6 h-6" />
-              </div>
-              <h3 className="font-bold text-ink-900 text-xl mb-3">
-                Easy Returns & Exchanges
-              </h3>
-              <p className="text-sm text-ink-500 leading-relaxed">
-                Process order cancellations, item exchanges, and generate credit
-                notes quickly and directly from the register interface.
-              </p>
-            </div>
-
-            <div className="card-surface card-surface-hover p-8 flex flex-col min-h-75">
-              <div className="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600 mb-6">
-                <BarChart className="w-6 h-6" />
-              </div>
-              <h3 className="font-bold text-ink-900 text-xl mb-3">
-                Advanced Reports
-              </h3>
-              <p className="text-sm text-ink-500 leading-relaxed">
-                Get key metrics on register collections, top-selling items,
-                employee performance, and multi-store profit margins.
-              </p>
-            </div>
-
-            <div className="card-surface card-surface-hover p-8 flex flex-col min-h-75">
-              <div className="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600 mb-6">
-                <Printer className="w-6 h-6" />
-              </div>
-              <h3 className="font-bold text-ink-900 text-xl mb-3">
-                GST-Compliant Invoicing
-              </h3>
-              <p className="text-sm text-ink-500 leading-relaxed">
-                Generate GST-ready invoices automatically with every sale — no
-                manual tax calculation needed, ready for direct filing.
-              </p>
-            </div>
-          </div>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {CORE_FEATURES.map((feat, i) => (
+              <motion.div key={i} variants={itemVariants} className="card-surface card-surface-hover p-8 flex flex-col min-h-75">
+                <div className="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600 mb-6">
+                  <feat.icon className="w-6 h-6" />
+                </div>
+                <h3 className="font-bold text-ink-900 text-xl mb-3">{feat.title}</h3>
+                <p className="text-sm text-ink-500 leading-relaxed">{feat.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
       {/* 6. INDUSTRY-WISE USE CASES */}
       <section className="py-20 bg-ink-50">
-        <div className="section-container max-w-[1400px]">
+        <div className="section-container max-w-350">
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-ink-900 leading-tight">
-              Built for Every Retail Business
-            </h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-ink-900 leading-tight">Built for Every Retail Business</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="card-surface card-surface-hover p-6 flex gap-4">
-              <div className="w-12 h-12 shrink-0 bg-brand-50 text-brand-600 rounded-xl flex items-center justify-center">
-                <Store className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-ink-900 mb-1">
-                  POS for Retail industry
-                </h3>
-                <p className="text-ink-600 text-xs leading-relaxed">
-                  Barcode billing, multi-store sync, loyalty programs, and
-                  GST-compliant invoicing for apparel, electronics, grocery &
-                  general stores.
-                </p>
-              </div>
-            </div>
-
-            <div className="card-surface card-surface-hover p-6 flex gap-4">
-              <div className="w-12 h-12 shrink-0 bg-orange-50 text-orange-600 rounded-xl flex items-center justify-center">
-                <Utensils className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-ink-900 mb-1">
-                  POS for Restaurants & QSRs
-                </h3>
-                <p className="text-ink-600 text-xs leading-relaxed">
-                  Table management, KOT (Kitchen Order Tickets), split billing,
-                  and quick checkout built for food businesses.
-                </p>
-              </div>
-            </div>
-
-            <div className="card-surface card-surface-hover p-6 flex gap-4">
-              <div className="w-12 h-12 shrink-0 bg-accent-50 text-accent-700 rounded-xl flex items-center justify-center">
-                <Shirt className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-ink-900 mb-1">
-                  POS for Fashion & Garments
-                </h3>
-                <p className="text-ink-600 text-xs leading-relaxed">
-                  Size and color variant billing, easy exchange handling, and
-                  season-wise sales reporting for apparel stores.
-                </p>
-              </div>
-            </div>
-
-            <div className="card-surface card-surface-hover p-6 flex gap-4">
-              <div className="w-12 h-12 shrink-0 bg-brand-50 text-brand-600 rounded-xl flex items-center justify-center">
-                <Network className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-ink-900 mb-1">
-                  POS for Multi-Outlet Franchises
-                </h3>
-                <p className="text-ink-600 text-xs leading-relaxed">
-                  Centralized dashboard to manage billing, inventory, and
-                  reports across all franchise locations seamlessly.
-                </p>
-              </div>
-            </div>
-          </div>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          >
+            {INDUSTRIES.map((ind, i) => (
+              <motion.div key={i} variants={itemVariants} className="card-surface card-surface-hover p-6 flex gap-4">
+                <div className={`w-12 h-12 shrink-0 rounded-xl flex items-center justify-center ${ind.bg} ${ind.color}`}>
+                  <ind.icon className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-ink-900 mb-1">{ind.title}</h3>
+                  <p className="text-ink-600 text-xs leading-relaxed">{ind.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
       {/* 7. INTEGRATIONS SECTION */}
       <section className="py-16 bg-white border-b border-ink-150">
-        <div className="section-container max-w-250 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-ink-900 mb-4">
-            Seamless Integrations
-          </h2>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="section-container max-w-250 text-center"
+        >
+          <h2 className="text-2xl md:text-3xl font-bold text-ink-900 mb-4">Seamless Integrations</h2>
           <p className="text-ink-600 text-sm md:text-base mb-8">
             Works seamlessly with{" "}
-            <Link
-              href="/services/inventory-management"
-              className="text-brand-600 font-bold hover:underline"
-            >
+            <Link href="/services/inventory-management" className="text-brand-600 font-bold hover:underline">
               NextERP Inventory Management
             </Link>{" "}
-            for real-time stock sync, plus your favorite payment gateways and
-            accounting software.
+            for real-time stock sync, plus your favorite payment gateways and accounting software.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            {[
-              "NextERP Inventory",
-              "UPI Gateway",
-              "Razorpay",
-              "PayU",
-              "Tally",
-              "GST e-invoicing",
-            ].map((integration, idx) => (
-              <span
-                key={idx}
-                className="px-4 py-2 bg-ink-50 border border-ink-150 rounded-lg text-xs font-bold text-ink-700 shadow-sm"
-              >
+            {["NextERP Inventory", "UPI Gateway", "Razorpay", "PayU", "Tally", "GST e-invoicing"].map((integration, idx) => (
+              <span key={idx} className="px-4 py-2 bg-ink-50 border border-ink-150 rounded-lg text-xs font-bold text-ink-700 shadow-sm">
                 {integration}
               </span>
             ))}
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* 8. BEFORE VS AFTER SECTION */}
       <section className="py-20 bg-ink-50">
-        <div className="section-container max-w-[1400px]">
+        <div className="section-container max-w-350">
           <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-ink-900 leading-tight">
-              One POS. Complete Control.
-            </h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-ink-900 leading-tight">One POS. Complete Control.</h2>
           </div>
 
-          <div className="relative bg-white rounded-[2rem] overflow-hidden shadow-2xl flex flex-col xl:flex-row border border-ink-150">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            className="relative bg-white rounded-4xl overflow-hidden shadow-2xl flex flex-col xl:flex-row border border-ink-150"
+          >
             {/* Before Side (Dark) */}
             <div className="flex-1 bg-ink-950 text-white relative flex items-center p-8 md:p-12">
               <div className="absolute inset-0 opacity-20 mix-blend-overlay">
@@ -632,7 +534,7 @@ export default function PointsOfSaleClient() {
                   unoptimized
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/90 to-ink-950/50" />
+              <div className="absolute inset-0 bg-linear-to-r from-ink-950 via-ink-950/90 to-ink-950/50" />
               <div className="relative z-10">
                 <div className="inline-block bg-red-500/20 text-red-400 font-bold text-[10px] px-3 py-1.5 rounded-full mb-6 border border-red-500/20">
                   Before NextERP POS
@@ -645,10 +547,7 @@ export default function PointsOfSaleClient() {
                     "Mismatched data between branches",
                     "Complicated checkout interface",
                   ].map((item, i) => (
-                    <li
-                      key={i}
-                      className="flex items-center gap-3 text-xs md:text-sm text-ink-300 font-medium"
-                    >
+                    <li key={i} className="flex items-center gap-3 text-xs md:text-sm text-ink-300 font-medium">
                       <div className="bg-red-500/20 p-1 rounded-full shrink-0">
                         <XCircle className="w-3.5 h-3.5 text-red-400" />
                       </div>{" "}
@@ -660,7 +559,7 @@ export default function PointsOfSaleClient() {
             </div>
 
             {/* Splitter Divider */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg border border-ink-150 flex items-center justify-center z-20 hidden xl:flex cursor-ew-resize">
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg border border-ink-150 flex items-center justify-center z-20 hidden xl:flex">
               <ArrowRightLeft className="w-4 h-4 text-brand-600" />
             </div>
 
@@ -687,10 +586,7 @@ export default function PointsOfSaleClient() {
                     "Centralized multi-store operations",
                     "Clean, intuitive checkout interface",
                   ].map((item, i) => (
-                    <li
-                      key={i}
-                      className="flex items-center gap-3 text-xs md:text-sm text-ink-700 font-bold"
-                    >
+                    <li key={i} className="flex items-center gap-3 text-xs md:text-sm text-ink-700 font-bold">
                       <div className="bg-emerald-100 p-1 rounded-full shrink-0">
                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
                       </div>{" "}
@@ -700,45 +596,42 @@ export default function PointsOfSaleClient() {
                 </ul>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* 9. FAQ SECTION (Interactive Accordion) */}
+      {/* 9. FAQ SECTION */}
       <section className="py-20 bg-white">
         <div className="section-container max-w-3xl">
           <h2 className="text-2xl md:text-3xl font-bold text-ink-900 text-center mb-10">
             Frequently Asked Questions
           </h2>
-          <div className="space-y-3">
-            {FAQ_DATA.map((faq, idx) => (
-              <div
-                key={idx}
-                className="card-surface p-5 cursor-pointer hover:border-brand-300"
-                onClick={() => toggleFaq(idx)}
-              >
-                <h3 className="text-sm md:text-base font-bold text-ink-900 flex justify-between items-center">
-                  {faq.q}
-                  <ChevronDown
-                    className={`w-4 h-4 text-ink-400 transition-transform duration-300 shrink-0 ${openFaqIndex === idx ? "rotate-180 text-brand-500" : ""}`}
-                  />
-                </h3>
-                {openFaqIndex === idx && (
-                  <p className="text-xs md:text-sm text-ink-500 mt-3 leading-relaxed animate-in fade-in slide-in-from-top-2">
-                    {faq.a}
-                  </p>
-                )}
-              </div>
-            ))}
+          <div className="card-surface px-6 py-2 sm:px-8">
+            <Accordion className="w-full">
+              {FAQ_DATA.map((faq, idx) => (
+                <AccordionItem key={idx} value={`item-${idx}`} className="border-ink-150">
+                  <AccordionTrigger className="py-5 text-left text-sm md:text-base font-bold text-ink-900 hover:text-brand-600 hover:no-underline">
+                    {faq.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="leading-relaxed text-ink-500">{faq.a}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
       </section>
 
       {/* 10. BOTTOM CTA SECTION (Dark accent band) */}
       <section className="relative bg-ink-950 py-20 overflow-hidden border-t border-white/10">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-brand-900/40 via-ink-950/0 to-transparent pointer-events-none" />
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,var(--tw-gradient-stops))] from-brand-900/40 via-ink-950/0 to-transparent pointer-events-none" />
 
-        <div className="section-container max-w-[1400px] relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="section-container max-w-350 relative z-10"
+        >
           <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
             <div className="lg:w-1/2 text-white text-center lg:text-left">
               <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
@@ -747,13 +640,15 @@ export default function PointsOfSaleClient() {
                 <span className="text-brand-400">Power Your Business.</span>
               </h2>
               <p className="text-ink-400 text-sm md:text-base mb-6 max-w-sm mx-auto lg:mx-0">
-                Join 500+ brick-and-mortar Retail industry optimizing checkout
-                speed and operations.
+                Join 500+ brick-and-mortar Retail industry optimizing checkout speed and operations.
               </p>
             </div>
 
             <div className="lg:w-1/2 w-full flex flex-col sm:flex-row justify-center lg:justify-end gap-3 z-20">
-              <button className="px-6 py-3 bg-brand-500 hover:bg-brand-400 text-white rounded-xl text-sm font-bold transition-all shadow-[0_0_20px_rgba(24,129,196,0.45)] flex items-center justify-center gap-2">
+              <button
+                onClick={openCalendlyPopup}
+                className="px-6 py-3 bg-brand-500 hover:bg-brand-400 text-white rounded-xl text-sm font-bold transition-all shadow-[0_0_20px_rgba(24,129,196,0.45)] flex items-center justify-center gap-2"
+              >
                 Book an Enterprise Demo <ArrowRight className="w-4 h-4" />
               </button>
               <a
@@ -766,7 +661,7 @@ export default function PointsOfSaleClient() {
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
     </main>
   );

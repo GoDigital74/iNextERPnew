@@ -32,7 +32,7 @@ const itemVariants = {
 
 export function Integrations() {
   return (
-    <section className="w-full overflow-hidden bg-ink-50 py-24">
+    <section className="w-full overflow-hidden bg-ink-50 py-12">
       <div className="section-container max-w-7xl">
         {/* Header Section */}
         <div className="mb-14 flex flex-col items-center text-center">
@@ -40,7 +40,7 @@ export function Integrations() {
           <h2 className="mb-4 text-3xl font-bold text-ink-900 md:text-4xl">
             Works with tools you already use
           </h2>
-          <p className="max-w-3xl text-lg text-ink-500">
+          <p className="max-w-4xl text-lg text-ink-500">
             Plug NextERP into your existing payments, e-commerce, and
             logistics stack — no switching required.
           </p>

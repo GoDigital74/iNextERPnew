@@ -76,8 +76,8 @@ export function TrustedLogos({
       className={cn(
         "relative overflow-hidden bg-white",
         showHeading
-          ? "border-y border-ink-150 bg-ink-50 py-14 md:py-16"
-          : "pb-20 pt-14 sm:pt-16 md:pb-24 lg:pt-20",
+          ? "border-y border-ink-150 bg-ink-50 py-14 md:py-20 lg:py-24"
+          : "pb-20 pt-14 sm:pt-16 md:pb-18 lg:pt-18",
       )}
     >
       {showHeading && (

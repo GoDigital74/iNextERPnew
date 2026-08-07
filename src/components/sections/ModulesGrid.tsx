@@ -1,123 +1,161 @@
-import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
-import { ArrowRight } from "lucide-react";
+"use client";
+
+import ScrollStack, { ScrollStackItem } from "@/components/ui/ScrollStack";
+import {
+  Store,
+  Package,
+  Truck,
+  Receipt,
+  HeartHandshake,
+  Building2,
+  Users,
+  LineChart,
+  Network,
+  Landmark,
+  ShieldCheck,
+  Zap,
+} from "lucide-react";
 
 const MODULES = [
   {
-    emoji: "🛒",
+    icon: Store,
     title: "POS Billing",
-    desc: "Fast & easy billing with multiple payment options.",
+    desc: "Fast & easy billing with multiple payment options and offline support.",
+    bgImage: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800",
   },
   {
-    emoji: "📦",
+    icon: Package,
     title: "Inventory Management",
-    desc: "Real-time stock tracking across locations.",
+    desc: "Real-time stock tracking across locations with low-stock alerts.",
+    bgImage: "https://images.unsplash.com/photo-1601599561213-832382fd07ba?auto=format&fit=crop&q=80&w=800",
   },
   {
-    emoji: "🚚",
+    icon: Truck,
     title: "Purchase Management",
-    desc: "Streamline purchases, vendors & approvals.",
+    desc: "Streamline purchases, manage vendors, and automate approvals.",
+    bgImage: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=800",
   },
   {
-    emoji: "🧾",
+    icon: Receipt,
     title: "GST Billing",
-    desc: "100% GST compliant billing & e-invoicing.",
+    desc: "100% GST compliant billing, e-invoicing, and easy returns.",
+    bgImage: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=800",
   },
   {
-    emoji: "🤝",
+    icon: HeartHandshake,
     title: "CRM & Sales",
-    desc: "Manage leads, follow-ups and boost sales.",
+    desc: "Manage leads, schedule follow-ups, and accelerate your sales pipeline.",
+    bgImage: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=800",
   },
   {
-    emoji: "🏢",
+    icon: Building2,
     title: "Warehouse",
-    desc: "Multi-warehouse, stock transfer & optimization.",
+    desc: "Multi-warehouse management, seamless stock transfers, and optimization.",
+    bgImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
   },
   {
-    emoji: "👥",
+    icon: Users,
     title: "HR & Payroll",
-    desc: "Employee management, payroll & attendance.",
+    desc: "Comprehensive employee management, automated payroll, and attendance tracking.",
+    bgImage: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800",
   },
   {
-    emoji: "📊",
+    icon: LineChart,
     title: "Reports & Analytics",
-    desc: "Powerful insights for smarter decisions.",
+    desc: "Powerful, actionable insights and visual dashboards for smarter decisions.",
+    bgImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
   },
   {
-    emoji: "🌐",
+    icon: Network,
     title: "Multi-Branch",
-    desc: "Manage multiple branches from one platform.",
+    desc: "Centrally manage and monitor multiple store branches from one unified platform.",
+    bgImage: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&q=80&w=800",
   },
   {
-    emoji: "🧮",
+    icon: Landmark,
     title: "Accounting",
-    desc: "Manage accounts, cashflow & financial reports.",
+    desc: "End-to-end account management, cashflow tracking, and financial reporting.",
+    bgImage: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=800",
   },
   {
-    emoji: "🛡️",
+    icon: ShieldCheck,
     title: "Security",
-    desc: "Enterprise-grade role-based access control.",
+    desc: "Enterprise-grade role-based access control and strict data encryption.",
+    bgImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800",
   },
   {
-    emoji: "⚡",
+    icon: Zap,
     title: "Automations",
-    desc: "Automate repetitive daily business tasks.",
+    desc: "Automate repetitive daily business tasks to save time and reduce errors.",
+    bgImage: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&q=80&w=800",
   },
 ];
 
 export function ModulesGrid() {
   return (
-    <section className="relative w-full overflow-hidden bg-white py-24">
+    <section className="relative w-full overflow-hidden bg-white py-10 sm:py-12 lg:py-14">
       {/* Background Glow */}
-      <div className="glow-brand pointer-events-none absolute left-1/2 top-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 opacity-60" />
+      <div className="glow-brand pointer-events-none absolute left-1/2 top-0 h-200 w-200 -translate-x-1/2 rounded-full opacity-40 blur-[120px]" />
 
-      <div className="section-container relative z-10 flex flex-col items-center">
-        <div className="mb-16 max-w-2xl text-center">
-          <div className="eyebrow mb-5 justify-center">Platform</div>
-          <h2 className="mb-5 text-3xl font-bold text-ink-900 md:text-5xl">
-            Powerful <span className="text-brand-500">Modules</span> To Run Your
-            Entire Business
+      <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-2">
+        {/* Header */}
+        <div className="mb-8 text-center sm:mb-8">
+          <div className="eyebrow mb-5 justify-center">Platform Modules</div>
+          <h2 className="mb-6 text-4xl font-bold tracking-tight text-ink-900 sm:text-[35px]">
+            Powerful <span className="text-brand-500">Modules</span> To Run
+            Your Entire Business
           </h2>
-          <p className="text-lg text-ink-500">
+          <p className="mx-auto max-w-4xl text-lg text-ink-500">
             Everything you need in one unified platform. Modular architecture
             allows you to scale as you grow.
           </p>
         </div>
 
-        <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {MODULES.map((mod, idx) => (
-            <div
-              key={idx}
-              className="group card-surface card-surface-hover relative cursor-pointer overflow-hidden p-6"
-            >
-              {/* Hover Radial Gradient */}
-              <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-brand-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        {/* Scroll Stack — rectangular, image-backed cards */}
+        <ScrollStack
+          useWindowScroll={true}
+          itemDistance={50}
+          itemStackDistance={18}
+          baseScale={0.88}
+          className="overflow-visible!"
+        >
+          {MODULES.map((mod, idx) => {
+            const Icon = mod.icon;
 
-              <div className="relative z-10">
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-ink-150 bg-ink-50 text-3xl transition-transform duration-300 group-hover:scale-110 group-hover:border-brand-300">
-                  {mod.emoji}
+            return (
+              <ScrollStackItem
+                key={idx}
+                itemClassName="group flex min-h-70 cursor-pointer flex-col justify-end border border-ink-150 bg-ink-900 transition-shadow duration-300 hover:shadow-2xl hover:shadow-brand-500/20 sm:min-h-80"
+              >
+                {/* Background Image */}
+                <div
+                  className="absolute inset-0 z-0 bg-cover bg-center opacity-85 transition-transform duration-700 ease-in-out will-change-transform group-hover:scale-110"
+                  style={{ backgroundImage: `url(${mod.bgImage})` }}
+                />
+
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 z-10 bg-linear-to-t from-slate-950 via-slate-900/40 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
+
+                {/* Card Content */}
+                <div className="relative z-20 flex h-full flex-col justify-between p-6 sm:p-9">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-white backdrop-blur-md transition-transform duration-500 group-hover:scale-110 group-hover:border-brand-400 group-hover:bg-brand-500">
+                    <Icon strokeWidth={1.5} className="h-6 w-6" />
+                  </div>
+
+                  <div className="mt-10">
+                    <h3 className="mb-2 text-xl font-bold text-white transition-colors duration-300 group-hover:text-brand-300">
+                      {mod.title}
+                    </h3>
+                    <p className="text-md leading-relaxed text-slate-200 sm:text-base">
+                      {mod.desc}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-ink-900">
-                  {mod.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-ink-500">
-                  {mod.desc}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-14">
-          <button
-            onClick={openCalendlyPopup}
-            className="group inline-flex items-center gap-2 rounded-xl bg-brand-500 px-8 py-3.5 text-base font-semibold text-white shadow-[0_10px_24px_-6px_rgba(24,129,196,0.4)] transition-all hover:bg-brand-600 hover:-translate-y-0.5"
-          >
-            Explore All Modules
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </button>
-        </div>
+              </ScrollStackItem>
+            );
+          })}
+        </ScrollStack>
       </div>
     </section>
   );
 }
-

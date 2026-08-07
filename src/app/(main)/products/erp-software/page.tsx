@@ -50,6 +50,7 @@ export const metadata: Metadata = {
     description: "One ERP for Finance, Sales, Inventory, HR & Manufacturing. Trusted by 10,000+ businesses.",
     url: "https://www.inexterp.com/products/erp-software",
     type: "website",
+    images: [{ url: "/dashboard/inext hero.png", width: 1200, height: 630, alt: "iNextERP dashboard across devices" }],
   },
 };
 

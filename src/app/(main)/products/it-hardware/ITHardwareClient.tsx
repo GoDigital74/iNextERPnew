@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { motion, type Variants } from "framer-motion";
 import {
   ArrowRight,
   Phone,
@@ -16,14 +16,21 @@ import {
   Laptop,
   Monitor,
   Router,
+  Network,
+  Wifi,
   Printer,
   Shield,
   Keyboard,
   ShoppingBag,
   Factory,
   Warehouse,
-  ChevronDown,
 } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 // --- DATA CONFIGURATION ---
 const CATEGORIES = [
@@ -63,6 +70,7 @@ const CATEGORIES = [
     icon: Keyboard,
   },
 ];
+
 
 const FEATURES = [
   {
@@ -118,6 +126,8 @@ const INDUSTRIES = [
   },
 ];
 
+const BRANDS = ["Dell", "HP", "Lenovo", "Microsoft", "Cisco", "APC", "Logitech", "Intel", "Samsung"];
+
 const FAQ_DATA = [
   {
     q: "Do you sell genuine, original IT hardware?",
@@ -141,277 +151,314 @@ const FAQ_DATA = [
   },
 ];
 
+// --- ANIMATION VARIANTS ---
+const heroContainer: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+};
+const heroItem: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
+};
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.1 } },
+};
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 28 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+};
+
+function quoteLink(productName: string) {
+  const text = `Hi, I'm interested in the ${productName}. Could you share a quote?`;
+  return `https://wa.me/919211995156?text=${encodeURIComponent(text)}`;
+}
+
 export default function ITHardwareClient() {
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-
-  const toggleFaq = (index: number) => {
-    setOpenFaqIndex(openFaqIndex === index ? null : index);
-  };
-
   return (
     <main className="w-full bg-white font-sans text-ink-900">
       {/* 1. HERO SECTION */}
-      <section className="relative bg-white pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden border-b border-ink-150">
-        <div className="glow-brand pointer-events-none absolute top-0 right-0 h-[600px] w-[600px] opacity-60" />
+      <section className="relative overflow-hidden bg-ink-950 pt-32 pb-24 lg:pt-40 lg:pb-32">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
+            backgroundSize: "56px 56px",
+          }}
+        />
+        <div className="pointer-events-none absolute top-0 right-0 h-150 w-150 rounded-full bg-brand-600/25 blur-[150px]" />
+        <div className="pointer-events-none absolute bottom-0 left-0 h-96 w-96 rounded-full bg-accent-600/15 blur-[130px]" />
 
-        <div className="section-container relative z-10 max-w-[1400px]">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="section-container relative z-10 max-w-350">
+          <motion.div
+            variants={heroContainer}
+            initial="hidden"
+            animate="show"
+            className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12"
+          >
             {/* Left Content */}
-            <div className="lg:col-span-6 flex flex-col gap-5">
-              <div className="eyebrow w-fit">
+            <div className="flex flex-col gap-6 text-white lg:col-span-6">
+              <motion.div
+                variants={heroItem}
+                className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-accent-400" />
                 IT Hardware Solutions
-              </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-ink-900">
-                Enterprise IT Infrastructure, <br />
-                <span className="text-brand-500">Built for Performance</span>
-              </h1>
-              <p className="text-ink-500 text-sm sm:text-base max-w-lg mt-2 leading-relaxed font-medium">
+              </motion.div>
+
+              <motion.h1 variants={heroItem} className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+                Enterprise IT Infrastructure,{" "}
+                <span className="bg-linear-to-r from-brand-300 via-accent-300 to-white bg-clip-text text-transparent">
+                  Built for Performance
+                </span>
+              </motion.h1>
+
+              <motion.p variants={heroItem} className="max-w-lg text-sm leading-relaxed text-ink-300 sm:text-base">
                 Power your business with reliable, secure and scalable IT
                 hardware from world-leading brands. Configured. Delivered.
                 Supported by experts.
-              </p>
+              </motion.p>
 
-              <div className="flex flex-col sm:flex-row items-center gap-3 mt-4">
-                <button className="w-full sm:w-auto px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 shadow-[0_10px_24px_-6px_rgba(24,129,196,0.4)]">
-                  Explore Solutions <ArrowRight className="w-4 h-4" />
-                </button>
+              <motion.div variants={heroItem} className="mt-2 flex flex-col items-center gap-3 sm:flex-row">
+                <a
+                  href="#categories"
+                  className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white px-6 text-sm font-bold text-brand-700 shadow-lg shadow-black/20 transition-all hover:-translate-y-0.5 hover:bg-brand-50 sm:w-auto"
+                >
+                  Explore Solutions <ArrowRight className="h-4 w-4" />
+                </a>
                 <a
                   href="https://wa.me/919211995156"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-6 py-3 bg-white border border-ink-150 hover:bg-ink-50 hover:border-ink-200 text-ink-900 rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2"
+                  className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-white/20 bg-transparent px-6 text-sm font-bold text-white transition-all hover:bg-white/10 sm:w-auto"
                 >
-                  Chat on WhatsApp <MessageCircle className="w-4 h-4" />
+                  Chat on WhatsApp <MessageCircle className="h-4 w-4" />
                 </a>
-              </div>
+              </motion.div>
 
               {/* Trust Badges */}
-              <div className="flex flex-wrap items-center gap-4 sm:gap-6 mt-6 pt-6 border-t border-ink-150">
-                <div className="flex items-center gap-1.5 text-xs font-medium text-ink-600">
-                  <ShieldCheck className="w-4 h-4 text-brand-500" /> 100% Genuine
-                  Products
+              <motion.div variants={heroItem} className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-white/10 pt-6">
+                <div className="flex items-center gap-1.5 text-xs font-medium text-ink-300">
+                  <ShieldCheck className="h-4 w-4 text-brand-300" /> 100% Genuine Products
                 </div>
-                <div className="flex items-center gap-1.5 text-xs font-medium text-ink-600">
-                  <Truck className="w-4 h-4 text-brand-500" /> Pan-India Delivery
+                <div className="flex items-center gap-1.5 text-xs font-medium text-ink-300">
+                  <Truck className="h-4 w-4 text-brand-300" /> Pan-India Delivery
                 </div>
-                <div className="flex items-center gap-1.5 text-xs font-medium text-ink-600">
-                  <Wrench className="w-4 h-4 text-brand-500" /> Warranty & AMC
-                  Support
+                <div className="flex items-center gap-1.5 text-xs font-medium text-ink-300">
+                  <Wrench className="h-4 w-4 text-brand-300" /> Warranty & AMC Support
                 </div>
-              </div>
+              </motion.div>
             </div>
 
-            {/* Right Image (Hardware Cluster) */}
-            <div className="lg:col-span-6 relative w-full h-[300px] sm:h-[400px] lg:h-[500px] flex items-center justify-center mt-6 lg:mt-0">
-              <div className="relative w-full h-full">
+            {/* Right Image */}
+            <motion.div variants={heroItem} className="relative mt-6 flex items-center justify-center lg:col-span-6 lg:mt-0">
+              <div className="pointer-events-none absolute -inset-6 rounded-4xl bg-linear-to-br from-brand-500/25 via-accent-500/10 to-transparent blur-3xl" />
+              <div className="relative h-75 w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl sm:h-100 lg:h-125">
                 <Image
-                  src="/dashboard/iNext hero 1.webp" // TODO: swap in a dedicated hardware photo when available
-                  alt="enterprise IT hardware servers and devices for business infrastructure"
+                  src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=1600"
+                  alt="enterprise IT hardware servers and network infrastructure"
                   fill
                   unoptimized
-                  className="object-contain drop-shadow-[0_20px_40px_rgba(15,23,42,0.15)]"
+                  className="object-cover"
                   priority
                 />
+                <div className="absolute inset-0 bg-linear-to-t from-ink-950 via-transparent to-transparent opacity-70" />
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* 2. SHOP BY CATEGORY */}
-      <section className="py-20 bg-white">
-        <div className="section-container max-w-[1400px]">
-          <h2 className="text-2xl md:text-3xl font-bold text-ink-900 mb-10 text-center lg:text-left">
-            Shop by Category
-          </h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {CATEGORIES.map((cat, i) => (
-              <div
-                key={i}
-                className="group card-surface card-surface-hover cursor-pointer flex flex-col h-full p-6"
-              >
-                <div className="h-16 w-16 bg-ink-50 rounded-xl mb-4 flex items-center justify-center text-ink-400 group-hover:bg-brand-50 group-hover:text-brand-600 transition-colors">
-                  <cat.icon className="w-8 h-8 stroke-[1.5]" />
-                </div>
-                <h3 className="text-base font-bold text-ink-900 leading-tight mb-2">
-                  {cat.name}
-                </h3>
-                <p className="text-xs text-ink-500 leading-relaxed mb-6">
-                  {cat.desc}
-                </p>
-                <div className="mt-auto">
-                  <ArrowRight className="w-5 h-5 text-ink-300 group-hover:text-brand-500 group-hover:translate-x-1 transition-all" />
-                </div>
-              </div>
-            ))}
+      <section id="categories" className="scroll-mt-24 bg-white py-20 md:py-28">
+        <div className="section-container max-w-350">
+          <div className="mb-12 text-center lg:text-left">
+            <div className="eyebrow mx-auto mb-5 w-fit lg:mx-0">What We Supply</div>
+            <h2 className="text-2xl font-bold text-ink-900 md:text-3xl">Shop by Category</h2>
           </div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          >
+            {CATEGORIES.map((cat, i) => (
+              <motion.div
+                key={i}
+                variants={itemVariants}
+                className="group card-surface card-surface-hover flex h-full flex-col p-6"
+              >
+                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-ink-50 text-ink-400 transition-colors group-hover:bg-brand-50 group-hover:text-brand-600">
+                  <cat.icon className="h-8 w-8 stroke-[1.5]" />
+                </div>
+                <h3 className="mb-2 text-base font-bold leading-tight text-ink-900">{cat.name}</h3>
+                <p className="mb-6 text-xs leading-relaxed text-ink-500">{cat.desc}</p>
+                <div className="mt-auto">
+                  <ArrowRight className="h-5 w-5 text-ink-300 transition-all group-hover:translate-x-1 group-hover:text-brand-500" />
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
       {/* 4. WHY CHOOSE INEXTERP */}
-      <section className="py-20 bg-ink-50 border-y border-ink-150">
-        <div className="section-container max-w-[1400px]">
-          <h2 className="text-2xl md:text-3xl font-bold mb-12 text-center text-ink-900">
-            Why Choose iNextERP for IT Hardware?
-          </h2>
+      <section className="bg-white py-20 md:py-28">
+        <div className="section-container max-w-350">
+          <div className="mb-12 text-center">
+            <div className="eyebrow mx-auto mb-5 w-fit">Why Choose Us</div>
+            <h2 className="text-2xl font-bold text-ink-900 md:text-3xl">Why Choose iNextERP for IT Hardware?</h2>
+          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-8">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          >
             {FEATURES.map((feat, i) => (
-              <div
-                key={i}
-                className="flex items-start gap-4 p-4 rounded-xl hover:bg-white transition-colors border border-transparent hover:border-ink-150 hover:shadow-sm"
-              >
-                <div className="w-12 h-12 rounded-xl bg-brand-50 border border-brand-100 flex items-center justify-center shrink-0">
-                  <feat.icon className="w-6 h-6 text-brand-600" />
+              <motion.div key={i} variants={itemVariants} className="flex items-start gap-4 rounded-2xl border border-transparent p-4 transition-colors hover:border-ink-150 hover:bg-ink-50">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-brand-100 bg-brand-50">
+                  <feat.icon className="h-6 w-6 text-brand-600" />
                 </div>
                 <div>
-                  <h3 className="text-sm md:text-base font-bold text-ink-900 mb-1.5">
-                    {feat.title}
-                  </h3>
-                  <p className="text-xs text-ink-500 leading-relaxed">
-                    {feat.desc}
-                  </p>
+                  <h3 className="mb-1.5 text-sm font-bold text-ink-900 md:text-base">{feat.title}</h3>
+                  <p className="text-xs leading-relaxed text-ink-500">{feat.desc}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* 5. SOLUTIONS FOR EVERY INDUSTRY */}
-      <section className="py-20 bg-white">
-        <div className="section-container max-w-[1400px]">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-ink-900">
-              Solutions for Every Industry
-            </h2>
+      {/* 5. SOLUTIONS FOR EVERY INDUSTRY + BRANDS */}
+      <section className="bg-ink-50 py-20 md:py-28">
+        <div className="section-container max-w-350">
+          <div className="mb-12 text-center">
+            <h2 className="text-2xl font-bold text-ink-900 md:text-3xl">Solutions for Every Industry</h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 gap-6 sm:grid-cols-3"
+          >
             {INDUSTRIES.map((ind, i) => (
-              <Link
-                href={ind.link}
-                key={i}
-                className="group relative card-surface card-surface-hover flex flex-col items-center text-center p-6"
-              >
-                <div className="w-14 h-14 bg-brand-50 border border-brand-100 rounded-full flex items-center justify-center text-brand-600 mb-4 group-hover:-translate-y-1 transition-transform">
-                  <ind.icon className="w-6 h-6" />
-                </div>
-                <h3 className="text-sm font-bold text-ink-900 mb-2">
-                  {ind.title}
-                </h3>
-                <p className="text-[10px] text-ink-500 leading-relaxed">
-                  {ind.desc}
-                </p>
-              </Link>
+              <motion.div key={i} variants={itemVariants}>
+                <Link
+                  href={ind.link}
+                  className="group card-surface card-surface-hover flex flex-col items-center p-6 text-center"
+                >
+                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-brand-100 bg-brand-50 text-brand-600 transition-transform group-hover:-translate-y-1">
+                    <ind.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mb-2 text-sm font-bold text-ink-900">{ind.title}</h3>
+                  <p className="text-[10px] leading-relaxed text-ink-500">{ind.desc}</p>
+                </Link>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          {/* BRANDS BANNER */}
-          <div className="mt-16 pt-10 border-t border-ink-150 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="text-xs font-bold text-ink-400 uppercase tracking-wider shrink-0 text-center md:text-left">
+          {/* Brands marquee */}
+          <div className="mt-16 border-t border-ink-150 pt-10">
+            <div className="mb-6 text-center text-[10px] font-bold tracking-wider text-ink-400 uppercase">
               We partner with global leaders
             </div>
-            <div className="flex flex-wrap items-center justify-center md:justify-end gap-6 md:gap-10 opacity-60 grayscale">
-              {[
-                "Dell",
-                "HP",
-                "Lenovo",
-                "Microsoft",
-                "Cisco",
-                "APC",
-                "Logitech",
-                "Intel",
-                "Samsung",
-              ].map((brand) => (
-                <div
-                  key={brand}
-                  className="text-base sm:text-lg font-bold text-ink-500"
-                >
-                  {brand}
-                </div>
-              ))}
+            <div className="relative mx-auto w-full max-w-[100vw] overflow-hidden mask-fade-x">
+              <motion.div
+                className="flex w-max items-center"
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ repeat: Infinity, ease: "linear", duration: 26 }}
+              >
+                {[...BRANDS, ...BRANDS].map((brand, idx) => (
+                  <div
+                    key={`${brand}-${idx}`}
+                    className="flex shrink-0 items-center justify-center px-8 text-lg font-bold text-ink-500 opacity-70 md:px-12"
+                  >
+                    {brand}
+                  </div>
+                ))}
+              </motion.div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 6. FAQ SECTION (Interactive Accordion) */}
-      <section className="py-20 bg-ink-50 border-t border-ink-150">
+      {/* 6. FAQ SECTION */}
+      <section className="bg-white py-20 md:py-28">
         <div className="section-container max-w-3xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-ink-900 text-center mb-10">
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-3">
-            {FAQ_DATA.map((faq, idx) => (
-              <div
-                key={idx}
-                className="card-surface p-5 cursor-pointer hover:border-brand-300"
-                onClick={() => toggleFaq(idx)}
-              >
-                <h3 className="text-sm md:text-base font-bold text-ink-900 flex justify-between items-center gap-4">
-                  {faq.q}
-                  <ChevronDown
-                    className={`w-4 h-4 text-ink-400 transition-transform duration-300 shrink-0 ${openFaqIndex === idx ? "rotate-180 text-brand-500" : ""}`}
-                  />
-                </h3>
-                {openFaqIndex === idx && (
-                  <p className="text-xs md:text-sm text-ink-500 mt-3 leading-relaxed animate-in fade-in slide-in-from-top-2">
-                    {faq.a}
-                  </p>
-                )}
-              </div>
-            ))}
+          <div className="mb-10 text-center">
+            <div className="eyebrow mx-auto mb-5 w-fit">FAQs</div>
+            <h2 className="text-2xl font-bold text-ink-900 md:text-3xl">Frequently Asked Questions</h2>
+          </div>
+          <div className="card-surface px-6 py-2 sm:px-8">
+            <Accordion className="w-full">
+              {FAQ_DATA.map((faq, idx) => (
+                <AccordionItem key={idx} value={`item-${idx}`} className="border-ink-150">
+                  <AccordionTrigger className="py-5 text-left text-sm font-bold text-ink-900 hover:text-brand-600 hover:no-underline md:text-base">
+                    {faq.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="leading-relaxed text-ink-500">{faq.a}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
       </section>
 
       {/* 7. BOTTOM CTA SECTION */}
-      <section className="relative bg-white py-20 overflow-hidden border-t border-ink-150">
-        <div className="glow-brand pointer-events-none absolute right-0 top-0 h-96 w-96 opacity-60" />
+      <section className="bg-ink-50 py-20 md:py-28">
+        <div className="section-container max-w-350">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="relative flex flex-col overflow-hidden rounded-4xl bg-linear-to-br from-brand-600 via-brand-500 to-accent-600 shadow-2xl lg:flex-row lg:items-stretch"
+          >
+            <div className="pointer-events-none absolute -left-16 -top-16 h-72 w-72 rounded-full bg-white/10 blur-[100px]" />
 
-        <div className="section-container relative z-10 max-w-[1400px]">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
-            <div className="lg:w-1/2 text-center lg:text-left">
-              <div className="text-ink-400 text-xs font-bold uppercase tracking-widest mb-3">
+            <div className="relative z-10 flex flex-col justify-center p-10 text-white lg:w-1/2 lg:p-16">
+              <div className="mb-3 text-[10px] font-bold uppercase tracking-widest text-brand-100">
                 Not Sure What Hardware You Need?
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-ink-900 leading-tight mb-4 max-w-xl mx-auto lg:mx-0">
-                Let our experts design the right IT infrastructure for your
-                business.
+              <h2 className="mb-6 max-w-xl text-2xl font-bold leading-tight md:text-4xl">
+                Let our experts design the right IT infrastructure for your business.
               </h2>
-
-              <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 mt-8">
+              <div className="flex flex-col gap-4 sm:flex-row">
                 <a
                   href="https://wa.me/919211995156"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg text-sm"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-bold text-brand-700 shadow-xl transition-all hover:-translate-y-0.5 hover:bg-brand-50"
                 >
-                  <MessageCircle className="w-4 h-4" /> Chat on WhatsApp
+                  <MessageCircle className="h-4 w-4" /> Chat on WhatsApp
                 </a>
               </div>
             </div>
 
-            <div className="lg:w-1/2 w-full flex justify-center lg:justify-end mt-8 lg:mt-0">
-              <div className="card-surface p-6 md:p-8 w-full max-w-sm text-center">
-                <div className="w-16 h-16 bg-brand-50 border border-brand-100 text-brand-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Phone className="w-8 h-8" />
+            <div className="relative z-10 flex w-full items-center justify-center p-10 lg:w-1/2 lg:p-16">
+              <div className="w-full max-w-sm rounded-3xl border border-white/15 bg-white/10 p-6 text-center text-white backdrop-blur-md md:p-8">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white/15">
+                  <Phone className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-bold text-ink-900 mb-2">
-                  Need a custom quote?
-                </h3>
-                <p className="text-xs text-ink-500 mb-6">
+                <h3 className="mb-2 text-xl font-bold">Need a custom quote?</h3>
+                <p className="mb-6 text-xs text-brand-50">
                   Our hardware specialists are ready to help you configure the
                   perfect setup for your team.
                 </p>
-                <div className="text-lg font-bold text-brand-600 bg-ink-50 py-3 rounded-xl border border-ink-150">
-                  Talk to an expert: +91 8527262031
+                <div className="rounded-xl border border-white/15 bg-white/10 py-3 text-lg font-bold">
+                  +91 8527262031
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
     </main>

@@ -247,10 +247,10 @@ export function Navbar() {
   // Memoized nav classes
   const navClasses = useMemo(
     () =>
-      `relative mx-auto flex max-w-7xl items-center justify-between rounded-2xl border shadow-lg transition-all duration-300 ${
+      `relative mx-auto flex max-w-7xl items-center justify-between rounded-2xl border px-5 py-3 shadow-lg transition-colors duration-300 ${
         scrolled || mobileOpen
-          ? "px-4 py-2.5 border-ink-150 bg-white/95 shadow-ink-900/8 backdrop-blur-xl"
-          : "px-5 py-3.5 border-ink-150/60 bg-white/70 shadow-ink-900/4 backdrop-blur-md"
+          ? "border-ink-150 bg-white/95 shadow-ink-900/8 backdrop-blur-xl"
+          : "border-ink-150/60 bg-white/70 shadow-ink-900/4 backdrop-blur-md"
       }`,
     [scrolled, mobileOpen],
   );
