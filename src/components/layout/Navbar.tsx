@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Menu, X, ChevronDown, Search } from "lucide-react";
+import { ArrowRight, Menu, X, ChevronDown } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -23,7 +23,7 @@ interface NavLink {
 const NAV_LINKS: NavLink[] = [
   { name: "About Us", href: "/about" },
   {
-    name: "products",
+    name: "Products",
     href: "/products/it-hardware",
     dropdown: [
       { name: "IT Hardware", href: "/products/it-hardware" },
@@ -44,7 +44,6 @@ const NAV_LINKS: NavLink[] = [
       { name: "Integrations", href: "/services/erp-integrations" },
     ],
   },
-
   {
     name: "Industries",
     href: "/industries",
@@ -65,16 +64,16 @@ const NAV_LINKS: NavLink[] = [
       { name: "Manufacturing", href: "/industries/manufacturing-erp-software" },
     ],
   },
-  { name: "Blog", href: "/blog", dropdown: [] },
+  { name: "Blog", href: "/blog" },
   { name: "Careers", href: "/careers" },
-  { name: "Contact", href: "/contact", dropdown: [] },
+  { name: "Contact", href: "/contact" },
 ] as const;
 
 // Animation variants (memoized outside component)
 const dropdownVariants = {
-  hidden: { opacity: 0, y: 10, scale: 0.98 },
+  hidden: { opacity: 0, y: 8, scale: 0.98 },
   visible: { opacity: 1, y: 0, scale: 1 },
-  exit: { opacity: 0, y: 5, scale: 0.98 },
+  exit: { opacity: 0, y: 4, scale: 0.98 },
 };
 
 const mobileMenuVariants = {
@@ -87,25 +86,25 @@ const mobileItemVariants = {
   visible: (i: number) => ({
     opacity: 1,
     x: 0,
-    transition: { delay: i * 0.05, duration: 0.3 },
+    transition: { delay: i * 0.04, duration: 0.3 },
   }),
 };
 
 // Sub-components
 const Logo = ({ onClick }: { onClick?: () => void }) => (
-  <Link href="/" onClick={onClick} className="group flex items-center gap-2">
-    <div className="relative h-12 w-12 transition-transform duration-300 group-hover:scale-105">
+  <Link href="/" onClick={onClick} className="group flex items-center gap-2.5">
+    <div className="relative h-10 w-10 shrink-0 transition-transform duration-300 group-hover:scale-105 md:h-11 md:w-11">
       <Image
         src="/logo.webp"
         alt="iNextERP"
         fill
         className="object-contain object-center"
         priority
-        sizes="48px"
+        sizes="44px"
       />
     </div>
-    <span className="text-xl font-semibold tracking-tight text-white">
-      iNext<span className="text-[#1881c4]"> ERP</span>
+    <span className="text-lg font-bold tracking-tight text-ink-900 font-display md:text-xl">
+      iNext<span className="text-brand-500">ERP</span>
     </span>
   </Link>
 );
@@ -116,18 +115,18 @@ const DesktopDropdown = ({ items }: { items: DropdownItem[] }) => (
     initial="hidden"
     animate="visible"
     exit="exit"
-    transition={{ duration: 0.2, ease: "easeOut" }}
-    className="absolute left-0 top-[calc(100%+18px)] w-[280px] z-50"
+    transition={{ duration: 0.18, ease: "easeOut" }}
+    className="absolute left-0 top-[calc(100%+14px)] w-[270px] z-50"
   >
-    <div className="flex w-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0A0A0A]/80 backdrop-blur-xl p-4">
+    <div className="glass-panel flex w-full flex-col overflow-hidden rounded-2xl p-2">
       {items.map((subLink) => (
         <Link
           key={subLink.href}
           href={subLink.href}
-          className="group flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5 hover:text-[#1881c4]"
+          className="group/item flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium text-ink-700 transition-colors hover:bg-brand-50 hover:text-brand-700"
         >
           {subLink.name}
-          <ArrowRight className="h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
+          <ArrowRight className="h-3.5 w-3.5 opacity-0 transition-all group-hover/item:translate-x-1 group-hover/item:opacity-100" />
         </Link>
       ))}
     </div>
@@ -148,12 +147,12 @@ const MobileDropdown = ({
     transition={{ duration: 0.2 }}
     className="overflow-hidden"
   >
-    <div className="mb-4 ml-4 flex flex-col gap-4 border-l border-white/10 pl-4 py-2">
+    <div className="mb-4 ml-4 flex flex-col gap-4 border-l border-ink-150 pl-4 py-2">
       {items.map((subLink) => (
         <Link
           key={subLink.href}
           href={subLink.href}
-          className="text-base text-gray-400 hover:text-white transition-colors"
+          className="text-base text-ink-500 hover:text-brand-600 transition-colors"
           onClick={onClose}
         >
           {subLink.name}
@@ -178,7 +177,7 @@ export function Navbar() {
     const onScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setScrolled(window.scrollY > 40);
+          setScrolled(window.scrollY > 24);
           ticking = false;
         });
         ticking = true;
@@ -248,10 +247,10 @@ export function Navbar() {
   // Memoized nav classes
   const navClasses = useMemo(
     () =>
-      `relative mx-auto flex max-w-7xl items-center justify-between rounded-2xl px-5 py-3 transition-all duration-500 border shadow-lg shadow-black/10 ${
+      `relative mx-auto flex max-w-7xl items-center justify-between rounded-2xl border shadow-lg transition-all duration-300 ${
         scrolled || mobileOpen
-          ? "bg-[#0A0A0A]/95 backdrop-blur-xl border-white/10"
-          : "bg-[#0A0A0A]/90 backdrop-blur-xl border-white/10"
+          ? "px-4 py-2.5 border-ink-150 bg-white/95 shadow-ink-900/8 backdrop-blur-xl"
+          : "px-5 py-3.5 border-ink-150/60 bg-white/70 shadow-ink-900/4 backdrop-blur-md"
       }`,
     [scrolled, mobileOpen],
   );
@@ -261,8 +260,8 @@ export function Navbar() {
       <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-8"
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-6"
       >
         <nav
           className={navClasses}
@@ -272,7 +271,7 @@ export function Navbar() {
           <Logo onClick={handleHomeClick} />
 
           {/* Desktop Navigation */}
-          <ul className="hidden items-center gap-1 lg:flex">
+          <ul className="hidden items-center gap-0.5 lg:flex">
             {NAV_LINKS.map((link) => {
               const isActive =
                 link.href === "/"
@@ -290,10 +289,10 @@ export function Navbar() {
                   <Link
                     href={link.href || "#"}
                     onClick={link.href === "/" ? handleHomeClick : undefined}
-                    className={`flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium transition-colors hover:text-[#1881c4] ${
+                    className={`flex items-center gap-1 rounded-lg px-3.5 py-2 text-sm font-medium transition-colors hover:text-brand-600 ${
                       isActive || hoveredNav === link.name
-                        ? "text-[#1881c4]"
-                        : "text-white"
+                        ? "text-brand-600"
+                        : "text-ink-700"
                     }`}
                     aria-current={isActive ? "page" : undefined}
                     aria-haspopup={hasDropdown ? "true" : undefined}
@@ -304,7 +303,7 @@ export function Navbar() {
                     {link.name}
                     {hasDropdown && (
                       <ChevronDown
-                        className={`h-4 w-4 transition-transform duration-300 ${
+                        className={`h-3.5 w-3.5 transition-transform duration-300 ${
                           hoveredNav === link.name ? "rotate-180" : ""
                         }`}
                         aria-hidden="true"
@@ -325,16 +324,10 @@ export function Navbar() {
           </ul>
 
           {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center gap-4">
-            <button
-              aria-label="Search"
-              className="text-white hover:text-[#1881c4] transition-colors p-2 rounded-lg hover:bg-white/5"
-            >
-              <Search className="w-5 h-5" />
-            </button>
+          <div className="hidden lg:flex items-center">
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2 rounded-lg bg-[#1881c4] px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-[#4F7DF3] active:scale-95"
+              className="group inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_20px_-6px_rgba(24,129,196,0.4)] transition-all hover:bg-brand-600 hover:shadow-[0_10px_24px_-4px_rgba(24,129,196,0.45)] active:scale-[0.98]"
             >
               Book Free Demo
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -344,7 +337,7 @@ export function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/10 lg:hidden active:scale-95"
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-ink-800 transition-colors hover:bg-ink-100 lg:hidden active:scale-95"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
@@ -366,7 +359,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
+            className="fixed inset-0 z-40 bg-ink-900/40 backdrop-blur-sm lg:hidden"
             onClick={closeMobileMenu}
             aria-hidden="true"
           />
@@ -383,12 +376,12 @@ export function Navbar() {
             animate="visible"
             exit="hidden"
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed right-0 top-0 z-40 flex h-full w-[80vw] max-w-sm flex-col overflow-y-auto bg-[#0A0A0A] pt-24 border-l border-white/10 lg:hidden"
+            className="fixed right-0 top-0 z-40 flex h-full w-[86vw] max-w-sm flex-col overflow-y-auto bg-white pt-24 border-l border-ink-150 lg:hidden"
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation"
           >
-            <nav className="flex flex-col gap-1 px-6 pb-20">
+            <nav className="flex flex-col gap-1 px-6 pb-6">
               {NAV_LINKS.map((link, i) => {
                 const isActive =
                   link.href === "/"
@@ -404,18 +397,17 @@ export function Navbar() {
                     variants={mobileItemVariants}
                     initial="hidden"
                     animate="visible"
-                    className="border-b border-white/5 last:border-0"
+                    className="border-b border-ink-100 last:border-0"
                   >
                     {hasDropdown ? (
                       <div className="flex flex-col">
                         <div
-                          className={`flex w-full items-center justify-between py-4 pr-4 text-lg font-medium transition-colors ${
+                          className={`flex w-full items-center justify-between py-4 pr-2 text-lg font-medium transition-colors ${
                             isActive || isDropdownOpen
-                              ? "text-[#1881c4]"
-                              : "text-white hover:text-[#1881c4]"
+                              ? "text-brand-600"
+                              : "text-ink-900 hover:text-brand-600"
                           }`}
                         >
-                          {/* FIX: Make the text an actual clickable link */}
                           <Link
                             href={link.href || "#"}
                             onClick={() => {
@@ -427,11 +419,11 @@ export function Navbar() {
                             {link.name}
                           </Link>
 
-                          {/* FIX: Make the chevron a separate button to toggle the dropdown */}
                           <button
                             onClick={() => toggleMobileDropdown(link.name)}
-                            className="p-2 -mr-2"
+                            className="flex h-9 w-9 items-center justify-center rounded-lg hover:bg-ink-100"
                             aria-expanded={isDropdownOpen}
+                            aria-label={`Toggle ${link.name} submenu`}
                           >
                             <ChevronDown
                               className={`h-5 w-5 transition-transform duration-300 ${
@@ -457,8 +449,8 @@ export function Navbar() {
                           closeMobileMenu();
                           if (link.href === "/") handleHomeClick();
                         }}
-                        className={`block py-4 pr-4 text-lg font-medium transition-colors hover:text-[#1881c4] ${
-                          isActive ? "text-[#1881c4]" : "text-white"
+                        className={`block py-4 pr-4 text-lg font-medium transition-colors hover:text-brand-600 ${
+                          isActive ? "text-brand-600" : "text-ink-900"
                         }`}
                         aria-current={isActive ? "page" : undefined}
                       >
@@ -471,11 +463,11 @@ export function Navbar() {
             </nav>
 
             {/* Mobile Footer */}
-            <div className="mt-auto border-t border-white/10 bg-[#0A0A0A] px-6 py-6 sticky bottom-0">
+            <div className="mt-auto border-t border-ink-150 bg-white px-6 py-6 sticky bottom-0">
               <Link
                 href="/contact"
                 onClick={closeMobileMenu}
-                className="group flex w-full items-center justify-center gap-2 rounded-lg bg-[#1881c4] px-6 py-3.5 text-sm font-bold text-white transition-all hover:bg-[#4F7DF3] active:scale-95"
+                className="group flex w-full items-center justify-center gap-2 rounded-xl bg-brand-500 px-6 py-3.5 text-sm font-bold text-white shadow-[0_8px_20px_-6px_rgba(24,129,196,0.4)] transition-all hover:bg-brand-600 active:scale-95"
               >
                 Book Free Demo
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

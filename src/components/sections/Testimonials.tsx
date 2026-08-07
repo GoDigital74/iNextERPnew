@@ -2,7 +2,7 @@
 
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
-import { Star } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 import Image from "next/image";
 
 const TESTIMONIALS = [
@@ -12,7 +12,7 @@ const TESTIMONIALS = [
     company: "Agarwal Textiles",
     content:
       "NextERP has completely transformed the way we manage our business. It's simple, powerful and reliable.",
-    avatar: "https://i.pravatar.cc/150?u=rahul", // Replace with actual assets
+    avatar: "https://i.pravatar.cc/150?u=rahul",
     rating: 5,
   },
   {
@@ -95,41 +95,43 @@ export function Testimonials() {
   ]);
 
   return (
-    <section className="py-24 bg-surface-50 dark:bg-surface-900 overflow-hidden">
-      <div className="container mx-auto px-4 md:px-8 text-center mb-12">
-        <h2 className="text-3xl md:text-5xl font-bold text-foreground">
-          What Our <span className="text-[#1881c4]">Clients Say</span>
+    <section className="w-full overflow-hidden bg-ink-50 py-24">
+      <div className="section-container mb-12 text-center">
+        <div className="eyebrow mb-5 justify-center">Testimonials</div>
+        <h2 className="text-3xl font-bold text-ink-900 md:text-5xl">
+          What Our <span className="text-brand-500">Clients Say</span>
         </h2>
       </div>
 
-      <div className="relative w-full max-w-7xl mx-auto px-4">
+      <div className="relative mx-auto w-full max-w-7xl px-4">
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex gap-6 -ml-4 pl-4">
             {TESTIMONIALS.map((item, index) => (
               <div
                 key={index}
-                className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.33%] min-w-0"
+                className="min-w-0 flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.33%]"
               >
-                <div className="bg-white dark:bg-surface-950 p-8 rounded-2xl border border-border shadow-sm h-full flex flex-col justify-between hover:shadow-md transition-shadow">
+                <div className="card-surface flex h-full flex-col justify-between p-8">
                   <div>
-                    <div className="flex gap-1 mb-4 text-amber-400">
+                    <Quote className="mb-4 h-7 w-7 text-brand-300" />
+                    <div className="mb-4 flex gap-1 text-amber-400">
                       {[...Array(5)].map((_, i) => (
                         <Star
                           key={i}
                           className={
                             i < item.rating
-                              ? "w-4 h-4 fill-current"
-                              : "w-4 h-4 fill-none text-amber-200 dark:text-amber-900"
+                              ? "h-4 w-4 fill-current"
+                              : "h-4 w-4 fill-none text-ink-200"
                           }
                         />
                       ))}
                     </div>
-                    <p className="text-muted-foreground text-lg italic mb-8">
-                      "{item.content}"
+                    <p className="mb-8 text-lg italic leading-relaxed text-ink-700">
+                      &ldquo;{item.content}&rdquo;
                     </p>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="relative w-12 h-12 rounded-full overflow-hidden">
+                    <div className="relative h-12 w-12 overflow-hidden rounded-full ring-2 ring-ink-100">
                       <Image
                         src={item.avatar}
                         alt={item.name}
@@ -138,10 +140,8 @@ export function Testimonials() {
                       />
                     </div>
                     <div className="text-left">
-                      <h4 className="font-semibold text-foreground">
-                        {item.name}
-                      </h4>
-                      <p className="text-sm text-muted-foreground">
+                      <h4 className="font-semibold text-ink-900">{item.name}</h4>
+                      <p className="text-sm text-ink-500">
                         {item.role}, {item.company}
                       </p>
                     </div>

@@ -32,25 +32,25 @@ const HERO_STATS = [
 ];
 
 const FEATURES = [
-  { 
-    icon: Rocket, 
-    title: "High Performance", 
-    desc: "Fast, reliable infrastructure designed for mission-critical workloads — including the ERP systems your operations depend on." 
+  {
+    icon: Rocket,
+    title: "High Performance",
+    desc: "Fast, reliable infrastructure designed for mission-critical workloads — including the ERP systems your operations depend on."
   },
-  { 
-    icon: ShieldCheck, 
-    title: "Advanced Security", 
-    desc: "Multi-layer security protecting your data and applications, with the same standards used to secure your iNextERP instance." 
+  {
+    icon: ShieldCheck,
+    title: "Advanced Security",
+    desc: "Multi-layer security protecting your data and applications, with the same standards used to secure your iNextERP instance."
   },
-  { 
-    icon: Globe, 
-    title: "Global Infrastructure", 
-    desc: "Data centers positioned for low latency and high availability, keeping your ERP and business applications responsive." 
+  {
+    icon: Globe,
+    title: "Global Infrastructure",
+    desc: "Data centers positioned for low latency and high availability, keeping your ERP and business applications responsive."
   },
-  { 
-    icon: LineChart, 
-    title: "Cost Optimized", 
-    desc: "Flexible pricing and right-sizing so your infrastructure spend matches your actual usage, not guesswork." 
+  {
+    icon: LineChart,
+    title: "Cost Optimized",
+    desc: "Flexible pricing and right-sizing so your infrastructure spend matches your actual usage, not guesswork."
   },
 ];
 
@@ -105,35 +105,33 @@ export default function CloudServiceClient() {
   };
 
   return (
-    <main className="w-full bg-white font-sans text-gray-900">
-      
-      {/* 1. HERO SECTION (Dark - Reduced Text & Padding) */}
-      <section className="relative w-full pt-28 pb-20 bg-[#060B19] overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40">
-          {/* Changed gradient colors to blue (#1881c4) */}
-          <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-[#1881c4]/30 blur-[120px] rounded-full" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-900/20 blur-[100px] rounded-full" />
+    <main className="w-full bg-white font-sans text-ink-900">
+
+      {/* 1. HERO SECTION (Dark accent band) */}
+      <section className="relative w-full pt-32 pb-20 bg-ink-950 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-60">
+          <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-brand-500/30 blur-[120px] rounded-full" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-brand-800/25 blur-[100px] rounded-full" />
         </div>
 
-        <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
+        <div className="section-container max-w-[1400px] relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            
+
             {/* Left Content */}
             <div className="lg:col-span-6 flex flex-col gap-5 z-20">
-              <div className="inline-flex w-fit items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-widest text-[#60a5fa] uppercase">
+              <div className="inline-flex w-fit items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-widest text-brand-300 uppercase">
                 Enterprise Cloud Hosting
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold leading-[1.1] tracking-tight text-white">
                 Enterprise Cloud.<br />
-                Built to Power <span className="text-[#60a5fa]">Your ERP.</span>
+                Built to Power <span className="text-brand-300">Your ERP.</span>
               </h1>
-              <p className="text-gray-300 text-sm md:text-base max-w-lg mt-1 leading-relaxed">
+              <p className="text-ink-300 text-sm md:text-base max-w-lg mt-1 leading-relaxed">
                 iNextERP Cloud isn't generic hosting — it's the infrastructure your ERP data actually runs on. Scalable, secure, and reliable, so your business never waits on your systems.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row items-center gap-3 mt-3">
-                {/* Updated Button to #1881c4 */}
-                <button className="w-full sm:w-auto px-6 py-3 bg-[#1881c4] hover:bg-[#12659a] text-white rounded-xl text-sm font-bold transition-all shadow-[0_0_15px_rgba(24,129,196,0.4)] flex items-center justify-center gap-2">
+                <button className="w-full sm:w-auto px-6 py-3 bg-brand-500 hover:bg-brand-400 text-white rounded-xl text-sm font-bold transition-all shadow-[0_0_20px_rgba(24,129,196,0.4)] flex items-center justify-center gap-2">
                   Explore Cloud Solutions <ArrowRight className="w-4 h-4" />
                 </button>
                 <a
@@ -150,11 +148,10 @@ export default function CloudServiceClient() {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 pt-6 border-t border-white/10">
                 {HERO_STATS.map((stat, i) => (
                   <div key={i} className="flex flex-col gap-1.5">
-                    {/* Changed Icon Color */}
-                    <stat.icon className="w-5 h-5 text-[#60a5fa]" />
+                    <stat.icon className="w-5 h-5 text-brand-300" />
                     <div>
                       <div className="text-xs font-bold text-white">{stat.title}</div>
-                      <div className="text-[10px] text-gray-400">{stat.desc}</div>
+                      <div className="text-[10px] text-ink-400">{stat.desc}</div>
                     </div>
                   </div>
                 ))}
@@ -162,17 +159,17 @@ export default function CloudServiceClient() {
             </div>
 
             {/* Right Image */}
-            <div className="lg:col-span-6 relative w-full h-[300px] md:h-[450px] lg:h-[500px] mt-6 lg:mt-0">
+            <div className="lg:col-span-6 relative w-full h-75 md:h-112.5 lg:h-125 mt-6 lg:mt-0">
                <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-                 <Image 
-                   src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1600" 
-                   alt="enterprise cloud infrastructure dashboard powering iNextERP" 
-                   fill 
+                 <Image
+                   src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1600"
+                   alt="enterprise cloud infrastructure dashboard powering iNextERP"
+                   fill
                    unoptimized
                    className="object-cover"
                    priority
                  />
-                 <div className="absolute inset-0 bg-gradient-to-t from-[#060B19] via-transparent to-transparent opacity-80" />
+                 <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-transparent to-transparent opacity-80" />
                </div>
             </div>
           </div>
@@ -180,27 +177,25 @@ export default function CloudServiceClient() {
       </section>
 
       {/* 2. FEATURES BANNER */}
-      <section className="py-16 bg-[#F8FAFC] border-b border-gray-100">
-        <div className="container mx-auto px-6 max-w-[1400px]">
+      <section className="py-16 bg-ink-50 border-b border-ink-150">
+        <div className="section-container max-w-[1400px]">
           <div className="flex flex-col lg:flex-row gap-10 items-start lg:items-center">
-            
+
             {/* Left Header */}
             <div className="lg:w-1/4">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight mb-2">Cloud That Powers Your Possibilities</h2>
-              {/* Changed underline to #1881c4 */}
-              <div className="w-10 h-1 bg-[#1881c4] rounded-full" />
+              <h2 className="text-2xl md:text-3xl font-bold text-ink-900 leading-tight mb-2">Cloud That Powers Your Possibilities</h2>
+              <div className="w-10 h-1 bg-brand-500 rounded-full" />
             </div>
 
             {/* Right Grid (No scroll, wraps naturally) */}
             <div className="lg:w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
               {FEATURES.map((feat, i) => (
-                <div key={i} className="flex flex-col bg-white p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                  {/* Changed Icon wrapper to blue */}
-                  <div className="w-10 h-10 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center mb-4 text-[#1881c4]">
+                <div key={i} className="flex flex-col card-surface card-surface-hover p-5">
+                  <div className="w-10 h-10 rounded-lg bg-brand-50 border border-brand-100 flex items-center justify-center mb-4 text-brand-600">
                     <feat.icon className="w-5 h-5" />
                   </div>
-                  <h3 className="text-sm font-bold text-gray-900 mb-1.5">{feat.title}</h3>
-                  <p className="text-[11px] text-gray-500 leading-relaxed">{feat.desc}</p>
+                  <h3 className="text-sm font-bold text-ink-900 mb-1.5">{feat.title}</h3>
+                  <p className="text-[11px] text-ink-500 leading-relaxed">{feat.desc}</p>
                 </div>
               ))}
             </div>
@@ -211,29 +206,27 @@ export default function CloudServiceClient() {
 
       {/* 3. EVERYTHING YOU NEED (SERVICES GRID) */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-6 max-w-[1400px]">
-          
+        <div className="section-container max-w-[1400px]">
+
           <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-4">
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Everything You Need. All in One Cloud.</h2>
-              <p className="text-sm text-gray-500 mt-2">Enterprise-grade cloud services designed to support your entire business ecosystem.</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-ink-900">Everything You Need. All in One Cloud.</h2>
+              <p className="text-sm text-ink-500 mt-2">Enterprise-grade cloud services designed to support your entire business ecosystem.</p>
             </div>
-            {/* Changed Price Tag to Blue */}
-            <div className="bg-blue-50 border border-blue-200 text-[#1881c4] px-4 py-2 rounded-lg font-bold text-xs flex items-center gap-2">
+            <div className="bg-brand-50 border border-brand-200 text-brand-700 px-4 py-2 rounded-lg font-bold text-xs flex items-center gap-2">
               <Cloud className="w-4 h-4" /> Plans starting at ₹[X]/month
             </div>
           </div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
             {CLOUD_SERVICES.map((service, i) => (
-              <div key={i} className="group bg-white border border-gray-100 rounded-xl p-6 hover:shadow-lg hover:border-gray-200 transition-all flex flex-col text-center items-center cursor-pointer">
-                {/* Changed Hover Text to #1881c4 */}
-                <div className="w-12 h-12 mb-4 text-gray-400 group-hover:text-[#1881c4] transition-colors">
+              <div key={i} className="group card-surface card-surface-hover p-6 flex flex-col text-center items-center cursor-pointer">
+                <div className="w-12 h-12 mb-4 text-ink-300 group-hover:text-brand-500 transition-colors">
                   <service.icon className="w-full h-full stroke-[1.5]" />
                 </div>
-                <h3 className="text-sm font-bold text-gray-900 mb-2">{service.title}</h3>
-                <p className="text-[10px] text-gray-500 leading-relaxed mb-4 flex-1">{service.desc}</p>
-                <Link href="#" className="mt-auto flex items-center text-[10px] font-bold text-gray-400 group-hover:text-[#1881c4]">
+                <h3 className="text-sm font-bold text-ink-900 mb-2">{service.title}</h3>
+                <p className="text-[10px] text-ink-500 leading-relaxed mb-4 flex-1">{service.desc}</p>
+                <Link href="#" className="mt-auto flex items-center text-[10px] font-bold text-ink-400 group-hover:text-brand-600">
                   Learn More <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
@@ -243,12 +236,12 @@ export default function CloudServiceClient() {
       </section>
 
       {/* 4. TRUSTED BRANDS */}
-      <section className="py-10 bg-gray-50 border-y border-gray-100">
-        <div className="container mx-auto px-6 max-w-[1400px]">
-          <h3 className="text-center text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-6">Trusted Infrastructure Partners</h3>
+      <section className="py-10 bg-ink-50 border-y border-ink-150">
+        <div className="section-container max-w-[1400px]">
+          <h3 className="text-center text-[10px] font-bold text-ink-400 uppercase tracking-widest mb-6">Trusted Infrastructure Partners</h3>
           <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-60 grayscale">
             {BRANDS.map((brand) => (
-              <div key={brand} className="text-lg md:text-xl font-bold text-gray-800 tracking-tighter">
+              <div key={brand} className="text-lg md:text-xl font-bold text-ink-700 tracking-tighter">
                 {brand}
               </div>
             ))}
@@ -258,32 +251,31 @@ export default function CloudServiceClient() {
 
       {/* 5. WHY BUSINESSES CHOOSE INEXTERP CLOUD */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-6 max-w-[1400px]">
-          <div className="relative rounded-[2rem] overflow-hidden bg-[#060B19] flex flex-col md:flex-row items-center border border-gray-800 shadow-2xl">
-            
+        <div className="section-container max-w-[1400px]">
+          <div className="relative rounded-[2rem] overflow-hidden bg-ink-950 flex flex-col md:flex-row items-center shadow-2xl">
+
             {/* Left Content */}
             <div className="md:w-1/2 p-10 md:p-16 z-10 relative text-white">
                <h2 className="text-2xl md:text-4xl font-bold mb-6 leading-tight">Why Businesses Choose iNextERP Cloud</h2>
                <ul className="space-y-4">
                  {WHY_CHOOSE_POINTS.map((point, i) => (
-                   <li key={i} className="flex items-center gap-3 text-sm md:text-base text-gray-300">
-                     {/* Changed Check to Blue Accent */}
-                     <CheckCircle2 className="w-5 h-5 text-[#60a5fa] shrink-0" /> {point}
+                   <li key={i} className="flex items-center gap-3 text-sm md:text-base text-ink-300">
+                     <CheckCircle2 className="w-5 h-5 text-brand-300 shrink-0" /> {point}
                    </li>
                  ))}
                </ul>
             </div>
 
             {/* Right Image Background */}
-            <div className="md:w-1/2 h-[300px] md:h-full absolute right-0 top-0 bottom-0">
-               <Image 
-                 src="https://images.unsplash.com/photo-1551721434-8b94ddff0e6d?auto=format&fit=crop&q=80&w=1000" 
-                 alt="Enterprise Data Center Infrastructure" 
+            <div className="md:w-1/2 h-75 md:h-full absolute right-0 top-0 bottom-0">
+               <Image
+                 src="https://images.unsplash.com/photo-1551721434-8b94ddff0e6d?auto=format&fit=crop&q=80&w=1000"
+                 alt="Enterprise Data Center Infrastructure"
                  fill
                  unoptimized
                  className="object-cover opacity-40 mix-blend-luminosity"
                />
-               <div className="absolute inset-0 bg-gradient-to-r from-[#060B19] via-[#060B19]/80 to-transparent" />
+               <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/80 to-transparent" />
             </div>
 
           </div>
@@ -291,24 +283,24 @@ export default function CloudServiceClient() {
       </section>
 
       {/* 6. FAQ SECTION (Interactive Accordion) */}
-      <section className="py-20 bg-[#F8FAFC]">
-        <div className="container mx-auto px-6 max-w-3xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-10">
+      <section className="py-20 bg-ink-50">
+        <div className="section-container max-w-3xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-ink-900 text-center mb-10">
             Frequently Asked Questions
           </h2>
           <div className="space-y-3">
             {FAQ_DATA.map((faq, idx) => (
-              <div 
-                key={idx} 
-                className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm cursor-pointer transition-all hover:border-[#1881c4]"
+              <div
+                key={idx}
+                className="card-surface p-5 cursor-pointer hover:border-brand-300"
                 onClick={() => toggleFaq(idx)}
               >
-                <h3 className="text-sm md:text-base font-bold text-gray-900 flex justify-between items-center">
+                <h3 className="text-sm md:text-base font-bold text-ink-900 flex justify-between items-center">
                   {faq.q}
-                  <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-300 shrink-0 ${openFaqIndex === idx ? "rotate-180 text-[#1881c4]" : ""}`} />
+                  <ChevronDown className={`w-4 h-4 text-ink-400 transition-transform duration-300 shrink-0 ${openFaqIndex === idx ? "rotate-180 text-brand-500" : ""}`} />
                 </h3>
                 {openFaqIndex === idx && (
-                  <p className="text-xs md:text-sm text-gray-600 mt-3 leading-relaxed animate-in fade-in slide-in-from-top-2">
+                  <p className="text-xs md:text-sm text-ink-500 mt-3 leading-relaxed animate-in fade-in slide-in-from-top-2">
                     {faq.a}
                   </p>
                 )}
@@ -319,52 +311,49 @@ export default function CloudServiceClient() {
       </section>
 
       {/* 7. BOTTOM CTA SECTION */}
-      <section className="py-16 bg-white border-t border-gray-100">
-        <div className="container mx-auto px-6 max-w-[1400px]">
-          <div className="bg-[#F8FAFC] rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 border border-gray-200">
-            
+      <section className="py-16 bg-white border-t border-ink-150">
+        <div className="section-container max-w-[1400px]">
+          <div className="bg-ink-50 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 border border-ink-150">
+
             <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-              {/* Changed CTA icon to Blue */}
-              <div className="w-14 h-14 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center shrink-0 text-[#1881c4]">
+              <div className="w-14 h-14 bg-white rounded-xl shadow-sm border border-ink-150 flex items-center justify-center shrink-0 text-brand-600">
                 <Cloud className="w-6 h-6 stroke-[1.5]" />
               </div>
               <div>
-                <div className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-1">
+                <div className="text-ink-500 text-[10px] font-bold uppercase tracking-widest mb-1">
                   Ready to Modernize Your Business?
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Let's Build Your Cloud Advantage.</h2>
-                <p className="text-sm text-gray-600 max-w-md">
+                <h2 className="text-2xl font-bold text-ink-900 mb-2">Let's Build Your Cloud Advantage.</h2>
+                <p className="text-sm text-ink-600 max-w-md">
                   Migrate, modernize and scale with iNextERP Cloud. Our experts are ready to help you every step of the way.
                 </p>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 shrink-0 w-full md:w-auto">
-              {/* Changed Button to Blue */}
               <a
                 href="https://wa.me/919211995156"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 bg-[#1881c4] hover:bg-[#12659a] text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 text-sm shadow-md"
+                className="px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 text-sm shadow-md"
               >
                 Chat on WhatsApp <MessageCircle className="w-4 h-4" />
               </a>
-              <button className="px-6 py-3 bg-white border border-gray-300 hover:bg-gray-50 text-gray-800 rounded-xl font-bold transition-all flex items-center justify-center gap-2 text-sm">
+              <button className="px-6 py-3 bg-white border border-ink-200 hover:bg-ink-100 text-ink-800 rounded-xl font-bold transition-all flex items-center justify-center gap-2 text-sm">
                 <Calendar className="w-4 h-4" /> Schedule a Demo
               </button>
             </div>
 
           </div>
-          
+
           <div className="text-center mt-8">
-            <Link href="/products/software-erp" className="text-[10px] text-gray-400 hover:text-[#1881c4] transition-colors font-semibold uppercase tracking-wider">
+            <Link href="/products/software-erp" className="text-[10px] text-ink-400 hover:text-brand-600 transition-colors font-semibold uppercase tracking-wider">
               Return to iNextERP Core Software
             </Link>
           </div>
         </div>
-      </section> 
-      
+      </section>
+
     </main>
   );
 }
-

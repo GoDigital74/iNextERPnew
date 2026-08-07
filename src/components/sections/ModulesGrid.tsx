@@ -1,77 +1,64 @@
-import {
-  Calculator,
-  ShoppingCart,
-  Users,
-  BarChart3,
-  Package,
-  Truck,
-  Receipt,
-  Building2,
-  Settings,
-  ShieldCheck,
-  Zap,
-  Globe,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
+import { ArrowRight } from "lucide-react";
 
 const MODULES = [
   {
-    icon: ShoppingCart,
+    emoji: "🛒",
     title: "POS Billing",
     desc: "Fast & easy billing with multiple payment options.",
   },
   {
-    icon: Package,
+    emoji: "📦",
     title: "Inventory Management",
     desc: "Real-time stock tracking across locations.",
   },
   {
-    icon: Truck,
+    emoji: "🚚",
     title: "Purchase Management",
     desc: "Streamline purchases, vendors & approvals.",
   },
   {
-    icon: Receipt,
+    emoji: "🧾",
     title: "GST Billing",
     desc: "100% GST compliant billing & e-invoicing.",
   },
   {
-    icon: Users,
+    emoji: "🤝",
     title: "CRM & Sales",
     desc: "Manage leads, follow-ups and boost sales.",
   },
   {
-    icon: Building2,
+    emoji: "🏢",
     title: "Warehouse",
     desc: "Multi-warehouse, stock transfer & optimization.",
   },
   {
-    icon: Users,
+    emoji: "👥",
     title: "HR & Payroll",
     desc: "Employee management, payroll & attendance.",
   },
   {
-    icon: BarChart3,
+    emoji: "📊",
     title: "Reports & Analytics",
     desc: "Powerful insights for smarter decisions.",
   },
   {
-    icon: Globe,
+    emoji: "🌐",
     title: "Multi-Branch",
     desc: "Manage multiple branches from one platform.",
   },
   {
-    icon: Calculator,
+    emoji: "🧮",
     title: "Accounting",
     desc: "Manage accounts, cashflow & financial reports.",
   },
   {
-    icon: ShieldCheck,
+    emoji: "🛡️",
     title: "Security",
     desc: "Enterprise-grade role-based access control.",
   },
   {
-    icon: Zap,
+    emoji: "⚡",
     title: "Automations",
     desc: "Automate repetitive daily business tasks.",
   },
@@ -79,37 +66,40 @@ const MODULES = [
 
 export function ModulesGrid() {
   return (
-    <section className="py-24 bg-surface-950 text-white w-full relative overflow-hidden">
+    <section className="relative w-full overflow-hidden bg-white py-24">
       {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-primary-900/20 blur-[150px] pointer-events-none rounded-full" />
+      <div className="glow-brand pointer-events-none absolute left-1/2 top-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 opacity-60" />
 
-      <div className="container mx-auto px-4 md:px-8 relative z-10 flex flex-col items-center">
-        <div className="text-center mb-16 max-w-2xl">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            Powerful <span className="text-[#1881c4]">Modules</span> To Run Your
+      <div className="section-container relative z-10 flex flex-col items-center">
+        <div className="mb-16 max-w-2xl text-center">
+          <div className="eyebrow mb-5 justify-center">Platform</div>
+          <h2 className="mb-5 text-3xl font-bold text-ink-900 md:text-5xl">
+            Powerful <span className="text-brand-500">Modules</span> To Run Your
             Entire Business
           </h2>
-          <p className="text-surface-400 text-lg">
+          <p className="text-lg text-ink-500">
             Everything you need in one unified platform. Modular architecture
             allows you to scale as you grow.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full">
+        <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {MODULES.map((mod, idx) => (
             <div
               key={idx}
-              className="group relative p-6 rounded-2xl bg-surface-900 border border-surface-800 hover:border-primary-500/50 transition-colors duration-300 cursor-pointer overflow-hidden"
+              className="group card-surface card-surface-hover relative cursor-pointer overflow-hidden p-6"
             >
               {/* Hover Radial Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-brand-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
               <div className="relative z-10">
-                <div className="w-12 h-12 rounded-xl bg-surface-800 flex items-center justify-center text-primary-400 mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <mod.icon className="w-6 h-6" />
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-ink-150 bg-ink-50 text-3xl transition-transform duration-300 group-hover:scale-110 group-hover:border-brand-300">
+                  {mod.emoji}
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{mod.title}</h3>
-                <p className="text-surface-400 text-sm leading-relaxed">
+                <h3 className="mb-2 text-lg font-semibold text-ink-900">
+                  {mod.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-ink-500">
                   {mod.desc}
                 </p>
               </div>
@@ -117,13 +107,14 @@ export function ModulesGrid() {
           ))}
         </div>
 
-        <div className="mt-16">
-          <Button
-            size="lg"
-            className="bg-[#1881c4]  hover:bg-primary-500 text-white border-0 shadow-lg shadow-primary-900/50"
+        <div className="mt-14">
+          <button
+            onClick={openCalendlyPopup}
+            className="group inline-flex items-center gap-2 rounded-xl bg-brand-500 px-8 py-3.5 text-base font-semibold text-white shadow-[0_10px_24px_-6px_rgba(24,129,196,0.4)] transition-all hover:bg-brand-600 hover:-translate-y-0.5"
           >
             Explore All Modules
-          </Button>
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </button>
         </div>
       </div>
     </section>

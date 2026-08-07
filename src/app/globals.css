@@ -1,70 +1,190 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+  Design system — iNextERP
+  Single committed direction: clean, premium light canvas (white surfaces,
+  dark navy text) — in the spirit of modern B2B SaaS product sites.
+  Brand blue (#1881c4) and accent cornflower (#6495ED / #4F7DF3) are the
+  exact colors already used across the logo, nav and CTAs — preserved here,
+  not reinvented. Every other ad-hoc color that had crept into individual
+  sections (purple #5B5CE6, orange #F5A623, unconfigured shadcn blue) is
+  retired in favor of this one palette.
+*/
 @theme {
-/* Default body font (Manrope) */
+  /* Typography */
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-  
-  /* Custom Heading font (Urbanist) - use the class "font-display" */
   --font-display: var(--font-urbanist), ui-sans-serif, system-ui, sans-serif;
-  /* Color System */
-  --color-primary-50: #eff6ff;
-  --color-primary-100: #dbeafe;
-  --color-primary-500: #3b82f6;
-  --color-primary-600: #2563eb;
-  --color-primary-700: #1d4ed8;
-  --color-primary-900: #1e3a8a;
-  
-  --color-surface-50: #f8fafc;
-  --color-surface-100: #f1f5f9;
-  --color-surface-800: #1e293b;
-  --color-surface-900: #0f172a;
-  
-  --color-accent-400: #38bdf8;
-  --color-accent-500: #0ea5e9;
 
-  /* shadcn/ui semantic variables */
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
+  /* Brand blue scale — anchored on #1881c4 */
+  --color-brand-50: #eaf5fc;
+  --color-brand-100: #d2e7f8;
+  --color-brand-200: #a6d0f0;
+  --color-brand-300: #71b3e4;
+  --color-brand-400: #3e93d2;
+  --color-brand-500: #1881c4;
+  --color-brand-600: #146aa3;
+  --color-brand-700: #115682;
+  --color-brand-800: #0e4666;
+  --color-brand-900: #0c3852;
+  --color-brand-950: #082238;
+
+  /* Accent — cornflower blue already used for selection/hover states */
+  --color-accent-300: #a9c2f5;
+  --color-accent-400: #7fa4f0;
+  --color-accent-500: #6495ed;
+  --color-accent-600: #4f7df3;
+  --color-accent-700: #3d63d6;
+
+  /* Ink scale — neutral text + surfaces. 50 = near-white, 950 = near-black. */
+  --color-ink-50: #f8fafc;
+  --color-ink-100: #f0f2f5;
+  --color-ink-150: #e7eaee;
+  --color-ink-200: #dde1e6;
+  --color-ink-300: #c3c8d1;
+  --color-ink-400: #9298a4;
+  --color-ink-500: #6b7280;
+  --color-ink-600: #4b5160;
+  --color-ink-700: #363b47;
+  --color-ink-800: #23262f;
+  --color-ink-900: #15171d;
+  --color-ink-950: #0e1015;
+
+  /* shadcn/ui semantic variables — mapped to the light palette above */
+  --background: 210 25% 98%;
+  --foreground: 222 25% 10%;
   --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
+  --card-foreground: 222 25% 10%;
   --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
-  --primary: 221.2 83.2% 53.3%;
-  --primary-foreground: 210 40% 98%;
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
-  --accent: 210 40% 96.1%;
-  --accent-foreground: 222.2 47.4% 11.2%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 221.2 83.2% 53.3%;
-  --radius: 0.75rem;
+  --popover-foreground: 222 25% 10%;
+  --primary: 203 78% 43%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 20% 95%;
+  --secondary-foreground: 222 20% 15%;
+  --muted: 210 20% 95%;
+  --muted-foreground: 220 9% 45%;
+  --accent: 210 25% 94%;
+  --accent-foreground: 222 20% 15%;
+  --destructive: 4 71% 50%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 220 16% 89%;
+  --input: 220 16% 89%;
+  --ring: 203 85% 45%;
+  --radius: 0.875rem;
+
+  /* Elevation shadows tuned for a light canvas */
+  --shadow-color: 220deg 30% 20%;
+  --shadow-card: 0 1px 2px hsl(var(--shadow-color) / 0.06),
+    0 8px 24px -8px hsl(var(--shadow-color) / 0.12);
+  --shadow-glow-brand: 0 0 0 1px rgba(24, 129, 196, 0.08),
+    0 12px 40px -12px rgba(24, 129, 196, 0.25);
+
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @layer base {
   * {
     border-color: hsl(var(--border));
   }
-  
+
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
-    @apply antialiased selection:bg-primary-500 selection:text-white;
+    @apply antialiased selection:bg-brand-200 selection:text-brand-900;
   }
-  
-  /* Smooth scrolling base */
+
   html {
     scroll-behavior: smooth;
   }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink-50);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-ink-300);
+    border-radius: 999px;
+    border: 2px solid var(--color-ink-50);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-ink-400);
+  }
 }
 
-/* Glassmorphism Utilities */
-.glass-panel {
-  @apply bg-white/70 dark:bg-surface-900/70 backdrop-blur-md border border-white/20 dark:border-surface-800/50 shadow-xl;
+@layer components {
+  /* Consistent page gutter + max-width, used in place of ad-hoc container widths */
+  .section-container {
+    @apply mx-auto w-full max-w-7xl px-6 md:px-10;
+  }
+
+  /* Small uppercase pill label used above section headings ("Integrations", "Why iNextERP", etc.) */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-brand-700;
+  }
+
+  /* Gradient text used sparingly for a single emphasized phrase per hero/heading */
+  .text-gradient-brand {
+    @apply bg-gradient-to-r from-brand-600 via-brand-500 to-accent-600 bg-clip-text text-transparent;
+  }
+
+  /* Frosted light panel for nav / floating surfaces */
+  .glass-panel {
+    @apply border border-ink-150 bg-white/85 shadow-xl shadow-ink-900/5 backdrop-blur-xl;
+  }
+
+  /* Standard elevated card used across grids (features, resources, testimonials) */
+  .card-surface {
+    @apply rounded-2xl border border-ink-150 bg-white shadow-[var(--shadow-card)] transition-all duration-300;
+  }
+  .card-surface-hover {
+    @apply hover:border-brand-300 hover:shadow-lg hover:shadow-ink-900/8 hover:-translate-y-0.5;
+  }
+
+  /* Soft radial brand glow, absolutely positioned by the consumer */
+  .glow-brand {
+    background: radial-gradient(
+      closest-side,
+      rgba(24, 129, 196, 0.16),
+      transparent 70%
+    );
+  }
+
+  .divider-fade {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-ink-200 to-transparent;
+  }
+}
+
+@layer utilities {
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+  }
 }

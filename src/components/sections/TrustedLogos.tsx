@@ -41,14 +41,16 @@ const MIN_LOGOS_FOR_MARQUEE = 6;
 
 function LogoTile({ logo }: { logo: ClientLogo }) {
   return (
-    <div className="relative h-16 w-full md:h-20">
-      <Image
-        src={logo.src}
-        alt={logo.name}
-        fill
-        unoptimized={logo.src.startsWith("http")}
-        className="object-contain opacity-80 transition-all duration-300 group-hover:opacity-100 group-hover:scale-105"
-      />
+    <div className="relative flex h-16 w-full items-center justify-center rounded-xl border border-ink-150 bg-white p-3 opacity-80 shadow-sm transition-all duration-300 group-hover:opacity-100 group-hover:border-brand-300 md:h-18">
+      <div className="relative h-full w-full">
+        <Image
+          src={logo.src}
+          alt={logo.name}
+          fill
+          unoptimized={logo.src.startsWith("http")}
+          className="object-contain"
+        />
+      </div>
     </div>
   );
 }
@@ -65,19 +67,19 @@ export function TrustedLogos({ logos }: { logos?: ClientLogo[] }) {
   const bottomRow = activeLogos.slice(half);
 
   return (
-<section className="border-y border-slate-200 bg-slate-100 py-8 md:py-8 lg:py-14 overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 md:px-8">
+    <section className="relative overflow-hidden border-y border-ink-150 bg-ink-50 py-14 md:py-16">
+      <div className="section-container">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-12 text-center"
         >
-          <h2 className="text-3xl font-bold tracking-tight text-[#0A0A0A] md:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-ink-900 md:text-4xl">
             Trusted by Ambitious Brands.
           </h2>
-          <p className="mt-4 text-base text-gray-500">
+          <p className="mt-4 text-base text-ink-500">
             Driving growth and digital transformation for industry leaders.
           </p>
         </motion.div>
@@ -85,14 +87,8 @@ export function TrustedLogos({ logos }: { logos?: ClientLogo[] }) {
 
       {canMarquee ? (
         /* Marquee Wrapper */
-        <div
-          className="relative mx-auto w-full max-w-[100vw] overflow-hidden"
-          style={{
-            WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
-            maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
-          }}
-        >
-          <div className="flex flex-col gap-10 md:gap-14">
+        <div className="relative mx-auto w-full max-w-[100vw] overflow-hidden mask-fade-x">
+          <div className="flex flex-col gap-10 md:gap-12">
             {/* Row 1 - Moving Left */}
             <motion.div
               className="flex w-max"
@@ -102,7 +98,7 @@ export function TrustedLogos({ logos }: { logos?: ClientLogo[] }) {
               {[...topRow, ...topRow].map((partner, idx) => (
                 <div
                   key={`top-${partner.id}-${idx}`}
-                  className="group flex shrink-0 items-center justify-center px-4 sm:px-6 md:px-8 w-40 sm:w-48 md:w-56"
+                  className="group flex shrink-0 items-center justify-center px-4 sm:px-6 md:px-8 w-36 sm:w-44 md:w-48"
                 >
                   <LogoTile logo={partner} />
                 </div>
@@ -118,7 +114,7 @@ export function TrustedLogos({ logos }: { logos?: ClientLogo[] }) {
               {[...bottomRow, ...bottomRow].map((partner, idx) => (
                 <div
                   key={`bottom-${partner.id}-${idx}`}
-                  className="group flex shrink-0 items-center justify-center px-4 sm:px-6 md:px-8 w-40 sm:w-48 md:w-56"
+                  className="group flex shrink-0 items-center justify-center px-4 sm:px-6 md:px-8 w-36 sm:w-44 md:w-48"
                 >
                   <LogoTile logo={partner} />
                 </div>
@@ -128,12 +124,12 @@ export function TrustedLogos({ logos }: { logos?: ClientLogo[] }) {
         </div>
       ) : (
         /* Too few logos to loop cleanly — show them once, centered */
-        <div className="mx-auto max-w-7xl px-6 md:px-8">
+        <div className="section-container">
           <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8">
             {activeLogos.map((partner) => (
               <div
                 key={partner.id}
-                className="group flex shrink-0 items-center justify-center w-40 sm:w-48 md:w-56"
+                className="group flex w-36 shrink-0 items-center justify-center sm:w-44 md:w-48"
               >
                 <LogoTile logo={partner} />
               </div>
@@ -144,4 +140,3 @@ export function TrustedLogos({ logos }: { logos?: ClientLogo[] }) {
     </section>
   );
 }
-

@@ -59,61 +59,58 @@ const TEAM = [
 export default function AboutPage() {
   return (
     <main className="flex-1 flex flex-col w-full bg-white">
-      
-      {/* 1. HERO SECTION (Dark) */}
-      {/* 1. HERO SECTION (Dark) */}
-      <section className="bg-[#0A0A0A] py-12 md:py-26 text-white">
-        <div className="container mx-auto px-6 md:px-12 max-w-7xl">
-          {/* 1. Changed to a 12-column grid */}
+
+      {/* 1. HERO SECTION */}
+      <section className="relative overflow-hidden bg-white pt-32 pb-16 md:pt-40 md:pb-24">
+        <div className="glow-brand pointer-events-none absolute -top-32 left-1/3 h-96 w-96 opacity-60" />
+        <div className="section-container relative">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            {/* Left Content - Takes up 5 columns on large screens */}
+
             <div className="flex flex-col gap-6 lg:col-span-5">
-              <span className="text-[#1881c4] font-bold text-sm tracking-wider uppercase">About iNextERP</span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+              <div className="eyebrow w-fit">About iNextERP</div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-ink-900">
                 Empowering Businesses.<br />
-                <span className="text-[#1881c4]">Simplifying Growth.</span>
+                <span className="text-brand-500">Simplifying Growth.</span>
               </h1>
-              <p className="text-gray-400 text-lg max-w-lg leading-relaxed">
+              <p className="text-ink-500 text-lg max-w-lg leading-relaxed">
                 NextERP was built with a simple belief — businesses deserve powerful software that is easy to use, affordable to scale, and built to grow with them.
               </p>
-              
+
               {/* Stats Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-white/10 mt-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-ink-150 mt-4">
                 {STATS.map((stat, idx) => (
                   <div key={idx} className="flex flex-col">
-                    <span className="text-3xl font-bold text-white">{stat.value}</span>
-                    <span className="text-sm text-gray-500 mt-1">{stat.label}</span>
+                    <span className="text-3xl font-bold text-ink-900">{stat.value}</span>
+                    <span className="text-sm text-ink-400 mt-1">{stat.label}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right Image - Takes up 7 columns on large screens for extra width */}
-            <div className="relative h-[400px] lg:h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10 lg:col-span-7">
+            <div className="relative h-80 sm:h-100 lg:h-125 w-full rounded-2xl overflow-hidden shadow-2xl shadow-ink-900/12 border border-ink-150 lg:col-span-7">
               <Image
-                src="/office.webp" 
+                src="/office.webp"
                 alt="Modern Office"
                 fill
                 className="object-cover"
               />
             </div>
-            
+
           </div>
         </div>
       </section>
 
-      {/* 2. OUR STORY SECTION (Light) */}
-      <section className="py-20 md:py-32 bg-white text-gray-900">
-        <div className="container mx-auto px-6 md:px-12 max-w-7xl">
+      {/* 2. OUR STORY SECTION */}
+      <section className="py-20 md:py-28 bg-ink-50">
+        <div className="section-container">
           <div className="text-center mb-16">
-            <span className="text-gray-500 font-bold text-sm tracking-wider uppercase">Our Story</span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-2">Built From Experience. Designed For Impact.</h2>
+            <div className="eyebrow mx-auto w-fit">Our Story</div>
+            <h2 className="text-3xl md:text-4xl font-bold mt-5 text-ink-900">Built From Experience. Designed For Impact.</h2>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left Text */}
-            <div className="flex flex-col gap-6 text-gray-600 text-lg leading-relaxed">
+            <div className="flex flex-col gap-6 text-ink-500 text-lg leading-relaxed">
               <p>
                 NextERP was founded by a team of industry experts who understood firsthand the challenges businesses face every day — from disconnected systems and manual processes to data silos and limited visibility.
               </p>
@@ -124,7 +121,7 @@ export default function AboutPage() {
 
             {/* Right Image with Floating Card */}
             <div className="relative">
-              <div className="relative h-[350px] md:h-[450px] w-full rounded-2xl overflow-hidden shadow-xl">
+              <div className="relative h-87.5 md:h-112.5 w-full rounded-2xl overflow-hidden shadow-2xl shadow-ink-900/12 border border-ink-150">
                 <Image
                   src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200"
                   alt="City Skyline"
@@ -133,32 +130,33 @@ export default function AboutPage() {
                 />
               </div>
               {/* Floating Quote Card */}
-              <div className="absolute -left-4 md:-left-12 bottom-12 bg-white p-6 rounded-xl shadow-2xl max-w-[280px] border border-gray-100">
-                <span className="text-[#1881c4] text-4xl font-serif leading-none">"</span>
-                <p className="text-gray-800 font-medium italic mb-4 text-sm">
+              <div className="absolute -left-4 md:-left-12 bottom-12 card-surface p-6 max-w-70 shadow-2xl shadow-ink-900/15">
+                <span className="text-brand-500 text-4xl font-serif leading-none">&ldquo;</span>
+                <p className="text-ink-800 font-medium italic mb-4 text-sm">
                   Our mission is to transform the way businesses operate through innovation, simplicity, and technology.
                 </p>
-                <p className="text-gray-400 text-xs font-bold">— NextERP Team</p>
+                <p className="text-ink-400 text-xs font-bold">— NextERP Team</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. VISION & MISSION SECTION (Dark Blue) */}
-      <section className="py-24 bg-gradient-to-br from-[#0a192f] to-[#112240] text-white relative overflow-hidden">
-        <div className="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
+      {/* 3. VISION & MISSION SECTION */}
+      <section className="py-24 bg-linear-to-br from-brand-600 via-brand-500 to-brand-600 text-white relative overflow-hidden">
+        <div className="pointer-events-none absolute right-0 top-0 h-96 w-96 rounded-full bg-white/10 blur-[100px]" />
+        <div className="section-container relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
-            
+
             {/* Vision */}
             <div className="flex flex-col gap-6">
-              <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/20">
-                <Eye className="w-8 h-8 text-blue-400" />
+              <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center border border-white/20">
+                <Eye className="w-8 h-8 text-white" />
               </div>
               <div>
-                <span className="text-blue-400 font-bold text-sm tracking-wider uppercase">Our Vision</span>
+                <span className="text-brand-100 font-bold text-sm tracking-wider uppercase">Our Vision</span>
                 <h3 className="text-3xl font-bold mt-2 mb-4">A Smarter Future<br />For Every Business</h3>
-                <p className="text-gray-400 leading-relaxed">
+                <p className="text-brand-50 leading-relaxed">
                   To become the most trusted ERP platform for businesses around the world by delivering innovation, reliability, and exceptional value.
                 </p>
               </div>
@@ -166,13 +164,13 @@ export default function AboutPage() {
 
             {/* Mission */}
             <div className="flex flex-col gap-6">
-              <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/20">
-                <Target className="w-8 h-8 text-blue-400" />
+              <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center border border-white/20">
+                <Target className="w-8 h-8 text-white" />
               </div>
               <div>
-                <span className="text-blue-400 font-bold text-sm tracking-wider uppercase">Our Mission</span>
+                <span className="text-brand-100 font-bold text-sm tracking-wider uppercase">Our Mission</span>
                 <h3 className="text-3xl font-bold mt-2 mb-4">Simplify. Automate.<br />Empower.</h3>
-                <p className="text-gray-400 leading-relaxed">
+                <p className="text-brand-50 leading-relaxed">
                   To simplify business operations with an all-in-one ERP solution that drives efficiency, transparency, and sustainable growth.
                 </p>
               </div>
@@ -182,41 +180,41 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 4. WHY CHOOSE US SECTION (Light) */}
-      <section className="py-20 md:py-32 bg-gray-50 text-gray-900">
-        <div className="container mx-auto px-6 md:px-12 max-w-7xl">
+      {/* 4. WHY CHOOSE US SECTION */}
+      <section className="py-20 md:py-28 bg-white">
+        <div className="section-container">
           <div className="text-center mb-16">
-            <span className="text-gray-500 font-bold text-sm tracking-wider uppercase">Why Businesses Choose Us</span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-2">More Than Software. A True Growth Partner.</h2>
+            <div className="eyebrow mx-auto w-fit">Why Businesses Choose Us</div>
+            <h2 className="text-3xl md:text-4xl font-bold mt-5 text-ink-900">More Than Software. A True Growth Partner.</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {FEATURES.map((feature, idx) => (
-              <div key={idx} className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <div className="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mb-6">
-                  <feature.icon className="w-6 h-6 text-[#1881c4]" />
+              <div key={idx} className="card-surface card-surface-hover flex flex-col items-center text-center p-6">
+                <div className="w-14 h-14 rounded-full bg-brand-50 flex items-center justify-center mb-6">
+                  <feature.icon className="w-6 h-6 text-brand-600" />
                 </div>
-                <h4 className="font-bold text-gray-900 mb-3">{feature.title}</h4>
-                <p className="text-sm text-gray-500 leading-relaxed">{feature.desc}</p>
+                <h4 className="font-bold text-ink-900 mb-3">{feature.title}</h4>
+                <p className="text-sm text-ink-500 leading-relaxed">{feature.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 5. TEAM SECTION (Light) */}
-      <section className="py-20 md:py-32 bg-white text-gray-900">
-        <div className="container mx-auto px-6 md:px-12 max-w-7xl">
+      {/* 5. TEAM SECTION */}
+      <section className="py-20 md:py-28 bg-ink-50">
+        <div className="section-container">
           <div className="text-center mb-16">
-            <span className="text-gray-500 font-bold text-sm tracking-wider uppercase">Meet Our Leaders</span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-2">The Minds Behind iNextERP</h2>
+            <div className="eyebrow mx-auto w-fit">Meet Our Leaders</div>
+            <h2 className="text-3xl md:text-4xl font-bold mt-5 text-ink-900">The Minds Behind iNextERP</h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {TEAM.map((member, idx) => (
-              <div key={idx} className="group flex flex-col items-center bg-gray-50 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300">
+              <div key={idx} className="group card-surface card-surface-hover flex flex-col items-center overflow-hidden p-0">
                 {/* Profile Image */}
-                <div className="relative w-full aspect-[4/5] overflow-hidden bg-gray-200">
+                <div className="relative w-full aspect-[4/5] overflow-hidden bg-ink-100">
                   <Image
                     src={member.image}
                     alt={member.name}
@@ -225,11 +223,10 @@ export default function AboutPage() {
                   />
                 </div>
                 {/* Profile Info */}
-                <div className="flex flex-col items-center w-full p-6 bg-white border border-t-0 border-gray-100 rounded-b-2xl">
-                  <h4 className="font-bold text-lg text-gray-900">{member.name}</h4>
-                  <p className="text-sm text-gray-500 mb-4">{member.role}</p>
-                  <a href="#" className="text-blue-500 hover:text-blue-700 transition-colors">
-                    {/* Replaced Lucide icon with your custom SVG */}
+                <div className="flex flex-col items-center w-full p-6">
+                  <h4 className="font-bold text-lg text-ink-900">{member.name}</h4>
+                  <p className="text-sm text-ink-400 mb-4">{member.role}</p>
+                  <a href="#" className="text-brand-500 hover:text-brand-600 transition-colors">
                     <LinkedInIcon className="w-5 h-5" />
                   </a>
                 </div>

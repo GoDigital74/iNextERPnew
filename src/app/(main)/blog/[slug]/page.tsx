@@ -52,7 +52,7 @@ export async function generateMetadata({
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   // Await the params before using them
   const resolvedParams = await params;
-  
+
   const post = await client.fetch(POST_QUERY, { slug: resolvedParams.slug });
 
   if (!post) {
@@ -60,42 +60,42 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   }
 
   return (
-    <main className="w-full bg-[#FAFAFA] font-sans text-gray-900 pb-24">
+    <main className="w-full bg-white font-sans text-ink-900 pb-24">
       {/* Post Header Section */}
-      <section className="bg-white border-b border-gray-200 pt-24 pb-12">
-        <div className="container mx-auto px-6 max-w-[800px]">
-          
-          <Link href="/blog" className="inline-flex items-center text-sm font-semibold text-[#1881c4] hover:text-[#13689e] transition-colors mb-8 group">
+      <section className="bg-white border-b border-ink-150 pt-32 pb-12">
+        <div className="section-container max-w-3xl mx-auto">
+
+          <Link href="/blog" className="inline-flex items-center text-sm font-semibold text-brand-600 hover:text-brand-700 transition-colors mb-8 group">
             <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
             Back to Blog
           </Link>
 
           {post.category && (
-            <div className="inline-block px-3 py-1 bg-[#1881c4]/10 text-[#1881c4] text-xs font-bold uppercase tracking-wider rounded-full mb-6">
+            <div className="eyebrow mb-6">
               {post.category}
             </div>
           )}
 
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-8">
+          <h1 className="text-4xl md:text-5xl font-bold text-ink-900 leading-tight mb-8">
             {post.title}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500 font-medium pb-8">
+          <div className="flex flex-wrap items-center gap-6 text-sm text-ink-500 font-medium pb-8">
             {post.author && (
               <div className="flex items-center gap-2">
-                <User className="w-4 h-4 text-gray-400" />
+                <User className="w-4 h-4 text-ink-400" />
                 <span>{post.author}</span>
               </div>
             )}
             {post.publishedAt && (
               <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-gray-400" />
+                <Calendar className="w-4 h-4 text-ink-400" />
                 <span>{new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
               </div>
             )}
             {post.readTime && (
               <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-gray-400" />
+                <Clock className="w-4 h-4 text-ink-400" />
                 <span>{post.readTime} min read</span>
               </div>
             )}
@@ -105,8 +105,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {/* Post Hero Image */}
       {post.mainImage?.asset && (
-        <div className="container mx-auto px-6 max-w-[1000px] -mt-10 relative z-10">
-          <div className="w-full aspect-[16/9] md:aspect-[2/1] relative rounded-2xl overflow-hidden shadow-xl border border-gray-100">
+        <div className="section-container max-w-4xl mx-auto -mt-10 relative z-10">
+          <div className="w-full aspect-[16/9] md:aspect-[2/1] relative rounded-2xl overflow-hidden shadow-2xl shadow-ink-900/15 border border-ink-150">
             <Image
               src={urlFor(post.mainImage).url()}
               alt={post.mainImage?.alt || post.title}
@@ -120,12 +120,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       )}
 
       {/* Post Content Body */}
-      <section className="container mx-auto px-6 max-w-[800px] pt-16">
-        <div className="prose prose-lg prose-blue max-w-none text-gray-600 prose-headings:text-gray-900 prose-headings:font-bold prose-a:text-[#1881c4] prose-img:rounded-xl">
+      <section className="section-container max-w-3xl mx-auto pt-16">
+        <div className="prose prose-lg max-w-none text-ink-600 prose-headings:text-ink-900 prose-headings:font-bold prose-a:text-brand-600 prose-img:rounded-xl prose-strong:text-ink-900 prose-blockquote:border-brand-300">
           {post.body ? (
             <PortableText value={post.body} />
           ) : (
-            <p className="italic text-gray-400">No content added yet.</p>
+            <p className="italic text-ink-400">No content added yet.</p>
           )}
         </div>
       </section>

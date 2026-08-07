@@ -16,7 +16,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ArrowRight } from "lucide-react";
-import Image from "next/image";
 
 const FAQS = [
   {
@@ -53,28 +52,26 @@ const FAQS = [
 
 export function FaqAndCta() {
   return (
-    <section className="py-20 bg-surface-50 dark:bg-surface-950">
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+    <section className="w-full bg-ink-50 py-20">
+      <div className="section-container">
+        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
           {/* Left Column: FAQ */}
           <div>
-            <h2 className="text-3xl font-bold text-foreground mb-8">
+            <div className="eyebrow mb-5">FAQ</div>
+            <h2 className="mb-8 text-3xl font-bold text-ink-900">
               Frequently Asked Questions
             </h2>
-            <Accordion
-              {...({ type: "single", collapsible: true } as any)}
-              className="w-full"
-            >
+            <Accordion className="w-full">
               {FAQS.map((faq, index) => (
                 <AccordionItem
                   key={index}
                   value={`item-${index}`}
-                  className="border-border"
+                  className="border-ink-150"
                 >
-                  <AccordionTrigger className="text-left font-medium hover:text-[#1881c4] transition-colors">
+                  <AccordionTrigger className="py-4 text-left text-base font-medium text-ink-800 hover:text-brand-600 hover:no-underline">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground leading-relaxed">
+                  <AccordionContent className="leading-relaxed text-ink-500">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -83,37 +80,37 @@ export function FaqAndCta() {
           </div>
 
           {/* Right Column: CTA Box */}
-          <div className="bg-[#1881c4]  rounded-3xl p-8 md:p-10 text-white shadow-2xl relative overflow-hidden">
+          <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-brand-600 to-brand-800 p-8 text-white shadow-2xl shadow-brand-900/25 md:p-10">
             {/* Background shapes */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500 rounded-full blur-[80px] -mr-32 -mt-32 pointer-events-none" />
+            <div className="pointer-events-none absolute -mr-32 -mt-32 right-0 top-0 h-64 w-64 rounded-full bg-white/10 blur-[80px]" />
 
             <div className="relative z-10">
-              <h2 className="text-3xl font-bold mb-3">
+              <h2 className="mb-3 text-3xl font-bold">
                 Ready To Simplify Your Business?
               </h2>
-              <p className="text-primary-100 mb-8 max-w-md">
+              <p className="mb-8 max-w-md text-brand-100">
                 Book a free demo today and see how iNextERP can help your
                 business grow faster.
               </p>
 
-              <form className="space-y-4 mb-8">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <form className="mb-8 space-y-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <Input
                     placeholder="Full Name"
-                    className="bg-white/10 border-white/20 text-white placeholder:text-primary-200 focus-visible:ring-white"
+                    className="h-11 bg-white/10 border-white/20 text-white placeholder:text-brand-100/70 focus-visible:ring-white/40"
                   />
                   <Input
                     placeholder="Mobile Number"
-                    className="bg-white/10 border-white/20 text-white placeholder:text-primary-200 focus-visible:ring-white"
+                    className="h-11 bg-white/10 border-white/20 text-white placeholder:text-brand-100/70 focus-visible:ring-white/40"
                   />
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <Input
                     placeholder="Email Address"
-                    className="bg-white/10 border-white/20 text-white placeholder:text-primary-200 focus-visible:ring-white"
+                    className="h-11 bg-white/10 border-white/20 text-white placeholder:text-brand-100/70 focus-visible:ring-white/40"
                   />
                   <Select>
-                    <SelectTrigger className="bg-white/10 border-white/20 text-white focus:ring-white">
+                    <SelectTrigger className="h-11 w-full bg-white/10 border-white/20 text-white data-placeholder:text-brand-100/70 focus-visible:ring-white/40">
                       <SelectValue placeholder="Business Type" />
                     </SelectTrigger>
                     <SelectContent>
@@ -129,22 +126,13 @@ export function FaqAndCta() {
                   </Select>
                 </div>
 
-                <Button className="w-full sm:w-auto bg-white text-primary-700 hover:bg-primary-50 hover:text-primary-800 font-semibold h-12 px-8 mt-2 transition-colors">
-                  Book Free Demo Now <ArrowRight className="ml-2 w-4 h-4" />
+                <Button
+                  size="lg"
+                  className="mt-2 w-full bg-white text-brand-700 hover:bg-brand-50 sm:w-auto"
+                >
+                  Book Free Demo Now <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </form>
-
-              {/* Dashboard Preview Snippet inside CTA */}
-              <div className="relative w-full aspect-[21/9] rounded-xl overflow-hidden border border-white/20 shadow-2xl mt-8 hidden sm:block">
-                <Image
-                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200"
-                  alt="Dashboard Preview"
-                  fill
-                  className="object-cover opacity-80"
-                />
-                {/* Overlay to match the blue theme */}
-                <div className="absolute inset-0 bg-primary-900/20 mix-blend-overlay" />
-              </div>
             </div>
           </div>
         </div>
