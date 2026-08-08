@@ -18,10 +18,10 @@ export function DashboardShowcase() {
   const [activeTab, setActiveTab] = useState(TABS[0]);
 
   return (
-    <section className="relative flex w-full flex-col items-center overflow-hidden bg-ink-50 py-24">
+    <section className="relative flex w-full flex-col items-center overflow-hidden bg-ink-50 py-6 sm:py-10 lg:py-12">
       <div className="glow-brand pointer-events-none absolute left-1/2 top-0 -z-0 h-96 w-[900px] -translate-x-1/2 -translate-y-1/2 opacity-60" />
 
-      <div className="section-container relative mb-12 text-center">
+      <div className="section-container relative mb-6 text-center">
         <div className="eyebrow mb-5 justify-center">Product tour</div>
         <h2 className="text-3xl font-bold text-ink-900 md:text-5xl">
           Everything You Need.
@@ -31,7 +31,7 @@ export function DashboardShowcase() {
       </div>
 
       {/* Tabs */}
-      <div className="relative mb-10 flex flex-wrap justify-center gap-y-2 rounded-full border border-ink-150 bg-white p-1.5 shadow-sm">
+      <div className="relative mb-6 flex flex-wrap justify-center gap-y-2 rounded-full border border-ink-150 bg-white p-1.5 shadow-sm">
         {TABS.map((tab) => (
           <button
             key={tab}

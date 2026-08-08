@@ -88,14 +88,14 @@ const CARD_TILTS = [
 
 export function Testimonials() {
   return (
-    <section className="w-full bg-ink-50 py-8">
+    <section className="w-full bg-ink-50 py-12">
       <div className="section-container mb-16 flex flex-col items-center">
-        <div className="max-w-2xl text-center">
+        <div className="max-w-4xl text-center">
           <div className="eyebrow mb-5 justify-center">Testimonials</div>
           <h2 className="mb-5 text-3xl font-bold text-ink-900 md:text-4xl">
             Loved By Businesses, <span className="text-brand-500">Trusted By Teams</span>
           </h2>
-          <p className="text-lg text-ink-500">
+          <p className="text-lg text-ink-600">
             Join hundreds of businesses who&rsquo;ve made iNextERP their daily
             driver for sales, inventory &amp; accounting.
           </p>
