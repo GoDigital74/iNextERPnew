@@ -117,10 +117,10 @@ export default function IndustriesClient() {
                 <span>&gt;</span>
                 <span className="text-white">Industries</span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1]">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-[1.1]">
                 ERP Solutions Designed <br className="hidden md:block" /> For Every Industry
               </h1>
-              <p className="text-lg text-ink-300 max-w-xl">
+              <p className="text-lg text-ink-300 max-w-2xl">
                 NextERP empowers businesses across industries with intelligent automation,
                 real-time insights and complete control over operations.
               </p>

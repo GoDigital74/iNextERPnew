@@ -1,19 +1,20 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ShoppingCart,
   Database,
   Layers,
   Users,
   Receipt,
-  ChevronDown,
   ArrowRight,
   CheckCircle2,
   Box,
   Calculator,
   Workflow
 } from 'lucide-react';
+import { Faq } from '@/components/sections/Faq';
 
 export const metadata: Metadata = {
   title: "Wholesale & Distribution ERP Software India | iNextERP",
@@ -75,44 +76,77 @@ export default function WholesaleDistributionPage() {
       />
       <div className="min-h-screen bg-white">
         {/* Hero Section */}
-        <section className="relative bg-ink-950 overflow-hidden pt-24 pb-20">
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute -top-1/2 -right-1/4 w-[1000px] h-[1000px] rounded-full bg-brand-900/40 blur-[120px]" />
-            <div className="absolute -bottom-1/2 -left-1/4 w-[800px] h-[800px] rounded-full bg-brand-600/25 blur-[120px]" />
+        <section className="relative bg-ink-950 overflow-hidden pt-24 pb-20 lg:pt-28 lg:pb-24">
+          {/* Background image */}
+          <div className="absolute inset-0">
+            <Image
+              src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=2000"
+              alt="Wholesale distribution warehouse"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover opacity-50"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-ink-950/95 via-brand-950/55 to-ink-950/95" />
           </div>
 
+          {/* Animated ambient glows */}
+          <div className="hero-ambient hero-anim-aurora absolute -top-[10%] left-1/2 h-[55%] w-[60%] -translate-x-1/2 rounded-full bg-brand-500/25 blur-[140px]" />
+          <div className="hero-ambient hero-anim-drift-left absolute bottom-0 left-[8%] h-[42%] w-[38%] rounded-full bg-brand-600/25 blur-[130px]" />
+          <div className="hero-ambient hero-anim-drift-right absolute bottom-0 right-[6%] h-[38%] w-[34%] rounded-full bg-accent-600/20 blur-[130px]" />
+
           <div className="relative section-container z-10 flex flex-col items-center text-center">
-            <div className="inline-flex w-fit items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[13px] font-semibold tracking-wider text-brand-400 uppercase mb-8">
+            <div className="animate-in fade-in slide-in-from-bottom-4 fill-mode-both duration-700 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[13px] font-semibold tracking-wider text-brand-300 uppercase shadow-lg shadow-black/20 backdrop-blur-md mb-8">
               Wholesale & Distribution ERP
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 max-w-4xl leading-tight">
-              From Warehouse to Dealer — Full Control, Every Step of the Way
+            <h1 className="animate-in fade-in slide-in-from-bottom-6 fill-mode-both duration-700 delay-100 text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-6 max-w-4xl leading-tight [text-shadow:0_2px_30px_rgba(0,0,0,0.45)]">
+              From{" "}
+              <span className="bg-[linear-gradient(100deg,#8fd8ff_0%,#d6f0ff_45%,#ffffff_100%)] bg-clip-text text-transparent">
+                Warehouse to Dealer
+              </span>{" "}
+               Full Control, Every Step of the Way
             </h1>
 
-            <p className="text-lg text-ink-300 mb-10 max-w-3xl">
+            <p className="animate-in fade-in slide-in-from-bottom-6 fill-mode-both duration-700 delay-200 text-lg text-ink-200 mb-10 max-w-3xl">
               Wholesale and distribution businesses run on volume, credit, and timing. iNextERP gives you real-time visibility across suppliers, warehouses, and dealers — in one system.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="animate-in fade-in slide-in-from-bottom-6 fill-mode-both duration-700 delay-300 flex flex-col sm:flex-row gap-4">
               <Link
                 href="/contact"
-                className="px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white rounded-xl text-sm font-bold transition-colors"
+                className="px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white rounded-xl text-sm font-bold transition-colors shadow-lg shadow-brand-900/30"
               >
                 Book an Enterprise Demo
               </Link>
               <Link
                 href="#features"
-                className="px-6 py-3 bg-transparent border border-white/20 hover:bg-white/5 text-white rounded-xl text-sm font-bold transition-colors"
+                className="px-6 py-3 bg-white/5 border border-white/15 hover:bg-white/10 text-white rounded-xl text-sm font-bold transition-colors backdrop-blur-md"
               >
                 See Distribution Features
               </Link>
+            </div>
+
+            <div className="animate-in fade-in fill-mode-both duration-1000 delay-500 flex flex-wrap items-center justify-center gap-3 pt-8">
+              {[
+                { icon: Layers, label: "Multi-Warehouse Stock" },
+                { icon: Users, label: "Dealer Credit Tracking" },
+                { icon: Receipt, label: "E-Way Bill Ready" },
+              ].map(({ icon: Icon, label }) => (
+                <span
+                  key={label}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/8 px-3.5 py-2 text-xs font-semibold text-white/90 backdrop-blur-md"
+                >
+                  <Icon className="h-3.5 w-3.5 text-brand-300" />
+                  {label}
+                </span>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Features Section */}
-        <section id="features" className="py-20 bg-white">
+        <section id="features" className="py-16 bg-white">
           <div className="section-container">
             <div className="text-center mb-16">
               <h2 className="text-2xl md:text-3xl font-bold text-ink-900 mb-4">Built for Multi-Tier Distribution</h2>
@@ -173,7 +207,7 @@ export default function WholesaleDistributionPage() {
         </section>
 
         {/* Process Section */}
-        <section className="py-20 bg-ink-50">
+        <section className="py-16 bg-ink-50">
           <div className="section-container">
             <div className="text-center mb-12">
               <h2 className="text-2xl md:text-3xl font-bold text-ink-900 mb-4">Real-Time Visibility, Not End-of-Day Guesswork</h2>
@@ -214,7 +248,7 @@ export default function WholesaleDistributionPage() {
         </section>
 
         {/* Modules Section */}
-        <section className="py-20 bg-white">
+        <section className="py-16 bg-white">
           <div className="section-container">
             <div className="text-center mb-16">
               <h2 className="text-2xl md:text-3xl font-bold text-ink-900 mb-4">Built on Modules You Already Know</h2>
@@ -270,30 +304,10 @@ export default function WholesaleDistributionPage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-20 bg-ink-50">
-          <div className="section-container max-w-3xl">
-            <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl font-bold text-ink-900 mb-4">Frequently Asked Questions</h2>
-            </div>
-
-            <div className="space-y-4">
-              {faqs.map((faq, index) => (
-                <details key={index} className="group card-surface p-5 cursor-pointer hover:border-brand-300">
-                  <summary className="flex justify-between items-center font-bold text-ink-900 text-md list-none [&::-webkit-details-marker]:hidden">
-                    {faq.question}
-                    <ChevronDown className="w-5 h-5 text-ink-400 group-open:rotate-180 transition-transform shrink-0 ml-4" />
-                  </summary>
-                  <div className="pt-4 text-sm text-ink-500 leading-relaxed">
-                    {faq.answer}
-                  </div>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Faq items={faqs} />
 
         {/* Final CTA Section */}
-        <section className="py-20 bg-ink-950 relative overflow-hidden">
+        <section className="py-16 bg-ink-950 relative overflow-hidden">
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-brand-600/25 blur-[100px]" />
           </div>

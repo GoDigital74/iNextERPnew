@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-const TABS = ["POS Billing", "Inventory Management", "Reports & Analytics"];
+const TABS = [ "Reports & Analytics", "POS Billing","Inventory Management"];
 
 // Map the tabs to their respective images verbatim
 const TAB_IMAGES: Record<string, string> = {
@@ -18,7 +18,7 @@ export function DashboardShowcase() {
   const [activeTab, setActiveTab] = useState(TABS[0]);
 
   return (
-    <section className="relative flex w-full flex-col items-center overflow-hidden bg-ink-50 py-6 sm:py-10 lg:py-12">
+    <section className="relative flex w-full flex-col items-center overflow-hidden bg-ink-50 py-4 sm:py-8 lg:py-10">
       <div className="glow-brand pointer-events-none absolute left-1/2 top-0 -z-0 h-96 w-[900px] -translate-x-1/2 -translate-y-1/2 opacity-60" />
 
       <div className="section-container relative mb-6 text-center">
@@ -57,7 +57,7 @@ export function DashboardShowcase() {
 
       {/* Dynamic Content Window */}
       <div className="section-container relative">
-        <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-ink-150 bg-white p-3 shadow-2xl shadow-ink-900/10 md:p-5">
+        <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-white shadow-ink-900/10">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -65,14 +65,14 @@ export function DashboardShowcase() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.98 }}
               transition={{ duration: 0.3 }}
-              className="relative h-full w-full overflow-hidden rounded-xl border border-ink-100 bg-ink-50"
+              className="relative h-full w-full overflow-hidden rounded-xl bg-ink-50"
             >
               <Image
                 src={TAB_IMAGES[activeTab]}
                 alt={`${activeTab} Interface`}
                 fill
                 sizes="(min-width: 1280px) 1216px, 100vw"
-                className="object-contain p-2 md:p-4"
+                className="object-contain"
               />
             </motion.div>
           </AnimatePresence>

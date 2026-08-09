@@ -74,7 +74,7 @@ export function TrustedLogos({
       className={cn(
         "relative overflow-hidden bg-white",
         showHeading
-          ? "border-y border-ink-150 bg-ink-50 py-14 md:py-20 lg:py-24"
+          ? "border-y border-ink-150 bg-ink-50 py-16 md:py-20 lg:py-24"
           : "pb-20 pt-14 sm:pt-16 md:pb-18 lg:pt-18",
       )}
     >
@@ -94,7 +94,7 @@ export function TrustedLogos({
       {canMarquee ? (
         /* Marquee Wrapper */
         <div className="relative mx-auto w-full max-w-[100vw] overflow-hidden mask-fade-x">
-          <div className="flex flex-col gap-10 md:gap-12">
+          <div className="flex flex-col gap-12 md:gap-12">
             {/* Row 1 - Moving Left */}
             <div className="animate-marquee-left flex w-max">
               {[...topRow, ...topRow].map((partner, idx) => (
@@ -123,7 +123,7 @@ export function TrustedLogos({
       ) : (
         /* Too few logos to loop cleanly — show them once, centered */
         <div className="section-container">
-          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8">
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-10">
             {activeLogos.map((partner) => (
               <div
                 key={partner.id}

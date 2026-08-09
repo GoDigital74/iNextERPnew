@@ -34,12 +34,7 @@ import {
   Shirt,
   Plug,
 } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Faq } from "@/components/sections/Faq";
 import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
 
 // --- DATA CONFIGURATION ---
@@ -531,26 +526,10 @@ export default function ERPSoftwareClient() {
       </section>
 
       {/* 6. FAQ SECTION */}
-      <section className="bg-ink-50 py-20 md:py-28">
-        <div className="section-container max-w-3xl">
-          <div className="mb-10 text-center">
-            <div className="eyebrow mx-auto mb-5 w-fit">FAQs</div>
-            <h2 className="text-2xl font-bold text-ink-900 md:text-3xl">Frequently Asked Questions</h2>
-          </div>
-          <div className="card-surface px-6 py-2 sm:px-8">
-            <Accordion className="w-full">
-              {FAQ_DATA.map((faq, idx) => (
-                <AccordionItem key={idx} value={`item-${idx}`} className="border-ink-150">
-                  <AccordionTrigger className="py-5 text-left text-sm font-bold text-ink-900 hover:text-brand-600 hover:no-underline md:text-base">
-                    {faq.q}
-                  </AccordionTrigger>
-                  <AccordionContent className="leading-relaxed text-ink-500">{faq.a}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </div>
-      </section>
+      <Faq
+        eyebrow="FAQs"
+        items={FAQ_DATA.map(({ q, a }) => ({ question: q, answer: a }))}
+      />
 
       {/* 7. BOTTOM CTA SECTION */}
       <section className="bg-white py-20 md:py-28">

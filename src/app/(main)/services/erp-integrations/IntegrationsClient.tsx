@@ -29,12 +29,7 @@ import {
   Check,
   Webhook,
 } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Faq } from "@/components/sections/Faq";
 import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
 
 // --- DATA CONFIGURATION ---
@@ -665,25 +660,7 @@ export default function IntegrationsClient() {
       </section>
 
       {/* 8. FAQ SECTION */}
-      <section className="py-20 bg-ink-50">
-        <div className="section-container max-w-3xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-ink-900 text-center mb-10">
-            Frequently Asked Questions
-          </h2>
-          <div className="card-surface px-6 py-2 sm:px-8">
-            <Accordion className="w-full">
-              {FAQ_DATA.map((faq, idx) => (
-                <AccordionItem key={idx} value={`item-${idx}`} className="border-ink-150">
-                  <AccordionTrigger className="py-5 text-left text-sm md:text-base font-bold text-ink-900 hover:text-brand-600 hover:no-underline">
-                    {faq.q}
-                  </AccordionTrigger>
-                  <AccordionContent className="leading-relaxed text-ink-500">{faq.a}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </div>
-      </section>
+      <Faq items={FAQ_DATA.map(({ q, a }) => ({ question: q, answer: a }))} />
 
       {/* 9. FINAL CTA SECTION */}
       <section className="py-20 bg-white">

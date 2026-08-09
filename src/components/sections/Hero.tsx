@@ -824,11 +824,12 @@
 
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
+import WarpText from "@/components/ui/WarpText";
 
 /* ---------- Animation variants ---------- */
 
@@ -861,6 +862,11 @@ const item: Variants = {
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
+  // The description's WarpText canvas doesn't reflow text like a browser does,
+  // so it needs an explicit line-break scheme per breakpoint: short lines fit
+  // narrow phones without shrinking to nothing, wide lines fill the space on
+  // tablet/desktop instead of reading as a cramped narrow column.
+  const [isWideViewport, setIsWideViewport] = useState(false);
 
   // The hero's ambience is a stack of large blurred layers. Left running they
   // keep repainting for the whole session even once the user has scrolled well
@@ -874,6 +880,14 @@ export function Hero() {
     );
     observer.observe(el);
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 640px)");
+    const update = () => setIsWideViewport(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
   }, []);
 
   return (
@@ -956,36 +970,72 @@ export function Hero() {
         </motion.div>
 
         {/* Heading */}
-        <h1 className="max-w-3xl text-4xl font-bold leading-[1.12] tracking-tight text-white [text-shadow:0_2px_28px_rgba(3,24,36,0.55)] sm:text-5xl xl:text-6xl">
-          <motion.span variants={item} className="block">
-            Run Your Business.
+        <h1 className="w-full max-w-3xl text-4xl font-bold leading-[1.12] tracking-tight text-white [text-shadow:0_2px_28px_rgba(3,24,36,0.55)] sm:text-5xl xl:text-6xl">
+          <motion.span variants={item} className="relative block">
+            <WarpText
+              text="Run Your Business."
+              color="#ffffff"
+              warpStrength={0.07}
+              warpScale={1.6}
+              speed={0.5}
+              pointerInfluence={0.4}
+              pointerStrength={0.35}
+              refraction={0.016}
+              ripple
+              fontSize="clamp(2.25rem, 6vw, 3.75rem)"
+              fontWeight={700}
+              fontFamily="inherit"
+              letterSpacing="-0.025em"
+              lineHeight={1.12}
+              className="min-h-0! h-16 sm:h-20 xl:h-24"
+            />
           </motion.span>
 
-          <motion.span
-            variants={item}
-            className="relative block bg-[linear-gradient(100deg,#8fd8ff_0%,#d6f0ff_45%,#ffffff_100%)] bg-clip-text text-transparent"
-          >
-            Smarter. Faster. Better.
-
-            {/* Shimmer */}
-            <span
-              aria-hidden
-              className="hero-ambient hero-anim-shimmer pointer-events-none absolute inset-0 bg-[linear-gradient(100deg,transparent_35%,rgba(255,255,255,0.85)_50%,transparent_65%)] bg-clip-text text-transparent"
-              style={{ backgroundSize: "220% 100%" }}
-            >
-              Smarter. Faster. Better.
-            </span>
+          <motion.span variants={item} className="relative block">
+            <WarpText
+              text="Smarter. Faster. Better."
+              color="#eaf6ff"
+              warpStrength={0.07}
+              warpScale={1.6}
+              speed={0.5}
+              pointerInfluence={0.4}
+              pointerStrength={0.35}
+              refraction={0.016}
+              ripple
+              fontSize="clamp(2.25rem, 6vw, 3.75rem)"
+              fontWeight={700}
+              fontFamily="inherit"
+              letterSpacing="-0.025em"
+              lineHeight={1.12}
+              className="min-h-0! h-16 sm:h-20 xl:h-24"
+            />
           </motion.span>
         </h1>
 
         {/* Description */}
-        <motion.p
-          variants={item}
-          className="max-w-xl text-base leading-relaxed text-white/85 [text-shadow:0_1px_16px_rgba(3,24,36,0.5)] sm:text-lg"
-        >
-          Complete ERP solution for POS, Inventory, Billing, Accounting, CRM &
-          more. Built for Retail, Wholesale, Distribution & Growing Businesses.
-        </motion.p>
+        <motion.div variants={item} className="relative block w-full">
+          <WarpText
+            text={
+              isWideViewport
+                ? "Complete ERP solution for POS, Inventory, Billing, Accounting, CRM & more.\nBuilt for Retail, Wholesale, Distribution & Growing Businesses."
+                : "Complete ERP solution for POS,\nInventory, Billing, Accounting, CRM\n& more. Built for Retail, Wholesale,\nDistribution & Growing Businesses."
+            }
+            color="rgba(255,255,255,0.88)"
+            warpStrength={0.05}
+            warpScale={1.6}
+            speed={0.4}
+            pointerInfluence={0.35}
+            pointerStrength={0.25}
+            refraction={0.012}
+            ripple
+            fontSize="clamp(1.0625rem, 2.7vw, 1.25rem)"
+            fontWeight={400}
+            fontFamily="inherit"
+            letterSpacing="0"
+            lineHeight={1.625}
+            className="min-h-0! mx-auto h-40 max-w-3xl sm:h-24"
+          />
+        </motion.div>
 
         {/* CTA */}
         <motion.div variants={item} className="relative mt-2">

@@ -29,36 +29,47 @@ const FAQS = [
       "Yes, our platform is 100% compliant with the latest GST regulations, including e-invoicing and direct return filing.",
   },
   {
-    question: "Can I access iNextERP on mobile?",
+    question: "What is ERP software used for?",
     answer:
-      "Absolutely. We offer dedicated mobile applications for both iOS and Android, plus a fully responsive web interface.",
+      "ERP software is used to integrate and manage core business processes — like finance, inventory, sales, purchasing, and HR — on a single platform, so data flows seamlessly between departments in real time.",
   },
   {
-    question: "How secure is the software?",
+    question: "Is ERP only for large companies?",
     answer:
-      "We use bank-level 256-bit encryption, daily automated backups, and multi-factor authentication to keep your data secure.",
+      "No. While ERP was traditionally associated with large enterprises, modern solutions like iNextERP are built to be affordable and scalable, making them just as useful for small and mid-sized businesses looking to streamline operations.",
   },
   {
-    question: "How long does implementation take?",
+    question: "How long does it take to implement an ERP system?",
     answer:
-      "Standard implementation takes between 3 to 7 days depending on your data migration needs.",
+      "Implementation timelines vary based on business size and complexity, but most ERP rollouts take anywhere from a few weeks to a few months. iNextERP works closely with clients to ensure a smooth, minimally disruptive transition.",
   },
   {
-    question: "Do you provide training and support?",
+    question: "What industries can benefit from iNextERP?",
     answer:
-      "Yes, we provide free onboarding training and 24/7 dedicated customer support.",
+      "iNextERP is designed to serve a wide range of industries, including manufacturing, retail, distribution, and services, with solutions customized to each industry's specific workflows and requirements.",
+  },
+  {
+    question: "How do I know if my business needs an ERP system?",
+    answer:
+      "If you're dealing with disconnected data, manual reporting delays, frequent errors, or difficulty scaling operations, it's likely time to consider an ERP solution. You can reach out to the iNextERP team for a free consultation to assess your specific needs.",
   },
 ];
 
 export function FaqAndCta() {
   return (
-    <section className="w-full bg-ink-50 py-20">
-      <div className="section-container">
+    <section className="relative w-full overflow-hidden bg-ink-50 py-20 md:py-28">
+      {/* Decorative background */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute -left-32 -top-20 h-96 w-96 rounded-full bg-brand-200/30 blur-[110px]" />
+        <div className="absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-accent-300/20 blur-[100px]" />
+      </div>
+
+      <div className="section-container relative">
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
           {/* Left Column: FAQ */}
-          <div>
+          <div className="card-surface p-8 md:p-10">
             <div className="eyebrow mb-5">FAQ</div>
-            <h2 className="mb-8 text-3xl font-bold text-ink-900">
+            <h2 className="mb-8 text-3xl font-bold text-ink-900 md:text-4xl">
               Frequently Asked Questions
             </h2>
             <Accordion className="w-full">
@@ -68,10 +79,10 @@ export function FaqAndCta() {
                   value={`item-${index}`}
                   className="border-ink-150"
                 >
-                  <AccordionTrigger className="py-4 text-left text-base font-medium text-ink-800 hover:text-brand-600 hover:no-underline">
+                  <AccordionTrigger className="py-5 text-left text-lg font-bold text-ink-900 hover:text-brand-600 hover:no-underline md:text-xl">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="leading-relaxed text-ink-500">
+                  <AccordionContent className="pb-1 text-base leading-relaxed text-ink-500 md:text-lg">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>

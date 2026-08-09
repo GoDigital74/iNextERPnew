@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
-import { TrustedLogos, type ClientLogo } from "@/components/sections/TrustedLogos";
+import { TrustedLogos } from "@/components/sections/TrustedLogos";
 import { PricingPlans } from "@/components/sections/PricingPlans";
-import { client } from "@/sanity/lib/client";
-import { urlFor } from "@/sanity/lib/image";
+import { getClientLogos } from "@/lib/clientLogos";
 import { ProblemSection } from "@/components/sections/ProblemSection";
 import { DashboardShowcase } from "@/components/sections/DashboardShowcase";
 import { ModulesGrid } from "@/components/sections/ModulesGrid";
@@ -31,36 +30,6 @@ export const metadata: Metadata = {
   },
 };
 
-const LOGO_WALL_QUERY = `*[_type == "logoWall"][0] {
-  logos
-}`;
-
-type LogoWallImage = Parameters<typeof urlFor>[0] & {
-  _key: string;
-  name?: string;
-  alt?: string;
-};
-
-type LogoWallDoc = {
-  logos?: LogoWallImage[];
-};
-
-async function getClientLogos(): Promise<ClientLogo[]> {
-  try {
-    const doc = await client.fetch<LogoWallDoc | null>(LOGO_WALL_QUERY);
-    return (doc?.logos ?? [])
-      .filter((logo) => logo.name)
-      .map((logo) => ({
-        id: logo._key,
-        name: logo.name ?? logo.alt ?? "Client logo",
-        src: urlFor(logo).width(300).url(),
-      }));
-  } catch {
-    // Sanity unreachable/misconfigured — TrustedLogos falls back to its built-in list.
-    return [];
-  }
-}
-
 export default async function Home() {
   const clientLogos = await getClientLogos();
 
@@ -70,7 +39,6 @@ export default async function Home() {
       <main className="flex-1 flex flex-col w-full overflow-hidden">
         <Hero />
         <TrustedLogos logos={clientLogos} showHeading={false} />
-        <PricingPlans />
         <ProblemSection />
         <DashboardShowcase />
         <Comparison />
@@ -79,6 +47,7 @@ export default async function Home() {
         <Testimonials />
         <Statistics />
         <Resources />
+        <PricingPlans />
         <FaqAndCta />
       </main> 
     </div>
