@@ -119,13 +119,6 @@ const INDUSTRIES = [
     link: "/industries/retail-store-erp-software",
   },
   {
-    title: "FMCG",
-    desc: "Distribution-focused inventory, scheme management, and expiry tracking.",
-    icon: PackageSearch,
-    image: "https://images.unsplash.com/photo-1584473457406-6240486418e9?auto=format&fit=crop&q=80&w=600",
-    link: "/industries/fmcg-erp-software",
-  },
-  {
     title: "Manufacturing",
     desc: "Raw material to retail shelf, in one connected system.",
     icon: Factory,
@@ -174,7 +167,7 @@ const FAQ_DATA = [
   },
   {
     q: "Does iNextERP work for my specific industry?",
-    a: "iNextERP has dedicated features for Retail, FMCG, Manufacturing, Wholesale & Distribution, and Fashion & Garments — explore your industry page for specifics.",
+    a: "iNextERP has dedicated features for Retail, Manufacturing, Wholesale & Distribution, and Fashion & Garments — explore your industry page for specifics.",
   },
   {
     q: "Can I try iNextERP before committing?",

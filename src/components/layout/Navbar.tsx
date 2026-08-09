@@ -49,10 +49,6 @@ const NAV_LINKS: NavLink[] = [
     href: "/industries",
     dropdown: [
       {
-        name: "FMCG Distribution",
-        href: "/industries/fmcg-manufacturing-erp-software",
-      },
-      {
         name: "Fashion & Apparel",
         href: "/industries/apparel-garment-erp-software",
       },

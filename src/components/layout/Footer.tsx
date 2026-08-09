@@ -18,7 +18,6 @@ const FOOTER_LINKS = {
   ],
   industries: [
     { name: "Retail industry", href: "/industries/retail-erp-software" },
-    { name: "FMCG", href: "/industries/fmcg-manufacturing-erp-software" },
     { name: "Manufacturing", href: "/industries/manufacturing-erp-software" },
     {
       name: "Wholesale & Distribution",
@@ -152,10 +151,26 @@ export function Footer() {
       {/* Bottom Bar: Copyright & Socials */}
       <div className="relative border-t border-ink-150">
         <div className="section-container flex flex-col items-center justify-between gap-4 py-6 md:flex-row">
-          <p className="text-sm text-ink-400">
-            © {new Date().getFullYear()} NextERP Solutions Pvt. Ltd. All
-            rights reserved.
-          </p>
+          <div className="flex flex-col items-center gap-x-4 gap-y-2 sm:flex-row">
+            <p className="text-sm text-ink-500">
+              © {new Date().getFullYear()} NextERP Solutions Pvt. Ltd. All
+              rights reserved.
+            </p>
+
+            <span aria-hidden className="hidden h-3.5 w-px bg-ink-200 sm:block" />
+
+            <p className="text-sm text-ink-500">
+              Designed by{" "}
+              <a
+                href="https://www.godigitalagency.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-ink-600 underline-offset-4 transition-colors hover:text-brand-600 hover:underline"
+              >
+                GoDigital Agency
+              </a>
+            </p>
+          </div>
 
           <div className="flex items-center gap-2">
             {SOCIALS.map(({ icon: Icon, label, href }) => (

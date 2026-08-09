@@ -13,7 +13,7 @@ const FAQ_DATA = [
   },
   {
     q: "Does iNextERP work for my specific industry?",
-    a: "iNextERP has dedicated features for Retail, FMCG, Manufacturing, Wholesale & Distribution, and Fashion & Garments — explore your industry page for specifics."
+    a: "iNextERP has dedicated features for Retail, Manufacturing, Wholesale & Distribution, and Fashion & Garments — explore your industry page for specifics."
   },
   {
     q: "Can I try iNextERP before committing?",

@@ -42,9 +42,9 @@ const FEATURES = [
 ];
 
 const TEAM = [
-  { name: "Vikram Sharma", role: "Co-Founder & CEO", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400" },
-  { name: "Rahul Gupta", role: "Co-Founder & CTO", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400" },
-  { name: "Neha Bansal", role: "Head of Product", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" },
+  { name: "Vijay", role: "Founder & CEO", image: "/ceo.jpeg" },
+  { name: "Aditi", role: "Director", image: "/director.jpeg" },
+  { name: "", role: "Director", image: "/director1.jpeg" },
 ];
 
 // --- ANIMATION VARIANTS ---
@@ -72,7 +72,7 @@ export default function AboutClient() {
   return (
     <main className="flex-1 flex flex-col w-full bg-white">
       {/* 1. HERO */}
-      <section className="relative mt-20 overflow-hidden bg-ink-950 pb-24 pt-12 lg:pb-32 lg:pt-16">
+      <section className="relative mt-22 overflow-hidden bg-ink-950 pb-24 pt-14 lg:pb-32 lg:pt-18">
         <div className="pointer-events-none absolute -top-20 right-0 h-130 w-130 translate-x-1/3 rounded-full bg-brand-600/25 blur-[120px]" />
         <div className="pointer-events-none absolute bottom-0 left-0 h-105 w-105 -translate-x-1/3 translate-y-1/3 rounded-full bg-accent-600/15 blur-[120px]" />
 
@@ -107,7 +107,7 @@ export default function AboutClient() {
               </motion.h1>
 
               <motion.p variants={heroItem} className="max-w-lg text-lg leading-relaxed text-ink-300">
-                NextERP was built with a simple belief — businesses deserve powerful software that is easy to use, affordable to scale, and built to grow with them.
+                NextERP was built with a simple belief businesses deserve powerful software that is easy to use, affordable to scale, and built to grow with them.
               </motion.p>
 
               <motion.div variants={heroItem} className="mt-2 flex flex-wrap items-center gap-4">
@@ -164,7 +164,7 @@ export default function AboutClient() {
       </section>
 
       {/* 2. OUR STORY */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-16 md:py-24">
         <div className="section-container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -230,7 +230,7 @@ export default function AboutClient() {
       </section>
 
       {/* 3. VISION & MISSION */}
-      <section className="relative overflow-hidden bg-ink-950 py-24">
+      <section className="relative overflow-hidden bg-ink-950 py-20">
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.06]"
           style={{
@@ -281,7 +281,7 @@ export default function AboutClient() {
       </section>
 
       {/* 4. WHY CHOOSE US */}
-      <section className="bg-ink-50 py-20 md:py-28">
+      <section className="bg-ink-50 py-16 md:py-20">
         <div className="section-container">
           <div className="mb-16 text-center">
             <div className="eyebrow mx-auto w-fit">Why Businesses Choose Us</div>
@@ -330,9 +330,9 @@ export default function AboutClient() {
       </section>
 
       {/* 5. TEAM */}
-      <section id="team" className="scroll-mt-24 bg-white py-20 md:py-28">
+      <section id="team" className="scroll-mt-24 bg-white py-14 md:py-18">
         <div className="section-container">
-          <div className="mb-16 text-center">
+          <div className="mb-14 text-center">
             <div className="eyebrow mx-auto w-fit">Meet Our Leaders</div>
             <h2 className="mt-5 text-3xl font-bold text-ink-900 md:text-4xl">The Minds Behind iNextERP</h2>
           </div>
@@ -357,14 +357,14 @@ export default function AboutClient() {
                     fill
                     className="object-cover object-top grayscale-[35%] transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent" />
+                  {/* <div className="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent" />
                   <a
                     href="#"
                     aria-label={`${member.name} on LinkedIn`}
                     className="absolute right-4 top-4 flex h-10 w-10 translate-y-2 items-center justify-center rounded-full border border-white/30 bg-white/15 text-white opacity-0 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-brand-600 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100"
                   >
                     <LinkedInIcon className="h-4 w-4" />
-                  </a>
+                  </a> */}
                 </div>
                 <div className="flex flex-col items-center p-6 text-center">
                   <h4 className="text-lg font-bold text-ink-900">{member.name}</h4>
