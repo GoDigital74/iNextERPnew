@@ -33,13 +33,13 @@ const FOOTER_LINKS = {
     { name: "Case Studies", href: "#" },
     { name: "Help Center", href: "#" },
     { name: "Guides & Tutorials", href: "#" },
-    { name: "API Documentation", href: "#" },
+    
   ],
   company: [
     { name: "About Us", href: "/about" },
     { name: "Careers", href: "/careers" },
     { name: "Contact Us", href: "/contact" },
-    { name: "Partners", href: "#" },
+    
     { name: "Privacy Policy", href: "#" },
   ],
 };
