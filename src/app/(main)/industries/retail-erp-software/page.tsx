@@ -295,7 +295,7 @@ function RetailStoreClient({ logos }: { logos: ClientLogo[] }) {
                 <h3 className="text-md mb-2.5 font-bold text-ink-900">
                   {title}
                 </h3>
-                <p className="text-[13px] leading-relaxed text-ink-500">
+                <p className="text-md leading-relaxed text-ink-500">
                   {desc}
                 </p>
               </div>
