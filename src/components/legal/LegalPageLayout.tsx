@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Clock, BookOpen, Mail, ArrowRight, ArrowUpRight, type LucideIcon } from "lucide-react";
+import { Clock, BookOpen, ArrowRight, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
 
@@ -151,23 +151,6 @@ export function LegalPageLayout({
                       );
                     })}
                   </nav>
-                </div>
-
-                <div className="card-surface bg-gradient-to-br from-brand-600 via-brand-500 to-accent-600 p-6 text-white">
-                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-white/15 text-white">
-                    <Mail className="h-5 w-5" />
-                  </div>
-                  <h4 className="mb-2 text-base font-bold">Have Questions?</h4>
-                  <p className="mb-5 text-sm leading-relaxed text-brand-50">
-                    Our team is happy to help clarify anything in this document.
-                  </p>
-                  <a
-                    href="mailto:info@inexterpsolutions.com"
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-white underline-offset-4 hover:underline"
-                  >
-                    Email Us
-                    <ArrowUpRight className="h-3.5 w-3.5" />
-                  </a>
                 </div>
               </div>
             </aside>
