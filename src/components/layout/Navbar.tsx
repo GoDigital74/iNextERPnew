@@ -63,7 +63,6 @@ const NAV_LINKS: NavLink[] = [
   { name: "Pricing", href: "/pricing" },
   { name: "Blog", href: "/blog" },
   { name: "Careers", href: "/careers" },
-  { name: "Contact", href: "/contact" },
 ] as const;
 
 // Animation variants (memoized outside component)
@@ -258,10 +257,10 @@ export function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-6"
+        className="pointer-events-none fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-6"
       >
         <nav
-          className={navClasses}
+          className={`pointer-events-auto ${navClasses}`}
           role="navigation"
           aria-label="Main navigation"
         >

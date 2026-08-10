@@ -231,7 +231,7 @@ export default function PricingClient() {
 
             <motion.h1
               variants={heroItem}
-              className="mt-6 text-4xl font-bold leading-[1.1] text-white sm:text-5xl lg:text-6xl"
+              className="mt-6 text-2xl font-bold leading-[1.1] text-white sm:text-4xl lg:text-5xl"
             >
               Simple, transparent pricing.{" "}
               <span className="bg-linear-to-r from-brand-300 via-accent-300 to-white bg-clip-text text-transparent">
