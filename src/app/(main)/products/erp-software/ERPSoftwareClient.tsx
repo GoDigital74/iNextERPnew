@@ -144,7 +144,7 @@ const INDUSTRIES = [
     desc: "Multi-store billing, inventory, and GST compliance for grocery, supermarket, and general retail.",
     icon: ShoppingBag,
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=600",
-    link: "/industries/retail-store-erp-software",
+    link: "/industries/retail-erp-software",
   },
   {
     title: "Manufacturing",
@@ -165,7 +165,7 @@ const INDUSTRIES = [
     desc: "Size, color, and style-level inventory built for apparel retail.",
     icon: Shirt,
     image: "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&q=80&w=600",
-    link: "/industries/apparel-footwear-erp",
+    link: "/industries/apparel-garment-erp-software",
   },
 ];
 
@@ -528,7 +528,7 @@ export default function ERPSoftwareClient() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-5"
+            className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
           >
             {INDUSTRIES.map((ind, i) => (
               <motion.div key={i} variants={itemVariants}>
