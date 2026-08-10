@@ -4,24 +4,36 @@ import AccountsClient from "./AccountsClient";
 // --- FAQ DATA & SCHEMA ---
 const FAQ_DATA = [
   {
-    q: "Is iNextERP Accounting GST-compliant?",
-    a: "Yes. Every transaction automatically calculates CGST/SGST/IGST, and the module supports GSTR-1, GSTR-3B, and GSTR-9 filing directly from your books.",
+    q: "Is iNextERP Accounting fully compliant with Indian GST laws and E-Invoicing rules?",
+    a: "Yes, 100%! iNextERP automatically calculates CGST/SGST/IGST based on HSN/SAC codes and generates E-Invoices and E-Way bills directly from sales vouchers via direct NIC portal integration.",
   },
   {
-    q: "Can I manage multiple companies or business entities in one account?",
-    a: "Yes. iNextERP supports multi-company accounting, so you can maintain separate books for each entity while retaining consolidated visibility.",
+    q: "Can we sync accounting data between iNextERP and Tally?",
+    a: "Yes. iNextERP features a seamless two-way Tally integration, allowing you to sync item masters, customer ledgers, and voucher entries with Tally XML export/import in seconds.",
   },
   {
-    q: "Does iNextERP integrate with Tally?",
-    a: "Yes, iNextERP syncs masters, vouchers, and financial data two-way with Tally, keeping both systems reconciled.",
+    q: "How does automated bank reconciliation work in iNextERP?",
+    a: "You can upload electronic bank statements (e.g., CSV/Excel from HDFC, ICICI, SBI, Axis) or use direct bank feeds. The system auto-matches deposits and withdrawals against ledger entries in seconds.",
   },
   {
-    q: "How does bank reconciliation work in iNextERP?",
-    a: "Bank statements are imported and auto-matched against your transaction records, flagging only genuine mismatches for manual review instead of requiring line-by-line checking.",
+    q: "Can I manage accounting for multiple companies or group entities under one login?",
+    a: "Absolutely. You can maintain separate legal books, GSTINs, and chart of accounts for unlimited group entities while viewing consolidated financial performance from a single master dashboard.",
   },
   {
-    q: "Can I track TDS and fixed assets in the same system?",
-    a: "Yes. TDS payable, paid, and balance are tracked automatically, and fixed assets are managed with depreciation schedules and net block reporting — no separate spreadsheet needed.",
+    q: "How does iNextERP handle TDS (Tax Deducted at Source) calculations and returns?",
+    a: "The software automatically deducts section-wise TDS (e.g., 194C, 194J, 194Q) on purchase/expense vouchers, tracks running TDS payable/receivable balances, and generates data for Form 26Q and 27Q filing.",
+  },
+  {
+    q: "Does iNextERP maintain a complete Audit Trail for statutory compliance?",
+    a: "Yes, every financial voucher entry, edit, or deletion is logged with exact user timestamps, IP addresses, and approval history to ensure 100% audit compliance for chartered accountants (CAs).",
+  },
+  {
+    q: "Can we track Accounts Receivable aging and send automated payment reminders?",
+    a: "Yes. iNextERP tracks aging ledgers (30/60/90 days) and allows you to dispatch automated payment reminder statements with integrated UPI payment links directly on customer WhatsApp numbers.",
+  },
+  {
+    q: "How long does it take to migrate opening balances and ledgers from Tally or Excel?",
+    a: "Data migration takes under 24 hours. Our onboarding specialists import your Chart of Accounts, opening balances, party ledgers, and stock valuations seamlessly with zero accounting downtime.",
   },
 ];
 
@@ -39,16 +51,16 @@ const faqSchema = {
 };
 
 export const metadata: Metadata = {
-  title: "Accounting Software India | GST-Compliant | iNextERP",
+  title: "GST Accounting Software with Automated GSTR Filing & Tally Sync | iNextERP",
   description:
-    "Automate accounting workflows, stay GST-compliant, and gain real-time financial insights with iNextERP's accounting software. Book a free demo.",
+    "Automate financial accounting with iNextERP. Features automated GST (GSTR-1, 3B, 9), direct E-Invoicing & E-Way bills, multi-company books, bank reconciliation, and seamless Tally integration.",
   alternates: {
     canonical: "https://www.inexterp.com/services/accounts",
   },
   openGraph: {
-    title: "Accounting Software India | GST-Compliant | iNextERP",
+    title: "GST Accounting Software with Automated GSTR Filing & Tally Sync | iNextERP",
     description:
-      "Automate accounting workflows, stay GST-compliant, and gain real-time financial insights with iNextERP's accounting software.",
+      "Automate financial accounting with iNextERP. Features automated GST (GSTR-1, 3B, 9), direct E-Invoicing & E-Way bills, multi-company books, bank reconciliation, and seamless Tally integration.",
     url: "https://www.inexterp.com/services/accounts",
     type: "website",
     images: [{ url: "/products/accounting 1.webp", width: 1200, height: 630, alt: "iNextERP accounting software" }],

@@ -8,94 +8,74 @@ import {
   Globe,
   ShieldCheck,
   CheckCircle2,
-  ArrowRight
+  ArrowRight,
+  Clock,
+  Plug,
 } from "lucide-react";
 import { Faq } from "@/components/sections/Faq";
 
 export const metadata: Metadata = {
-  title: "Fashion & Apparel ERP Software India | iNextERP",
-  description: "ERP software for fashion & garment retailers. Size/color variant inventory, style analytics, exchange management & omnichannel sync. Book a demo.",
+  title: "Apparel & Garment ERP Software | Size-Color Matrix, POS & Shopify Sync | iNextERP",
+  description: "Streamline fashion retail with iNextERP Apparel ERP. Features size-color variant matrix, omnichannel Shopify sync, style performance trends, and fast POS billing.",
   alternates: {
     canonical: "https://www.inexterp.com/industries/apparel-garment-erp-software",
   },
   openGraph: {
-    title: "Fashion & Apparel ERP Software India | iNextERP",
-    description: "ERP software for fashion & garment retailers. Size/color variant inventory, style analytics, exchange management & omnichannel sync.",
+    title: "Apparel & Garment ERP Software | Size-Color Matrix, POS & Shopify Sync | iNextERP",
+    description: "Streamline fashion retail with iNextERP Apparel ERP. Features size-color variant matrix, omnichannel Shopify sync, style performance trends, and fast POS billing.",
     url: "https://www.inexterp.com/industries/apparel-garment-erp-software",
     type: "website",
     images: [{ url: "/industries/garment iNext 1.webp", width: 1200, height: 630, alt: "iNextERP for fashion and apparel retail" }],
   },
 };
 
+const faqs = [
+  {
+    question: "Can iNextERP track clothing inventory by size and color using a variant matrix?",
+    answer: "Yes! You can manage styles with a powerful size-color matrix (e.g., Slim Fit Shirt - Blue - Size M vs. L) as a unified parent item, avoiding clutter.",
+  },
+  {
+    question: "Does the software support real-time sync between physical retail outlets and online channels?",
+    answer: "Absolutely. Omnichannel sync links your Shopify, WooCommerce, and physical stores so an online purchase reduces inventory across all touchpoints instantly.",
+  },
+  {
+    question: "How does style performance and seasonal trend analytics work?",
+    answer: "It analyzes fast-moving sizes, colors, and design trends across seasons, helping you plan automated reorders or smart end-of-season clearance markdowns.",
+  },
+  {
+    question: "How are apparel returns and size exchanges managed at the billing counter?",
+    answer: "Every return or size exchange is linked directly to the original tax invoice, automatically updating stock and revenue without manual reconciliation errors.",
+  },
+  {
+    question: "Can I manage inventory across multiple store branches and a central warehouse?",
+    answer: "Yes. You get centralized purchase ordering, strict quality checking at the warehouse, and smooth stock distribution to multiple retail branches with full pilferage tracking.",
+  },
+  {
+    question: "Does the POS support fast barcode billing during festive rushes?",
+    answer: "Yes, our retail POS features ultra-fast barcode scanning, variant search lookups, and a Hybrid Offline Mode that keeps billing running even if the internet drops.",
+  },
+  {
+    question: "Can we track customer style preferences for personalized fashion marketing?",
+    answer: "Yes, the built-in CRM logs customer purchase histories (favorite brands, sizes, and colors) to trigger targeted WhatsApp or SMS campaigns for new collection drops.",
+  },
+  {
+    question: "How long does it take to migrate fashion item masters and opening stock?",
+    answer: "Data migration takes under 24 hours. Our retail onboarding specialists help import your multi-variant item catalogs and stock sheets with zero store downtime.",
+  },
+];
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Can iNextERP track inventory by size and color for apparel?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes, iNextERP tracks every SKU as a size-color matrix, giving you exact stock counts for each variant combination, per store or warehouse.",
-      },
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
     },
-    {
-      "@type": "Question",
-      name: "Does iNextERP support online and in-store inventory sync for fashion retailers?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes, through integrations with Shopify and WooCommerce, stock updates in real time across your online store and physical outlets.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Can I track which styles are performing well each season?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes, style performance and seasonal trend analytics show which styles are selling and which are slowing down, to guide reorders and markdowns.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How does iNextERP handle exchanges and returns for apparel?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Exchanges and returns are linked directly to the original invoice, so stock levels and revenue reporting stay accurate without manual adjustment.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Is iNextERP suitable for a multi-store apparel chain?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes, iNextERP supports centralized purchasing, receiving, and quality inspection, with stock distributed and tracked across unlimited store locations.",
-      },
-    }
-  ],
+  })),
 };
-
-const faqs = [
-  {
-    question: "Can iNextERP track inventory by size and color for apparel?",
-    answer: "Yes, iNextERP tracks every SKU as a size-color matrix, giving you exact stock counts for each variant combination, per store or warehouse.",
-  },
-  {
-    question: "Does iNextERP support online and in-store inventory sync for fashion retailers?",
-    answer: "Yes, through integrations with Shopify and WooCommerce, stock updates in real time across your online store and physical outlets.",
-  },
-  {
-    question: "Can I track which styles are performing well each season?",
-    answer: "Yes, style performance and seasonal trend analytics show which styles are selling and which are slowing down, to guide reorders and markdowns.",
-  },
-  {
-    question: "How does iNextERP handle exchanges and returns for apparel?",
-    answer: "Exchanges and returns are linked directly to the original invoice, so stock levels and revenue reporting stay accurate without manual adjustment.",
-  },
-  {
-    question: "Is iNextERP suitable for a multi-store apparel chain?",
-    answer: "Yes, iNextERP supports centralized purchasing, receiving, and quality inspection, with stock distributed and tracked across unlimited store locations.",
-  },
-];
 
 function ApparelClient() {
   return (
@@ -126,7 +106,7 @@ function ApparelClient() {
               Fashion & Apparel ERP
             </div>
 
-            <h1 className="animate-in fade-in slide-in-from-bottom-6 fill-mode-both duration-700 delay-100 text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight [text-shadow:0_2px_30px_rgba(0,0,0,0.45)]">
+            <h1 className="animate-in fade-in slide-in-from-bottom-6 fill-mode-both duration-700 delay-100 text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-6 leading-tight [text-shadow:0_2px_30px_rgba(0,0,0,0.45)]">
               Every Style. Every Size.{" "}
               <span className="bg-[linear-gradient(100deg,#8fd8ff_0%,#d6f0ff_45%,#ffffff_100%)] bg-clip-text text-transparent">
                 Every Color.
@@ -167,6 +147,41 @@ function ApparelClient() {
                   {label}
                 </span>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust & Migration Banner */}
+      <section className="bg-white pt-10 pb-6">
+        <div className="section-container">
+          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="flex items-start gap-4 rounded-2xl border border-brand-200 bg-brand-50/60 px-6 py-6">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-brand-200 bg-white text-brand-600">
+                <Clock className="h-5 w-5" />
+              </div>
+              <p className="text-sm leading-relaxed text-ink-600">
+                <span className="font-bold text-ink-900">
+                  24-Hour Zero-Downtime Data Migration:
+                </span>{" "}
+                Migrating from Tally, Marg, or Excel? Our onboarding team
+                transfers all your item masters, party ledgers, and opening
+                stock in under 24 hours without closing your business.
+              </p>
+            </div>
+
+            <div className="flex items-start gap-4 rounded-2xl border border-brand-200 bg-brand-50/60 px-6 py-6">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-brand-200 bg-white text-brand-600">
+                <Plug className="h-5 w-5" />
+              </div>
+              <p className="text-sm leading-relaxed text-ink-600">
+                <span className="font-bold text-ink-900">
+                  100% Plug-and-Play Hardware Ready:
+                </span>{" "}
+                Native out-of-the-box support for TVS, Epson, and Zebra
+                thermal printers, Honeywell barcode scanners, eSSL/ZKTeco
+                biometric terminals, and digital weighing scales.
+              </p>
             </div>
           </div>
         </div>

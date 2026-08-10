@@ -31,6 +31,8 @@ import {
   Hammer,
   Link as LinkIcon,
   ArrowRightLeft,
+  Workflow,
+  Calculator,
 } from "lucide-react";
 import { Faq } from "@/components/sections/Faq";
 import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
@@ -68,24 +70,36 @@ const TOUR_CONTENT = [
 // --- FAQ DATA ---
 const FAQ_DATA = [
   {
-    q: "Does iNextERP support both discrete and process manufacturing?",
-    a: "Yes. iNextERP handles BOM-driven discrete manufacturing for assembled products as well as batch/formula-based process manufacturing for industries like food and chemicals.",
+    q: "Does iNextERP Manufacturing support both Discrete and Process Manufacturing?",
+    a: "Yes! It supports BOM-driven discrete manufacturing (assembly, machinery, automotive, electronics) as well as formula/recipe-driven process manufacturing (pharma, chemicals, food & beverage) with yield percentage tracking.",
   },
   {
-    q: "Can I track raw material to finished goods traceability?",
-    a: "Yes, every stage from raw material consumption through work-in-progress to finished goods is tracked and linked to source batches, supporting quality audits and recalls.",
+    q: "How does the Multi-Level Bill of Materials (BOM) feature work?",
+    a: "You can define complex, multi-tier product structures (raw materials → sub-assemblies → finished goods) with routing steps, expected operational wastage, and automated stock auto-deduction upon Work Order completion.",
   },
   {
-    q: "Does iNextERP help reduce machine downtime?",
-    a: "Yes, the Machine Maintenance feature schedules preventive maintenance and alerts you ahead of upcoming service needs, reducing unplanned breakdowns.",
+    q: "Can we manage Subcontracting and Job Work (inward/outward) processing?",
+    a: "Yes. Issue raw materials to external vendors via Job Work Challans, track material in transit, auto-reconcile scrap and semi-finished goods upon receipt, and calculate vendor job work processing costs.",
   },
   {
-    q: "Can I manage subcontracted or job work processes?",
-    a: "Yes, materials sent for job work or subcontracting are tracked, with automatic reconciliation when finished or semi-finished goods are received back.",
+    q: "How does Material Requirements Planning (MRP) prevent production delays?",
+    a: "The MRP engine analyzes open customer sales orders, current raw material inventory, and safety stock levels to automatically calculate material shortages and generate instant Purchase Requisitions for procurement teams.",
   },
   {
-    q: "Does the manufacturing module connect with inventory management?",
-    a: "Yes, it works natively with iNextERP's Inventory Management module, so stock levels, material planning, and production data stay in sync.",
+    q: "How does iNextERP track batch-level raw material to finished goods traceability?",
+    a: "Every raw material lot/batch used in a production order is tagged directly to the final finished goods lot number. In case of quality issues or recalls, you can trace the exact batch source and affected customer shipments in one click.",
+  },
+  {
+    q: "Does iNextERP help in tracking machine efficiency and preventive maintenance?",
+    a: "Yes, the Machine Center module logs equipment runtime, tracks Overall Equipment Effectiveness (OEE), logs breakdown tickets, and schedules automated preventive maintenance alerts to minimize unexpected downtime.",
+  },
+  {
+    q: "Does the Manufacturing module integrate directly with Inventory and Accounting?",
+    a: "Seamlessly! Work order completion updates finished goods inventory instantly and posts auto-journal entries for Work-In-Progress (WIP) accounts, Raw Material Consumption, and Direct Labor/Overhead costs.",
+  },
+  {
+    q: "How long does it take to migrate master items, BOMs, and work center data?",
+    a: "Data migration takes under 48 hours. Our manufacturing onboarding experts assist in importing item masters, multi-level BOM Excel sheets, opening stock, and routing workflows with zero factory downtime.",
   },
 ];
 
@@ -146,13 +160,11 @@ export default function ManufacturingClient() {
                 <span className="h-1.5 w-1.5 rounded-full bg-accent-400" />
                 Manufacturing ERP Software
               </motion.div>
-              <motion.h1 variants={heroItem} className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
-                Manufacture Smarter.<br />
-                Produce Better.<br />
-                Deliver <span className="text-brand-400">Faster.</span>
+              <motion.h1 variants={heroItem} className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.1] tracking-tight">
+                Shop Floor Manufacturing ERP Software Built for Real-Time <span className="text-brand-400">MRP</span> & Multi-Level BOM
               </motion.h1>
               <motion.p variants={heroItem} className="text-ink-300 text-sm md:text-base max-w-md leading-relaxed mt-1 font-medium">
-                Plan, produce and monitor every operation in real-time. From raw materials to finished goods — NextERP brings complete control to your shop floor.
+                Eliminate raw material shortages, monitor shop floor machine efficiency in real time, and gain full batch-to-finished-goods traceability with automated job work reconciliation.
               </motion.p>
 
               <motion.div variants={heroItem} className="flex flex-col sm:flex-row items-center gap-3 mt-2">
@@ -166,7 +178,7 @@ export default function ManufacturingClient() {
 
               {/* Trust Strip */}
               <motion.div variants={heroItem} className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-4">
-                {["Real-time Production Tracking", "Accurate Material Planning", "Quality Assurance Built-in", "Reduce Downtime & Increase Output"].map((item) => (
+                {["Multi-Level BOM & Yield", "Real-Time MRP", "Subcontracting / Job Work", "Batch & Expiry Traceability"].map((item) => (
                   <div key={item} className="flex items-center gap-1.5 text-xs text-ink-300 font-medium">
                     <CheckCircle2 className="w-3.5 h-3.5 text-brand-400" /> {item}
                   </div>
@@ -339,9 +351,9 @@ export default function ManufacturingClient() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
           >
-            <motion.div variants={itemVariants} className="xl:col-span-1 card-surface card-surface-hover p-5 flex flex-col h-60">
+            <motion.div variants={itemVariants} className="card-surface card-surface-hover p-5 flex flex-col h-60">
               <h3 className="font-bold text-ink-900 text-xs mb-1.5 flex items-center gap-1.5"><Layers className="w-3.5 h-3.5 text-brand-500" /> Advanced MRP</h3>
               <p className="text-[9px] text-ink-500 mb-auto leading-relaxed">Calculate material requirements accurately and avoid stockouts, with visibility into planned orders and procurement value needed.</p>
               <div className="mt-3">
@@ -363,7 +375,7 @@ export default function ManufacturingClient() {
               </div>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="xl:col-span-1 card-surface card-surface-hover p-5 flex flex-col h-60">
+            <motion.div variants={itemVariants} className="card-surface card-surface-hover p-5 flex flex-col h-60">
               <h3 className="font-bold text-ink-900 text-xs mb-1.5 flex items-center gap-1.5"><Activity className="w-3.5 h-3.5 text-brand-500" /> Real-Time Tracking</h3>
               <p className="text-[9px] text-ink-500 mb-auto leading-relaxed">Monitor production progress across work centers as it happens, not at day-end — see overall completion percentage live.</p>
               <div className="mt-3 flex justify-center">
@@ -376,7 +388,7 @@ export default function ManufacturingClient() {
               </div>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="xl:col-span-1 card-surface card-surface-hover p-5 flex flex-col h-60">
+            <motion.div variants={itemVariants} className="card-surface card-surface-hover p-5 flex flex-col h-60">
               <h3 className="font-bold text-ink-900 text-xs mb-1.5 flex items-center gap-1.5"><ClipboardList className="w-3.5 h-3.5 text-brand-500" /> Work Order Management</h3>
               <p className="text-[9px] text-ink-500 mb-auto leading-relaxed">Create, assign, and track work orders through their full lifecycle: Total, In Progress, Completed, Pending, and On Hold.</p>
               <div className="mt-3 flex flex-col gap-1.5 text-[9px] text-ink-600 w-full">
@@ -387,7 +399,7 @@ export default function ManufacturingClient() {
               </div>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="xl:col-span-1 card-surface card-surface-hover p-5 flex flex-col h-60">
+            <motion.div variants={itemVariants} className="card-surface card-surface-hover p-5 flex flex-col h-60">
               <h3 className="font-bold text-ink-900 text-xs mb-1.5 flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-brand-500" /> Quality Control</h3>
               <p className="text-[9px] text-ink-500 mb-auto leading-relaxed">Define quality checkpoints at each production stage and maintain a documented quality pass rate.</p>
               <div className="mt-3">
@@ -402,7 +414,7 @@ export default function ManufacturingClient() {
               </div>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="xl:col-span-1 card-surface card-surface-hover p-5 flex flex-col h-60">
+            <motion.div variants={itemVariants} className="card-surface card-surface-hover p-5 flex flex-col h-60">
               <h3 className="font-bold text-ink-900 text-xs mb-1.5 flex items-center gap-1.5"><Wrench className="w-3.5 h-3.5 text-brand-500" /> Machine Maintenance</h3>
               <p className="text-[9px] text-ink-500 mb-auto leading-relaxed">Prevent breakdowns with scheduled maintenance alerts — see upcoming maintenance across machines before they cause downtime.</p>
               <div className="mt-3">
@@ -412,7 +424,7 @@ export default function ManufacturingClient() {
               </div>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="xl:col-span-1 card-surface card-surface-hover p-5 flex flex-col h-60">
+            <motion.div variants={itemVariants} className="card-surface card-surface-hover p-5 flex flex-col h-60">
               <h3 className="font-bold text-ink-900 text-xs mb-1.5 flex items-center gap-1.5"><TrendingUp className="w-3.5 h-3.5 text-brand-500" /> Production Analytics</h3>
               <p className="text-[9px] text-ink-500 mb-auto leading-relaxed">Track production efficiency trends and make data-driven shop floor decisions.</p>
               <div className="mt-3">
@@ -424,6 +436,36 @@ export default function ManufacturingClient() {
                     <div key={i} className={`w-full rounded-t-sm ${i === 6 ? "bg-brand-600" : "bg-brand-200"}`} style={{ height: `${h}%` }} />
                   ))}
                 </div>
+              </div>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="card-surface card-surface-hover p-5 flex flex-col h-60">
+              <h3 className="font-bold text-ink-900 text-xs mb-1.5 flex items-center gap-1.5"><Workflow className="w-3.5 h-3.5 text-brand-500" /> Multi-Level BOM & Routing</h3>
+              <p className="text-[9px] text-ink-500 mb-auto leading-relaxed">Build complex sub-assembly structures with precise raw material ratios, scrap percentage allowances, operational routing stages, and automated scrap/wastage tracking.</p>
+              <div className="mt-3 flex flex-col gap-1.5 text-[9px] text-ink-600 w-full">
+                <div className="flex justify-between font-bold text-ink-900 pb-1 border-b border-ink-100"><span>Finished Good</span><span>Level 0</span></div>
+                <div className="flex justify-between pb-1 pl-2"><span className="flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-brand-500" />Sub-Assembly</span><span className="font-bold text-ink-900">Level 1</span></div>
+                <div className="flex justify-between pb-1 pl-4"><span className="flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-brand-300" />Raw Material</span><span className="font-bold text-ink-900">Level 2</span></div>
+                <div className="flex justify-between pb-1"><span className="flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-amber-500" />Scrap Allowance</span><span className="font-bold text-ink-900">2.5%</span></div>
+              </div>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="card-surface card-surface-hover p-5 flex flex-col h-60">
+              <h3 className="font-bold text-ink-900 text-xs mb-1.5 flex items-center gap-1.5"><Calculator className="w-3.5 h-3.5 text-brand-500" /> Actual vs Standard Costing</h3>
+              <p className="text-[9px] text-ink-500 mb-auto leading-relaxed">Compare standard estimated production costs against actual material, labor, and machine overhead usage per batch to protect gross profit margins.</p>
+              <div className="mt-3">
+                <div className="flex justify-between items-end mb-3">
+                  <div>
+                    <div className="text-[8px] text-ink-400">Standard Cost</div>
+                    <div className="font-bold text-ink-900 text-xs">₹ 4,20,000</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-[8px] text-ink-400">Actual Cost</div>
+                    <div className="font-bold text-ink-900 text-xs">₹ 4,38,600</div>
+                  </div>
+                </div>
+                <div className="text-[9px] text-ink-400 mb-0.5">Variance</div>
+                <div className="text-lg font-bold text-red-500">+4.4%</div>
               </div>
             </motion.div>
           </motion.div>

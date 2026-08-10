@@ -33,6 +33,9 @@ import {
   Truck,
   Shirt,
   Plug,
+  CheckCircle2,
+  XCircle,
+  UploadCloud,
 } from "lucide-react";
 import { Faq } from "@/components/sections/Faq";
 import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
@@ -46,11 +49,41 @@ const HERO_FEATURES = [
   { icon: Maximize, title: "Scalable Growth", desc: "Built for your business future" },
 ];
 
+const HERO_TRUST_BADGES = [
+  "24-Hour Migration from Tally/Excel",
+  "Zero Driver Setup Needed",
+];
+
+const COMPARISON_POINTS = [
+  {
+    before: "Stock mismatch between central warehouse and store outlets",
+    after: "Real-time automated stock sync across all branches & counters",
+  },
+  {
+    before: "Manual GST entry errors and slow E-Way Bill generation",
+    after: "1-Click GST Returns (GSTR-1/3B) & instant automated E-Invoicing",
+  },
+  {
+    before: "Counter billing halts completely when internet disconnects",
+    after: "Hybrid offline mode — bill continuously without network drops",
+  },
+  {
+    before: "Paper bill wastage and high payment failure rates",
+    after: "Dynamic UPI QR on counter screen & WhatsApp digital e-invoices",
+  },
+];
+
+const MIGRATION_BADGES = [
+  "Item Master Data",
+  "Customer & Vendor Ledgers",
+  "Opening Balances",
+];
+
 const DEPARTMENTS = [
   {
     icon: Calculator,
     title: "Finance & Accounting",
-    desc: "Streamline accounting, taxation, budgeting and financial reporting — GST-compliant, GSTR-ready.",
+    desc: "Automated E-Invoicing, direct E-Way Bill generation, and instant Tally XML export.",
     link: "/services/accounting-software",
     image: "/products/accounting 1.webp",
   },
@@ -64,7 +97,7 @@ const DEPARTMENTS = [
   {
     icon: ShoppingCart,
     title: "Purchase & Inventory",
-    desc: "Control purchase, stock, and warehouses with real-time visibility across every location.",
+    desc: "Batch-wise expiry tracking, auto-reorder levels, variant matrix (Size/Color), and inter-branch stock transfer (STO).",
     link: "/services/inventory-management",
     image: "/products/Inventory 1.webp",
   },
@@ -85,7 +118,7 @@ const DEPARTMENTS = [
   {
     icon: Store,
     title: "Point of Sale",
-    desc: "Fast, GST-ready billing that keeps working even when the internet doesn't.",
+    desc: "3-second counter billing, dynamic UPI QR display, WhatsApp e-invoicing, and weighing scale integration.",
     link: "/services/points-of-sale",
     image: "/products/POS img 1.webp",
   },
@@ -124,7 +157,7 @@ const INDUSTRIES = [
     title: "Wholesale & Distribution",
     desc: "Multi-tier stock visibility from warehouse to dealer.",
     icon: Truck,
-    image: "https://images.unsplash.com/photo-1586528116311-ad8ed3890082?auto=format&fit=crop&q=80&w=600",
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=600",
     link: "/industries/wholesale-distribution-erp-software",
   },
   {
@@ -153,24 +186,36 @@ const IMPACT_METRICS = [
 
 const FAQ_DATA = [
   {
-    q: "What does iNextERP include — is it one product or several?",
-    a: "iNextERP is a single platform covering Finance & Accounting, Sales & CRM, Inventory, HR & Payroll, Manufacturing, and POS — all connected under one login, not separate tools stitched together.",
+    q: "What does iNextERP include — is it one product or several modules?",
+    a: "iNextERP is a fully unified, modular ERP platform. You get Inventory, GST Accounting, POS Billing, CRM, and Analytics in a single system, allowing you to scale modules as your business grows.",
   },
   {
-    q: "Is iNextERP suitable for small businesses or only large enterprises?",
-    a: "iNextERP scales from a single-location small business to a multi-branch enterprise, so you can start small and grow without switching systems.",
+    q: "How hard is it to migrate data from our existing Tally or Marg software?",
+    a: "It's seamless! We provide automated Excel/CSV import tools and a dedicated onboarding manager who migrates your item masters, ledgers, and opening stock in under 24 hours.",
   },
   {
-    q: "Does iNextERP work for my specific industry?",
-    a: "iNextERP has dedicated features for Retail, Manufacturing, Wholesale & Distribution, and Fashion & Garments — explore your industry page for specifics.",
+    q: "Does counter billing stop if the internet drops at our retail store?",
+    a: "No. iNextERP POS features a Hybrid Offline Engine. Cashiers can continue printing bills and accepting payments without internet; data auto-syncs to the cloud once connected.",
   },
   {
-    q: "Can I try iNextERP before committing?",
-    a: "Yes, book a free demo to see how iNextERP fits your specific business needs before making a decision.",
+    q: "Is iNextERP fully compliant with GST E-Invoicing and E-Way Bills?",
+    a: "Yes, 100%. iNextERP connects directly with the NIC portal to generate GST-compliant E-Invoices and E-Way bills directly from the invoice creation screen in one click.",
   },
   {
-    q: "Is my business data secure with iNextERP?",
-    a: "Yes, iNextERP uses enterprise-grade security with role-based access, encrypted data transfer, and regular backups.",
+    q: "Can we restrict what our store cashiers or salesmen can see?",
+    a: "Yes, granular Role-Based Access Control (RBAC) allows you to restrict cashiers from editing product prices, viewing purchase costs, or accessing overall profit reports.",
+  },
+  {
+    q: "Can iNextERP send bills to customers directly on WhatsApp?",
+    a: "Yes, built-in WhatsApp API integration allows you to instantly send paperless GST invoices, digital receipts, and payment links directly to the customer's WhatsApp.",
+  },
+  {
+    q: "Can we manage multiple store branches and warehouses from one login?",
+    a: "Absolutely. You get centralized multi-store control with real-time stock visibility across all locations, central pricing setup, and consolidated profit analytics.",
+  },
+  {
+    q: "Is our business data secure on iNextERP Cloud?",
+    a: "Your data is hosted on Tier-3/4 secure datacenters in India with 256-bit SSL encryption, automated daily off-site backups, and a guaranteed 99.9% uptime SLA.",
   },
 ];
 
@@ -234,17 +279,17 @@ export default function ERPSoftwareClient() {
 
               <motion.h1
                 variants={heroItem}
-                className="text-4xl font-bold leading-[1.1] text-white sm:text-5xl lg:text-6xl"
+                className="text-3xl font-semibold leading-[1.1] text-white sm:text-4xl lg:text-5xl"
               >
-                One ERP.{" "}
+                Cloud ERP Engineered for{" "}
                 <span className="bg-linear-to-r from-brand-300 via-accent-300 to-white bg-clip-text text-transparent">
-                  Infinite Possibilities.
+                  3-Second Billing & Real-Time Multi-Store Control
                 </span>
               </motion.h1>
 
               <motion.p variants={heroItem} className="max-w-md text-base leading-relaxed text-ink-300 sm:text-lg">
-                Automate operations. Gain real-time insights. Make smarter
-                decisions with iNextERP.
+                Eliminate stock leakages, automate GST e-invoicing, and sync
+                warehouses across all branches on one unified platform.
               </motion.p>
 
               <motion.div variants={heroItem} className="mt-2 flex flex-col items-center gap-4 sm:flex-row">
@@ -261,6 +306,16 @@ export default function ERPSoftwareClient() {
                 >
                   Explore Solutions
                 </a>
+              </motion.div>
+
+              {/* Micro Trust Badges */}
+              <motion.div variants={heroItem} className="flex flex-wrap items-center gap-x-6 gap-y-2">
+                {HERO_TRUST_BADGES.map((badge, i) => (
+                  <div key={i} className="flex items-center gap-1.5 text-xs font-medium text-ink-300">
+                    <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-accent-400" />
+                    {badge}
+                  </div>
+                ))}
               </motion.div>
 
               {/* Hero Features / Trust Points */}
@@ -338,6 +393,72 @@ export default function ERPSoftwareClient() {
         </div>
       </section>
 
+      {/* 1.5. BEFORE VS AFTER COMPARISON */}
+      <section className="bg-white py-20 md:py-28">
+        <div className="section-container max-w-350">
+          <div className="mb-14 text-center">
+            <div className="eyebrow mx-auto mb-5 w-fit">The iNextERP Difference</div>
+            <h2 className="mx-auto max-w-2xl text-3xl font-bold text-ink-900 md:text-4xl">
+              Stop Managing Your Business on Fragmented Systems
+            </h2>
+          </div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 gap-6 lg:grid-cols-2"
+          >
+            {/* Without iNextERP */}
+            <motion.div variants={itemVariants} className="card-surface rounded-3xl p-8 sm:p-10">
+              <div className="mb-8 flex items-center gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-red-50 text-red-500">
+                  <XCircle className="h-5 w-5" />
+                </span>
+                <div>
+                  <h3 className="text-lg font-bold text-ink-900">Without iNextERP</h3>
+                  <div className="text-xs font-medium text-ink-400">Traditional Setup</div>
+                </div>
+              </div>
+              <ul className="space-y-5">
+                {COMPARISON_POINTS.map((point, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <XCircle className="mt-0.5 h-4.5 w-4.5 shrink-0 text-red-400" />
+                    <span className="text-sm leading-relaxed text-ink-600">{point.before}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* With iNextERP */}
+            <motion.div
+              variants={itemVariants}
+              className="relative overflow-hidden rounded-3xl bg-linear-to-br from-brand-600 via-brand-500 to-accent-600 p-8 text-white shadow-xl sm:p-10"
+            >
+              <div className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full bg-white/10 blur-[80px]" />
+              <div className="relative mb-8 flex items-center gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-white">
+                  <CheckCircle2 className="h-5 w-5" />
+                </span>
+                <div>
+                  <h3 className="text-lg font-bold text-white">With iNextERP</h3>
+                  <div className="text-xs font-medium text-brand-100">Unified Cloud Platform</div>
+                </div>
+              </div>
+              <ul className="relative space-y-5">
+                {COMPARISON_POINTS.map((point, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-white" />
+                    <span className="text-sm font-medium leading-relaxed text-white">{point.after}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* 2. DEPARTMENTS GRID (Linking to dedicated service pages) */}
       <section id="departments" className="scroll-mt-24 bg-white py-20 md:py-28">
         <div className="section-container max-w-350">
@@ -364,7 +485,7 @@ export default function ERPSoftwareClient() {
                 >
                   <div
                     className="absolute inset-0 z-0 bg-cover bg-center opacity-80 saturate-50 transition-all duration-700 ease-in-out group-hover:scale-110 group-hover:saturate-125"
-                    style={{ backgroundImage: `url(${dept.image})` }}
+                    style={{ backgroundImage: `url('${dept.image}')` }}
                   />
                   <div className="absolute inset-0 z-10 bg-linear-to-t from-ink-950 via-ink-950/55 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-95" />
 
@@ -437,6 +558,59 @@ export default function ERPSoftwareClient() {
                 </Link>
               </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 3.5. ZERO-DOWNTIME MIGRATION GUARANTEE */}
+      <section className="bg-white py-20 md:py-28">
+        <div className="section-container max-w-350">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="relative overflow-hidden rounded-4xl bg-ink-950 px-8 py-14 sm:px-14 md:py-16"
+          >
+            <div
+              className="pointer-events-none absolute inset-0 opacity-[0.05]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
+                backgroundSize: "56px 56px",
+              }}
+            />
+            <div className="pointer-events-none absolute -top-20 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-brand-600/25 blur-[120px]" />
+
+            <div className="relative z-10 mx-auto max-w-2xl text-center">
+              <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white">
+                <UploadCloud className="h-6 w-6 stroke-[1.5]" />
+              </div>
+              <div className="mx-auto mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md">
+                24-Hour Zero-Downtime Migration
+              </div>
+              <h2 className="text-2xl font-bold text-white md:text-3xl">
+                Migrating from Tally, Marg, or Excel? We&rsquo;ve Got You Covered.
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-ink-300 sm:text-base">
+                Don&rsquo;t let data lock-in hold you back. Our specialized onboarding
+                team migrates your complete item master data, customer/vendor
+                ledgers, and opening balances in under 24 hours with zero
+                operational downtime.
+              </p>
+
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                {MIGRATION_BADGES.map((badge, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/8 px-4 py-1.5 text-xs font-semibold text-white backdrop-blur-md"
+                  >
+                    <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-accent-400" />
+                    {badge}
+                  </div>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>

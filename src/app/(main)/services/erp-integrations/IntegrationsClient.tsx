@@ -71,28 +71,36 @@ const SECURITY_FEATURES = [
 
 const FAQ_DATA = [
   {
-    q: "Which e-commerce platforms does iNextERP integrate with?",
-    a: "iNextERP integrates with Shopify, WooCommerce, and Amazon, syncing orders, inventory, pricing, and customer data in real time."
+    q: "Does iNextERP offer two-way sync with Tally Prime and Tally ERP 9?",
+    a: "Yes. iNextERP provides bi-directional sync for item masters, customer ledgers, and sales/purchase vouchers in seconds."
   },
   {
-    q: "Can I connect my own payment gateway or bank for reconciliation?",
-    a: "iNextERP supports Razorpay and PhonePe out of the box for automated payment and reconciliation, and other gateways can be connected via the REST API where a pre-built connector isn't available."
+    q: "Which e-commerce channels and marketplaces can I connect?",
+    a: "We offer pre-built connectors for Shopify, WooCommerce, Magento, Amazon India, and Flipkart to sync live stock, orders, and returns automatically."
   },
   {
-    q: "Does iNextERP sync with Tally?",
-    a: "Yes, iNextERP offers two-way sync with Tally for masters, vouchers, and financial data, keeping both systems reconciled automatically."
+    q: "How does direct GST Portal (GSTN) integration simplify filing?",
+    a: "iNextERP connects via direct GSP APIs to push sales data for GSTR-1, auto-populate GSTR-3B, and generate E-Invoices and E-Way Bills in one click."
   },
   {
-    q: "Is there a developer API if I need a custom integration?",
-    a: "Yes, iNextERP provides RESTful APIs, webhook support, and full developer documentation for custom integrations beyond the 500+ pre-built connectors."
+    q: "Can we sync attendance logs directly from biometric devices?",
+    a: "Yes. It integrates natively with eSSL, ZKTeco, and Realtime biometric hardware via LAN or push API directly into the HR & Payroll module."
   },
   {
-    q: "How does GST filing integration work?",
-    a: "iNextERP connects directly with GSTN for automatic GST calculation, filing, and reconciliation, pulling data live from your transactions rather than requiring separate manual exports."
+    q: "How does payment gateway auto-reconciliation work?",
+    a: "Integrations with Razorpay, PhonePe, and PayU automatically match incoming customer payments against pending tax invoices, eliminating manual bank reconciliation."
   },
   {
-    q: "Can I sync attendance from biometric devices?",
-    a: "Yes, biometric device integration syncs attendance records automatically into the HRM module."
+    q: "Is there a developer API available for custom in-house software integration?",
+    a: "Absolutely. We provide RESTful APIs, Webhooks for real-time event triggers, and complete documentation for custom enterprise setups."
+  },
+  {
+    q: "What happens if an API or internet connection drops during a transaction?",
+    a: "Transactions are stored safely in local offline cache and synchronized automatically the moment internet connectivity is restored, ensuring zero data loss."
+  },
+  {
+    q: "How long does it take to configure pre-built connectors during setup?",
+    a: "Pre-built connectors (Shopify, WhatsApp API, Razorpay, Tally) can be activated and configured in under 30 minutes with help from our onboarding team."
   }
 ];
 
@@ -267,11 +275,11 @@ export default function IntegrationsClient() {
                 <span className="h-1.5 w-1.5 rounded-full bg-accent-400" />
                 ERP Integrations
               </motion.div>
-              <motion.h1 variants={heroItem} className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight text-white">
+              <motion.h1 variants={heroItem} className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.1] tracking-tight text-white">
                 ERP Integrations That Connect Your Entire Business
               </motion.h1>
               <motion.p variants={heroItem} className="text-ink-300 text-sm md:text-base leading-relaxed mt-2">
-                One system. Infinite connections. Seamless operations. NextERP connects with the tools you use every day — automate data flow, eliminate manual work, and bring your entire business ecosystem together.
+                One system. Infinite connections. Seamless operations. iNextERP connects with the tools you use every day — automate data flow, eliminate manual work, and bring your entire business ecosystem together.
               </motion.p>
 
               <motion.div variants={heroItem} className="flex flex-col sm:flex-row items-center gap-3 mt-4">
@@ -319,7 +327,7 @@ export default function IntegrationsClient() {
                   <div className="w-8 h-8 mb-2 relative">
                     <Image src="/logo.webp" alt="Logo" fill className="object-contain" unoptimized />
                   </div>
-                  <span className="font-bold text-white text-sm tracking-tight">Next<span className="text-brand-400">ERP</span></span>
+                  <span className="font-bold text-white text-sm tracking-tight">iNext<span className="text-brand-400">ERP</span></span>
                 </div>
 
                 {/* Satellite Nodes */}
@@ -364,6 +372,36 @@ export default function IntegrationsClient() {
               </div>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* 1B. TRUST & HARDWARE BANNER */}
+      <section className="bg-ink-900 border-b border-white/10 py-10">
+        <div className="section-container max-w-350">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="flex items-start gap-4 bg-white/5 border border-white/10 rounded-2xl p-6">
+              <div className="w-12 h-12 rounded-xl bg-brand-500/20 border border-brand-400/30 flex items-center justify-center shrink-0">
+                <Clock className="w-6 h-6 text-brand-400" />
+              </div>
+              <div>
+                <h3 className="font-bold text-white text-sm md:text-base mb-1.5">24-Hour Zero-Downtime Data Migration</h3>
+                <p className="text-ink-400 text-xs md:text-sm leading-relaxed">
+                  Migrating from Tally, Marg, or Excel? Our onboarding team transfers all your item masters, ledgers, and opening stock in under 24 hours without closing your business.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 bg-white/5 border border-white/10 rounded-2xl p-6">
+              <div className="w-12 h-12 rounded-xl bg-brand-500/20 border border-brand-400/30 flex items-center justify-center shrink-0">
+                <ScanBarcode className="w-6 h-6 text-brand-400" />
+              </div>
+              <div>
+                <h3 className="font-bold text-white text-sm md:text-base mb-1.5">100% Plug-and-Play Hardware Ready</h3>
+                <p className="text-ink-400 text-xs md:text-sm leading-relaxed">
+                  Native out-of-the-box support for TVS, Epson, and Zebra thermal printers, Honeywell barcode scanners, eSSL/ZKTeco biometric terminals, and digital weighing scales.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -442,7 +480,7 @@ export default function IntegrationsClient() {
           <div className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold text-ink-900 leading-tight mb-3">Live Sync in Action</h2>
             <p className="text-ink-500 text-sm max-w-2xl mx-auto">
-              See Shopify and NextERP dashboards mirror each other in real time — Total Orders, Total Sales, Pending Orders, and Inventory Items stay identical across both systems, with two-way sync confirmed live.
+              See Shopify and iNextERP dashboards mirror each other in real time — Total Orders, Total Sales, Pending Orders, and Inventory Items stay identical across both systems, with two-way sync confirmed live.
             </p>
           </div>
 
@@ -491,7 +529,7 @@ export default function IntegrationsClient() {
               <div className="flex-1 bg-ink-900 rounded-xl p-6 border border-white/5 shadow-xl">
                 <div className="flex items-center gap-2 mb-6">
                   <Database className="w-5 h-5 text-brand-400" />
-                  <span className="font-bold text-base text-white">NextERP Dashboard</span>
+                  <span className="font-bold text-base text-white">iNextERP Dashboard</span>
                 </div>
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div>
@@ -535,7 +573,7 @@ export default function IntegrationsClient() {
             >
               <h2 className="text-2xl md:text-3xl font-bold text-ink-900 leading-tight">API & Developer Access</h2>
               <p className="text-ink-600 text-sm md:text-base leading-relaxed">
-                For businesses that need custom integrations beyond the pre-built connector list, iNextERP offers robust developer tools to build exactly what you need.
+                Supports Real-Time Webhooks &amp; APIs for Live Stock Auto-Sync, GST Invoicing, and Multi-Channel Order Processing across Shopify, Amazon, and WhatsApp Business API.
               </p>
               <ul className="space-y-4 mb-4">
                 {["RESTful APIs", "Webhook support for real-time event notifications", "API rate limiting for stable, predictable performance", "Full developer documentation"].map((feat, i) => (
@@ -677,7 +715,7 @@ export default function IntegrationsClient() {
                 Connect Everything.<br />Run Everything Better.
               </h2>
               <p className="text-sm text-ink-400 mb-8 max-w-md">
-                Integrate your favorite apps with NextERP and power your entire business ecosystem.
+                Integrate your favorite apps with iNextERP and power your entire business ecosystem.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">

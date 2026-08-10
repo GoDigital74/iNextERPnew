@@ -4,24 +4,36 @@ import CloudServiceClient from "./CloudServiceClient";
 // --- FAQ DATA & SCHEMA ---
 const FAQ_DATA = [
   {
-    q: "Is iNextERP Cloud only for hosting the iNextERP software, or can I use it for other applications too?",
-    a: "iNextERP Cloud supports both — it's built to reliably host your iNextERP instance, and the same infrastructure can support other business websites and applications.",
+    q: "Is iNextERP Cloud only for hosting iNextERP software, or can we host other business apps too?",
+    a: "While it is pre-configured and fine-tuned for peak ERP database performance, you can also host connected business tools, custom web portals, e-commerce databases, and API middleware seamlessly.",
   },
   {
-    q: "What uptime guarantee do you offer?",
-    a: "A 99.99% uptime SLA, backed by 24/7 expert support and monitoring.",
+    q: "Where is our business data physically hosted, and is it secure?",
+    a: "Your data is hosted on Tier-3 and Tier-4 datacenters located within India, protected by 256-bit SSL encryption, hardware firewalls, automated anti-DDoS protection, and strict IP-whitelisting options.",
   },
   {
-    q: "Is my data backed up automatically?",
-    a: "Yes, automated backups and disaster recovery are included to protect your data against loss.",
+    q: "How does iNextERP Cloud handle server failures or power outages?",
+    a: "We maintain a redundant, failover infrastructure with a 99.99% Uptime SLA. If a primary cloud node experiences an anomaly, secondary backup nodes take over automatically without interrupting your billing or database access.",
   },
   {
-    q: "Can the infrastructure scale as my business grows?",
-    a: "Yes, cloud compute and storage scale on demand to match your business's growth without requiring a system migration.",
+    q: "How frequently are cloud backups taken, and can we restore data if deleted by mistake?",
+    a: "Automated cloud snapshots run daily in the background with continuous incremental database logging. You can request a point-in-time data restoration to any previous snapshot with zero data corruption.",
   },
   {
-    q: "Is the cloud infrastructure secure and compliant?",
-    a: "Yes, multi-layer security is applied across the infrastructure, built to meet global compliance standards.",
+    q: "What happens to counter billing if our retail outlet loses internet connection?",
+    a: "Your POS billing counters will NOT stop working. iNextERP features a Hybrid Offline Mode that lets cashiers keep printing invoices locally. Once internet connectivity restores, data automatically syncs to your central cloud database.",
+  },
+  {
+    q: "Do we need an internal IT manager or server engineer to manage this cloud?",
+    a: "No! iNextERP Cloud is a Fully Managed Service. Our dedicated DevOps team manages server provisioning, security patches, performance tuning, and backup health monitoring 24/7.",
+  },
+  {
+    q: "Can we upgrade RAM, Storage, or CPU as our business opens new branches?",
+    a: "Yes, absolutely. Resources can be scaled up or down on-demand with zero system downtime, ensuring you only pay for the exact compute infrastructure your business requires.",
+  },
+  {
+    q: "How does iNextERP Cloud protect against Ransomware and cyber threats?",
+    a: "We utilize isolated database containerization, multi-factor authentication (MFA), automated threat scanning, and read-only off-site backup copies that ransomware cannot encrypt or destroy.",
   },
 ];
 

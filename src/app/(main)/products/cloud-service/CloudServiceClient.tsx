@@ -21,6 +21,8 @@ import {
   CheckCircle2,
   Calendar,
   Maximize,
+  Lock,
+  XCircle,
 } from "lucide-react";
 import { Faq } from "@/components/sections/Faq";
 
@@ -30,6 +32,32 @@ const HERO_STATS = [
   { icon: ShieldCheck, title: "Enterprise Grade", desc: "Security" },
   { icon: Maximize, title: "Scalable", desc: "Infrastructure" },
   { icon: Headphones, title: "24/7", desc: "Expert Support" },
+];
+
+const TRUST_BADGES = [
+  { icon: ShieldCheck, label: "99.99% Guaranteed SLA" },
+  { icon: Lock, label: "256-bit SSL Encryption" },
+  { icon: Database, label: "Automated Daily Snapshots" },
+  { icon: Globe, label: "Multi-Region Failover" },
+];
+
+const SERVER_COMPARISON = [
+  {
+    risk: "High risk of permanent data loss from hard drive crash or ransomware",
+    solution: "Automated multi-region cloud snapshots with 1-click disaster recovery",
+  },
+  {
+    risk: "Requires expensive server hardware, UPS backup, and AC room setup",
+    solution: "Zero physical hardware maintenance or electricity costs",
+  },
+  {
+    risk: "Billing stops completely if the office server shuts down or loses power",
+    solution: "99.99% SLA uptime guarantee with automated failover servers",
+  },
+  {
+    risk: "Restricted local access — impossible to track sales while travelling",
+    solution: "100% secure remote access from any mobile, tablet, or PC worldwide",
+  },
 ];
 
 const FEATURES = [
@@ -56,12 +84,12 @@ const FEATURES = [
 ];
 
 const CLOUD_SERVICES = [
-  { icon: Cloud, title: "Cloud Hosting", desc: "Reliable, scalable hosting for your websites, applications, and your iNextERP deployment itself." },
+  { icon: Cloud, title: "Cloud Hosting", desc: "High-speed SSD-powered instances fine-tuned specifically for SQL database queries and multi-branch transaction sync." },
   { icon: Box, title: "Cloud Compute", desc: "High-performance virtual machines sized to your workload, from single apps to enterprise deployments." },
   { icon: Database, title: "Cloud Storage", desc: "Secure, durable, and scalable storage for your business data, documents, and backups." },
-  { icon: ShieldAlert, title: "Cloud Backup", desc: "Automated backups and disaster recovery, so your data — including ERP records — is protected against loss." },
+  { icon: ShieldAlert, title: "Cloud Backup", desc: "Automated daily off-site snapshots with point-in-time database restoration. Zero risk of ransomware data loss." },
   { icon: Network, title: "Cloud Networking", desc: "Private networks, load balancing, and CDN for seamless, secure connectivity across your business locations." },
-  { icon: Activity, title: "Cloud Monitoring", desc: "Real-time monitoring and analytics, so issues are caught and resolved before they affect your operations." },
+  { icon: Activity, title: "Cloud Monitoring", desc: "24/7 proactive automated health tracking that catches memory leaks and network latency before it slows down your billing counters." },
 ];
 
 const WHY_CHOOSE_POINTS = [
@@ -77,24 +105,36 @@ const BRANDS = ["DELL", "HP", "Lenovo", "Microsoft", "CISCO", "VERTIV"];
 
 const FAQ_DATA = [
   {
-    q: "Is iNextERP Cloud only for hosting the iNextERP software, or can I use it for other applications too?",
-    a: "iNextERP Cloud supports both — it's built to reliably host your iNextERP instance, and the same infrastructure can support other business websites and applications.",
+    q: "Is iNextERP Cloud only for hosting iNextERP software, or can we host other business apps too?",
+    a: "While it is pre-configured and fine-tuned for peak ERP database performance, you can also host connected business tools, custom web portals, e-commerce databases, and API middleware seamlessly.",
   },
   {
-    q: "What uptime guarantee do you offer?",
-    a: "A 99.99% uptime SLA, backed by 24/7 expert support and monitoring.",
+    q: "Where is our business data physically hosted, and is it secure?",
+    a: "Your data is hosted on Tier-3 and Tier-4 datacenters located within India, protected by 256-bit SSL encryption, hardware firewalls, automated anti-DDoS protection, and strict IP-whitelisting options.",
   },
   {
-    q: "Is my data backed up automatically?",
-    a: "Yes, automated backups and disaster recovery are included to protect your data against loss.",
+    q: "How does iNextERP Cloud handle server failures or power outages?",
+    a: "We maintain a redundant, failover infrastructure with a 99.99% Uptime SLA. If a primary cloud node experiences an anomaly, secondary backup nodes take over automatically without interrupting your billing or database access.",
   },
   {
-    q: "Can the infrastructure scale as my business grows?",
-    a: "Yes, cloud compute and storage scale on demand to match your business's growth without requiring a system migration.",
+    q: "How frequently are cloud backups taken, and can we restore data if deleted by mistake?",
+    a: "Automated cloud snapshots run daily in the background with continuous incremental database logging. You can request a point-in-time data restoration to any previous snapshot with zero data corruption.",
   },
   {
-    q: "Is the cloud infrastructure secure and compliant?",
-    a: "Yes, multi-layer security is applied across the infrastructure, built to meet global compliance standards.",
+    q: "What happens to counter billing if our retail outlet loses internet connection?",
+    a: "Your POS billing counters will NOT stop working. iNextERP features a Hybrid Offline Mode that lets cashiers keep printing invoices locally. Once internet connectivity restores, data automatically syncs to your central cloud database.",
+  },
+  {
+    q: "Do we need an internal IT manager or server engineer to manage this cloud?",
+    a: "No! iNextERP Cloud is a Fully Managed Service. Our dedicated DevOps team manages server provisioning, security patches, performance tuning, and backup health monitoring 24/7.",
+  },
+  {
+    q: "Can we upgrade RAM, Storage, or CPU as our business opens new branches?",
+    a: "Yes, absolutely. Resources can be scaled up or down on-demand with zero system downtime, ensuring you only pay for the exact compute infrastructure your business requires.",
+  },
+  {
+    q: "How does iNextERP Cloud protect against Ransomware and cyber threats?",
+    a: "We utilize isolated database containerization, multi-factor authentication (MFA), automated threat scanning, and read-only off-site backup copies that ransomware cannot encrypt or destroy.",
   },
 ];
 
@@ -153,21 +193,18 @@ export default function CloudServiceClient() {
 
               <motion.h1
                 variants={heroItem}
-                className="text-4xl font-bold leading-[1.1] text-white sm:text-5xl"
+                className="text-3xl font-semibold leading-[1.15] text-white sm:text-4xl"
               >
-                Enterprise Cloud.
-                <br />
-                Built to Power{" "}
+                Enterprise Cloud Hosting Optimized for{" "}
                 <span className="bg-linear-to-r from-brand-300 via-accent-300 to-white bg-clip-text text-transparent">
-                  Your ERP.
+                  Zero-Downtime ERP Performance
                 </span>
               </motion.h1>
 
               <motion.p variants={heroItem} className="max-w-lg text-sm leading-relaxed text-ink-300 md:text-base">
-                iNextERP Cloud isn&rsquo;t generic hosting — it&rsquo;s the
-                infrastructure your ERP data actually runs on. Scalable,
-                secure, and reliable, so your business never waits on your
-                systems.
+                Stop suffering from local server drive crashes, ransomware
+                risks, and slow database queries. Get sub-second billing
+                speed, automated daily backups, and 99.99% uptime.
               </motion.p>
 
               <motion.div variants={heroItem} className="mt-3 flex flex-col items-center gap-3 sm:flex-row">
@@ -220,7 +257,82 @@ export default function CloudServiceClient() {
         </div>
       </section>
 
-      {/* 2. FEATURES BANNER */}
+      {/* 2. TRUST BADGES STRIP */}
+      <section className="border-b border-ink-150 bg-white py-6">
+        <div className="section-container max-w-350">
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 sm:justify-between">
+            {TRUST_BADGES.map((badge, i) => (
+              <div key={i} className="flex items-center gap-2 text-xs font-bold text-ink-600 md:text-sm">
+                <badge.icon className="h-4 w-4 shrink-0 text-brand-600" />
+                {badge.label}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. LOCAL SERVER VS INEXTERP CLOUD COMPARISON */}
+      <section className="bg-ink-50 py-20 md:py-28">
+        <div className="section-container max-w-350">
+          <div className="mb-12 text-center">
+            <div className="eyebrow mx-auto mb-4 w-fit">Local Server vs Cloud</div>
+            <h2 className="mx-auto max-w-2xl text-2xl font-bold leading-tight text-ink-900 md:text-3xl">
+              Why Traditional Office Servers Put Your Business at Risk
+            </h2>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="overflow-hidden rounded-3xl border border-ink-150 bg-white shadow-xl"
+          >
+            {/* Column Headers */}
+            <div className="grid grid-cols-1 md:grid-cols-2">
+              <div className="flex items-center gap-3 bg-ink-950 px-6 py-5">
+                <ShieldAlert className="h-5 w-5 shrink-0 text-red-400" />
+                <span className="text-xs font-bold text-white sm:text-sm">
+                  Local Office Server
+                  <span className="ml-2 rounded-full bg-red-500/20 px-2 py-0.5 text-[10px] font-bold text-red-400">
+                    High Cost &amp; Risk
+                  </span>
+                </span>
+              </div>
+              <div className="flex items-center gap-3 bg-brand-600 px-6 py-5">
+                <ShieldCheck className="h-5 w-5 shrink-0 text-white" />
+                <span className="text-xs font-bold text-white sm:text-sm">
+                  iNextERP Managed Cloud
+                  <span className="ml-2 rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-bold text-white">
+                    Zero Overhead
+                  </span>
+                </span>
+              </div>
+            </div>
+
+            {/* Comparison Rows */}
+            {SERVER_COMPARISON.map((row, i) => (
+              <div
+                key={i}
+                className={`grid grid-cols-1 md:grid-cols-2 ${
+                  i !== SERVER_COMPARISON.length - 1 ? "border-b border-ink-150" : ""
+                }`}
+              >
+                <div className="flex items-start gap-3 border-b border-ink-150 px-6 py-5 md:border-b-0 md:border-r">
+                  <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-red-500" />
+                  <p className="text-xs leading-relaxed text-ink-600 md:text-sm">{row.risk}</p>
+                </div>
+                <div className="flex items-start gap-3 bg-brand-50/50 px-6 py-5">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
+                  <p className="text-xs font-medium leading-relaxed text-ink-800 md:text-sm">{row.solution}</p>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 4. FEATURES BANNER */}
       <section className="border-b border-ink-150 bg-ink-50 py-16 md:py-20">
         <div className="section-container max-w-350">
           <div className="flex flex-col items-start gap-10 lg:flex-row lg:items-center">
@@ -252,7 +364,7 @@ export default function CloudServiceClient() {
         </div>
       </section>
 
-      {/* 3. EVERYTHING YOU NEED (SERVICES GRID) */}
+      {/* 5. EVERYTHING YOU NEED (SERVICES GRID) */}
       <section id="cloud-services" className="scroll-mt-24 bg-white py-20 md:py-28">
         <div className="section-container max-w-350">
           <div className="mb-12 flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
@@ -294,7 +406,7 @@ export default function CloudServiceClient() {
         </div>
       </section>
 
-      {/* 4. TRUSTED INFRASTRUCTURE PARTNERS (marquee) */}
+      {/* 6. TRUSTED INFRASTRUCTURE PARTNERS (marquee) */}
       <section className="overflow-hidden border-y border-ink-150 bg-ink-50 py-10">
         <div className="section-container max-w-350">
           <h3 className="mb-6 text-center text-[10px] font-bold uppercase tracking-widest text-ink-400">
@@ -319,7 +431,7 @@ export default function CloudServiceClient() {
         </div>
       </section>
 
-      {/* 5. WHY BUSINESSES CHOOSE INEXTERP CLOUD */}
+      {/* 7. WHY BUSINESSES CHOOSE INEXTERP CLOUD */}
       <section className="bg-white py-20 md:py-28">
         <div className="section-container max-w-350">
           <motion.div
@@ -368,13 +480,13 @@ export default function CloudServiceClient() {
         </div>
       </section>
 
-      {/* 6. FAQ SECTION */}
+      {/* 8. FAQ SECTION */}
       <Faq
         eyebrow="FAQs"
         items={FAQ_DATA.map(({ q, a }) => ({ question: q, answer: a }))}
       />
 
-      {/* 7. BOTTOM CTA SECTION */}
+      {/* 9. BOTTOM CTA SECTION */}
       <section className="bg-white py-20 md:py-28">
         <div className="section-container max-w-350">
           <motion.div

@@ -4,24 +4,20 @@ import ITHardwareClient from "./ITHardwareClient";
 // --- FAQ SCHEMA FOR SEO ---
 const FAQ_DATA = [
   {
-    q: "Do you sell genuine, original IT hardware?",
-    a: "Yes, all hardware is 100% genuine, sourced through authorized partnerships with brands like Dell, HP, Lenovo, and Cisco.",
+    q: "Does iNextERP directly sell hardware?",
+    a: "iNextERP is a core software provider. We do not manufacture hardware; instead, we test, certify, and recommend exact hardware models to ensure your counters run smoothly. We can also connect you with our authorized hardware partners for pre-configured devices.",
   },
   {
-    q: "Can I get bulk pricing for office-wide hardware orders?",
-    a: "Yes, competitive pricing is available for bulk orders and long-term business partnerships — request a quote for your specific requirement.",
+    q: "Can I use my existing thermal printer and barcode scanner?",
+    a: "Yes! iNextERP is designed to work with almost all standard USB, Bluetooth, LAN, and Serial hardware devices. Our deployment team will configure your existing setup during installation.",
   },
   {
-    q: "Do you provide installation and setup after purchase?",
-    a: "Yes, end-to-end installation, configuration, and testing is handled by our team as part of the hardware solution.",
+    q: "How does weighing scale integration work?",
+    a: "We connect certified digital weighing scales directly to your PC/POS via serial or USB ports. As soon as an item is placed on the scale, the exact weight and price reflect on the billing screen automatically.",
   },
   {
-    q: "Is warranty and AMC support available?",
-    a: "Yes, extended warranty and Annual Maintenance Contract (AMC) options are available for ongoing support and peace of mind.",
-  },
-  {
-    q: "Do you deliver hardware across India?",
-    a: "Yes, we offer safe, secure, and on-time delivery pan-India.",
+    q: "What if I need help choosing hardware before buying?",
+    a: "Our technical team provides a free Hardware Specification Sheet based on your business type (Retail, Grocery, Restaurant, or Warehouse) so you don't waste money on incompatible gear.",
   },
 ];
 
@@ -38,71 +34,18 @@ const faqSchema = {
   })),
 };
 
-// --- PRODUCT SCHEMA FOR SEO ---
-// Generates schema for the featured products to enable rich results
-const PRODUCTS = [
-  {
-    name: "Dell PowerEdge T150 Server",
-    desc: "Intel Xeon E-2324G, 16GB DDR4 ECC RAM, 2TB 7.2K SATA HDD enterprise server.",
-    brand: "Dell",
-    price: "89990",
-  },
-  {
-    name: "HP ProBook 440 G10",
-    desc: "Intel Core i5 13th Gen, 16GB DDR4 RAM, 512GB SSD enterprise business laptop.",
-    brand: "HP",
-    price: "74990",
-  },
-  {
-    name: "Lenovo ThinkCentre Neo 50s",
-    desc: "Intel Core i5 12th Gen, 8GB DDR4 RAM, 512GB SSD business desktop.",
-    brand: "Lenovo",
-    price: "43990",
-  },
-  {
-    name: "Cisco Business 24 Port Switch",
-    desc: "24 x Gigabit Ports, 2 x SFP Uplink, Rack Mountable networking switch.",
-    brand: "Cisco",
-    price: "16990",
-  },
-  {
-    name: "TP-Link EAP225 Wi-Fi 5 AP",
-    desc: "Dual Band Wi-Fi 5, Up to 1350 Mbps, PoE Support access point.",
-    brand: "TP-Link",
-    price: "8990",
-  },
-];
-
-const productSchemas = PRODUCTS.map((prod) => ({
-  "@context": "https://schema.org",
-  "@type": "Product",
-  name: prod.name,
-  description: prod.desc,
-  brand: {
-    "@type": "Brand",
-    name: prod.brand,
-  },
-  offers: {
-    "@type": "Offer",
-    priceCurrency: "INR",
-    price: prod.price,
-    availability: "https://schema.org/InStock",
-    url: "https://www.inexterp.com/products/it-hardware",
-  },
-}));
-
 // --- NEXT.JS METADATA ---
 export const metadata: Metadata = {
-  title: "IT Hardware Solutions India | Servers, Laptops & More | iNextERP",
+  title: "Tested & Compatible Hardware for iNextERP | Printers, Scanners & Terminals",
   description:
-    "Buy genuine enterprise IT hardware — servers, laptops, networking & security. Pan-India delivery, warranty & AMC support. Get a quote today.",
+    "Ensure zero billing delays with iNextERP certified hardware specs. Check compatible thermal printers, 1D/2D barcode scanners, electronic weighing scales, and touchscreen POS terminals.",
   alternates: {
     canonical: "https://www.inexterp.com/products/it-hardware",
   },
   openGraph: {
-    title: "IT Hardware Solutions India | Servers, Laptops & More | iNextERP",
+    title: "Tested & Compatible Hardware for iNextERP | Printers, Scanners & Terminals",
     description:
-      "Buy genuine enterprise IT hardware — servers, laptops, networking & security. Pan-India delivery, warranty & AMC support. Get a quote today.",
+      "Ensure zero billing delays with iNextERP certified hardware specs. Check compatible thermal printers, 1D/2D barcode scanners, electronic weighing scales, and touchscreen POS terminals.",
     url: "https://www.inexterp.com/products/it-hardware",
     type: "website",
     images: [
@@ -110,7 +53,7 @@ export const metadata: Metadata = {
         url: "/dashboard/inext hero.png",
         width: 1200,
         height: 630,
-        alt: "iNextERP IT hardware solutions",
+        alt: "iNextERP certified hardware compatibility",
       },
     ],
   },
@@ -119,18 +62,11 @@ export const metadata: Metadata = {
 export default function ITHardwarePage() {
   return (
     <>
-      {/* JSON-LD Schemas Injected on the Server */}
+      {/* JSON-LD Schema Injected on the Server */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      {productSchemas.map((schema, index) => (
-        <script
-          key={index}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
-      ))}
 
       {/* The Interactive UI Component */}
       <ITHardwareClient />

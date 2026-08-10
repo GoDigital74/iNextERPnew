@@ -4,28 +4,36 @@ import PointsOfSaleClient from "./PointsOfSaleClient";
 // --- FAQ DATA & SCHEMA ---
 const FAQ_DATA = [
   {
-    q: "What hardware do I need to run NextERP POS?",
-    a: "NextERP POS works with standard barcode scanners, thermal printers, and cash drawers — most existing billing hardware is compatible.",
+    q: "What hardware do I need to run iNextERP POS?",
+    a: "iNextERP POS runs on any Windows PC, Laptop, Android tablet, or POS terminal. It connects seamlessly with standard thermal receipt printers, thermal barcode scanners, cash drawers, and weighing scales.",
   },
   {
-    q: "Does NextERP POS work without internet?",
-    a: "Yes, Offline Billing mode lets you keep billing even without internet — data auto-syncs once you're back online.",
+    q: "Does iNextERP POS work without an active internet connection?",
+    a: "Yes! It features a Hybrid Offline Mode. Cashiers can generate invoices and accept payments uninterrupted during network outages; all sales data auto-syncs to the central cloud server once internet connectivity is restored.",
   },
   {
-    q: "Can I manage multiple stores from one POS system?",
-    a: "Yes, Multi-Store Management lets you monitor billing, inventory, and reports across all outlets from a single dashboard.",
+    q: "Can we show a dynamic UPI QR code on the customer screen for faster payments?",
+    a: "Absolutely. The POS screen displays a dynamic UPI QR code for the exact bill amount, allowing customers to scan and pay via GPay, PhonePe, or Paytm with instant payment confirmation on the cashier screen.",
   },
   {
-    q: "Is NextERP POS GST-compliant?",
-    a: "Yes, every invoice generated is GST-compliant and ready for filing.",
+    q: "Can I send digital invoices to customers on WhatsApp instead of paper prints?",
+    a: "Yes, in one click, iNextERP POS sends a GST-compliant digital e-invoice with your store branding directly to the customer's WhatsApp number, saving paper costs and capturing customer leads.",
   },
   {
-    q: "Does NextERP POS support restaurants as well as Retail industry?",
-    a: "Yes, NextERP POS supports both retail billing and restaurant features like KOT and table management.",
+    q: "How does iNextERP POS handle returns, exchanges, and credit notes?",
+    a: "Cashiers can scan the original bill barcode to process item exchanges or sales returns instantly, auto-generating a trackable credit note or refund while updating inventory in real time.",
   },
   {
-    q: "How long does POS setup and training take?",
-    a: "Most stores are fully set up and staff trained within 2-4 days.",
+    q: "Is iNextERP POS suitable for both Retail stores and Restaurants/QSRs?",
+    a: "Yes. It includes dedicated workflows for Retail (barcode scanning, variant matrix) as well as Restaurants/QSRs (Kitchen Order Tickets / KOT, table management, split billing, and fast-food counter checkout).",
+  },
+  {
+    q: "Can we restrict cashier permissions to prevent cash leakage or price tampering?",
+    a: "Yes, granular Role-Based Access Control (RBAC) ensures cashiers cannot edit item prices, give unauthorized discounts, or view daily total store profits without manager authorization.",
+  },
+  {
+    q: "How long does POS setup, database import, and cashier training take?",
+    a: "Setup and staff training take under 24 hours. Our onboarding team imports your item masters and barcode lists directly from Tally, Marg, or Excel with zero store downtime.",
   },
 ];
 
@@ -44,17 +52,16 @@ const faqSchema = {
 
 // --- NEXT.JS METADATA ---
 export const metadata: Metadata = {
-  title: "POS Software for Retail industry, Restaurants & Franchises | NextERP",
+  title: "Retail POS Software with 3-Sec Billing & Offline Mode | iNextERP",
   description:
-    "Fast, GST-compliant POS software for retail, restaurants & multi-store businesses. Offline billing, UPI/card payments, real-time inventory sync. Book a free demo.",
+    "Lightning-fast retail POS software for multi-store billing, dynamic UPI QR counters, WhatsApp e-invoicing, weighing scale sync, and hybrid offline billing.",
   alternates: {
     canonical: "https://www.inexterp.com/services/points-of-sale",
   },
   openGraph: {
-    title:
-      "POS Software for Retail industry, Restaurants & Franchises | NextERP",
+    title: "Retail POS Software with 3-Sec Billing & Offline Mode | iNextERP",
     description:
-      "Fast, GST-compliant POS software for retail, restaurants & multi-store businesses. Offline billing, UPI/card payments, real-time inventory sync.",
+      "Lightning-fast retail POS software for multi-store billing, dynamic UPI QR counters, WhatsApp e-invoicing, weighing scale sync, and hybrid offline billing.",
     url: "https://www.inexterp.com/services/points-of-sale",
     type: "website",
     images: [

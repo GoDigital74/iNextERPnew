@@ -29,7 +29,7 @@ export function Faq({
   className,
 }: FaqProps) {
   return (
-    <section className={cn("relative overflow-hidden py-20 md:py-28", className)}>
+    <section className={cn("relative overflow-hidden py-12 md:py-10", className)}>
       {/* Decorative background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-b from-ink-50 via-white to-ink-50" />
@@ -49,10 +49,10 @@ export function Faq({
         />
       </div>
 
-      <div className="section-container relative max-w-3xl">
-        <div className="mb-12 text-center md:mb-16">
+      <div className="section-container relative max-w-5xl">
+        <div className="mb-6 text-center md:mb-10">
           <div className="eyebrow mx-auto mb-5 w-fit">{eyebrow}</div>
-          <h2 className="text-3xl font-bold text-ink-900 md:text-4xl lg:text-5xl">
+          <h2 className="text-2xl font-bold text-ink-900 md:text-3xl lg:text-5xl">
             {title}
           </h2>
           {subtitle ? (
@@ -73,7 +73,7 @@ export function Faq({
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-50 text-sm font-bold text-brand-600">
                   {String(idx + 1).padStart(2, "0")}
                 </span>
-                <span className="flex-1 text-lg font-bold md:text-xl">
+                <span className="flex-1 text-lg font-semibold md:text-xl">
                   {faq.question}
                 </span>
               </AccordionTrigger>

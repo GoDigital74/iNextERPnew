@@ -25,6 +25,8 @@ import {
   FileSpreadsheet,
   Wallet,
   ArrowRightLeft,
+  Globe,
+  BellRing,
 } from "lucide-react";
 import { Faq } from "@/components/sections/Faq";
 import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
@@ -62,24 +64,36 @@ const TOUR_CONTENT = [
 // --- FAQ DATA ---
 const FAQ_DATA = [
   {
-    q: "Is iNextERP Accounting GST-compliant?",
-    a: "Yes. Every transaction automatically calculates CGST/SGST/IGST, and the module supports GSTR-1, GSTR-3B, and GSTR-9 filing directly from your books.",
+    q: "Is iNextERP Accounting fully compliant with Indian GST laws and E-Invoicing rules?",
+    a: "Yes, 100%! iNextERP automatically calculates CGST/SGST/IGST based on HSN/SAC codes and generates E-Invoices and E-Way bills directly from sales vouchers via direct NIC portal integration.",
   },
   {
-    q: "Can I manage multiple companies or business entities in one account?",
-    a: "Yes. iNextERP supports multi-company accounting, so you can maintain separate books for each entity while retaining consolidated visibility.",
+    q: "Can we sync accounting data between iNextERP and Tally?",
+    a: "Yes. iNextERP features a seamless two-way Tally integration, allowing you to sync item masters, customer ledgers, and voucher entries with Tally XML export/import in seconds.",
   },
   {
-    q: "Does iNextERP integrate with Tally?",
-    a: "Yes, iNextERP syncs masters, vouchers, and financial data two-way with Tally, keeping both systems reconciled.",
+    q: "How does automated bank reconciliation work in iNextERP?",
+    a: "You can upload electronic bank statements (e.g., CSV/Excel from HDFC, ICICI, SBI, Axis) or use direct bank feeds. The system auto-matches deposits and withdrawals against ledger entries in seconds.",
   },
   {
-    q: "How does bank reconciliation work in iNextERP?",
-    a: "Bank statements are imported and auto-matched against your transaction records, flagging only genuine mismatches for manual review instead of requiring line-by-line checking.",
+    q: "Can I manage accounting for multiple companies or group entities under one login?",
+    a: "Absolutely. You can maintain separate legal books, GSTINs, and chart of accounts for unlimited group entities while viewing consolidated financial performance from a single master dashboard.",
   },
   {
-    q: "Can I track TDS and fixed assets in the same system?",
-    a: "Yes. TDS payable, paid, and balance are tracked automatically, and fixed assets are managed with depreciation schedules and net block reporting — no separate spreadsheet needed.",
+    q: "How does iNextERP handle TDS (Tax Deducted at Source) calculations and returns?",
+    a: "The software automatically deducts section-wise TDS (e.g., 194C, 194J, 194Q) on purchase/expense vouchers, tracks running TDS payable/receivable balances, and generates data for Form 26Q and 27Q filing.",
+  },
+  {
+    q: "Does iNextERP maintain a complete Audit Trail for statutory compliance?",
+    a: "Yes, every financial voucher entry, edit, or deletion is logged with exact user timestamps, IP addresses, and approval history to ensure 100% audit compliance for chartered accountants (CAs).",
+  },
+  {
+    q: "Can we track Accounts Receivable aging and send automated payment reminders?",
+    a: "Yes. iNextERP tracks aging ledgers (30/60/90 days) and allows you to dispatch automated payment reminder statements with integrated UPI payment links directly on customer WhatsApp numbers.",
+  },
+  {
+    q: "How long does it take to migrate opening balances and ledgers from Tally or Excel?",
+    a: "Data migration takes under 24 hours. Our onboarding specialists import your Chart of Accounts, opening balances, party ledgers, and stock valuations seamlessly with zero accounting downtime.",
   },
 ];
 
@@ -140,12 +154,11 @@ export default function AccountsClient() {
                 <span className="h-1.5 w-1.5 rounded-full bg-accent-400" />
                 Accounting Software India
               </motion.div>
-              <motion.h1 variants={heroItem} className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
-                Accounting That&rsquo;s Accurate.<br />
-                Insights That <span className="text-brand-400">Grow.</span>
+              <motion.h1 variants={heroItem} className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.1] tracking-tight">
+                Cloud GST Accounting Software Built for 100% Tax Compliance &amp; <span className="text-brand-400">Real-Time Cash Flow</span>
               </motion.h1>
               <motion.p variants={heroItem} className="text-ink-300 text-base md:text-lg max-w-md leading-relaxed mt-1 font-medium">
-                Automate workflows, stay GST-compliant, and gain real-time insights to scale your business.
+                Automate voucher entries, generate direct E-Invoices, reconcile bank statements in minutes, and file GSTR returns without manual errors.
               </motion.p>
 
               <motion.div variants={heroItem} className="flex flex-col sm:flex-row items-center gap-3 mt-4">
@@ -181,6 +194,20 @@ export default function AccountsClient() {
               </div>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* 1B. TRUST BADGES STRIP */}
+      <section className="bg-ink-50 border-b border-ink-150 py-4">
+        <div className="section-container max-w-350">
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
+            {["Direct GST & E-Invoicing", "Tally Two-Way Sync", "Auto Bank Reconciliation", "Granular Audit Trail"].map((item, i, arr) => (
+              <div key={item} className="flex items-center gap-3">
+                <span className="text-xs md:text-sm font-semibold text-ink-700">{item}</span>
+                {i !== arr.length - 1 && <span className="text-ink-300">|</span>}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -449,6 +476,33 @@ export default function AccountsClient() {
                 <PieChart className="w-10 h-10 text-brand-300 opacity-70 mb-2" />
               </div>
             </motion.div>
+
+            <motion.div variants={itemVariants} className="card-surface card-surface-hover p-8 flex flex-col min-h-80">
+              <div className="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center mb-6">
+                <Globe className="w-6 h-6" />
+              </div>
+              <h3 className="font-bold text-ink-900 text-xl mb-3">Multi-Currency &amp; Cross-Border Accounting</h3>
+              <p className="text-sm text-ink-500 mb-6 leading-relaxed">Handle import/export vouchers with automated foreign exchange gain/loss calculations and multi-currency ledger balances.</p>
+              <div className="mt-auto grid grid-cols-4 gap-2 text-xs text-ink-700 font-medium">
+                <div className="bg-ink-50 py-2 px-2 rounded text-center">USD</div>
+                <div className="bg-ink-50 py-2 px-2 rounded text-center">EUR</div>
+                <div className="bg-ink-50 py-2 px-2 rounded text-center">GBP</div>
+                <div className="bg-ink-50 py-2 px-2 rounded text-center">AED</div>
+              </div>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="card-surface card-surface-hover p-8 flex flex-col min-h-80">
+              <div className="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center mb-6">
+                <BellRing className="w-6 h-6" />
+              </div>
+              <h3 className="font-bold text-ink-900 text-xl mb-3">Automated Credit Period &amp; Outstanding Payment Reminders</h3>
+              <p className="text-sm text-ink-500 mb-6 leading-relaxed">Set debtor credit limits, track aging reports (0-30, 30-60, 90+ days), and send automated payment reminder links via WhatsApp and email.</p>
+              <div className="mt-auto grid grid-cols-3 gap-2 text-xs font-bold">
+                <div className="bg-emerald-50 text-emerald-700 py-2 px-2 rounded text-center">0-30</div>
+                <div className="bg-amber-50 text-amber-700 py-2 px-2 rounded text-center">30-60</div>
+                <div className="bg-red-50 text-red-700 py-2 px-2 rounded text-center">90+</div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -653,7 +707,7 @@ export default function AccountsClient() {
                 Take Control.<br />Drive Profits.
               </h2>
               <p className="text-ink-400 text-sm md:text-base mb-6 max-w-sm mx-auto lg:mx-0">
-                Join 500+ businesses trusting NextERP Accounting to manage their finances with confidence.
+                Join 500+ businesses trusting iNextERP Accounting to manage their finances with confidence.
               </p>
             </div>
 

@@ -16,7 +16,6 @@ import {
   Printer,
   RefreshCw,
   Zap,
-  ShieldCheck,
   RotateCcw,
   BarChart,
   LayoutDashboard,
@@ -30,6 +29,8 @@ import {
   Utensils,
   Shirt,
   Network,
+  Wallet,
+  Plug,
 } from "lucide-react";
 import { Faq } from "@/components/sections/Faq";
 import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
@@ -101,6 +102,8 @@ const CORE_FEATURES = [
   { icon: RotateCcw, title: "Easy Returns & Exchanges", desc: "Process order cancellations, item exchanges, and generate credit notes quickly and directly from the register interface." },
   { icon: BarChart, title: "Advanced Reports", desc: "Get key metrics on register collections, top-selling items, employee performance, and multi-store profit margins." },
   { icon: Printer, title: "GST-Compliant Invoicing", desc: "Generate GST-ready invoices automatically with every sale — no manual tax calculation needed, ready for direct filing." },
+  { icon: MessageCircle, title: "WhatsApp Digital E-Invoicing", desc: "Reduce paper roll costs and build customer databases by sending instant digital GST invoices, payment receipts, and offers directly to customer WhatsApp numbers." },
+  { icon: Wallet, title: "Shift-Wise Cash Drawer Reconciliation", desc: "Track opening balances, cash drops, card/UPI sales, and register variances per cashier shift to prevent counter cash leaks and unauthorized discounts." },
 ];
 
 const INDUSTRIES = [
@@ -112,28 +115,36 @@ const INDUSTRIES = [
 
 const FAQ_DATA = [
   {
-    q: "What hardware do I need to run NextERP POS?",
-    a: "NextERP POS works with standard barcode scanners, thermal printers, and cash drawers — most existing billing hardware is compatible.",
+    q: "What hardware do I need to run iNextERP POS?",
+    a: "iNextERP POS runs on any Windows PC, Laptop, Android tablet, or POS terminal. It connects seamlessly with standard thermal receipt printers, thermal barcode scanners, cash drawers, and weighing scales.",
   },
   {
-    q: "Does NextERP POS work without internet?",
-    a: "Yes, Offline Billing mode lets you keep billing even without internet — data auto-syncs once you're back online.",
+    q: "Does iNextERP POS work without an active internet connection?",
+    a: "Yes! It features a Hybrid Offline Mode. Cashiers can generate invoices and accept payments uninterrupted during network outages; all sales data auto-syncs to the central cloud server once internet connectivity is restored.",
   },
   {
-    q: "Can I manage multiple stores from one POS system?",
-    a: "Yes, Multi-Store Management lets you monitor billing, inventory, and reports across all outlets from a single dashboard.",
+    q: "Can we show a dynamic UPI QR code on the customer screen for faster payments?",
+    a: "Absolutely. The POS screen displays a dynamic UPI QR code for the exact bill amount, allowing customers to scan and pay via GPay, PhonePe, or Paytm with instant payment confirmation on the cashier screen.",
   },
   {
-    q: "Is NextERP POS GST-compliant?",
-    a: "Yes, every invoice generated is GST-compliant and ready for filing.",
+    q: "Can I send digital invoices to customers on WhatsApp instead of paper prints?",
+    a: "Yes, in one click, iNextERP POS sends a GST-compliant digital e-invoice with your store branding directly to the customer's WhatsApp number, saving paper costs and capturing customer leads.",
   },
   {
-    q: "Does NextERP POS support restaurants as well as Retail industry?",
-    a: "Yes, NextERP POS supports both retail billing and restaurant features like KOT and table management.",
+    q: "How does iNextERP POS handle returns, exchanges, and credit notes?",
+    a: "Cashiers can scan the original bill barcode to process item exchanges or sales returns instantly, auto-generating a trackable credit note or refund while updating inventory in real time.",
   },
   {
-    q: "How long does POS setup and training take?",
-    a: "Most stores are fully set up and staff trained within 2-4 days.",
+    q: "Is iNextERP POS suitable for both Retail stores and Restaurants/QSRs?",
+    a: "Yes. It includes dedicated workflows for Retail (barcode scanning, variant matrix) as well as Restaurants/QSRs (Kitchen Order Tickets / KOT, table management, split billing, and fast-food counter checkout).",
+  },
+  {
+    q: "Can we restrict cashier permissions to prevent cash leakage or price tampering?",
+    a: "Yes, granular Role-Based Access Control (RBAC) ensures cashiers cannot edit item prices, give unauthorized discounts, or view daily total store profits without manager authorization.",
+  },
+  {
+    q: "How long does POS setup, database import, and cashier training take?",
+    a: "Setup and staff training take under 24 hours. Our onboarding team imports your item masters and barcode lists directly from Tally, Marg, or Excel with zero store downtime.",
   },
 ];
 
@@ -195,15 +206,15 @@ export default function PointsOfSaleClient() {
                 <span className="h-1.5 w-1.5 rounded-full bg-accent-400" />
                 POS Software
               </motion.div>
-              <motion.h1 variants={heroItem} className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
-                Smarter POS.
+              <motion.h1 variants={heroItem} className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.1] tracking-tight">
+                Cloud POS Software Built for
                 <br />
-                Faster Billing.
+                3-Second Counter Billing
                 <br />
-                <span className="text-brand-400">Happier Customers.</span>
+                <span className="text-brand-400">& Zero Queues.</span>
               </motion.h1>
               <motion.p variants={heroItem} className="text-ink-300 text-base md:text-lg max-w-md leading-relaxed mt-1 font-medium">
-                Lightning-fast billing, real-time inventory sync, and offline mode.
+                Keep billing uninterrupted even during internet outages. Sync multi-store stock, show dynamic UPI QR codes, and deliver instant WhatsApp receipts.
               </motion.p>
 
               <motion.div variants={heroItem} className="flex flex-col sm:flex-row items-center gap-3 mt-4">
@@ -215,13 +226,13 @@ export default function PointsOfSaleClient() {
                 </button>
               </motion.div>
 
-              {/* Feature strip */}
+              {/* Trust Badges Strip */}
               <motion.div variants={heroItem} className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-4">
                 {[
-                  { name: "Offline Mode", icon: WifiOff },
-                  { name: "Multi-store", icon: RefreshCw },
-                  { name: "Secure Pay", icon: ShieldCheck },
-                  { name: "Easy Returns", icon: RotateCcw },
+                  { name: "3-Sec Counter Speed", icon: Zap },
+                  { name: "Hybrid Offline Billing", icon: WifiOff },
+                  { name: "WhatsApp E-Invoices", icon: MessageCircle },
+                  { name: "Dynamic UPI QR", icon: QrCode },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-1.5 text-xs text-ink-300 font-medium">
                     <item.icon className="w-3.5 h-3.5 text-brand-400 shrink-0" /> {item.name}
@@ -500,6 +511,31 @@ export default function PointsOfSaleClient() {
                 {integration}
               </span>
             ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* 7B. HARDWARE COMPATIBILITY BANNER */}
+      <section className="py-16 bg-ink-50 border-b border-ink-150">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="section-container max-w-250"
+        >
+          <div className="card-surface p-8 md:p-10 flex flex-col md:flex-row items-center md:items-start gap-6 text-center md:text-left">
+            <div className="w-14 h-14 shrink-0 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600 border border-brand-100">
+              <Plug className="w-7 h-7" />
+            </div>
+            <div>
+              <h2 className="text-xl md:text-2xl font-bold text-ink-900 mb-3">
+                Tested &amp; Pre-Configured Hardware Compatibility
+              </h2>
+              <p className="text-ink-600 text-sm md:text-base leading-relaxed">
+                Works effortlessly out-of-the-box with TVS, Epson, Citizen, Zebra thermal receipt printers, Honeywell/Datalogic barcode scanners, electronic weighing scales, and dual-display customer screens with zero driver conflicts.
+              </p>
+            </div>
           </div>
         </motion.div>
       </section>

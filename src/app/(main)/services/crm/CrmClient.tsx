@@ -45,6 +45,15 @@ const WORKFLOW_STEPS = [
   { icon: Heart, title: "Retain", desc: "Build loyalty" },
 ];
 
+const TRUST_BADGES = [
+  { icon: MessageCircle, label: "WhatsApp Automation" },
+  { icon: Magnet, label: "IndiaMART & Meta Ads Lead Sync" },
+  { icon: Filter, label: "Dynamic Lead Scoring" },
+  { icon: Smartphone, label: "Native Android/iOS Mobile CRM" },
+];
+
+const LEAD_SOURCES = ["IndiaMART", "TradeIndia", "Meta Ads", "Google Ads", "Web Forms"];
+
 const TOUR_TABS = [
   { name: "Overview", icon: LayoutDashboard },
   { name: "Leads", icon: Magnet },
@@ -95,24 +104,36 @@ const TOUR_CONTENT = [
 
 const FAQ_DATA = [
   {
-    q: "Can I score and prioritize leads automatically in iNextERP CRM?",
-    a: "Yes, leads are scored automatically based on engagement and fit, so your team can focus on the highest-potential opportunities first.",
+    q: "Can iNextERP CRM automatically capture leads from IndiaMART, Facebook Ads, and Web Forms?",
+    a: "Yes! iNextERP CRM features built-in API integrations to pull leads in real time from IndiaMART, TradeIndia, Meta (Facebook/Instagram) Ads, Google Ads, and custom website forms without manual entry.",
   },
   {
-    q: "Does iNextERP CRM have a mobile app?",
-    a: "Yes, the mobile CRM app is available on both App Store and Google Play, letting your sales team manage leads and deals on the go.",
+    q: "Does iNextERP CRM support WhatsApp marketing and automated messaging?",
+    a: "Absolutely. You can trigger automated WhatsApp welcome messages, payment reminder links, quotation PDFs, and deal-stage updates directly to prospects via integrated WhatsApp Business API.",
   },
   {
-    q: "Can I automate follow-ups and tasks when a new lead comes in?",
-    a: "Yes, workflow automation can auto-assign tasks, send emails, and add leads to the pipeline the moment they're created.",
+    q: "How does the lead scoring and distribution engine work?",
+    a: "Leads are scored based on intent, company size, budget, and activity. High-score leads are automatically assigned to sales reps using Round-Robin or Location-based rules to ensure fast first-response times.",
   },
   {
-    q: "Does the CRM track email opens and replies?",
-    a: "Yes, all email activity — sent, opened, and replied — is tracked and logged automatically against each contact.",
+    q: "Is there a Mobile CRM app for field sales executives?",
+    a: "Yes! The native Android and iOS Mobile CRM app lets field sales agents log meeting notes, update deal stages, navigate to client locations, and place sales orders directly from the field.",
   },
   {
-    q: "Can I see sales forecasts based on my current pipeline?",
-    a: "Yes, sales forecasting calculates expected revenue from your live pipeline stages and historical win rates.",
+    q: "Can I track email opens, click-throughs, and customer meeting logs?",
+    a: "Yes. All email interactions, sent proposals, opened attachments, and scheduled meetings are automatically logged in the lead's 360-degree timeline view.",
+  },
+  {
+    q: "Does iNextERP CRM integrate directly with iNextERP Inventory and Accounting?",
+    a: "Seamlessly! Once a deal is marked \"Won,\" you can convert the quotation into a Sales Order or Tax Invoice in one click without duplicating data entry in inventory or accounting systems.",
+  },
+  {
+    q: "How does sales forecasting work in iNextERP CRM?",
+    a: "The AI forecasting module analyzes weighted deal pipeline values, deal stages, and historical team win rates to project expected monthly and quarterly revenues accurately.",
+  },
+  {
+    q: "How long does it take to migrate current contacts and deals from Excel or Zoho CRM?",
+    a: "Data migration takes under 24 hours. Our team helps bulk-import your historical contact lists, lead sources, and deal stages using simple Excel templates with zero downtime.",
   },
 ];
 
@@ -187,12 +208,12 @@ export default function CrmClient() {
                 <span className="h-1.5 w-1.5 rounded-full bg-accent-400" />
                 CRM Software India
               </motion.div>
-              <motion.h1 variants={heroItem} className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight">
-                Build Relationships.<br />
-                Close <span className="text-brand-400">More Deals.</span>
+              <motion.h1 variants={heroItem} className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.15] tracking-tight">
+                B2B Sales CRM Software Built for{" "}
+                <span className="text-brand-400">Multi-Source Leads &amp; Automated Follow-Ups</span>
               </motion.h1>
               <motion.p variants={heroItem} className="text-ink-300 text-sm md:text-base max-w-md leading-relaxed mt-1 font-medium">
-                Attract the right leads, build lasting relationships, and close deals faster with complete visibility and automation.
+                Never lose a lead again. Capture inquiries instantly from WhatsApp, IndiaMART, Facebook Ads, and web forms with automated sales rep assignment and deal pipeline visibility.
               </motion.p>
 
               <motion.div variants={heroItem} className="flex flex-col sm:flex-row items-center gap-3 mt-2">
@@ -231,7 +252,21 @@ export default function CrmClient() {
         </div>
       </section>
 
-      {/* 2. SMART CRM WORKFLOW */}
+      {/* 2. TRUST BADGES STRIP */}
+      <section className="py-6 bg-white border-b border-ink-150">
+        <div className="section-container max-w-350">
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 sm:justify-between">
+            {TRUST_BADGES.map((badge, i) => (
+              <div key={i} className="flex items-center gap-2 text-xs font-bold text-ink-600 md:text-sm">
+                <badge.icon className="w-4 h-4 text-brand-600 shrink-0" />
+                {badge.label}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. SMART CRM WORKFLOW */}
       <section className="py-16 bg-white border-b border-ink-150">
         <div className="section-container max-w-350">
           <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-start">
@@ -271,7 +306,7 @@ export default function CrmClient() {
         </div>
       </section>
 
-      {/* 3. PRODUCT TOUR (Interactive Clickable Tabs) */}
+      {/* 4. PRODUCT TOUR (Interactive Clickable Tabs) */}
       <section className="py-16 bg-ink-50">
         <div className="section-container max-w-350">
           <motion.div
@@ -405,7 +440,7 @@ export default function CrmClient() {
         </div>
       </section>
 
-      {/* 4. POWERFUL CRM FEATURES GRID */}
+      {/* 5. POWERFUL CRM FEATURES GRID */}
       <section className="py-16 bg-white">
         <div className="section-container max-w-350">
           <div className="text-center mb-10">
@@ -495,11 +530,31 @@ export default function CrmClient() {
                 </div>
               </div>
             </motion.div>
+
+            <motion.div variants={itemVariants} className="xl:col-span-1 card-surface card-surface-hover p-5 flex flex-col h-60">
+              <h3 className="font-bold text-ink-900 text-xs mb-1.5">WhatsApp & Call Log Automation</h3>
+              <p className="text-[9px] text-ink-500 mb-auto leading-relaxed">Send automated WhatsApp templates on lead assignment, quote creation, and deal updates, while logging call duration and notes from the mobile app.</p>
+              <div className="mt-3 flex flex-col gap-1.5">
+                <div className="flex items-center gap-1.5 text-[8px] font-bold text-ink-700 bg-ink-50 p-1 rounded"><MessageCircle className="w-3 h-3 text-emerald-500 shrink-0" /> Lead Assigned → WhatsApp Sent</div>
+                <div className="flex items-center gap-1.5 text-[8px] font-bold text-ink-700 bg-ink-50 p-1 rounded"><MessageCircle className="w-3 h-3 text-emerald-500 shrink-0" /> Quote Created → WhatsApp Sent</div>
+                <div className="flex items-center gap-1.5 text-[8px] font-bold text-ink-700 bg-ink-50 p-1 rounded"><PhoneCall className="w-3 h-3 text-brand-500 shrink-0" /> Call Logged — 4m 32s</div>
+              </div>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="xl:col-span-1 card-surface card-surface-hover p-5 flex flex-col h-60">
+              <h3 className="font-bold text-ink-900 text-xs mb-1.5">Lead Capture & Distribution Engine</h3>
+              <p className="text-[9px] text-ink-500 mb-auto leading-relaxed">Auto-fetch leads from IndiaMART, TradeIndia, Facebook/Instagram Ads, Google Ads, and website forms into one central inbox using round-robin distribution rules.</p>
+              <div className="mt-3 flex flex-wrap gap-1">
+                {LEAD_SOURCES.map((src) => (
+                  <span key={src} className="text-[8px] font-bold text-brand-700 bg-brand-50 border border-brand-100 px-1.5 py-0.5 rounded">{src}</span>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* 5. SALES PIPELINE & DEAL MANAGEMENT */}
+      {/* 6. SALES PIPELINE & DEAL MANAGEMENT */}
       <section className="py-16 bg-ink-50 border-t border-ink-150">
         <div className="section-container max-w-350">
           <div className="flex flex-col lg:flex-row gap-12 items-center">
@@ -566,7 +621,7 @@ export default function CrmClient() {
         </div>
       </section>
 
-      {/* 6. INDUSTRY USE CASES */}
+      {/* 7. INDUSTRY USE CASES */}
       <section className="py-16 bg-white">
         <div className="section-container max-w-350">
           <div className="text-center mb-12">
@@ -594,7 +649,7 @@ export default function CrmClient() {
         </div>
       </section>
 
-      {/* 7. BEFORE VS AFTER SECTION (Dark accent band) */}
+      {/* 8. BEFORE VS AFTER SECTION (Dark accent band) */}
       <section className="py-16 bg-ink-950 border-t border-white/8">
         <div className="section-container max-w-350">
           <div className="text-center mb-10">
@@ -615,7 +670,7 @@ export default function CrmClient() {
               </div>
               <div className="absolute inset-0 bg-linear-to-r from-black via-black/80 to-transparent" />
               <div className="relative z-10">
-                <div className="inline-block bg-white/8 text-ink-300 font-bold text-[10px] px-3 py-1.5 rounded-full mb-6 border border-white/10">Before NextERP CRM</div>
+                <div className="inline-block bg-white/8 text-ink-300 font-bold text-[10px] px-3 py-1.5 rounded-full mb-6 border border-white/10">Before iNextERP CRM</div>
                 <ul className="space-y-4">
                   {["Leads lost in spreadsheets", "No clear follow-ups", "Scattered communication", "Low conversion rates", "No visibility on pipeline", "Manual, time-consuming tasks"].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-xs text-ink-300 font-medium">
@@ -638,7 +693,7 @@ export default function CrmClient() {
               </div>
               <div className="relative z-10 flex flex-col md:flex-row gap-8 w-full">
                 <div className="flex-1 text-white">
-                  <div className="inline-block bg-brand-900/40 text-brand-300 font-bold text-[10px] px-3 py-1.5 rounded-full mb-6 border border-brand-700/40">After NextERP CRM</div>
+                  <div className="inline-block bg-brand-900/40 text-brand-300 font-bold text-[10px] px-3 py-1.5 rounded-full mb-6 border border-brand-700/40">After iNextERP CRM</div>
                   <ul className="space-y-4">
                     {["All leads in one place", "Timely follow-ups", "Unified communication", "Higher conversion rates", "Complete pipeline visibility", "Automated & efficient workflows"].map((item, i) => (
                       <li key={i} className="flex items-center gap-3 text-xs text-ink-100 font-bold">
@@ -673,7 +728,7 @@ export default function CrmClient() {
         </div>
       </section>
 
-      {/* 8. INTEGRATIONS PREVIEW */}
+      {/* 9. INTEGRATIONS PREVIEW */}
       <section className="py-10 bg-brand-600 text-white border-t border-brand-700">
         <div className="section-container max-w-250 text-center">
           <p className="text-sm md:text-base font-medium">
@@ -682,10 +737,10 @@ export default function CrmClient() {
         </div>
       </section>
 
-      {/* 9. FAQ SECTION */}
+      {/* 10. FAQ SECTION */}
       <Faq items={FAQ_DATA.map(({ q, a }) => ({ question: q, answer: a }))} />
 
-      {/* 10. BOTTOM CTA SECTION (Dark accent band) */}
+      {/* 11. BOTTOM CTA SECTION (Dark accent band) */}
       <section className="relative bg-ink-950 py-20 overflow-hidden border-t border-white/10">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,var(--tw-gradient-stops))] from-brand-900/40 via-ink-950/0 to-transparent pointer-events-none" />
 
@@ -714,7 +769,7 @@ export default function CrmClient() {
                 Stronger Relationships.<br />Higher Conversions.
               </h2>
               <p className="text-ink-400 text-sm md:text-base mb-6 max-w-md mx-auto lg:mx-0">
-                Join 500+ businesses that trust NextERP CRM to grow sales and build lasting customer relationships.
+                Join 500+ businesses that trust iNextERP CRM to grow sales and build lasting customer relationships.
               </p>
             </div>
 

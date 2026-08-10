@@ -31,6 +31,10 @@ import {
   Receipt,
   FileBadge,
   ArrowRightLeft,
+  Zap,
+  MapPin,
+  Smartphone,
+  LogOut,
 } from "lucide-react";
 import { Faq } from "@/components/sections/Faq";
 import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
@@ -72,24 +76,36 @@ const TOUR_CONTENT = [
 
 const FAQ_DATA = [
   {
-    q: "Does iNextERP HRM support biometric attendance?",
-    a: "Yes, it supports biometric, face-recognition, and geo-tagged attendance capture, syncing automatically into attendance records.",
+    q: "Does iNextERP HRM support both Biometric devices and Mobile Geo-Fenced attendance?",
+    a: "Yes! iNextERP syncs natively with physical biometric hardware (Essl, Realtime, ZKTeco) and includes a mobile app with GPS geo-fencing and face recognition for field employees.",
   },
   {
-    q: "Is payroll processing compliant with PF, ESI, and TDS regulations?",
-    a: "Yes, PF, ESI, Professional Tax, and TDS on salary are calculated automatically per employee and factored into every payroll run, with statutory reports available for filing.",
+    q: "Is payroll processing compliant with Indian PF, ESI, Professional Tax (PT), and TDS laws?",
+    a: "100%. The system automatically calculates PF, ESI, LWF, PT (state-wise), and income tax TDS (New & Old Slabs) per employee, generating ready-to-file ECR challans and Form 16 at year-end.",
   },
   {
-    q: "Can employees apply for leave and check payslips themselves?",
-    a: "Yes, the Employee Self-Service portal lets employees check attendance status, apply for leave, view leave balances, and download payslips without HR intervention.",
+    q: "Can employees access their payslips and apply for leaves on their smartphones?",
+    a: "Yes, our Employee Self-Service (ESS) portal and Mobile App allow employees to apply for leaves, track approval status, view holiday calendars, submit investment proofs, and download monthly payslips in PDF format.",
   },
   {
-    q: "Does iNextERP HRM handle the full recruitment process?",
-    a: "Yes, the recruitment pipeline tracks candidates from application through interview to onboarding, with visibility into open positions and hires.",
+    q: "How does iNextERP HRM handle Shift Management and Overtime (OT) calculations?",
+    a: "You can configure multi-shift rosters, rotational shifts, grace period rules, and night shift allowances. Overtime is calculated automatically based on attendance logs and approved OT workflows.",
   },
   {
-    q: "Can I set and track employee performance goals?",
-    a: "Yes, the Performance Management feature lets you set goals, track progress percentage, and conduct structured reviews with a visible rating history.",
+    q: "Can we customize Leave Policies, Sandwich Rules, and Encashment settings?",
+    a: "Absolutely. Define flexible leave types (Casual, Sick, Earned, Maternity) with custom accrual logic, carry-forward limits, sandwich deduction rules, and annual leave encashment formulas.",
+  },
+  {
+    q: "Does iNextERP HRM handle the full Recruitment and Candidate Onboarding lifecycle?",
+    a: "Yes. Track candidates from job opening requisition to interview feedback, auto-generate digital Offer Letters, and seamlessly convert selected candidates into active employee master records.",
+  },
+  {
+    q: "How does the HR module connect with iNextERP Accounting and Financials?",
+    a: "Payroll processing automatically generates direct journal entries in iNextERP Accounting, crediting salary payables, bank disbursement accounts, and statutory liability accounts (PF/ESI/TDS) in one click.",
+  },
+  {
+    q: "How long does it take to migrate employee masters, attendance logs, and salary structures?",
+    a: "Data migration takes under 24 hours. Our HR implementation team helps import your employee details, salary structures (CTC breakdown), leave balances, and historical data using simple Excel templates.",
   },
 ];
 
@@ -150,13 +166,15 @@ export default function HrmClient() {
                 <span className="h-1.5 w-1.5 rounded-full bg-accent-400" />
                 HR Software India
               </motion.div>
-              <motion.h1 variants={heroItem} className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight">
-                Empower People.<br />
-                Simplify HR.<br />
-                Build <span className="text-brand-400">Culture.</span>
+              <motion.h1 variants={heroItem} className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.1] tracking-tight">
+                Cloud HR & Payroll Software
+                <br />
+                Built for 1-Click Payroll &
+                <br />
+                <span className="text-brand-400">Geo-Tagged Attendance.</span>
               </motion.h1>
               <motion.p variants={heroItem} className="text-ink-300 text-sm md:text-base max-w-md leading-relaxed mt-1 font-medium">
-                Automate HR operations, engage employees, and build a productive, people-first organization.
+                Eliminate payroll errors, automate PF/ESI/TDS statutory compliance, and capture multi-location attendance via biometric devices or mobile selfie geo-fencing.
               </motion.p>
 
               <motion.div variants={heroItem} className="flex flex-col sm:flex-row items-center gap-3 mt-2">
@@ -168,10 +186,16 @@ export default function HrmClient() {
                 </button>
               </motion.div>
 
+              {/* Trust Badges Strip */}
               <motion.div variants={heroItem} className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-4">
-                {["Employee Self Service", "Smart Attendance", "Payroll Automation", "Performance Mgmt"].map((item) => (
-                  <div key={item} className="flex items-center gap-1.5 text-xs text-ink-300 font-medium">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-brand-400" /> {item}
+                {[
+                  { name: "1-Click Payroll Processing", icon: Zap },
+                  { name: "Biometric & Geo-Fence Mobile Attendance", icon: MapPin },
+                  { name: "Auto PF/ESI/PT & Form 16", icon: Landmark },
+                  { name: "Employee Self-Service App", icon: Smartphone },
+                ].map((item) => (
+                  <div key={item.name} className="flex items-center gap-1.5 text-xs text-ink-300 font-medium">
+                    <item.icon className="w-3.5 h-3.5 text-brand-400 shrink-0" /> {item.name}
                   </div>
                 ))}
               </motion.div>
@@ -468,6 +492,30 @@ export default function HrmClient() {
                 </div>
               </div>
             </motion.div>
+
+            <motion.div variants={itemVariants} className="xl:col-span-3 card-surface card-surface-hover p-5 flex flex-col h-70">
+              <h3 className="font-bold text-ink-900 text-xs mb-1.5">Employee Self-Service (ESS) Mobile Portal &amp; App</h3>
+              <p className="text-[13px] text-ink-500 mb-auto leading-relaxed">Empower employees to view/download monthly payslips, apply for leaves, submit Form 12BB tax declarations, and mark remote attendance directly from smartphones.</p>
+              <div className="mt-3 grid grid-cols-4 gap-1.5">
+                {[{ name: "Payslips", icon: FileText }, { name: "Leaves", icon: Calendar }, { name: "Form 12BB", icon: FileBadge }, { name: "Attendance", icon: MapPin }].map((i, idx) => (
+                  <div key={idx} className="flex flex-col items-center gap-1">
+                    <div className="w-10 h-10 bg-brand-50 rounded-xl flex items-center justify-center border border-brand-100"><i.icon className="w-4 h-4 text-brand-600" /></div>
+                    <div className="text-[9px] text-ink-600 font-medium text-center">{i.name}</div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="xl:col-span-3 card-surface card-surface-hover p-5 flex flex-col h-70">
+              <h3 className="font-bold text-ink-900 text-xs mb-1.5">Full &amp; Final (F&amp;F) Settlement Engine</h3>
+              <p className="text-[13px] text-ink-500 mb-auto leading-relaxed">Automate employee offboarding with 1-click encashable leave payout calculations, notice period recovery, gratuity estimation, and automated exit clearance workflows.</p>
+              <div className="mt-3 flex flex-col gap-1.5 text-[13px] text-ink-600">
+                <div className="flex justify-between items-center border-b border-ink-100 pb-1"><span>Leave Encashment</span><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" /></div>
+                <div className="flex justify-between items-center border-b border-ink-100 pb-1"><span>Notice Period Recovery</span><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" /></div>
+                <div className="flex justify-between items-center border-b border-ink-100 pb-1"><span>Gratuity Estimation</span><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" /></div>
+                <div className="flex justify-between items-center"><span>Exit Clearance Workflow</span><LogOut className="w-3.5 h-3.5 text-brand-600" /></div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -642,7 +690,7 @@ export default function HrmClient() {
                 Your People. Your Strength.<br />Our HRM. Your Growth.
               </h2>
               <p className="text-ink-400 text-sm md:text-base mb-6 max-w-md mx-auto lg:mx-0">
-                Join 500+ businesses that trust NextERP HRM to empower their people and drive success.
+                Join 500+ businesses that trust iNextERP HRM to empower their people and drive success.
               </p>
             </div>
 

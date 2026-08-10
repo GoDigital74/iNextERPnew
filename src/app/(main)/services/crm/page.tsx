@@ -4,24 +4,36 @@ import CrmClient from "./CrmClient";
 // --- FAQ DATA & SCHEMA ---
 const FAQ_DATA = [
   {
-    q: "Can I score and prioritize leads automatically in iNextERP CRM?",
-    a: "Yes, leads are scored automatically based on engagement and fit, so your team can focus on the highest-potential opportunities first.",
+    q: "Can iNextERP CRM automatically capture leads from IndiaMART, Facebook Ads, and Web Forms?",
+    a: "Yes! iNextERP CRM features built-in API integrations to pull leads in real time from IndiaMART, TradeIndia, Meta (Facebook/Instagram) Ads, Google Ads, and custom website forms without manual entry.",
   },
   {
-    q: "Does iNextERP CRM have a mobile app?",
-    a: "Yes, the mobile CRM app is available on both App Store and Google Play, letting your sales team manage leads and deals on the go.",
+    q: "Does iNextERP CRM support WhatsApp marketing and automated messaging?",
+    a: "Absolutely. You can trigger automated WhatsApp welcome messages, payment reminder links, quotation PDFs, and deal-stage updates directly to prospects via integrated WhatsApp Business API.",
   },
   {
-    q: "Can I automate follow-ups and tasks when a new lead comes in?",
-    a: "Yes, workflow automation can auto-assign tasks, send emails, and add leads to the pipeline the moment they're created.",
+    q: "How does the lead scoring and distribution engine work?",
+    a: "Leads are scored based on intent, company size, budget, and activity. High-score leads are automatically assigned to sales reps using Round-Robin or Location-based rules to ensure fast first-response times.",
   },
   {
-    q: "Does the CRM track email opens and replies?",
-    a: "Yes, all email activity — sent, opened, and replied — is tracked and logged automatically against each contact.",
+    q: "Is there a Mobile CRM app for field sales executives?",
+    a: "Yes! The native Android and iOS Mobile CRM app lets field sales agents log meeting notes, update deal stages, navigate to client locations, and place sales orders directly from the field.",
   },
   {
-    q: "Can I see sales forecasts based on my current pipeline?",
-    a: "Yes, sales forecasting calculates expected revenue from your live pipeline stages and historical win rates.",
+    q: "Can I track email opens, click-throughs, and customer meeting logs?",
+    a: "Yes. All email interactions, sent proposals, opened attachments, and scheduled meetings are automatically logged in the lead's 360-degree timeline view.",
+  },
+  {
+    q: "Does iNextERP CRM integrate directly with iNextERP Inventory and Accounting?",
+    a: "Seamlessly! Once a deal is marked \"Won,\" you can convert the quotation into a Sales Order or Tax Invoice in one click without duplicating data entry in inventory or accounting systems.",
+  },
+  {
+    q: "How does sales forecasting work in iNextERP CRM?",
+    a: "The AI forecasting module analyzes weighted deal pipeline values, deal stages, and historical team win rates to project expected monthly and quarterly revenues accurately.",
+  },
+  {
+    q: "How long does it take to migrate current contacts and deals from Excel or Zoho CRM?",
+    a: "Data migration takes under 24 hours. Our team helps bulk-import your historical contact lists, lead sources, and deal stages using simple Excel templates with zero downtime.",
   },
 ];
 
@@ -40,9 +52,9 @@ const faqSchema = {
 
 // --- NEXT.JS METADATA ---
 export const metadata: Metadata = {
-  title: "CRM Software for Sales Teams India | iNextERP",
+  title: "B2B Sales CRM Software with WhatsApp Automation & Lead Scoring",
   description:
-    "Manage leads, track pipelines & close more deals with iNextERP CRM. Lead scoring, sales forecasting & workflow automation built for Indian businesses.",
+    "Capture leads from Facebook, Google Ads, IndiaMART, and website forms into iNextERP CRM. Features automated WhatsApp messaging, deal pipeline tracking, sales forecasting, and mobile CRM.",
   alternates: {
     canonical: "https://www.inexterp.com/services/crm",
   },

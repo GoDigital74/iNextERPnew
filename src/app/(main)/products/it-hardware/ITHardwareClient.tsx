@@ -5,144 +5,104 @@ import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
 import {
   ArrowRight,
-  Phone,
   ShieldCheck,
-  Truck,
+  Zap,
   Wrench,
   MessageCircle,
-  Settings,
-  Tag,
-  Server,
-  Laptop,
-  Monitor,
-  Router,
-  Network,
-  Wifi,
+  Phone,
+  MonitorSmartphone,
   Printer,
-  Shield,
-  Keyboard,
-  ShoppingBag,
-  Factory,
-  Warehouse,
+  Barcode,
+  Scale,
+  Archive,
+  Network,
+  RefreshCw,
+  Handshake,
+  Check,
+  X,
 } from "lucide-react";
 import { Faq } from "@/components/sections/Faq";
 
 // --- DATA CONFIGURATION ---
+const TRUST_BADGES = [
+  "100% Plug & Play Tested",
+  "Supports Existing Hardware",
+  "Zero Driver Lag",
+  "Pan-India Setup Support",
+];
+
 const CATEGORIES = [
   {
-    name: "Servers & Storage",
-    desc: "High-performance servers and storage systems for critical business workloads, from single-server setups to multi-node deployments.",
-    icon: Server,
+    name: "POS Billing Terminals & Touch Displays",
+    desc: "Compatible with standard Windows PCs, dual-screen Android POS terminals, and mobile billing tablets.",
+    icon: MonitorSmartphone,
   },
   {
-    name: "Business Laptops",
-    desc: "Reliable, portable laptops configured for enterprise use — bulk order pricing available for teams and offices.",
-    icon: Laptop,
-  },
-  {
-    name: "Desktops & Workstations",
-    desc: "Desktop and workstation setups built for professional workloads, from standard office use to design/engineering-grade specs.",
-    icon: Monitor,
-  },
-  {
-    name: "Networking",
-    desc: "Switches, routers, and access points for dependable business connectivity — single-office to multi-branch deployments.",
-    icon: Router,
-  },
-  {
-    name: "Printers & Scanners",
-    desc: "Business-grade printing and scanning hardware, configured for office and retail counter environments.",
+    name: "Thermal Receipt & Label Printers",
+    desc: "Tested with 2-inch and 3-inch USB, LAN, and Bluetooth printers (Epson, TVS, Citizen, etc.) for instant GST billing and barcode stickers.",
     icon: Printer,
   },
   {
-    name: "Security & Surveillance",
-    desc: "CCTV, access control, and surveillance hardware to protect your premises and assets.",
-    icon: Shield,
+    name: "1D & 2D Barcode Scanners",
+    desc: "Plug-and-play support for handheld scanners, wireless Bluetooth readers, and high-speed omnidirectional desktop scanners (Honeywell, Zebra, TVS).",
+    icon: Barcode,
   },
   {
-    name: "Accessories & Peripherals",
-    desc: "Keyboards, mice, docking stations, and other essentials to complete your business hardware setup.",
-    icon: Keyboard,
+    name: "Electronic Weighing Scales",
+    desc: "Seamless RS232/USB serial integration for live weight and rate sync — tested for grocery, sweets, and fresh produce counters.",
+    icon: Scale,
+  },
+  {
+    name: "Cash Drawers & Customer Displays",
+    desc: "Auto-opening cash drawers triggered on invoice print, along with dual customer-facing LED/LCD price displays.",
+    icon: Archive,
+  },
+  {
+    name: "Enterprise Laptops, Servers & Networking",
+    desc: "Recommended server and local network (LAN/Wi-Fi) configurations for multi-terminal and multi-branch database sync.",
+    icon: Network,
   },
 ];
 
-
-const FEATURES = [
+const COMPARISON_DATA = [
   {
-    icon: Server,
-    title: "Genuine Enterprise Hardware",
-    desc: "Partnered with top global brands for quality and reliability.",
+    feature: "Counter Setup Time",
+    generic: "Hours spent on driver troubleshooting",
+    certified: "5-Minute Plug & Play Config",
   },
   {
-    icon: Settings,
-    title: "Custom Configuration",
-    desc: "Tailored solutions to match your business needs and workloads.",
+    feature: "Weighing Scale Sync",
+    generic: "Frequent weight lag / price mismatch",
+    certified: "Sub-second live weight transfer",
   },
   {
-    icon: Tag,
-    title: "Best Business Pricing",
-    desc: "Competitive pricing for bulk orders and long-term partnerships.",
+    feature: "System Reliability",
+    generic: "Software crashes due to printer driver loops",
+    certified: "100% Stable & Tested Compatibility",
   },
   {
-    icon: Wrench,
-    title: "Installation & Deployment",
-    desc: "End-to-end installation, configuration and testing by experts.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Warranty & AMC Support",
-    desc: "Extended warranty and AMC options for complete peace of mind.",
-  },
-  {
-    icon: Truck,
-    title: "Pan-India Delivery",
-    desc: "Safe, secure and on-time delivery across India.",
+    feature: "Support Experience",
+    generic: "Hardware & software vendors blame each other",
+    certified: "Single-point technical guidance from iNextERP",
   },
 ];
-
-const INDUSTRIES = [
-  {
-    title: "Retail industry",
-    desc: "POS, billing & security hardware for retail",
-    icon: ShoppingBag,
-    link: "/industries/retail-erp-software",
-  },
-  {
-    title: "Manufacturing Units",
-    desc: "Rugged systems for demanding environments",
-    icon: Factory,
-    link: "/industries/manufacturing-erp-software",
-  },
-  {
-    title: "Warehouses",
-    desc: "Barcode, scanning & inventory hardware",
-    icon: Warehouse,
-    link: "/services/inventory-management",
-  },
-];
-
-const BRANDS = ["Dell", "HP", "Lenovo", "Microsoft", "Cisco", "APC", "Logitech", "Intel", "Samsung"];
 
 const FAQ_DATA = [
   {
-    q: "Do you sell genuine, original IT hardware?",
-    a: "Yes, all hardware is 100% genuine, sourced through authorized partnerships with brands like Dell, HP, Lenovo, and Cisco.",
+    q: "Does iNextERP directly sell hardware?",
+    a: "iNextERP is a core software provider. We do not manufacture hardware; instead, we test, certify, and recommend exact hardware models to ensure your counters run smoothly. We can also connect you with our authorized hardware partners for pre-configured devices.",
   },
   {
-    q: "Can I get bulk pricing for office-wide hardware orders?",
-    a: "Yes, competitive pricing is available for bulk orders and long-term business partnerships — request a quote for your specific requirement.",
+    q: "Can I use my existing thermal printer and barcode scanner?",
+    a: "Yes! iNextERP is designed to work with almost all standard USB, Bluetooth, LAN, and Serial hardware devices. Our deployment team will configure your existing setup during installation.",
   },
   {
-    q: "Do you provide installation and setup after purchase?",
-    a: "Yes, end-to-end installation, configuration, and testing is handled by our team as part of the hardware solution.",
+    q: "How does weighing scale integration work?",
+    a: "We connect certified digital weighing scales directly to your PC/POS via serial or USB ports. As soon as an item is placed on the scale, the exact weight and price reflect on the billing screen automatically.",
   },
   {
-    q: "Is warranty and AMC support available?",
-    a: "Yes, extended warranty and Annual Maintenance Contract (AMC) options are available for ongoing support and peace of mind.",
-  },
-  {
-    q: "Do you deliver hardware across India?",
-    a: "Yes, we offer safe, secure, and on-time delivery pan-India.",
+    q: "What if I need help choosing hardware before buying?",
+    a: "Our technical team provides a free Hardware Specification Sheet based on your business type (Retail, Grocery, Restaurant, or Warehouse) so you don't waste money on incompatible gear.",
   },
 ];
 
@@ -163,11 +123,6 @@ const itemVariants: Variants = {
   hidden: { opacity: 0, y: 28 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 };
-
-function quoteLink(productName: string) {
-  const text = `Hi, I'm interested in the ${productName}. Could you share a quote?`;
-  return `https://wa.me/919211995156?text=${encodeURIComponent(text)}`;
-}
 
 export default function ITHardwareClient() {
   return (
@@ -199,20 +154,21 @@ export default function ITHardwareClient() {
                 className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-accent-400" />
-                IT Hardware Solutions
+                Hardware Compatibility Guide
               </motion.div>
 
-              <motion.h1 variants={heroItem} className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-                Enterprise IT Infrastructure,{" "}
+              <motion.h1 variants={heroItem} className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+                Tested & Certified{" "}
                 <span className="bg-linear-to-r from-brand-300 via-accent-300 to-white bg-clip-text text-transparent">
-                  Built for Performance
-                </span>
+                  Hardware Compatibility
+                </span>{" "}
+                for iNextERP
               </motion.h1>
 
               <motion.p variants={heroItem} className="max-w-lg text-sm leading-relaxed text-ink-300 sm:text-base">
-                Power your business with reliable, secure and scalable IT
-                hardware from world-leading brands. Configured. Delivered.
-                Supported by experts.
+                Eliminating setup delays and driver conflicts. We test,
+                certify, and recommend the exact hardware models that run
+                seamlessly with our ERP and POS software.
               </motion.p>
 
               <motion.div variants={heroItem} className="mt-2 flex flex-col items-center gap-3 sm:flex-row">
@@ -220,29 +176,23 @@ export default function ITHardwareClient() {
                   href="#categories"
                   className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white px-6 text-sm font-bold text-brand-700 shadow-lg shadow-black/20 transition-all hover:-translate-y-0.5 hover:bg-brand-50 sm:w-auto"
                 >
-                  Explore Solutions <ArrowRight className="h-4 w-4" />
+                  View Recommended Hardware Specs <ArrowRight className="h-4 w-4" />
                 </a>
-                <a
-                  href="https://wa.me/919211995156"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/contact"
                   className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-white/20 bg-transparent px-6 text-sm font-bold text-white transition-all hover:bg-white/10 sm:w-auto"
                 >
-                  Chat on WhatsApp <MessageCircle className="h-4 w-4" />
-                </a>
+                  Get Hardware Guidance
+                </Link>
               </motion.div>
 
               {/* Trust Badges */}
               <motion.div variants={heroItem} className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-white/10 pt-6">
-                <div className="flex items-center gap-1.5 text-xs font-medium text-ink-300">
-                  <ShieldCheck className="h-4 w-4 text-brand-300" /> 100% Genuine Products
-                </div>
-                <div className="flex items-center gap-1.5 text-xs font-medium text-ink-300">
-                  <Truck className="h-4 w-4 text-brand-300" /> Pan-India Delivery
-                </div>
-                <div className="flex items-center gap-1.5 text-xs font-medium text-ink-300">
-                  <Wrench className="h-4 w-4 text-brand-300" /> Warranty & AMC Support
-                </div>
+                {TRUST_BADGES.map((badge) => (
+                  <div key={badge} className="flex items-center gap-1.5 text-xs font-medium text-ink-300">
+                    <ShieldCheck className="h-4 w-4 text-brand-300" /> {badge}
+                  </div>
+                ))}
               </motion.div>
             </div>
 
@@ -251,8 +201,8 @@ export default function ITHardwareClient() {
               <div className="pointer-events-none absolute -inset-6 rounded-4xl bg-linear-to-br from-brand-500/25 via-accent-500/10 to-transparent blur-3xl" />
               <div className="relative h-75 w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl sm:h-100 lg:h-125">
                 <Image
-                  src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=1600"
-                  alt="enterprise IT hardware servers and network infrastructure"
+                  src="https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&q=80&w=1600"
+                  alt="tested POS billing counter with thermal printer and barcode scanner"
                   fill
                   unoptimized
                   className="object-cover"
@@ -265,12 +215,75 @@ export default function ITHardwareClient() {
         </div>
       </section>
 
-      {/* 2. SHOP BY CATEGORY */}
-      <section id="categories" className="scroll-mt-24 bg-white py-20 md:py-28">
+      {/* 2. SOLUTION BOX: WHY HARDWARE COMPATIBILITY MATTERS */}
+      <section className="bg-white py-20 md:py-28">
+        <div className="section-container max-w-350">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="overflow-hidden rounded-4xl border border-ink-150 bg-ink-50"
+          >
+            <div className="p-8 md:p-12">
+              <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-start md:gap-6">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-brand-100 bg-white shadow-sm">
+                  <ShieldCheck className="h-7 w-7 text-brand-600" />
+                </div>
+                <div>
+                  <h2 className="mb-3 text-2xl font-bold text-ink-900 md:text-3xl">
+                    Why We Guide Your Hardware Selection
+                  </h2>
+                  <p className="max-w-3xl text-sm leading-relaxed text-ink-500 sm:text-base">
+                    Buying random hardware often leads to weight-scale lag,
+                    printer driver crashes, or scanner read errors during
+                    rush hours. We pre-test hardware devices so your store
+                    setup delivers sub-second billing speed from Day 1.
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                <div className="flex items-start gap-4 rounded-2xl border border-ink-150 bg-white p-6">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                    <RefreshCw className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="mb-1.5 text-sm font-bold text-ink-900 md:text-base">
+                      Bring Your Own Hardware (BYOH)
+                    </h3>
+                    <p className="text-xs leading-relaxed text-ink-500 md:text-sm">
+                      Already have thermal printers or scanners? We test and
+                      connect your existing setup.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 rounded-2xl border border-ink-150 bg-white p-6">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                    <Handshake className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="mb-1.5 text-sm font-bold text-ink-900 md:text-base">
+                      Procure via Certified Partners
+                    </h3>
+                    <p className="text-xs leading-relaxed text-ink-500 md:text-sm">
+                      Need new devices? We connect you with authorized
+                      partners for pre-configured, tested hardware.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 3. CATEGORY GRID: COMPATIBLE HARDWARE ECOSYSTEM */}
+      <section id="categories" className="scroll-mt-24 bg-ink-50 py-20 md:py-28">
         <div className="section-container max-w-350">
           <div className="mb-12 text-center lg:text-left">
-            <div className="eyebrow mx-auto mb-5 w-fit lg:mx-0">What We Supply</div>
-            <h2 className="text-2xl font-bold text-ink-900 md:text-3xl">Shop by Category</h2>
+            <div className="eyebrow mx-auto mb-5 w-fit lg:mx-0">What We Test</div>
+            <h2 className="text-2xl font-bold text-ink-900 md:text-3xl">Compatible Hardware Ecosystem</h2>
           </div>
 
           <motion.div
@@ -278,7 +291,7 @@ export default function ITHardwareClient() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
           >
             {CATEGORIES.map((cat, i) => (
               <motion.div
@@ -300,98 +313,76 @@ export default function ITHardwareClient() {
         </div>
       </section>
 
-      {/* 4. WHY CHOOSE INEXTERP */}
+      {/* 4. COMPATIBILITY COMPARISON */}
       <section className="bg-white py-20 md:py-28">
         <div className="section-container max-w-350">
           <div className="mb-12 text-center">
-            <div className="eyebrow mx-auto mb-5 w-fit">Why Choose Us</div>
-            <h2 className="text-2xl font-bold text-ink-900 md:text-3xl">Why Choose iNextERP for IT Hardware?</h2>
+            <div className="eyebrow mx-auto mb-5 w-fit">The Difference</div>
+            <h2 className="text-2xl font-bold text-ink-900 md:text-3xl">
+              Generic Setup vs Certified iNextERP Setup
+            </h2>
           </div>
 
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="show"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            transition={{ duration: 0.6 }}
+            className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-ink-150 bg-white shadow-lg shadow-ink-900/5"
           >
-            {FEATURES.map((feat, i) => (
-              <motion.div key={i} variants={itemVariants} className="flex items-start gap-4 rounded-2xl border border-transparent p-4 transition-colors hover:border-ink-150 hover:bg-ink-50">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-brand-100 bg-brand-50">
-                  <feat.icon className="h-6 w-6 text-brand-600" />
-                </div>
-                <div>
-                  <h3 className="mb-1.5 text-sm font-bold text-ink-900 md:text-base">{feat.title}</h3>
-                  <p className="text-xs leading-relaxed text-ink-500">{feat.desc}</p>
-                </div>
-              </motion.div>
-            ))}
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-160 border-collapse text-left">
+                <thead>
+                  <tr className="border-b border-ink-150 bg-ink-50/60">
+                    <th className="w-[28%] py-4 px-5 text-xs font-bold uppercase tracking-wider text-ink-500">
+                      Feature
+                    </th>
+                    <th className="w-[36%] py-4 px-5 text-left text-xs font-bold uppercase tracking-wider text-ink-500">
+                      Generic Un-tested Hardware
+                    </th>
+                    <th className="w-[36%] border-l border-ink-150 bg-brand-50 py-4 px-5 text-left text-xs font-bold uppercase tracking-wider text-brand-700">
+                      iNextERP Tested Setup
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-ink-100">
+                  {COMPARISON_DATA.map((row, idx) => (
+                    <tr key={idx} className="transition-colors hover:bg-ink-50/60">
+                      <td className="py-4 px-5 text-sm font-bold text-ink-800">
+                        {row.feature}
+                      </td>
+                      <td className="py-4 px-5 align-top">
+                        <div className="flex items-start gap-2">
+                          <X className="mt-0.5 h-4 w-4 shrink-0 text-ink-400" />
+                          <span className="text-xs leading-relaxed text-ink-500 sm:text-sm">
+                            {row.generic}
+                          </span>
+                        </div>
+                      </td>
+                      <td className="border-l border-ink-100 bg-brand-50/40 py-4 px-5 align-top">
+                        <div className="flex items-start gap-2">
+                          <Check className="mt-0.5 h-4 w-4 shrink-0 stroke-3 text-emerald-600" />
+                          <span className="text-xs font-medium leading-relaxed text-ink-800 sm:text-sm">
+                            {row.certified}
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* 5. SOLUTIONS FOR EVERY INDUSTRY + BRANDS */}
-      <section className="bg-ink-50 py-20 md:py-28">
-        <div className="section-container max-w-350">
-          <div className="mb-12 text-center">
-            <h2 className="text-2xl font-bold text-ink-900 md:text-3xl">Solutions for Every Industry</h2>
-          </div>
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-1 gap-6 sm:grid-cols-3"
-          >
-            {INDUSTRIES.map((ind, i) => (
-              <motion.div key={i} variants={itemVariants}>
-                <Link
-                  href={ind.link}
-                  className="group card-surface card-surface-hover flex flex-col items-center p-6 text-center"
-                >
-                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-brand-100 bg-brand-50 text-brand-600 transition-transform group-hover:-translate-y-1">
-                    <ind.icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="mb-2 text-sm font-bold text-ink-900">{ind.title}</h3>
-                  <p className="text-[10px] leading-relaxed text-ink-500">{ind.desc}</p>
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Brands marquee */}
-          <div className="mt-16 border-t border-ink-150 pt-10">
-            <div className="mb-6 text-center text-[10px] font-bold tracking-wider text-ink-400 uppercase">
-              We partner with global leaders
-            </div>
-            <div className="relative mx-auto w-full max-w-[100vw] overflow-hidden mask-fade-x">
-              <motion.div
-                className="flex w-max items-center"
-                animate={{ x: ["0%", "-50%"] }}
-                transition={{ repeat: Infinity, ease: "linear", duration: 26 }}
-              >
-                {[...BRANDS, ...BRANDS].map((brand, idx) => (
-                  <div
-                    key={`${brand}-${idx}`}
-                    className="flex shrink-0 items-center justify-center px-8 text-lg font-bold text-ink-500 opacity-70 md:px-12"
-                  >
-                    {brand}
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. FAQ SECTION */}
+      {/* 5. FAQ SECTION */}
       <Faq
         eyebrow="FAQs"
         items={FAQ_DATA.map(({ q, a }) => ({ question: q, answer: a }))}
       />
 
-      {/* 7. BOTTOM CTA SECTION */}
+      {/* 6. FINAL CTA BANNER */}
       <section className="bg-ink-50 py-20 md:py-28">
         <div className="section-container max-w-350">
           <motion.div
@@ -404,18 +395,28 @@ export default function ITHardwareClient() {
             <div className="pointer-events-none absolute -left-16 -top-16 h-72 w-72 rounded-full bg-white/10 blur-[100px]" />
 
             <div className="relative z-10 flex flex-col justify-center p-10 text-white lg:w-1/2 lg:p-16">
-              <div className="mb-3 text-[10px] font-bold uppercase tracking-widest text-brand-100">
-                Not Sure What Hardware You Need?
+              <div className="mb-3 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-brand-100">
+                <Zap className="h-3.5 w-3.5" /> Free Hardware Audit
               </div>
-              <h2 className="mb-6 max-w-xl text-2xl font-bold leading-tight md:text-4xl">
-                Let our experts design the right IT infrastructure for your business.
+              <h2 className="mb-4 max-w-xl text-2xl font-bold leading-tight md:text-4xl">
+                Unsure If Your Current Hardware Will Work?
               </h2>
+              <p className="mb-6 max-w-lg text-sm leading-relaxed text-brand-50">
+                Speak with our setup specialists to audit your existing
+                hardware or get a recommended specs list.
+              </p>
               <div className="flex flex-col gap-4 sm:flex-row">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-bold text-brand-700 shadow-xl transition-all hover:-translate-y-0.5 hover:bg-brand-50"
+                >
+                  Get Free Hardware Audit <ArrowRight className="h-4 w-4" />
+                </Link>
                 <a
                   href="https://wa.me/919211995156"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-bold text-brand-700 shadow-xl transition-all hover:-translate-y-0.5 hover:bg-brand-50"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-transparent px-6 py-3.5 text-sm font-bold text-white transition-all hover:bg-white/10"
                 >
                   <MessageCircle className="h-4 w-4" /> Chat on WhatsApp
                 </a>
@@ -425,15 +426,15 @@ export default function ITHardwareClient() {
             <div className="relative z-10 flex w-full items-center justify-center p-10 lg:w-1/2 lg:p-16">
               <div className="w-full max-w-sm rounded-3xl border border-white/15 bg-white/10 p-6 text-center text-white backdrop-blur-md md:p-8">
                 <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white/15">
-                  <Phone className="h-8 w-8" />
+                  <Wrench className="h-8 w-8" />
                 </div>
-                <h3 className="mb-2 text-xl font-bold">Need a custom quote?</h3>
+                <h3 className="mb-2 text-xl font-bold">Need setup guidance?</h3>
                 <p className="mb-6 text-xs text-brand-50">
-                  Our hardware specialists are ready to help you configure the
-                  perfect setup for your team.
+                  Our hardware specialists are ready to verify your existing
+                  devices or recommend certified models for your counter.
                 </p>
-                <div className="rounded-xl border border-white/15 bg-white/10 py-3 text-lg font-bold">
-                  +91 8527262031
+                <div className="flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/10 py-3 text-lg font-bold">
+                  <Phone className="h-4 w-4" /> +91 8527262031
                 </div>
               </div>
             </div>

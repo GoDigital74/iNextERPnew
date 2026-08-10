@@ -100,7 +100,7 @@ export default function WholesaleDistributionPage() {
               Wholesale & Distribution ERP
             </div>
 
-            <h1 className="animate-in fade-in slide-in-from-bottom-6 fill-mode-both duration-700 delay-100 text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-6 max-w-4xl leading-tight [text-shadow:0_2px_30px_rgba(0,0,0,0.45)]">
+            <h1 className="animate-in fade-in slide-in-from-bottom-6 fill-mode-both duration-700 delay-100 text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-6 max-w-4xl leading-tight [text-shadow:0_2px_30px_rgba(0,0,0,0.45)]">
               From{" "}
               <span className="bg-[linear-gradient(100deg,#8fd8ff_0%,#d6f0ff_45%,#ffffff_100%)] bg-clip-text text-transparent">
                 Warehouse to Dealer
