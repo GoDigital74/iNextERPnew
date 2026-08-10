@@ -206,7 +206,7 @@ export default function PointsOfSaleClient() {
                 <span className="h-1.5 w-1.5 rounded-full bg-accent-400" />
                 POS Software
               </motion.div>
-              <motion.h1 variants={heroItem} className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.1] tracking-tight">
+              <motion.h1 variants={heroItem} className="text-2xl md:text-4xl lg:text-4xl font-semibold leading-[1.1] tracking-tight">
                 Cloud POS Software Built for
                 <br />
                 3-Second Counter Billing

@@ -23,6 +23,10 @@ import { getClientLogos } from "@/lib/clientLogos";
 import type { ClientLogo } from "@/components/sections/TrustedLogos";
 import { Faq } from "@/components/sections/Faq";
 
+// Revalidate periodically so Trusted Logos edits in Sanity Studio show up
+// without a full redeploy (this page is otherwise statically generated).
+export const revalidate = 300;
+
 export const metadata: Metadata = {
   title: "Retail Store ERP & POS Software India | iNextERP",
   description:

@@ -300,7 +300,7 @@ function ApparelClient() {
       </section>
 
       {/* Modules Section */}
-      <section className="py-16 bg-white">
+      <section className="py-10 bg-white">
         <div className="section-container">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-ink-900 mb-4">

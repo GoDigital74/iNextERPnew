@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
 import {
   ArrowRight,
@@ -124,6 +125,29 @@ const FEATURES = [
     icon: TrendingDown,
     title: "Dead Stock & Capital Analytics",
     desc: "Identify slow-moving items blocking working capital and set automated promotional discount triggers before stock expires.",
+  },
+];
+
+const MODULES = [
+  {
+    title: "IT Hardware",
+    desc: "certified barcode scanners, weighing scales & handheld PDAs",
+    link: "/products/it-hardware",
+  },
+  {
+    title: "Point of Sale",
+    desc: "counter billing synced with live stock the instant it sells",
+    link: "/services/points-of-sale",
+  },
+  {
+    title: "Manufacturing",
+    desc: "BOM-linked raw material consumption on the shop floor",
+    link: "/services/manufacturing",
+  },
+  {
+    title: "Wholesale & Distribution",
+    desc: "bulk stock transfers and depot-wise inventory visibility",
+    link: "/industries/wholesale-distribution-erp-software",
   },
 ];
 
@@ -485,10 +509,43 @@ export default function InventoryClient() {
         </div>
       </section>
 
-      {/* 9. FAQ SECTION */}
+      {/* 9. Modules Section */}
+      <section className="py-20 bg-white">
+        <div className="section-container max-w-350">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-ink-900 leading-tight">
+              Works Seamlessly With These Modules
+            </h2>
+          </div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2"
+          >
+            {MODULES.map((mod, i) => (
+              <motion.div key={i} variants={itemVariants}>
+                <Link href={mod.link} className="group block h-full">
+                  <div className="flex h-full flex-col rounded-xl border border-ink-150 bg-ink-50 p-6 shadow-sm transition-all hover:border-brand-300">
+                    <h3 className="mb-2 flex items-center justify-between text-lg font-bold text-ink-900 transition-colors group-hover:text-brand-600">
+                      {mod.title}
+                      <ArrowRight className="h-5 w-5 -translate-x-4 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
+                    </h3>
+                    <p className="text-[13px] text-ink-500">{mod.desc}</p>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 10. FAQ SECTION */}
       <Faq items={FAQ_DATA.map(({ q, a }) => ({ question: q, answer: a }))} />
 
-      {/* 10. FINAL CTA SECTION (Dark accent band) */}
+      {/* 11. FINAL CTA SECTION (Dark accent band) */}
       <section className="relative bg-ink-950 py-20 overflow-hidden">
         <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,var(--tw-gradient-stops))] from-brand-900/40 via-ink-950/0 to-transparent pointer-events-none" />
 

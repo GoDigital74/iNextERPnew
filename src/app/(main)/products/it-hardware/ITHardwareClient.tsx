@@ -87,6 +87,29 @@ const COMPARISON_DATA = [
   },
 ];
 
+const MODULES = [
+  {
+    title: "ERP Software",
+    desc: "the cloud platform every terminal, printer, and scanner connects to",
+    link: "/products/erp-software",
+  },
+  {
+    title: "Point of Sale",
+    desc: "3-second counter billing running on tested, certified hardware",
+    link: "/services/points-of-sale",
+  },
+  {
+    title: "Inventory Management",
+    desc: "barcode scanners & weighing scales synced to live stock counts",
+    link: "/services/inventory-management",
+  },
+  {
+    title: "Retail Industry",
+    desc: "hardware bundles built for busy multi-store retail counters",
+    link: "/industries/retail-erp-software",
+  },
+];
+
 const FAQ_DATA = [
   {
     q: "Does iNextERP directly sell hardware?",
@@ -376,13 +399,46 @@ export default function ITHardwareClient() {
         </div>
       </section>
 
-      {/* 5. FAQ SECTION */}
+      {/* 5. Modules Section */}
+      <section className="bg-white py-20 md:py-28">
+        <div className="section-container max-w-350">
+          <div className="mb-12 text-center">
+            <h2 className="text-2xl font-bold text-ink-900 md:text-3xl">
+              Complete Your Setup With These Modules
+            </h2>
+          </div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2"
+          >
+            {MODULES.map((mod, i) => (
+              <motion.div key={i} variants={itemVariants}>
+                <Link href={mod.link} className="group block h-full">
+                  <div className="flex h-full flex-col rounded-xl border border-ink-150 bg-ink-50 p-6 shadow-sm transition-all hover:border-brand-300">
+                    <h3 className="mb-2 flex items-center justify-between text-lg font-bold text-ink-900 transition-colors group-hover:text-brand-600">
+                      {mod.title}
+                      <ArrowRight className="h-5 w-5 -translate-x-4 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
+                    </h3>
+                    <p className="text-[13px] text-ink-500">{mod.desc}</p>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 6. FAQ SECTION */}
       <Faq
         eyebrow="FAQs"
         items={FAQ_DATA.map(({ q, a }) => ({ question: q, answer: a }))}
       />
 
-      {/* 6. FINAL CTA BANNER */}
+      {/* 7. FINAL CTA BANNER */}
       <section className="bg-ink-50 py-20 md:py-28">
         <div className="section-container max-w-350">
           <motion.div

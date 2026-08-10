@@ -7,32 +7,6 @@ export type ClientLogo = {
   src: string;
 };
 
-const CLIENT_LOGOS: ClientLogo[] = [
-  { id: 1, name: "Agrawal Saree Center", src: "/clients/AgrawalSareeCenter.webp" },
-  { id: 2, name: "Aisha Creation", src: "/clients/Aisha_Creation.webp" },
-  { id: 3, name: "Bansal Saree NX", src: "/clients/Bansal Saree NX.webp" },
-  { id: 4, name: "Bansal Group", src: "/clients/BANSAL_GROUP.webp" },
-  { id: 5, name: "CSH", src: "/clients/CSH.webp" },
-  { id: 6, name: "FR", src: "/clients/FR.webp" },
-  { id: 7, name: "Logo Kamni", src: "/clients/LOGO KAMNI.webp" },
-  { id: 8, name: "Mamta Saree", src: "/clients/MamtaSaree.webp" },
-  { id: 9, name: "Neha Muzaffernagar", src: "/clients/Neha_Muzaffernagar.webp" },
-  { id: 10, name: "Paridhan", src: "/clients/Paridhan.webp" },
-  { id: 11, name: "Roop Milan", src: "/clients/roop milan 8x5a.pdf.webp" },
-  { id: 12, name: "Samander Haritage", src: "/clients/SamanderHaritage.webp" },
-  { id: 13, name: "Season Saree", src: "/clients/SeasonSaree.webp" },
-  { id: 14, name: "Sheesh Mahal Saree Wala", src: "/clients/SheeshMahalSareeWala.webp" },
-  { id: 15, name: "Shreeji Emporium", src: "/clients/SHREEJI EMPORIUM_page-0001.jpg.webp" },
-  { id: 16, name: "Tana Bana", src: "/clients/TanaBana.webp" },
-  { id: 17, name: "Tanjor", src: "/clients/Tanjor.webp" },
-  { id: 18, name: "TIA", src: "/clients/TIA.webp" },
-  { id: 19, name: "Utsav", src: "/clients/UTSAV.webp" },
-  { id: 20, name: "Vandana", src: "/clients/vandana.webp" },
-  { id: 21, name: "Vastrakala", src: "/clients/VASTRAKALA with logo black.webp" },
-  { id: 22, name: "Wonder Bazar", src: "/clients/WonderBazar.webp" },
-];
-
-
 // Below this count, duplicating logos to fake an infinite scroll just makes
 // the same logo repeat right next to itself — show a plain static row instead.
 const MIN_LOGOS_FOR_MARQUEE = 6;
@@ -59,9 +33,14 @@ export function TrustedLogos({
   logos?: ClientLogo[];
   showHeading?: boolean;
 }) {
-  // Prefer logos managed in Sanity Studio; fall back to the built-in list
-  // until at least one Client Logo document is published.
-  const activeLogos = logos && logos.length > 0 ? logos : CLIENT_LOGOS;
+  // Sourced entirely from the Sanity "Trusted Logos" document — nothing to
+  // show until at least one Client Logo is published there.
+  const activeLogos = logos ?? [];
+
+  if (activeLogos.length === 0) {
+    return null;
+  }
+
   const canMarquee = activeLogos.length >= MIN_LOGOS_FOR_MARQUEE;
 
   // Split the list into two rows for the marquee

@@ -22,6 +22,10 @@ import {
 import { Faq } from '@/components/sections/Faq';
 import { getClientLogos } from '@/lib/clientLogos';
 
+// Revalidate periodically so Trusted Logos edits in Sanity Studio show up
+// without a full redeploy (this page is otherwise statically generated).
+export const revalidate = 300;
+
 export const metadata: Metadata = {
   title: 'Manufacturing ERP for Indian Businesses | iNextERP',
   description: 'ERP built for manufacturers  from raw material to retail shelf. Production planning, inventory, accounting & distribution in one system.',

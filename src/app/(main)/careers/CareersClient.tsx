@@ -1,7 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Check, MapPin, Clock, Briefcase, ChevronDown, ChevronUp } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  Check,
+  MapPin,
+  Clock,
+  Briefcase,
+  ChevronDown,
+  ChevronUp,
+  ArrowRight,
+  Users,
+  TrendingUp,
+  HeartHandshake,
+} from "lucide-react";
 import { client } from "@/sanity/lib/client";
 import { PortableText } from "@portabletext/react";
 
@@ -51,14 +64,30 @@ export default function CareersClient() {
     <main className="min-h-screen font-sans bg-white text-ink-900 pb-24">
 
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden bg-white pt-32 pb-16 px-6 text-center">
-        <div className="glow-brand pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-72 w-[600px] opacity-60" />
+      <section className="relative bg-ink-950 overflow-hidden pt-28 pb-20 lg:pt-32 lg:pb-24">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/office.webp"
+            alt="iNextERP team at the office"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-40"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-ink-950/95 via-brand-950/55 to-ink-950/95" />
+        </div>
+
+        {/* Animated ambient glows */}
+        <div className="hero-ambient hero-anim-aurora absolute -top-[10%] left-1/2 h-[55%] w-[60%] -translate-x-1/2 rounded-full bg-brand-500/25 blur-[140px]" />
+        <div className="hero-ambient hero-anim-drift-left absolute bottom-0 left-[8%] h-[42%] w-[38%] rounded-full bg-brand-600/25 blur-[130px]" />
+        <div className="hero-ambient hero-anim-drift-right absolute bottom-0 right-[6%] h-[38%] w-[34%] rounded-full bg-accent-600/20 blur-[130px]" />
 
         {/* Admin link, top right corner */}
-        <div className="absolute top-32 right-6 md:right-12">
+        <div className="absolute top-6 right-6 md:top-8 md:right-12 z-20">
           <a
             href="/studio"
-            className="text-sm font-bold text-brand-600 hover:text-brand-700 hover:underline"
+            className="text-xs font-semibold text-white/60 hover:text-white transition-colors"
             target="_blank"
             rel="noreferrer"
           >
@@ -66,20 +95,65 @@ export default function CareersClient() {
           </a>
         </div>
 
-        <div className="section-container relative max-w-4xl mx-auto">
-          <div className="eyebrow mx-auto mb-6 w-fit">Careers</div>
-          <h1 className="text-4xl md:text-5xl font-bold text-ink-900 mb-6">
-            Join Our Team
-          </h1>
-          <p className="text-ink-500 text-lg mb-8">
-            Be part of our mission to transform retail operations across India
-          </p>
-          <a
-            href="#open-positions"
-            className="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white font-semibold px-8 py-3.5 rounded-xl transition-all shadow-[0_10px_24px_-6px_rgba(24,129,196,0.4)] hover:-translate-y-0.5"
-          >
-            View Open Positions
-          </a>
+        <div className="section-container relative z-10">
+          {/* Breadcrumb */}
+          <div className="mb-8 flex items-center justify-center gap-2 text-sm font-medium text-ink-400">
+            <Link href="/" className="transition-colors hover:text-white">Home</Link>
+            <span>&gt;</span>
+            <span className="text-white">Careers</span>
+          </div>
+
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="animate-in fade-in slide-in-from-bottom-4 fill-mode-both duration-700 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[11px] font-semibold tracking-wider text-brand-300 uppercase shadow-lg shadow-black/20 backdrop-blur-md mb-8 mx-auto">
+              Careers at iNextERP
+            </div>
+
+            <h1 className="animate-in fade-in slide-in-from-bottom-6 fill-mode-both duration-700 delay-100 text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-6 leading-tight [text-shadow:0_2px_30px_rgba(0,0,0,0.45)]">
+              Join a Team{" "}
+              <span className="bg-[linear-gradient(100deg,#8fd8ff_0%,#d6f0ff_45%,#ffffff_100%)] bg-clip-text text-transparent">
+                Building the Future
+              </span>{" "}
+              of Retail Tech
+            </h1>
+
+            <p className="animate-in fade-in slide-in-from-bottom-6 fill-mode-both duration-700 delay-200 text-ink-200 mb-10 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+              Be part of our mission to transform retail operations across
+              India. We&rsquo;re looking for people who want to build,
+              solve, and grow with us.
+            </p>
+
+            <div className="animate-in fade-in slide-in-from-bottom-6 fill-mode-both duration-700 delay-300 flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+              <a
+                href="#open-positions"
+                className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white rounded-xl text-sm font-semibold transition-all w-full sm:w-auto shadow-lg shadow-brand-900/30 hover:-translate-y-0.5"
+              >
+                View Open Positions
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </a>
+              <Link
+                href="/about"
+                className="inline-flex items-center justify-center px-6 py-3 bg-white/5 border border-white/15 hover:bg-white/10 text-white rounded-xl text-sm font-semibold transition-colors w-full sm:w-auto backdrop-blur-md"
+              >
+                Learn About Us
+              </Link>
+            </div>
+
+            <div className="animate-in fade-in fill-mode-both duration-1000 delay-500 flex flex-wrap items-center justify-center gap-3">
+              {[
+                { icon: TrendingUp, label: "Real Growth Opportunities" },
+                { icon: Users, label: "Small, High-Impact Team" },
+                { icon: HeartHandshake, label: "Supportive Culture" },
+              ].map(({ icon: Icon, label }) => (
+                <span
+                  key={label}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/8 px-3.5 py-2 text-xs font-semibold text-white/90 backdrop-blur-md"
+                >
+                  <Icon className="h-3.5 w-3.5 text-brand-300" />
+                  {label}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

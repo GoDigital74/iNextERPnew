@@ -14,6 +14,10 @@ import { Comparison } from "@/components/sections/Comparison";
 import { Integrations } from "@/components/sections/Integrations";
 import { CalendlyPopup } from "@/components/sections/CalendlyPopup";
 
+// Revalidate periodically so Trusted Logos edits in Sanity Studio show up
+// without a full redeploy (this page is otherwise statically generated).
+export const revalidate = 300;
+
 export const metadata: Metadata = {
   title: "iNextERP - Complete ERP, POS & Business Management Software",
   description:

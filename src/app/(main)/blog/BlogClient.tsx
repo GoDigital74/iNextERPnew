@@ -10,6 +10,9 @@ import {
   User,
   ArrowRight,
   Loader2,
+  BookOpen,
+  TrendingUp,
+  Sparkles,
 } from "lucide-react";
 // Adjust these paths depending on where your sanity folder is located
 import { client } from "@/sanity/lib/client";
@@ -80,14 +83,17 @@ export default function BlogClient() {
   return (
     <main className="min-h-screen bg-white font-sans text-ink-900">
       {/* 1. HERO SECTION */}
-      <section className="relative overflow-hidden bg-white pt-32 pb-10 px-6 border-b border-ink-150">
-        <div className="glow-brand pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-72 w-[600px] opacity-60" />
+      <section className="relative bg-ink-950 overflow-hidden pt-28 pb-16 lg:pt-32 lg:pb-20">
+        {/* Animated ambient glows */}
+        <div className="hero-ambient hero-anim-aurora absolute -top-[10%] left-1/2 h-[55%] w-[60%] -translate-x-1/2 rounded-full bg-brand-500/25 blur-[140px]" />
+        <div className="hero-ambient hero-anim-drift-left absolute bottom-0 left-[8%] h-[42%] w-[38%] rounded-full bg-brand-600/25 blur-[130px]" />
+        <div className="hero-ambient hero-anim-drift-right absolute bottom-0 right-[6%] h-[38%] w-[34%] rounded-full bg-accent-600/20 blur-[130px]" />
 
         {/* Admin link, top right corner */}
-        <div className="absolute top-32 right-6 md:right-12">
+        <div className="absolute top-6 right-6 md:top-8 md:right-12 z-20">
           <a
             href="/studio"
-            className="text-sm font-bold text-brand-600 hover:text-brand-700 hover:underline"
+            className="text-xs font-semibold text-white/60 hover:text-white transition-colors"
             target="_blank"
             rel="noreferrer"
           >
@@ -95,29 +101,61 @@ export default function BlogClient() {
           </a>
         </div>
 
-        <div className="section-container relative max-w-6xl mx-auto text-center">
-          <div className="eyebrow mx-auto mb-6 w-fit">Blog</div>
-          <h1 className="text-3xl md:text-4xl font-bold text-ink-900 mb-6 leading-tight">
-            Insights & Resources for Retail <br className="hidden md:block" />{" "}
-            Success
-          </h1>
-          <p className="text-ink-500 mb-10 text-base md:text-lg">
-            Discover the latest trends, strategies, and innovations in inventory
-            and retail management
-          </p>
+        <div className="section-container relative z-10">
+          {/* Breadcrumb */}
+          <div className="mb-8 flex items-center justify-center gap-2 text-sm font-medium text-ink-400">
+            <Link href="/" className="transition-colors hover:text-white">Home</Link>
+            <span>&gt;</span>
+            <span className="text-white">Blog</span>
+          </div>
 
-          {/* Search Bar */}
-          <div className="relative max-w-2xl mx-auto mb-6">
-            <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none">
-              <Search className="h-5 w-5 text-ink-400" />
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="animate-in fade-in slide-in-from-bottom-4 fill-mode-both duration-700 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[11px] font-semibold tracking-wider text-brand-300 uppercase shadow-lg shadow-black/20 backdrop-blur-md mb-8 mx-auto">
+              <Sparkles className="h-3 w-3" />
+              iNextERP Blog
             </div>
-            <input
-              type="text"
-              className="block w-full pl-14 pr-6 py-4 bg-white border border-ink-150 rounded-full text-base text-ink-900 placeholder:text-ink-400 shadow-sm focus:ring-4 focus:ring-brand-500/15 focus:border-brand-400 outline-none transition-all"
-              placeholder="Search articles..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
+
+            <h1 className="animate-in fade-in slide-in-from-bottom-6 fill-mode-both duration-700 delay-100 text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-6 leading-tight [text-shadow:0_2px_30px_rgba(0,0,0,0.45)]">
+              Insights & Resources for{" "}
+              <span className="bg-[linear-gradient(100deg,#8fd8ff_0%,#d6f0ff_45%,#ffffff_100%)] bg-clip-text text-transparent">
+                Retail Success
+              </span>
+            </h1>
+
+            <p className="animate-in fade-in slide-in-from-bottom-6 fill-mode-both duration-700 delay-200 text-ink-200 mb-10 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+              Discover the latest trends, strategies, and innovations in
+              inventory and retail management from the iNextERP team.
+            </p>
+
+            {/* Search Bar */}
+            <div className="animate-in fade-in slide-in-from-bottom-6 fill-mode-both duration-700 delay-300 relative max-w-2xl mx-auto mb-8">
+              <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none">
+                <Search className="h-5 w-5 text-white/50" />
+              </div>
+              <input
+                type="text"
+                className="block w-full pl-14 pr-6 py-4 bg-white/10 border border-white/15 rounded-full text-base text-white placeholder:text-white/50 backdrop-blur-md shadow-lg shadow-black/20 focus:ring-4 focus:ring-brand-500/25 focus:border-brand-300/60 outline-none transition-all"
+                placeholder="Search articles..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+
+            <div className="animate-in fade-in fill-mode-both duration-1000 delay-500 flex flex-wrap items-center justify-center gap-3">
+              {[
+                { icon: BookOpen, label: "Practical Guides" },
+                { icon: TrendingUp, label: "Industry Trends" },
+                { icon: Calendar, label: "Fresh Every Week" },
+              ].map(({ icon: Icon, label }) => (
+                <span
+                  key={label}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/8 px-3.5 py-2 text-xs font-semibold text-white/90 backdrop-blur-md"
+                >
+                  <Icon className="h-3.5 w-3.5 text-brand-300" />
+                  {label}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
