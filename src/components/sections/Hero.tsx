@@ -62,7 +62,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative overflow-visible bg-[#031824]">
+    <section ref={sectionRef} className="relative overflow-hidden sm:overflow-visible bg-[#031824]">
       {/* ========================================================= */}
       {/* BACKGROUND                                                */}
       {/* ========================================================= */}
@@ -230,7 +230,7 @@ export function Hero() {
         {/* ------------------------------------------------------- */}
         {/* WHITE CURVE & SOLID BOTTOM FILL                          */}
         {/* ------------------------------------------------------- */}
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 top-[43%] z-10 flex flex-col">
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 top-[43%] z-10 hidden flex-col sm:flex">
           <svg
             viewBox="0 0 1440 220"
             preserveAspectRatio="none"
