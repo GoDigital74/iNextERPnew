@@ -248,7 +248,7 @@ export default function PointsOfSaleClient() {
                   src="/products/POS img 1.webp"
                   alt="multi-store POS billing dashboard for fast checkout"
                   fill
-                  unoptimized
+                  sizes="(min-width: 1280px) 58vw, 100vw"
                   className="object-contain transition-all duration-700 drop-shadow-2xl"
                   priority
                 />
@@ -336,7 +336,7 @@ export default function PointsOfSaleClient() {
                   src="/products/POS img 2.webp"
                   alt="NextERP Mobile POS Interface"
                   fill
-                  unoptimized
+                  sizes="240px"
                   className="object-cover"
                 />
               </div>
@@ -561,8 +561,8 @@ export default function PointsOfSaleClient() {
                   src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&q=80&w=800"
                   alt="Long Checkout Queues"
                   fill
+                  sizes="(min-width: 1280px) 50vw, 100vw"
                   className="object-cover"
-                  unoptimized
                 />
               </div>
               <div className="absolute inset-0 bg-linear-to-r from-ink-950 via-ink-950/90 to-ink-950/50" />
@@ -601,8 +601,8 @@ export default function PointsOfSaleClient() {
                   src="https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&q=80&w=800"
                   alt="Speedy POS Operations"
                   fill
+                  sizes="(min-width: 1280px) 50vw, 100vw"
                   className="object-cover"
-                  unoptimized
                 />
               </div>
               <div className="relative z-10 w-full">

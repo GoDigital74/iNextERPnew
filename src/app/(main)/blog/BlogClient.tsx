@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -9,26 +9,11 @@ import {
   Clock,
   User,
   ArrowRight,
-  Loader2,
   BookOpen,
   TrendingUp,
   Sparkles,
 } from "lucide-react";
-// Adjust these paths depending on where your sanity folder is located
-import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
-
-const POSTS_QUERY = `*[_type == "post"] | order(publishedAt desc) {
-  _id,
-  title,
-  slug,
-  mainImage,
-  category,
-  publishedAt,
-  readTime,
-  excerpt,
-  author
-}`;
 
 const CATEGORIES = [
   "All",
@@ -39,25 +24,10 @@ const CATEGORIES = [
   "Sustainability",
 ];
 
-export default function BlogClient() {
-  const [posts, setPosts] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+export default function BlogClient({ initialPosts }: { initialPosts: any[] }) {
+  const [posts] = useState<any[]>(initialPosts);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
-
-  useEffect(() => {
-    async function fetchPosts() {
-      try {
-        const data = await client.fetch(POSTS_QUERY);
-        setPosts(data);
-      } catch (error) {
-        console.error("Failed to fetch posts:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetchPosts();
-  }, []);
 
   // Filter logic
   const filteredPosts = posts.filter((post) => {
@@ -184,12 +154,7 @@ export default function BlogClient() {
       {/* 3. BLOG GRID */}
       <section className="py-16 px-6">
         <div className="section-container max-w-6xl mx-auto">
-          {isLoading ? (
-            <div className="flex flex-col items-center justify-center py-20 text-brand-500">
-              <Loader2 className="w-10 h-10 animate-spin mb-4" />
-              <p className="text-ink-500 font-medium">Loading articles...</p>
-            </div>
-          ) : filteredPosts.length === 0 ? (
+          {filteredPosts.length === 0 ? (
             <div className="text-center py-20 text-ink-500 bg-ink-50 rounded-2xl border border-dashed border-ink-200">
               <p className="text-lg font-medium">
                 No articles found matching your criteria.
@@ -218,7 +183,7 @@ export default function BlogClient() {
                         src={urlFor(post.mainImage).url()}
                         alt={post.title}
                         fill
-                        unoptimized
+                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-700"
                       />
                     ) : (

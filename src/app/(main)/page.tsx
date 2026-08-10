@@ -1,18 +1,45 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { Hero } from "@/components/sections/Hero";
 import { TrustedLogos } from "@/components/sections/TrustedLogos";
-import { PricingPlans } from "@/components/sections/PricingPlans";
 import { getClientLogos } from "@/lib/clientLogos";
-import { ProblemSection } from "@/components/sections/ProblemSection";
-import { DashboardShowcase } from "@/components/sections/DashboardShowcase";
-import { ModulesGrid } from "@/components/sections/ModulesGrid";
-import { Testimonials } from "@/components/sections/Testimonials";
-import { Statistics } from "@/components/sections/Statistics";
-import { Resources } from "@/components/sections/Resources";
-import { FaqAndCta } from "@/components/sections/FaqAndCta";
-import { Comparison } from "@/components/sections/Comparison";
-import { Integrations } from "@/components/sections/Integrations";
 import { CalendlyPopup } from "@/components/sections/CalendlyPopup";
+
+// Below-the-fold sections: code-split into their own chunks so the heavy
+// libraries they pull in (framer-motion, embla-carousel, lenis) don't sit in
+// the same bundle as the above-the-fold Hero/Navbar JS. Still SSR'd (ssr
+// defaults to true), so content and SEO are unaffected — only the JS
+// delivery is split up.
+const ProblemSection = dynamic(() =>
+  import("@/components/sections/ProblemSection").then((m) => m.ProblemSection)
+);
+const DashboardShowcase = dynamic(() =>
+  import("@/components/sections/DashboardShowcase").then((m) => m.DashboardShowcase)
+);
+const Comparison = dynamic(() =>
+  import("@/components/sections/Comparison").then((m) => m.Comparison)
+);
+const Integrations = dynamic(() =>
+  import("@/components/sections/Integrations").then((m) => m.Integrations)
+);
+const ModulesGrid = dynamic(() =>
+  import("@/components/sections/ModulesGrid").then((m) => m.ModulesGrid)
+);
+const Testimonials = dynamic(() =>
+  import("@/components/sections/Testimonials").then((m) => m.Testimonials)
+);
+const Statistics = dynamic(() =>
+  import("@/components/sections/Statistics").then((m) => m.Statistics)
+);
+const Resources = dynamic(() =>
+  import("@/components/sections/Resources").then((m) => m.Resources)
+);
+const PricingPlans = dynamic(() =>
+  import("@/components/sections/PricingPlans").then((m) => m.PricingPlans)
+);
+const FaqAndCta = dynamic(() =>
+  import("@/components/sections/FaqAndCta").then((m) => m.FaqAndCta)
+);
 
 // Revalidate periodically so Trusted Logos edits in Sanity Studio show up
 // without a full redeploy (this page is otherwise statically generated).

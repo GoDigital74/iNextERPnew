@@ -590,7 +590,7 @@ export default function PricingClient() {
                 src="/dashboard/iNext Report 1.png"
                 alt="iNextERP pricing and analytics dashboard"
                 fill
-                unoptimized
+                sizes="(min-width: 768px) 50vw, 100vw"
                 className="object-cover object-right"
               />
               <div className="absolute inset-0 bg-linear-to-t from-ink-950 via-ink-950/50 to-transparent md:bg-linear-to-r" />

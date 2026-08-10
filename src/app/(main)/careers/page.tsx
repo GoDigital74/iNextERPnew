@@ -1,5 +1,18 @@
 import type { Metadata } from "next";
 import CareersClient from "./CareersClient";
+import { client } from "@/sanity/lib/client";
+
+const JOBS_QUERY = `*[_type == "job"] | order(postedAt desc) {
+  _id,
+  title,
+  location,
+  employmentType,
+  department,
+  postedAt,
+  description
+}`;
+
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Careers | Join iNextERP",
@@ -18,6 +31,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function CareersPage() {
-  return <CareersClient />;
+export default async function CareersPage() {
+  const jobs = await client.fetch(JOBS_QUERY);
+  return <CareersClient initialJobs={jobs} />;
 }

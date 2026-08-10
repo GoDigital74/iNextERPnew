@@ -1,3 +1,4 @@
+import { cache } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -14,13 +15,19 @@ const JOB_QUERY = `*[_type == "job" && slug.current == $slug][0] {
   description
 }`;
 
+// Cached per-request so generateMetadata and the page body share one Sanity
+// round-trip instead of fetching the same document twice.
+const getJob = cache((slug: string) => client.fetch(JOB_QUERY, { slug }));
+
+export const revalidate = 300;
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const job = await client.fetch(JOB_QUERY, { slug });
+  const job = await getJob(slug);
 
   if (!job) return {};
 
@@ -49,7 +56,7 @@ export default async function JobDetailsPage({ params }: { params: Promise<{ slu
   const resolvedParams = await params;
 
   // 2. Fetch the specific job
-  const job = await client.fetch(JOB_QUERY, { slug: resolvedParams.slug });
+  const job = await getJob(resolvedParams.slug);
 
   // 3. 404 if no job is found
   if (!job) {

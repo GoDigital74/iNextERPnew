@@ -1,3 +1,4 @@
+import { cache } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -18,19 +19,25 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
   body
 }`;
 
+// Cached per-request so generateMetadata and the page body share one Sanity
+// round-trip instead of fetching the same document twice.
+const getPost = cache((slug: string) => client.fetch(POST_QUERY, { slug }));
+
+export const revalidate = 300;
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = await client.fetch(POST_QUERY, { slug });
+  const post = await getPost(slug);
 
   if (!post) return {};
 
   const description =
     post.excerpt || "Read the latest insights from the iNextERP team.";
-  const image = post.mainImage ? urlFor(post.mainImage).width(1200).height(630).url() : "/dashboard/iNext hero 1.webp";
+  const image = post.mainImage ? urlFor(post.mainImage).width(1200).height(630).url() : "/dashboard/inext hero.png";
 
   return {
     title: `${post.title} | iNextERP Blog`,
@@ -53,7 +60,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   // Await the params before using them
   const resolvedParams = await params;
 
-  const post = await client.fetch(POST_QUERY, { slug: resolvedParams.slug });
+  const post = await getPost(resolvedParams.slug);
 
   if (!post) {
     notFound();
@@ -111,7 +118,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               src={urlFor(post.mainImage).url()}
               alt={post.mainImage?.alt || post.title}
               fill
-              unoptimized
+              sizes="(min-width: 768px) 896px, 100vw"
               className="object-cover"
               priority
             />

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
       "Get in touch with iNextERP. Talk to an expert about POS, inventory, accounting, CRM & more, or send us a message and we'll respond as soon as possible.",
     url: "https://www.inexterp.com/contact",
     type: "website",
-    images: [{ url: "/dashboard/iNext hero 1.webp", width: 1200, height: 630, alt: "Contact iNextERP" }],
+    images: [{ url: "/dashboard/inext hero.png", width: 1200, height: 630, alt: "Contact iNextERP" }],
   },
 };
 

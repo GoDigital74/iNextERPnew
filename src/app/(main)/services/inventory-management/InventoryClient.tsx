@@ -234,7 +234,7 @@ export default function InventoryClient() {
                 <div className="flex -space-x-2">
                   {[1, 2, 3].map((i) => (
                     <div key={i} className="w-8 h-8 rounded-full border-2 border-ink-950 bg-ink-700 overflow-hidden relative">
-                      <Image src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="Trusted User" fill className="object-cover" unoptimized />
+                      <Image src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="Trusted User" fill sizes="32px" className="object-cover" />
                     </div>
                   ))}
                 </div>
@@ -251,7 +251,7 @@ export default function InventoryClient() {
                   src="/products/Inventory 1.webp"
                   alt="multi-warehouse inventory dashboard mockup showing stock levels"
                   fill
-                  unoptimized
+                  sizes="(min-width: 1280px) 58vw, 100vw"
                   className="object-contain transition-all duration-700 drop-shadow-2xl"
                   priority
                 />
@@ -304,7 +304,7 @@ export default function InventoryClient() {
             {/* Before Side */}
             <div className="flex-1 bg-ink-950 text-white relative flex items-center p-8 md:p-12">
               <div className="absolute inset-0 opacity-20 mix-blend-overlay">
-                <Image src="https://images.unsplash.com/photo-1606857521015-7f9fcf423740?auto=format&fit=crop&q=80&w=800" alt="Manual Inventory" fill className="object-cover" unoptimized />
+                <Image src="https://images.unsplash.com/photo-1606857521015-7f9fcf423740?auto=format&fit=crop&q=80&w=800" alt="Manual Inventory" fill sizes="(min-width: 1280px) 50vw, 100vw" className="object-cover" />
               </div>
               <div className="absolute inset-0 bg-linear-to-r from-ink-950 via-ink-950/90 to-ink-950/50" />
               <div className="relative z-10 w-full">
@@ -327,7 +327,7 @@ export default function InventoryClient() {
             {/* After Side */}
             <div className="flex-1 bg-white relative flex items-center p-8 md:p-12 overflow-hidden">
               <div className="absolute inset-0 opacity-5">
-                <Image src="https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&q=80&w=800" alt="Speedy Operations" fill className="object-cover" unoptimized />
+                <Image src="https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&q=80&w=800" alt="Speedy Operations" fill sizes="(min-width: 1280px) 50vw, 100vw" className="object-cover" />
               </div>
               <div className="relative z-10 flex flex-col md:flex-row gap-8 w-full">
                 <div className="flex-1">
@@ -502,7 +502,7 @@ export default function InventoryClient() {
               className="relative w-full h-100 md:h-125 bg-ink-50 rounded-3xl overflow-hidden shadow-xl border border-ink-150 flex items-center justify-center p-8"
             >
               <div className="relative w-full h-full">
-                <Image src="/products/Inventory 2.webp" alt="Mobile stock audit app scanning barcodes across a multi-warehouse setup" fill className="object-contain" />
+                <Image src="/products/Inventory 2.webp" alt="Mobile stock audit app scanning barcodes across a multi-warehouse setup" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-contain" />
               </div>
             </motion.div>
           </div>

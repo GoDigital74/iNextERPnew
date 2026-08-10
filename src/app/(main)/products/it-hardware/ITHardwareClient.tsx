@@ -227,7 +227,7 @@ export default function ITHardwareClient() {
                   src="https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&q=80&w=1600"
                   alt="tested POS billing counter with thermal printer and barcode scanner"
                   fill
-                  unoptimized
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-cover"
                   priority
                 />

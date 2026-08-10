@@ -171,6 +171,16 @@ export default function ContactClient() {
                 </div>
               ) : (
                 <form action={handleSubmit} className="flex flex-col gap-6">
+                  {/* Honeypot field - hidden from real users, catches bots */}
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    className="hidden"
+                    aria-hidden="true"
+                  />
+
                   {/* Name & Phone Row */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="flex flex-col gap-2">

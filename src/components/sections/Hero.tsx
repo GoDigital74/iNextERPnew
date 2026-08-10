@@ -4,8 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import nextDynamic from "next/dynamic";
 import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
-import WarpText from "@/components/ui/WarpText";
+
+// Splits the ogl/WebGL renderer into its own chunk, loaded in parallel with
+// (not blocking) the rest of the Hero bundle. SSR output is unchanged since
+// the canvas only mounts client-side via useEffect either way.
+const WarpText = nextDynamic(() => import("@/components/ui/WarpText"));
 
 /* ---------- Animation variants ---------- */
 

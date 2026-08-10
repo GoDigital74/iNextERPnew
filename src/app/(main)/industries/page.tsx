@@ -14,7 +14,7 @@ export const metadata: Metadata = {
       "iNextERP powers retail, wholesale, manufacturing, fashion & apparel businesses with industry-specific ERP, POS & inventory software.",
     url: "https://www.inexterp.com/industries",
     type: "website",
-    images: [{ url: "/dashboard/iNext hero 1.webp", width: 1200, height: 630, alt: "iNextERP industries we serve" }],
+    images: [{ url: "/dashboard/inext hero.png", width: 1200, height: 630, alt: "iNextERP industries we serve" }],
   },
 };
 

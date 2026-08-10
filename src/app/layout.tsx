@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Urbanist, Manrope } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 // Manrope for highly readable body text
@@ -17,7 +18,7 @@ const urbanist = Urbanist({
 });
 
 const SITE_URL = "https://www.inexterp.com";
-const DEFAULT_OG_IMAGE = "/dashboard/iNext hero 1.webp";
+const DEFAULT_OG_IMAGE = "/dashboard/inext hero.png";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -69,6 +70,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col font-sans bg-ink-50 selection:bg-brand-200 selection:text-brand-900">
         {children}
+        <Analytics />
       </body>
     </html>
   );

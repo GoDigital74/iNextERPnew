@@ -192,7 +192,7 @@ export default function ManufacturingClient() {
                   src="/products/Manufacturing 1.webp"
                   alt="manufacturing ERP dashboard showing production tracking and shop floor control"
                   fill
-                  unoptimized
+                  sizes="(min-width: 1280px) 58vw, 100vw"
                   className="object-contain drop-shadow-2xl transition-all duration-700"
                   priority
                 />
@@ -331,7 +331,7 @@ export default function ManufacturingClient() {
                 src="/products/Manufacturing 2.webp"
                 alt="manufacturing product tour showing work orders and machine center"
                 fill
-                unoptimized
+                sizes="(min-width: 1280px) 25vw, 100vw"
                 className="object-cover"
               />
             </div>
@@ -559,7 +559,7 @@ export default function ManufacturingClient() {
             {/* Before Side (Dark) */}
             <div className="flex-1 bg-ink-950 text-white relative flex items-center p-8 md:p-12">
               <div className="absolute inset-0 opacity-30 mix-blend-overlay">
-                <Image src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800" alt="disorganized factory floor with manual production tracking" fill className="object-cover" unoptimized />
+                <Image src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800" alt="disorganized factory floor with manual production tracking" fill sizes="(min-width: 1280px) 50vw, 100vw" className="object-cover" />
               </div>
               <div className="absolute inset-0 bg-linear-to-r from-ink-950 via-ink-950/80 to-transparent" />
               <div className="relative z-10">
@@ -582,7 +582,7 @@ export default function ManufacturingClient() {
             {/* After Side (Light) */}
             <div className="flex-1 bg-white relative flex items-center overflow-hidden p-8 md:p-12">
               <div className="absolute inset-0 opacity-10">
-                <Image src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&q=80&w=800" alt="organized factory floor using manufacturing ERP software" fill className="object-cover" unoptimized />
+                <Image src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&q=80&w=800" alt="organized factory floor using manufacturing ERP software" fill sizes="(min-width: 1280px) 50vw, 100vw" className="object-cover" />
               </div>
               <div className="relative z-10 flex flex-col md:flex-row gap-8 w-full">
                 <div className="flex-1">

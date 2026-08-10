@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Check,
   MapPin,
   Clock,
   Briefcase,
@@ -15,31 +14,11 @@ import {
   TrendingUp,
   HeartHandshake,
 } from "lucide-react";
-import { client } from "@/sanity/lib/client";
 import { PortableText } from "@portabletext/react";
 
-// GROQ Query to fetch jobs
-const JOBS_QUERY = `*[_type == "job"] | order(postedAt desc) {
-  _id,
-  title,
-  location,
-  employmentType,
-  department,
-  postedAt,
-  description
-}`;
-
-export default function CareersClient() {
-  const [jobs, setJobs] = useState<any[]>([]);
+export default function CareersClient({ initialJobs }: { initialJobs: any[] }) {
+  const [jobs] = useState<any[]>(initialJobs);
   const [expandedJobId, setExpandedJobId] = useState<string | null>(null);
-
-  useEffect(() => {
-    async function fetchJobs() {
-      const data = await client.fetch(JOBS_QUERY);
-      setJobs(data);
-    }
-    fetchJobs();
-  }, []);
 
   // Helper function to calculate "Posted X days ago"
   const getDaysAgo = (dateString: string) => {

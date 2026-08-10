@@ -246,7 +246,7 @@ export default function CloudServiceClient() {
                   src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1600"
                   alt="enterprise cloud infrastructure dashboard powering iNextERP"
                   fill
-                  unoptimized
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-cover"
                   priority
                 />
@@ -471,7 +471,7 @@ export default function CloudServiceClient() {
                 src="https://images.unsplash.com/photo-1551721434-8b94ddff0e6d?auto=format&fit=crop&q=80&w=1000"
                 alt="Enterprise Data Center Infrastructure"
                 fill
-                unoptimized
+                sizes="(min-width: 768px) 50vw, 100vw"
                 className="object-cover opacity-40 mix-blend-luminosity"
               />
               <div className="absolute inset-0 bg-linear-to-r from-ink-950 via-ink-950/80 to-transparent" />
@@ -532,7 +532,7 @@ export default function CloudServiceClient() {
                 src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200"
                 alt="Cloud infrastructure servers"
                 fill
-                unoptimized
+                sizes="(min-width: 768px) 50vw, 100vw"
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-linear-to-t from-ink-950 via-ink-950/50 to-transparent md:bg-linear-to-r" />

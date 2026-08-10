@@ -242,7 +242,7 @@ export default function CrmClient() {
                   src="/products/CRM 1 iNext.webp"
                   alt="CRM dashboard showing sales pipeline and lead management"
                   fill
-                  unoptimized
+                  sizes="(min-width: 1280px) 58vw, 100vw"
                   className="object-contain drop-shadow-2xl transition-all duration-700"
                   priority
                 />
@@ -666,7 +666,7 @@ export default function CrmClient() {
             {/* Before Side */}
             <div className="flex-1 bg-black text-white relative flex items-center p-8 md:p-12">
               <div className="absolute inset-0 opacity-30 mix-blend-overlay">
-                <Image src="https://images.unsplash.com/photo-1549923746-c502d488b3ea?auto=format&fit=crop&q=80&w=800" alt="frustrated sales rep managing leads in spreadsheets" fill className="object-cover" unoptimized />
+                <Image src="https://images.unsplash.com/photo-1549923746-c502d488b3ea?auto=format&fit=crop&q=80&w=800" alt="frustrated sales rep managing leads in spreadsheets" fill sizes="(min-width: 1280px) 50vw, 100vw" className="object-cover" />
               </div>
               <div className="absolute inset-0 bg-linear-to-r from-black via-black/80 to-transparent" />
               <div className="relative z-10">
@@ -689,7 +689,7 @@ export default function CrmClient() {
             {/* After Side */}
             <div className="flex-1 bg-ink-900 relative flex items-center overflow-hidden p-8 md:p-12">
               <div className="absolute inset-0 opacity-20">
-                <Image src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800" alt="happy sales rep using CRM software for pipeline management" fill className="object-cover" unoptimized />
+                <Image src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800" alt="happy sales rep using CRM software for pipeline management" fill sizes="(min-width: 1280px) 50vw, 100vw" className="object-cover" />
               </div>
               <div className="relative z-10 flex flex-col md:flex-row gap-8 w-full">
                 <div className="flex-1 text-white">
