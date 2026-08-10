@@ -258,7 +258,7 @@ export default function CloudServiceClient() {
       </section>
 
       {/* 2. TRUST BADGES STRIP */}
-      <section className="border-b border-ink-150 bg-white py-6">
+      <section className="border-b border-ink-150 bg-white py-10 md:py-10 lg:py-18">
         <div className="section-container max-w-350">
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 sm:justify-between">
             {TRUST_BADGES.map((badge, i) => (
@@ -272,7 +272,7 @@ export default function CloudServiceClient() {
       </section>
 
       {/* 3. LOCAL SERVER VS INEXTERP CLOUD COMPARISON */}
-      <section className="bg-ink-50 py-20 md:py-28">
+      <section className="bg-ink-50 py-10 md:py-10 lg:py-18">
         <div className="section-container max-w-350">
           <div className="mb-12 text-center">
             <div className="eyebrow mx-auto mb-4 w-fit">Local Server vs Cloud</div>
@@ -333,7 +333,7 @@ export default function CloudServiceClient() {
       </section>
 
       {/* 4. FEATURES BANNER */}
-      <section className="border-b border-ink-150 bg-ink-50 py-16 md:py-20">
+      <section className="border-b border-ink-150 bg-ink-50 py-10 md:py-10 lg:py-18">
         <div className="section-container max-w-350">
           <div className="flex flex-col items-start gap-10 lg:flex-row lg:items-center">
             <div className="lg:w-1/4">
@@ -365,7 +365,7 @@ export default function CloudServiceClient() {
       </section>
 
       {/* 5. EVERYTHING YOU NEED (SERVICES GRID) */}
-      <section id="cloud-services" className="scroll-mt-24 bg-white py-20 md:py-28">
+      <section id="cloud-services" className="scroll-mt-24 bg-white py-10 md:py-10 lg:py-18">
         <div className="section-container max-w-350">
           <div className="mb-12 flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
             <div>
@@ -407,7 +407,7 @@ export default function CloudServiceClient() {
       </section>
 
       {/* 6. TRUSTED INFRASTRUCTURE PARTNERS (marquee) */}
-      <section className="overflow-hidden border-y border-ink-150 bg-ink-50 py-10">
+      <section className="overflow-hidden border-y border-ink-150 bg-ink-50 py-10 md:py-10 lg:py-18">
         <div className="section-container max-w-350">
           <h3 className="mb-6 text-center text-[10px] font-bold uppercase tracking-widest text-ink-400">
             Trusted Infrastructure Partners
@@ -432,7 +432,7 @@ export default function CloudServiceClient() {
       </section>
 
       {/* 7. WHY BUSINESSES CHOOSE INEXTERP CLOUD */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-10 md:py-10 lg:py-18">
         <div className="section-container max-w-350">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -487,7 +487,7 @@ export default function CloudServiceClient() {
       />
 
       {/* 9. BOTTOM CTA SECTION */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-10 md:py-10 lg:py-18">
         <div className="section-container max-w-350">
           <motion.div
             initial={{ opacity: 0, y: 24 }}

@@ -180,7 +180,7 @@ export default function ITHardwareClient() {
                 Hardware Compatibility Guide
               </motion.div>
 
-              <motion.h1 variants={heroItem} className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+              <motion.h1 variants={heroItem} className="text-2xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
                 Tested & Certified{" "}
                 <span className="bg-linear-to-r from-brand-300 via-accent-300 to-white bg-clip-text text-transparent">
                   Hardware Compatibility
@@ -239,7 +239,7 @@ export default function ITHardwareClient() {
       </section>
 
       {/* 2. SOLUTION BOX: WHY HARDWARE COMPATIBILITY MATTERS */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-10 md:py-10 lg:py-18">
         <div className="section-container max-w-350">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -302,7 +302,7 @@ export default function ITHardwareClient() {
       </section>
 
       {/* 3. CATEGORY GRID: COMPATIBLE HARDWARE ECOSYSTEM */}
-      <section id="categories" className="scroll-mt-24 bg-ink-50 py-20 md:py-28">
+      <section id="categories" className="scroll-mt-24 bg-ink-50 py-10 md:py-10 lg:py-18">
         <div className="section-container max-w-350">
           <div className="mb-12 text-center lg:text-left">
             <div className="eyebrow mx-auto mb-5 w-fit lg:mx-0">What We Test</div>
@@ -337,7 +337,7 @@ export default function ITHardwareClient() {
       </section>
 
       {/* 4. COMPATIBILITY COMPARISON */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-10 md:py-10 lg:py-18">
         <div className="section-container max-w-350">
           <div className="mb-12 text-center">
             <div className="eyebrow mx-auto mb-5 w-fit">The Difference</div>
@@ -400,7 +400,7 @@ export default function ITHardwareClient() {
       </section>
 
       {/* 5. Modules Section */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-10 md:py-10 lg:py-18">
         <div className="section-container max-w-350">
           <div className="mb-12 text-center">
             <h2 className="text-2xl font-bold text-ink-900 md:text-3xl">
@@ -439,7 +439,7 @@ export default function ITHardwareClient() {
       />
 
       {/* 7. FINAL CTA BANNER */}
-      <section className="bg-ink-50 py-20 md:py-28">
+      <section className="bg-ink-50 py-10 md:py-10 lg:py-18">
         <div className="section-container max-w-350">
           <motion.div
             initial={{ opacity: 0, y: 24 }}

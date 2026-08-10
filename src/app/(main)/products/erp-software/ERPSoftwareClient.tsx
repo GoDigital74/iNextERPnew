@@ -394,7 +394,7 @@ export default function ERPSoftwareClient() {
       </section>
 
       {/* 1.5. BEFORE VS AFTER COMPARISON */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-10 md:py-10 lg:py-18">
         <div className="section-container max-w-350">
           <div className="mb-14 text-center">
             <div className="eyebrow mx-auto mb-5 w-fit">The iNextERP Difference</div>
@@ -460,7 +460,7 @@ export default function ERPSoftwareClient() {
       </section>
 
       {/* 2. DEPARTMENTS GRID (Linking to dedicated service pages) */}
-      <section id="departments" className="scroll-mt-24 bg-white py-20 md:py-28">
+      <section id="departments" className="scroll-mt-24 bg-white py-10 md:py-10 lg:py-18">
         <div className="section-container max-w-350">
           <div className="mb-16 text-center">
             <div className="eyebrow mx-auto mb-5 w-fit">Platform Modules</div>
@@ -516,7 +516,7 @@ export default function ERPSoftwareClient() {
       </section>
 
       {/* 3. BUILT FOR EVERY INDUSTRY (Linking to dedicated industry pages) */}
-      <section className="bg-ink-50 py-20 md:py-28">
+      <section className="bg-ink-50 py-10 md:py-10 lg:py-18">
         <div className="section-container max-w-350">
           <div className="mb-12 text-center">
             <div className="eyebrow mx-auto mb-5 w-fit">Industries We Serve</div>
@@ -566,7 +566,7 @@ export default function ERPSoftwareClient() {
       </section>
 
       {/* 3.5. ZERO-DOWNTIME MIGRATION GUARANTEE */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-10 md:py-10 lg:py-18">
         <div className="section-container max-w-350">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -619,7 +619,7 @@ export default function ERPSoftwareClient() {
       </section>
 
       {/* 4. REAL IMPACT — full-width stat band */}
-      <section ref={impactRef} className="relative overflow-hidden bg-linear-to-br from-brand-600 via-brand-500 to-brand-600 py-16">
+      <section ref={impactRef} className="relative overflow-hidden bg-linear-to-br from-brand-600 via-brand-500 to-brand-600 py-10 md:py-10 lg:py-18">
         <div className="pointer-events-none absolute right-0 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-white/10 blur-[100px]" />
         <div className="section-container relative max-w-350">
           <div className="mb-12 flex flex-col items-center text-center">
@@ -655,7 +655,7 @@ export default function ERPSoftwareClient() {
       </section>
 
       {/* 5. TESTIMONIAL SPOTLIGHT */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-10 md:py-10 lg:py-18">
         <div className="section-container max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -709,7 +709,7 @@ export default function ERPSoftwareClient() {
       />
 
       {/* 7. BOTTOM CTA SECTION */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-10 md:py-10 lg:py-18">
         <div className="section-container max-w-350">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
