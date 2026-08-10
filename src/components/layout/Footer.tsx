@@ -39,8 +39,8 @@ const FOOTER_LINKS = {
     { name: "About Us", href: "/about" },
     { name: "Careers", href: "/careers" },
     { name: "Contact Us", href: "/contact" },
-    
-    { name: "Privacy Policy", href: "#" },
+    { name: "Privacy Policy", href: "/privacy-policy" },
+    { name: "Terms & Conditions", href: "/terms-and-conditions" },
   ],
 };
 
