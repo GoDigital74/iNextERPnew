@@ -4,6 +4,8 @@ import { Hero } from "@/components/sections/Hero";
 import { TrustedLogos } from "@/components/sections/TrustedLogos";
 import { getClientLogos } from "@/lib/clientLogos";
 import { CalendlyPopup } from "@/components/sections/CalendlyPopup";
+import { client } from "@/sanity/lib/client";
+import type { ResourcePost } from "@/components/sections/Resources";
 
 // Below-the-fold sections: code-split into their own chunks so the heavy
 // libraries they pull in (framer-motion, embla-carousel, lenis) don't sit in
@@ -45,6 +47,15 @@ const FaqAndCta = dynamic(() =>
 // without a full redeploy (this page is otherwise statically generated).
 export const revalidate = 300;
 
+const RESOURCE_POSTS_QUERY = `*[_type == "post"] | order(publishedAt desc)[0...4] {
+  _id,
+  title,
+  slug,
+  mainImage,
+  category,
+  publishedAt
+}`;
+
 export const metadata: Metadata = {
   title: "iNextERP - Complete ERP, POS & Business Management Software",
   description:
@@ -62,7 +73,10 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const clientLogos = await getClientLogos();
+  const [clientLogos, resourcePosts] = await Promise.all([
+    getClientLogos(),
+    client.fetch<ResourcePost[]>(RESOURCE_POSTS_QUERY),
+  ]);
 
   return (
     <div className="relative min-h-screen flex flex-col selection:bg-primary-500 selection:text-white">
@@ -77,7 +91,7 @@ export default async function Home() {
         <ModulesGrid />
         <Testimonials />
         <Statistics />
-        <Resources />
+        <Resources posts={resourcePosts} />
         <PricingPlans />
         <FaqAndCta />
       </main> 
