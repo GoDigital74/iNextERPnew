@@ -33,7 +33,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function BlogPage() {
-  const posts = await client.fetch(POSTS_QUERY);
-  return <BlogClient initialPosts={posts} />;
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}) {
+  const [posts, { q }] = await Promise.all([
+    client.fetch(POSTS_QUERY),
+    searchParams,
+  ]);
+  return <BlogClient initialPosts={posts} initialQuery={q || ""} />;
 }

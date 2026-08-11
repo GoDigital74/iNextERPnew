@@ -24,9 +24,15 @@ const CATEGORIES = [
   "Sustainability",
 ];
 
-export default function BlogClient({ initialPosts }: { initialPosts: any[] }) {
+export default function BlogClient({
+  initialPosts,
+  initialQuery = "",
+}: {
+  initialPosts: any[];
+  initialQuery?: string;
+}) {
   const [posts] = useState<any[]>(initialPosts);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [activeCategory, setActiveCategory] = useState("All");
 
   // Filter logic
