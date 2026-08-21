@@ -108,7 +108,7 @@ export function Footer() {
 
       <div className="section-container relative py-16 lg:py-20">
         {/* Top Section: Links & Brand */}
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-6 lg:gap-8">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-7 lg:gap-8">
           {/* Brand & Contact Info */}
           <div className="flex flex-col gap-6 lg:col-span-2">
             <Link href="/" className="group flex w-fit items-center gap-2.5">
@@ -170,26 +170,6 @@ export function Footer() {
                 </span>
               </li>
             </ul>
-
-            <div className="mt-2 flex flex-col gap-3.5">
-              <h4 className="text-xs font-bold uppercase tracking-[0.12em] text-white">
-                Download Our App
-              </h4>
-              <div className="flex flex-wrap gap-3">
-                {APP_LINKS.map(({ icon: Icon, label, href }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/70 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400/40 hover:bg-white/10 hover:text-white"
-                  >
-                    <Icon className="h-4 w-4 text-accent-300 transition-colors group-hover:text-accent-200" />
-                    {label}
-                  </a>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Links Columns */}
@@ -197,6 +177,27 @@ export function Footer() {
           <FooterColumn title="Industries" links={FOOTER_LINKS.industries} />
           <FooterColumn title="Resources" links={FOOTER_LINKS.resources} />
           <FooterColumn title="Company" links={FOOTER_LINKS.company} />
+
+          {/* Download App */}
+          <div className="flex flex-col gap-5">
+            <h4 className="text-xs font-bold uppercase tracking-[0.12em] text-white">
+              Download Our App
+            </h4>
+            <div className="flex flex-col gap-3">
+              {APP_LINKS.map(({ icon: Icon, label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/70 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400/40 hover:bg-white/10 hover:text-white"
+                >
+                  <Icon className="h-4 w-4 text-accent-300 transition-colors group-hover:text-accent-200" />
+                  {label}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
