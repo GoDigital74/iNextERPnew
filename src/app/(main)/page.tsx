@@ -4,6 +4,7 @@ import { Hero } from "@/components/sections/Hero";
 import { TrustedLogos } from "@/components/sections/TrustedLogos";
 import { getClientLogos } from "@/lib/clientLogos";
 import { CalendlyPopup } from "@/components/sections/CalendlyPopup";
+import { HomeNewTabLinks } from "@/components/sections/HomeNewTabLinks";
 import { client } from "@/sanity/lib/client";
 import type { ResourcePost } from "@/components/sections/Resources";
 
@@ -80,6 +81,7 @@ export default async function Home() {
 
   return (
     <div className="relative min-h-screen flex flex-col selection:bg-primary-500 selection:text-white">
+      <HomeNewTabLinks />
       <CalendlyPopup />
       <main className="flex-1 flex flex-col w-full overflow-hidden">
         <Hero />

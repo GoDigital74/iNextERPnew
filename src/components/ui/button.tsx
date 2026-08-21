@@ -1,5 +1,10 @@
+"use client"
+
+import { type MouseEvent, useState } from "react"
 import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
+import { motion } from "framer-motion"
+import { ArrowRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
@@ -41,18 +46,65 @@ const buttonVariants = cva(
   }
 )
 
+// Magnetic offset is capped so the button can't be dragged further than it
+// visually reads as "attracted to the cursor" — beyond this it just looks broken.
+const MAGNETIC_MAX_OFFSET = 10
+const MAGNETIC_SPRING = { type: "spring" as const, stiffness: 150, damping: 12, mass: 0.3 }
+
 function Button({
   className,
   variant = "default",
   size = "default",
+  magnetic = false,
+  showArrow = false,
+  children,
   ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
-  return (
+}: ButtonPrimitive.Props &
+  VariantProps<typeof buttonVariants> & {
+    /** Nudges the button toward the cursor on hover. */
+    magnetic?: boolean
+    /** Appends a trailing arrow that slides right on hover. */
+    showArrow?: boolean
+  }) {
+  const [offset, setOffset] = useState({ x: 0, y: 0 })
+
+  const handleMouseMove = (event: MouseEvent<HTMLElement>) => {
+    if (!magnetic) return
+    const rect = event.currentTarget.getBoundingClientRect()
+    const relX = event.clientX - rect.left - rect.width / 2
+    const relY = event.clientY - rect.top - rect.height / 2
+    setOffset({
+      x: Math.max(-MAGNETIC_MAX_OFFSET, Math.min(MAGNETIC_MAX_OFFSET, relX * 0.25)),
+      y: Math.max(-MAGNETIC_MAX_OFFSET, Math.min(MAGNETIC_MAX_OFFSET, relY * 0.4)),
+    })
+  }
+
+  const button = (
     <ButtonPrimitive
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
-    />
+    >
+      {children}
+      {showArrow && (
+        <ArrowRight className="transition-transform duration-300 group-hover/button:translate-x-1" />
+      )}
+    </ButtonPrimitive>
+  )
+
+  if (!magnetic) return button
+
+  return (
+    <motion.div
+      className="inline-block"
+      animate={{ x: offset.x, y: offset.y }}
+      whileTap={{ scale: 0.97 }}
+      transition={MAGNETIC_SPRING}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => setOffset({ x: 0, y: 0 })}
+    >
+      {button}
+    </motion.div>
   )
 }
 

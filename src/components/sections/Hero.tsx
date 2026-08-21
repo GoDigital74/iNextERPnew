@@ -2,10 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, type Variants } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import nextDynamic from "next/dynamic";
 import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
+import { Button } from "@/components/ui/button";
 
 // Splits the ogl/WebGL renderer into its own chunk, loaded in parallel with
 // (not blocking) the rest of the Hero bundle. SSR output is unchanged since
@@ -217,13 +217,16 @@ export function Hero() {
             className="hero-ambient hero-anim-glow absolute inset-0 -z-10 rounded-xl bg-white/50 blur-2xl"
           />
 
-          <button
+          <Button
             onClick={openCalendlyPopup}
-            className="group inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-white px-8 text-base font-semibold text-brand-700 shadow-[0_16px_40px_-10px_rgba(0,0,0,0.55)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.03] hover:bg-brand-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white active:translate-y-0 active:scale-100"
+            variant="outline"
+            size="lg"
+            magnetic
+            showArrow
+            className="rounded-xl border-transparent text-brand-700 shadow-[0_16px_40px_-10px_rgba(0,0,0,0.55)] hover:bg-brand-50"
           >
             Book Free Demo
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </button>
+          </Button>
         </motion.div>
       </motion.div>
 
