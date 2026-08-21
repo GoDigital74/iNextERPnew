@@ -139,7 +139,7 @@ export function ModulesGrid() {
             return (
               <ScrollStackItem
                 key={idx}
-                itemClassName="group flex min-h-70 cursor-pointer flex-col justify-end border border-ink-150 bg-ink-900 transition-shadow duration-300 hover:shadow-2xl hover:shadow-brand-500/20 sm:min-h-80"
+                itemClassName="group flex min-h-88 cursor-pointer flex-col justify-end border border-ink-150 bg-ink-900 transition-shadow duration-300 hover:shadow-2xl hover:shadow-brand-500/20 sm:min-h-96"
               >
                 <Link href={mod.link} className="absolute inset-0 block h-full w-full">
                   {/* Background Image */}
