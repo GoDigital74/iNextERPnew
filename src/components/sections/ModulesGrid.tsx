@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import ScrollStack, { ScrollStackItem } from "@/components/ui/ScrollStack";
 import {
   Store,
@@ -23,72 +24,84 @@ const MODULES = [
     title: "POS Billing",
     desc: "Fast & easy billing with multiple payment options and offline support.",
     bgImage: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800",
+    link: "/services/points-of-sale",
   },
   {
     icon: Package,
     title: "Inventory Management",
     desc: "Real-time stock tracking across locations with low-stock alerts.",
     bgImage: "https://images.unsplash.com/photo-1601599561213-832382fd07ba?auto=format&fit=crop&q=80&w=800",
+    link: "/services/inventory-management",
   },
   {
     icon: Truck,
     title: "Purchase Management",
     desc: "Streamline purchases, manage vendors, and automate approvals.",
     bgImage: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=800",
+    link: "/services/inventory-management",
   },
   {
     icon: Receipt,
     title: "GST Billing",
     desc: "100% GST compliant billing, e-invoicing, and easy returns.",
     bgImage: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=800",
+    link: "/services/accounts",
   },
   {
     icon: HeartHandshake,
     title: "CRM & Sales",
     desc: "Manage leads, schedule follow-ups, and accelerate your sales pipeline.",
     bgImage: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=800",
+    link: "/services/crm",
   },
   {
     icon: Building2,
     title: "Warehouse",
     desc: "Multi-warehouse management, seamless stock transfers, and optimization.",
     bgImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
+    link: "/services/inventory-management",
   },
   {
     icon: Users,
     title: "HR & Payroll",
     desc: "Comprehensive employee management, automated payroll, and attendance tracking.",
     bgImage: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800",
+    link: "/services/hrm",
   },
   {
     icon: LineChart,
     title: "Reports & Analytics",
     desc: "Powerful, actionable insights and visual dashboards for smarter decisions.",
     bgImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
+    link: "/products/erp-software",
   },
   {
     icon: Network,
     title: "Multi-Branch",
     desc: "Centrally manage and monitor multiple store branches from one unified platform.",
     bgImage: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&q=80&w=800",
+    link: "/products/erp-software",
   },
   {
     icon: Landmark,
     title: "Accounting",
     desc: "End-to-end account management, cashflow tracking, and financial reporting.",
     bgImage: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=800",
+    link: "/services/accounts",
   },
   {
     icon: ShieldCheck,
     title: "Security",
     desc: "Enterprise-grade role-based access control and strict data encryption.",
     bgImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800",
+    link: "/products/erp-software",
   },
   {
     icon: Zap,
     title: "Automations",
     desc: "Automate repetitive daily business tasks to save time and reduce errors.",
     bgImage: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&q=80&w=800",
+    link: "/services/erp-integrations",
   },
 ];
 
@@ -128,34 +141,36 @@ export function ModulesGrid() {
                 key={idx}
                 itemClassName="group flex min-h-70 cursor-pointer flex-col justify-end border border-ink-150 bg-ink-900 transition-shadow duration-300 hover:shadow-2xl hover:shadow-brand-500/20 sm:min-h-80"
               >
-                {/* Background Image */}
-                <Image
-                  src={mod.bgImage}
-                  alt=""
-                  aria-hidden
-                  fill
-                  sizes="(min-width: 768px) 768px, 100vw"
-                  className="z-0 object-cover opacity-85 transition-transform duration-700 ease-in-out group-hover:scale-110"
-                />
+                <Link href={mod.link} className="absolute inset-0 block h-full w-full">
+                  {/* Background Image */}
+                  <Image
+                    src={mod.bgImage}
+                    alt=""
+                    aria-hidden
+                    fill
+                    sizes="(min-width: 768px) 768px, 100vw"
+                    className="z-0 object-cover opacity-85 transition-transform duration-700 ease-in-out group-hover:scale-110"
+                  />
 
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 z-10 bg-linear-to-t from-slate-950 via-slate-900/40 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 z-10 bg-linear-to-t from-slate-950 via-slate-900/40 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
 
-                {/* Card Content */}
-                <div className="relative z-20 flex h-full flex-col justify-between p-6 sm:p-9">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-white backdrop-blur-md transition-transform duration-500 group-hover:scale-110 group-hover:border-brand-400 group-hover:bg-brand-500">
-                    <Icon strokeWidth={1.5} className="h-6 w-6" />
+                  {/* Card Content */}
+                  <div className="relative z-20 flex h-full flex-col justify-between p-6 sm:p-9">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-white backdrop-blur-md transition-transform duration-500 group-hover:scale-110 group-hover:border-brand-400 group-hover:bg-brand-500">
+                      <Icon strokeWidth={1.5} className="h-6 w-6" />
+                    </div>
+
+                    <div className="mt-10">
+                      <h3 className="mb-2 text-xl font-bold text-white transition-colors duration-300 group-hover:text-brand-300">
+                        {mod.title}
+                      </h3>
+                      <p className="text-md leading-relaxed text-slate-200 sm:text-base">
+                        {mod.desc}
+                      </p>
+                    </div>
                   </div>
-
-                  <div className="mt-10">
-                    <h3 className="mb-2 text-xl font-bold text-white transition-colors duration-300 group-hover:text-brand-300">
-                      {mod.title}
-                    </h3>
-                    <p className="text-md leading-relaxed text-slate-200 sm:text-base">
-                      {mod.desc}
-                    </p>
-                  </div>
-                </div>
+                </Link>
               </ScrollStackItem>
             );
           })}

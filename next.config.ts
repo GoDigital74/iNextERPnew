@@ -10,6 +10,28 @@ const securityHeaders = [
   { key: "X-DNS-Prefetch-Control", value: "on" },
 ];
 
+// Static (nonce-free) CSP for the public site. Excludes /studio, which is a
+// separate trusted admin app (Sanity Studio) with its own script/style needs.
+// 'unsafe-inline' on script-src is required because the App Router injects
+// inline RSC hydration payload scripts (self.__next_f.push(...)) on every
+// page; the alternative (a per-request nonce via proxy.ts) forces dynamic
+// rendering on every route, which would defeat this site's static/ISR
+// caching. This mirrors Next.js's own documented "Without Nonces" CSP.
+const isDev = process.env.NODE_ENV === "development";
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  `script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com${isDev ? " 'unsafe-eval'" : ""}`,
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: https://cdn.sanity.io https://images.unsplash.com https://i.pravatar.cc",
+  "font-src 'self' data:",
+  "connect-src 'self' https://*.sanity.io https://va.vercel-scripts.com",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'self'",
+  "upgrade-insecure-requests",
+].join("; ");
+
 const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
@@ -34,15 +56,21 @@ const nextConfig: NextConfig = {
       "framer-motion",
       "lucide-react",
       "react-icons",
-      "recharts",
       "@sanity/icons",
     ],
   },
   async headers() {
     return [
       {
-        source: "/:path*",
+        source: "/studio/:path*",
         headers: securityHeaders,
+      },
+      {
+        source: "/((?!studio).*)",
+        headers: [
+          ...securityHeaders,
+          { key: "Content-Security-Policy", value: contentSecurityPolicy },
+        ],
       },
     ];
   },

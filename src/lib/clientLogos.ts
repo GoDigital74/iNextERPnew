@@ -3,13 +3,17 @@ import { urlFor } from "@/sanity/lib/image";
 import type { ClientLogo } from "@/components/sections/TrustedLogos";
 
 const LOGO_WALL_QUERY = `*[_type == "logoWall"][0] {
-  logos
+  logos[]{
+    ...,
+    "dimensions": asset->metadata.dimensions
+  }
 }`;
 
 type LogoWallImage = Parameters<typeof urlFor>[0] & {
   _key: string;
   name?: string;
   alt?: string;
+  dimensions?: { width?: number; height?: number };
 };
 
 type LogoWallDoc = {
@@ -30,6 +34,8 @@ export async function getClientLogos(limit?: number): Promise<ClientLogo[]> {
         id: logo._key,
         name: logo.name ?? logo.alt ?? "Client logo",
         src: urlFor(logo).width(300).url(),
+        width: logo.dimensions?.width ?? 300,
+        height: logo.dimensions?.height ?? 150,
       }));
 
     return typeof limit === "number" ? logos.slice(0, limit) : logos;

@@ -121,7 +121,7 @@ export default function IndustriesClient() {
                 ERP Solutions Designed <br className="hidden md:block" /> For Every Industry
               </h1>
               <p className="text-lg text-ink-300 max-w-2xl">
-                NextERP empowers businesses across industries with intelligent automation,
+                iNextERP empowers businesses across industries with intelligent automation,
                 real-time insights and complete control over operations.
               </p>
               <div className="grid grid-cols-2 gap-4 mt-4">
@@ -244,7 +244,7 @@ export default function IndustriesClient() {
           {/* Solutions Section */}
           <div>
             <h2 className="text-3xl font-bold text-center text-ink-900 mb-12">
-              How <span className="text-brand-500">NextERP</span> Solves These Challenges
+              How <span className="text-brand-500">iNextERP</span> Solves These Challenges
             </h2>
             <div className="flex flex-col lg:flex-row gap-12 items-center">
               <div className="w-full lg:w-1/2 flex flex-col gap-8">
@@ -283,7 +283,7 @@ export default function IndustriesClient() {
                   Find The Right ERP Solution <br /> For Your Industry
                 </h2>
                 <p className="text-brand-50 text-lg max-w-lg mb-2">
-                  Book a free demo today and see how NextERP can transform your business operations.
+                  Book a free demo today and see how iNextERP can transform your business operations.
                 </p>
                 <form className="w-full flex flex-col gap-4">
                   <div className="flex flex-col sm:flex-row gap-4 w-full">

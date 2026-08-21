@@ -5,6 +5,8 @@ export type ClientLogo = {
   id: string | number;
   name: string;
   src: string;
+  width?: number;
+  height?: number;
 };
 
 // Below this count, duplicating logos to fake an infinite scroll just makes
@@ -13,14 +15,14 @@ const MIN_LOGOS_FOR_MARQUEE = 6;
 
 function LogoTile({ logo }: { logo: ClientLogo }) {
   return (
-    <div className="relative h-10 w-full transition-transform duration-300 group-hover:scale-105 md:h-12">
+    <div className="flex h-10 w-full items-center justify-center transition-transform duration-300 group-hover:scale-105 md:h-12">
       <Image
         src={logo.src}
         alt={logo.name}
-        fill
-        sizes="128px"
+        width={logo.width ?? 300}
+        height={logo.height ?? 150}
         unoptimized={logo.src.startsWith("http")}
-        className="object-contain"
+        className="h-full w-auto max-w-full object-contain"
       />
     </div>
   );

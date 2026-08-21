@@ -10,7 +10,7 @@ const TESTIMONIALS = [
     role: "Director",
     company: "Agarwal Textiles",
     content:
-      "NextERP has completely transformed the way we manage our business. It's simple, powerful and reliable.",
+      "iNextERP has completely transformed the way we manage our business. It's simple, powerful and reliable.",
     avatar: "https://i.pravatar.cc/150?u=rahul",
   },
   {

@@ -58,7 +58,7 @@ export function Integrations() {
             Works with tools you already use
           </h2>
           <p className="max-w-4xl text-lg text-ink-500">
-            Plug NextERP into your existing payments, e-commerce, and
+            Plug iNextERP into your existing payments, e-commerce, and
             logistics stack no switching required.
           </p>
         </div>

@@ -334,7 +334,7 @@ export default function PointsOfSaleClient() {
               <div className="relative w-60 h-120 rounded-4xl overflow-hidden shadow-2xl border-6 border-ink-900 z-20 bg-black">
                 <Image
                   src="/products/POS img 2.webp"
-                  alt="NextERP Mobile POS Interface"
+                  alt="iNextERP Mobile POS Interface"
                   fill
                   sizes="240px"
                   className="object-cover"
@@ -501,12 +501,12 @@ export default function PointsOfSaleClient() {
           <p className="text-ink-600 text-sm md:text-base mb-8">
             Works seamlessly with{" "}
             <Link href="/services/inventory-management" className="text-brand-600 font-bold hover:underline">
-              NextERP Inventory Management
+              iNextERP Inventory Management
             </Link>{" "}
             for real-time stock sync, plus your favorite payment gateways and accounting software.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            {["NextERP Inventory", "UPI Gateway", "Razorpay", "PayU", "Tally", "GST e-invoicing"].map((integration, idx) => (
+            {["iNextERP Inventory", "UPI Gateway", "Razorpay", "PayU", "Tally", "GST e-invoicing"].map((integration, idx) => (
               <span key={idx} className="px-4 py-2 bg-ink-50 border border-ink-150 rounded-lg text-xs font-bold text-ink-700 shadow-sm">
                 {integration}
               </span>
@@ -568,7 +568,7 @@ export default function PointsOfSaleClient() {
               <div className="absolute inset-0 bg-linear-to-r from-ink-950 via-ink-950/90 to-ink-950/50" />
               <div className="relative z-10">
                 <div className="inline-block bg-red-500/20 text-red-400 font-bold text-[10px] px-3 py-1.5 rounded-full mb-6 border border-red-500/20">
-                  Before NextERP POS
+                  Before iNextERP POS
                 </div>
                 <ul className="space-y-4">
                   {[
@@ -607,7 +607,7 @@ export default function PointsOfSaleClient() {
               </div>
               <div className="relative z-10 w-full">
                 <div className="inline-block bg-emerald-50 text-emerald-600 font-bold text-[10px] px-3 py-1.5 rounded-full mb-6 border border-emerald-200">
-                  After NextERP POS
+                  After iNextERP POS
                 </div>
                 <ul className="space-y-4">
                   {[

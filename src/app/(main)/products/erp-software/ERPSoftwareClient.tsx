@@ -29,7 +29,6 @@ import {
   Star,
   MessageCircle,
   Store,
-  PackageSearch,
   Truck,
   Shirt,
   Plug,

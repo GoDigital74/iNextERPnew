@@ -133,7 +133,7 @@ const PROBLEMS = [
     icon: FileSpreadsheet,
     title: "Excel Dependency",
     description: "Crucial business data trapped in messy spreadsheets leads to human errors and data loss.",
-    bgImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
+    bgImage: "https://images.unsplash.com/photo-1529078155058-5d716f45d604?auto=format&fit=crop&q=80&w=800",
   },
   {
     icon: Network,

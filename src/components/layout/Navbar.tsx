@@ -21,7 +21,7 @@ interface NavLink {
 
 // Constants
 const NAV_LINKS: NavLink[] = [
-  { name: "About Us", href: "/about" },
+  
   {
     name: "Products",
     href: "/products/it-hardware",
@@ -39,6 +39,7 @@ const NAV_LINKS: NavLink[] = [
       { name: "Points of Sale", href: "/services/points-of-sale" },
       { name: "Accounts", href: "/services/accounts" },
       { name: "Manufacturing", href: "/services/manufacturing" },
+      { name: "Supply Chain", href: "/services/supply-chain" },
       { name: "CRM", href: "/services/crm" },
       { name: "HRM", href: "/services/hrm" },
       { name: "Integrations", href: "/services/erp-integrations" },
@@ -62,6 +63,7 @@ const NAV_LINKS: NavLink[] = [
   },
   { name: "Pricing", href: "/pricing" },
   { name: "Blog", href: "/blog" },
+  { name: "About Us", href: "/about" },
   { name: "Careers", href: "/careers" },
 ] as const;
 

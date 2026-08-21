@@ -64,7 +64,7 @@ export function FaqAndCta() {
         <div className="absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-accent-300/20 blur-[100px]" />
       </div>
 
-      <div className="section-container relative">
+      <div className="relative mx-auto w-full max-w-368 px-6 md:px-10">
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
           {/* Left Column: FAQ */}
           <div className="card-surface p-8 md:p-10">
@@ -96,7 +96,7 @@ export function FaqAndCta() {
             <div className="pointer-events-none absolute -mr-32 -mt-32 right-0 top-0 h-64 w-64 rounded-full bg-white/10 blur-[80px]" />
 
             <div className="relative z-10">
-              <h2 className="mb-3 text-3xl font-bold">
+              <h2 className="mb-3 text-2xl font-semibold">
                 Ready To Simplify Your Business?
               </h2>
               <p className="mb-8 max-w-md text-brand-100">

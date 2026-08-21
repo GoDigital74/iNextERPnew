@@ -107,7 +107,7 @@ export default function AboutClient() {
               </motion.h1>
 
               <motion.p variants={heroItem} className="max-w-lg text-lg leading-relaxed text-ink-300">
-                NextERP was built with a simple belief businesses deserve powerful software that is easy to use, affordable to scale, and built to grow with them.
+                iNextERP was built with a simple belief businesses deserve powerful software that is easy to use, affordable to scale, and built to grow with them.
               </motion.p>
 
               <motion.div variants={heroItem} className="mt-2 flex flex-wrap items-center gap-4">
@@ -196,7 +196,7 @@ export default function AboutClient() {
                 NextERP was founded by a team of industry experts who understood firsthand the challenges businesses face every day — from disconnected systems and manual processes to data silos and limited visibility.
               </p>
               <p className="relative">
-                We set out to build an ERP that is modern, integrated, intelligent, and truly easy to use. Today, NextERP powers businesses across industries, helping them streamline operations and unlock their full potential.
+                We set out to build an ERP that is modern, integrated, intelligent, and truly easy to use. Today, iNextERP powers businesses across industries, helping them streamline operations and unlock their full potential.
               </p>
             </motion.div>
 
@@ -222,7 +222,7 @@ export default function AboutClient() {
                 <p className="text-ink-800 font-medium italic mb-4 text-sm">
                   Our mission is to transform the way businesses operate through innovation, simplicity, and technology.
                 </p>
-                <p className="text-ink-400 text-xs font-bold">— NextERP Team</p>
+                <p className="text-ink-400 text-xs font-bold">— iNextERP Team</p>
               </div>
             </motion.div>
           </div>

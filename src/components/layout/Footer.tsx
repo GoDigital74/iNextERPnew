@@ -6,6 +6,8 @@ import {
   FaTwitter,
   FaLinkedin,
   FaInstagram,
+  FaApple,
+  FaGooglePlay,
 } from "react-icons/fa6";
 
 const FOOTER_LINKS = {
@@ -14,7 +16,6 @@ const FOOTER_LINKS = {
     { name: "Pricing", href: "/pricing" },
     { name: "Integrations", href: "/services/erp-integrations" },
     { name: "Modules", href: "#" },
-    { name: "Changelog", href: "#" },
   ],
   industries: [
     { name: "Retail industry", href: "/industries/retail-erp-software" },
@@ -44,11 +45,24 @@ const FOOTER_LINKS = {
   ],
 };
 
+const APP_LINKS = [
+  {
+    icon: FaApple,
+    label: "App Store",
+    href: "https://apps.apple.com/in/app/inexterp-solutions/id6751819828",
+  },
+  {
+    icon: FaGooglePlay,
+    label: "Play Store",
+    href: "https://play.google.com/store/apps/details?id=com.inextsales",
+  },
+];
+
 const SOCIALS = [
   { icon: FaFacebook, label: "Facebook", href: "https://www.facebook.com/inexterpsolution" },
   { icon: FaTwitter, label: "Twitter", href: "https://x.com/InexterpS50262" },
   { icon: FaLinkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/inexterp-solutions-pvt-ltd" },
-  { icon: FaInstagram, label: "Instagram", href: "https://www.instagram.com/inexterpsolution" },
+  { icon: FaInstagram, label: "Instagram", href: "https://www.instagram.com/inexterpsolutions" },
 ];
 
 function FooterColumn({
@@ -156,6 +170,26 @@ export function Footer() {
                 </span>
               </li>
             </ul>
+
+            <div className="mt-2 flex flex-col gap-3.5">
+              <h4 className="text-xs font-bold uppercase tracking-[0.12em] text-white">
+                Download Our App
+              </h4>
+              <div className="flex flex-wrap gap-3">
+                {APP_LINKS.map(({ icon: Icon, label, href }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/70 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400/40 hover:bg-white/10 hover:text-white"
+                  >
+                    <Icon className="h-4 w-4 text-accent-300 transition-colors group-hover:text-accent-200" />
+                    {label}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Links Columns */}
@@ -171,7 +205,7 @@ export function Footer() {
         <div className="section-container flex flex-col items-center justify-between gap-4 py-5 md:flex-row">
           <div className="flex flex-col items-center gap-x-4 gap-y-2 sm:flex-row">
             <p className="text-sm text-white/50">
-              © {new Date().getFullYear()} NextERP Solutions Pvt. Ltd. All
+              © {new Date().getFullYear()} iNextERP Solutions Pvt. Ltd. All
               rights reserved.
             </p>
 
@@ -182,7 +216,7 @@ export function Footer() {
               <a
                 href="https://www.godigitalagency.in/"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
                 className="font-semibold text-white/75 underline-offset-4 transition-colors hover:text-accent-300 hover:underline"
               >
                 GoDigital Agency
