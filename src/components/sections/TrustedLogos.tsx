@@ -15,7 +15,7 @@ const MIN_LOGOS_FOR_MARQUEE = 6;
 
 function LogoTile({ logo }: { logo: ClientLogo }) {
   return (
-    <div className="flex h-10 w-full items-center justify-center transition-transform duration-300 group-hover:scale-105 md:h-12">
+    <div className="flex h-16 w-full items-center justify-center transition-transform duration-300 group-hover:scale-105 md:h-20">
       <Image
         src={logo.src}
         alt={logo.name}
@@ -81,7 +81,7 @@ export function TrustedLogos({
               {[...topRow, ...topRow].map((partner, idx) => (
                 <div
                   key={`top-${partner.id}-${idx}`}
-                  className="group flex shrink-0 items-center justify-center px-4 sm:px-6 md:px-8 w-36 sm:w-44 md:w-48"
+                  className="group flex shrink-0 items-center justify-center px-4 sm:px-6 md:px-8 w-44 sm:w-52 md:w-60"
                 >
                   <LogoTile logo={partner} />
                 </div>
@@ -93,7 +93,7 @@ export function TrustedLogos({
               {[...bottomRow, ...bottomRow].map((partner, idx) => (
                 <div
                   key={`bottom-${partner.id}-${idx}`}
-                  className="group flex shrink-0 items-center justify-center px-4 sm:px-6 md:px-8 w-36 sm:w-44 md:w-48"
+                  className="group flex shrink-0 items-center justify-center px-4 sm:px-6 md:px-8 w-44 sm:w-52 md:w-60"
                 >
                   <LogoTile logo={partner} />
                 </div>
@@ -108,7 +108,7 @@ export function TrustedLogos({
             {activeLogos.map((partner) => (
               <div
                 key={partner.id}
-                className="group flex w-36 shrink-0 items-center justify-center sm:w-44 md:w-48"
+                className="group flex w-44 shrink-0 items-center justify-center sm:w-52 md:w-60"
               >
                 <LogoTile logo={partner} />
               </div>
