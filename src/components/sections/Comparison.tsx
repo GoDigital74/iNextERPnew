@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Check, X, ArrowRight } from "lucide-react";
 import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
@@ -41,9 +40,9 @@ const RenderIcon = ({ value }: { value: boolean | string }) => {
   return null;
 };
 
-export function Comparison() {
-  const router = useRouter();
+const openInNewTab = (href: string) => window.open(href, "_blank", "noopener,noreferrer");
 
+export function Comparison() {
   return (
     <section className="w-full bg-white py-10 sm:py-12 md:lg:py-12">
       <div className="section-container mx-auto max-w-4xl px-4 sm:px-6">
@@ -91,11 +90,11 @@ export function Comparison() {
                     key={idx}
                     role="link"
                     tabIndex={0}
-                    onClick={() => router.push(row.href)}
+                    onClick={() => openInNewTab(row.href)}
                     onKeyDown={(e) => {
                       if (e.key === "Enter" || e.key === " ") {
                         e.preventDefault();
-                        router.push(row.href);
+                        openInNewTab(row.href);
                       }
                     }}
                     className="cursor-pointer transition-colors hover:bg-brand-50 focus-visible:bg-brand-50 focus-visible:outline-none"
