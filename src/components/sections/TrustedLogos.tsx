@@ -7,6 +7,9 @@ export type ClientLogo = {
   src: string;
   width?: number;
   height?: number;
+  segment?: string;
+  industry?: string;
+  tags?: string[];
 };
 
 // Below this count, duplicating logos to fake an infinite scroll just makes

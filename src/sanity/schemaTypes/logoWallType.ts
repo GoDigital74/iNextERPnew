@@ -39,6 +39,34 @@ export const logoWallType = defineType({
               title: 'Alternative text',
               type: 'string',
             }),
+            defineField({
+              name: 'segment',
+              title: 'Client Segment',
+              description:
+                'Used by the filters in the flagship customer section.',
+              type: 'string',
+              options: {
+                list: [
+                  'Lifestyle Brands',
+                  'Supermarkets',
+                  'Wholesale & Distribution',
+                  'MBO',
+                ],
+              },
+            }),
+            defineField({
+              name: 'industry',
+              title: 'Industry / Client Type',
+              type: 'string',
+            }),
+            defineField({
+              name: 'tags',
+              title: 'Products / Capabilities',
+              description:
+                'Add short labels such as ERP, GST, Retail, or eCom OMS.',
+              type: 'array',
+              of: [defineArrayMember({ type: 'string' })],
+            }),
           ],
           preview: {
             select: {

@@ -13,6 +13,9 @@ type LogoWallImage = Parameters<typeof urlFor>[0] & {
   _key: string;
   name?: string;
   alt?: string;
+  segment?: string;
+  industry?: string;
+  tags?: string[];
   dimensions?: { width?: number; height?: number };
 };
 
@@ -36,6 +39,9 @@ export async function getClientLogos(limit?: number): Promise<ClientLogo[]> {
         src: urlFor(logo).width(300).url(),
         width: logo.dimensions?.width ?? 300,
         height: logo.dimensions?.height ?? 150,
+        segment: logo.segment,
+        industry: logo.industry,
+        tags: logo.tags ?? [],
       }));
 
     return typeof limit === "number" ? logos.slice(0, limit) : logos;
