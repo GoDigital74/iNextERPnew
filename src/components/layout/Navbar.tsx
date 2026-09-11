@@ -63,6 +63,7 @@ const NAV_LINKS: NavLink[] = [
   },
   { name: "Pricing", href: "/pricing" },
   { name: "Blog", href: "/blog" },
+  { name: "Partnership", href: "/partnership" },
   { name: "About Us", href: "/about" },
   { name: "Careers", href: "/careers" },
 ] as const;
