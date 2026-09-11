@@ -44,7 +44,7 @@ const FEATURES = [
 const TEAM = [
   { name: "Vijay", role: "Founder & CEO", image: "/ceo.jpeg" },
   { name: "Aditi", role: "Director", image: "/director.jpeg" },
-  { name: "", role: "Director", image: "/director1.jpeg" },
+  { name: "Sushmita", role: "Director", image: "/director1.jpeg" },
 ];
 
 // --- ANIMATION VARIANTS ---
