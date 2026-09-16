@@ -15,7 +15,7 @@ const STATIC_ROUTES = [
   "/industries/retail-erp-software",
   "/industries/wholesale-distribution-erp-software",
   "/pricing",
-  "/privacy-policy",
+  "/privacy",
   "/products/cloud-service",
   "/products/erp-software",
   "/products/it-hardware",

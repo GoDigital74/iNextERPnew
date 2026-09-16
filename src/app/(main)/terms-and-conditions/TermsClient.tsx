@@ -370,7 +370,7 @@ export default function TermsClient() {
         label: "Privacy Policy",
         description:
           "Learn how we collect, use, and safeguard your personal information.",
-        href: "/privacy-policy",
+        href: "/privacy",
       }}
     />
   );
