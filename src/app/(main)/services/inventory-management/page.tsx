@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import InventoryClient from "./InventoryClient";
+import { getClientLogos } from "@/lib/clientLogos";
 
 // --- FAQ DATA & SCHEMA ---
 const FAQ_DATA = [
@@ -50,6 +51,10 @@ const faqSchema = {
   }))
 };
 
+// Revalidate periodically so Trusted Logos edits in Sanity Studio show up
+// without a full redeploy (this page is otherwise statically generated).
+export const revalidate = 300;
+
 // --- NEXT.JS METADATA ---
 export const metadata: Metadata = {
   title: "Multi-Location Inventory Software with Sub-Second Stock Sync | iNextERP",
@@ -66,7 +71,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function InventoryManagementPage() {
+export default async function InventoryManagementPage() {
+  const logos = await getClientLogos();
+
   return (
     <>
       {/* JSON-LD Schema Injected on the Server */}
@@ -74,9 +81,9 @@ export default function InventoryManagementPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      
+
       {/* The Interactive UI Component */}
-      <InventoryClient />
+      <InventoryClient logos={logos} />
     </>
   );
 }

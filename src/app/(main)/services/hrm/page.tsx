@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import HrmClient from "./HrmClient";
+import { getClientLogos } from "@/lib/clientLogos";
+
+// Revalidate periodically so Trusted Logos edits in Sanity Studio show up
+// without a full redeploy (this page is otherwise statically generated).
+export const revalidate = 300;
 
 // --- FAQ DATA & SCHEMA ---
 const FAQ_DATA = [
@@ -69,7 +74,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function HRMPage() {
+export default async function HRMPage() {
+  const logos = await getClientLogos();
+
   return (
     <>
       {/* JSON-LD Schema Injected on the Server */}
@@ -79,7 +86,7 @@ export default function HRMPage() {
       />
 
       {/* The Interactive UI Component */}
-      <HrmClient />
+      <HrmClient logos={logos} />
     </>
   );
 }

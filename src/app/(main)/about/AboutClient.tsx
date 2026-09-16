@@ -193,7 +193,7 @@ export default function AboutClient() {
                 &ldquo;
               </span>
               <p className="relative">
-                NextERP was founded by a team of industry experts who understood firsthand the challenges businesses face every day — from disconnected systems and manual processes to data silos and limited visibility.
+                iNextERP was founded by a team of industry experts who understood firsthand the challenges businesses face every day — from disconnected systems and manual processes to data silos and limited visibility.
               </p>
               <p className="relative">
                 We set out to build an ERP that is modern, integrated, intelligent, and truly easy to use. Today, iNextERP powers businesses across industries, helping them streamline operations and unlock their full potential.

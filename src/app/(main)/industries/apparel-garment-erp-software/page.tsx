@@ -13,6 +13,13 @@ import {
   Plug,
 } from "lucide-react";
 import { Faq } from "@/components/sections/Faq";
+import { getClientLogos } from "@/lib/clientLogos";
+import { FlagshipCustomers } from "@/components/sections/FlagshipCustomers";
+import type { ClientLogo } from "@/components/sections/TrustedLogos";
+
+// Revalidate periodically so Trusted Logos edits in Sanity Studio show up
+// without a full redeploy (this page is otherwise statically generated).
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Apparel & Garment ERP Software | Size-Color Matrix, POS & Shopify Sync | iNextERP",
@@ -77,7 +84,7 @@ const faqSchema = {
   })),
 };
 
-function ApparelClient() {
+function ApparelClient({ logos }: { logos: ClientLogo[] }) {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -151,6 +158,8 @@ function ApparelClient() {
           </div>
         </div>
       </section>
+
+      <FlagshipCustomers logos={logos} />
 
       {/* Trust & Migration Banner */}
       <section className="bg-white pt-10 pb-6">
@@ -390,14 +399,16 @@ function ApparelClient() {
   );
 }
 
-export default function ApparelIndustryPage() {
+export default async function ApparelIndustryPage() {
+  const logos = await getClientLogos();
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <ApparelClient />
+      <ApparelClient logos={logos} />
     </>
   );
 }

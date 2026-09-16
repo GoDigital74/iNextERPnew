@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import IndustriesClient from "./IndustriesClient";
+import { getClientLogos } from "@/lib/clientLogos";
+
+// Revalidate periodically so Trusted Logos edits in Sanity Studio show up
+// without a full redeploy (this page is otherwise statically generated).
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Industries We Serve | iNextERP",
@@ -18,6 +23,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function IndustriesPage() {
-  return <IndustriesClient />;
+export default async function IndustriesPage() {
+  const logos = await getClientLogos();
+
+  return <IndustriesClient logos={logos} />;
 }

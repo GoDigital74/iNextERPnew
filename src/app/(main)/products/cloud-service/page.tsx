@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CloudServiceClient from "./CloudServiceClient";
+import { getClientLogos } from "@/lib/clientLogos";
 
 // --- FAQ DATA & SCHEMA ---
 const FAQ_DATA = [
@@ -50,6 +51,10 @@ const faqSchema = {
   })),
 };
 
+// Revalidate periodically so Trusted Logos edits in Sanity Studio show up
+// without a full redeploy (this page is otherwise statically generated).
+export const revalidate = 300;
+
 // --- NEXT.JS METADATA ---
 export const metadata: Metadata = {
   title: "Enterprise Cloud Hosting for Your ERP | iNextERP Cloud",
@@ -68,7 +73,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function CloudServicePage() {
+export default async function CloudServicePage() {
+  const logos = await getClientLogos();
+
   return (
     <>
       {/* JSON-LD Schema Injected on the Server */}
@@ -78,7 +85,7 @@ export default function CloudServicePage() {
       />
 
       {/* The Interactive UI Component */}
-      <CloudServiceClient />
+      <CloudServiceClient logos={logos} />
     </>
   );
 }

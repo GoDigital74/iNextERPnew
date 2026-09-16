@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PointsOfSaleClient from "./PointsOfSaleClient";
+import { getClientLogos } from "@/lib/clientLogos";
 
 // --- FAQ DATA & SCHEMA ---
 const FAQ_DATA = [
@@ -50,6 +51,10 @@ const faqSchema = {
   })),
 };
 
+// Revalidate periodically so Trusted Logos edits in Sanity Studio show up
+// without a full redeploy (this page is otherwise statically generated).
+export const revalidate = 300;
+
 // --- NEXT.JS METADATA ---
 export const metadata: Metadata = {
   title: "Retail POS Software with 3-Sec Billing & Offline Mode | iNextERP",
@@ -75,7 +80,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PointsOfSalePage() {
+export default async function PointsOfSalePage() {
+  const logos = await getClientLogos();
+
   return (
     <>
       {/* JSON-LD Schema Injected on the Server */}
@@ -85,7 +92,7 @@ export default function PointsOfSalePage() {
       />
 
       {/* The Interactive UI Component */}
-      <PointsOfSaleClient />
+      <PointsOfSaleClient logos={logos} />
     </>
   );
 }

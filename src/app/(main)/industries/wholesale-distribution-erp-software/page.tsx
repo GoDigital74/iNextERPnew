@@ -15,6 +15,12 @@ import {
   Workflow
 } from 'lucide-react';
 import { Faq } from '@/components/sections/Faq';
+import { getClientLogos } from '@/lib/clientLogos';
+import { FlagshipCustomers } from '@/components/sections/FlagshipCustomers';
+
+// Revalidate periodically so Trusted Logos edits in Sanity Studio show up
+// without a full redeploy (this page is otherwise statically generated).
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Wholesale & Distribution ERP Software India | iNextERP",
@@ -67,7 +73,9 @@ const faqSchema = {
   }))
 };
 
-export default function WholesaleDistributionPage() {
+export default async function WholesaleDistributionPage() {
+  const logos = await getClientLogos();
+
   return (
     <>
       <script
@@ -144,6 +152,8 @@ export default function WholesaleDistributionPage() {
             </div>
           </div>
         </section>
+
+        <FlagshipCustomers logos={logos} />
 
         {/* Features Section */}
         <section id="features" className="py-16 bg-white">

@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { Faq } from '@/components/sections/Faq';
 import { getClientLogos } from '@/lib/clientLogos';
+import { FlagshipCustomers } from '@/components/sections/FlagshipCustomers';
 
 // Revalidate periodically so Trusted Logos edits in Sanity Studio show up
 // without a full redeploy (this page is otherwise statically generated).
@@ -144,7 +145,7 @@ const SUB_INDUSTRIES = [
 ];
 
 export default async function ManufacturingERPPage() {
-  const logos = await getClientLogos(6);
+  const logos = await getClientLogos();
 
   return (
     <>
@@ -227,6 +228,8 @@ export default async function ManufacturingERPPage() {
           </div>
         </section>
 
+        <FlagshipCustomers logos={logos} />
+
         {/* Intro — SEO definition */}
         <section className="bg-white py-14">
           <div className="section-container max-w-3xl">
@@ -243,35 +246,6 @@ export default async function ManufacturingERPPage() {
               always know what&rsquo;s being made, what&rsquo;s in stock, and
               what it&rsquo;s costing them in real time, not just at month-end.
             </p>
-          </div>
-        </section>
-
-        {/* Client Logos / Trust Bar */}
-        <section className="border-y border-ink-150 bg-white py-8 md:py-10">
-          <div className="section-container">
-            <p className="text-center text-[12px] font-bold uppercase tracking-[0.16em] text-ink-400">
-              Trusted by 500+ growing manufacturers across India
-            </p>
-
-            {logos.length > 0 && (
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-7 md:gap-x-14">
-                {logos.map((logo) => (
-                  <div
-                    key={logo.id}
-                    className="relative h-9 w-28 shrink-0 opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 md:h-10 md:w-32"
-                  >
-                    <Image
-                      src={logo.src}
-                      alt={logo.name}
-                      fill
-                      sizes="128px"
-                      unoptimized={logo.src.startsWith('http')}
-                      className="object-contain"
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
         </section>
 

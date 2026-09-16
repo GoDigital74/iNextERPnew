@@ -31,6 +31,8 @@ import {
 } from "lucide-react";
 import { Faq } from "@/components/sections/Faq";
 import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
+import { FlagshipCustomers } from "@/components/sections/FlagshipCustomers";
+import type { ClientLogo } from "@/components/sections/TrustedLogos";
 
 // --- DATA CONFIGURATION ---
 const WORKFLOW_STEPS = [
@@ -242,7 +244,7 @@ const fadeUp: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 };
 
-export default function IntegrationsClient() {
+export default function IntegrationsClient({ logos }: { logos: ClientLogo[] }) {
   return (
     <main className="flex-1 flex flex-col w-full bg-white font-sans text-ink-900">
       {/* 1. HERO SECTION (Dark accent band) */}
@@ -374,6 +376,8 @@ export default function IntegrationsClient() {
           </motion.div>
         </div>
       </section>
+
+      <FlagshipCustomers logos={logos} />
 
       {/* 1B. TRUST & HARDWARE BANNER */}
       <section className="bg-ink-900 border-b border-white/10 py-10">

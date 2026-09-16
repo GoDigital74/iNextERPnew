@@ -25,6 +25,8 @@ import {
   XCircle,
 } from "lucide-react";
 import { Faq } from "@/components/sections/Faq";
+import { FlagshipCustomers } from "@/components/sections/FlagshipCustomers";
+import type { ClientLogo } from "@/components/sections/TrustedLogos";
 
 // --- DATA CONFIGURATION ---
 const HERO_STATS = [
@@ -156,7 +158,7 @@ const itemVariants: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 };
 
-export default function CloudServiceClient() {
+export default function CloudServiceClient({ logos }: { logos: ClientLogo[] }) {
   const [marqueeBrands] = useState([...BRANDS, ...BRANDS]);
 
   return (
@@ -256,6 +258,8 @@ export default function CloudServiceClient() {
           </motion.div>
         </div>
       </section>
+
+      <FlagshipCustomers logos={logos} />
 
       {/* 2. TRUST BADGES STRIP */}
       <section className="border-b border-ink-150 bg-white py-10 md:py-10 lg:py-18">

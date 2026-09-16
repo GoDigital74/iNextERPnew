@@ -36,6 +36,8 @@ import {
 } from "lucide-react";
 import { Faq } from "@/components/sections/Faq";
 import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
+import { FlagshipCustomers } from "@/components/sections/FlagshipCustomers";
+import type { ClientLogo } from "@/components/sections/TrustedLogos";
 
 // --- WORKFLOW DATA ---
 const WORKFLOW_STEPS = [
@@ -125,7 +127,7 @@ const fadeUp: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 };
 
-export default function ManufacturingClient() {
+export default function ManufacturingClient({ logos }: { logos: ClientLogo[] }) {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
@@ -201,6 +203,8 @@ export default function ManufacturingClient() {
           </motion.div>
         </div>
       </section>
+
+      <FlagshipCustomers logos={logos} />
 
       {/* 2. MANUFACTURING WORKFLOW */}
       <section className="py-20 bg-white border-b border-ink-150">

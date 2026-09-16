@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { getClientLogos } from "@/lib/clientLogos";
 import type { ClientLogo } from "@/components/sections/TrustedLogos";
+import { FlagshipCustomers } from "@/components/sections/FlagshipCustomers";
 import { Faq } from "@/components/sections/Faq";
 
 // Revalidate periodically so Trusted Logos edits in Sanity Studio show up
@@ -211,34 +212,7 @@ function RetailStoreClient({ logos }: { logos: ClientLogo[] }) {
         </div>
       </section>
 
-      {/* Trust Strip */}
-      <section className="border-b border-ink-150 bg-white py-8 md:py-10">
-        <div className="section-container">
-          <p className="text-center text-[12px] font-bold uppercase tracking-[0.16em] text-ink-400">
-            Trusted by 500+ retailers across India
-          </p>
-
-          {logos.length > 0 && (
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-7 md:gap-x-16">
-              {logos.map((logo) => (
-                <div
-                  key={logo.id}
-                  className="relative h-9 w-28 shrink-0 md:h-10 md:w-32"
-                >
-                  <Image
-                    src={logo.src}
-                    alt={logo.name}
-                    fill
-                    sizes="128px"
-                    unoptimized={logo.src.startsWith("http")}
-                    className="object-contain"
-                  />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
+      <FlagshipCustomers logos={logos} />
 
       {/* What is Retail ERP Software? */}
       <section className="bg-white py-14">
@@ -513,7 +487,7 @@ function RetailStoreClient({ logos }: { logos: ClientLogo[] }) {
 }
 
 export default async function Page() {
-  const logos = await getClientLogos(5);
+  const logos = await getClientLogos();
 
   return (
     <>

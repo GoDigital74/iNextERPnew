@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ITHardwareClient from "./ITHardwareClient";
+import { getClientLogos } from "@/lib/clientLogos";
 
 // --- FAQ SCHEMA FOR SEO ---
 const FAQ_DATA = [
@@ -34,6 +35,10 @@ const faqSchema = {
   })),
 };
 
+// Revalidate periodically so Trusted Logos edits in Sanity Studio show up
+// without a full redeploy (this page is otherwise statically generated).
+export const revalidate = 300;
+
 // --- NEXT.JS METADATA ---
 export const metadata: Metadata = {
   title: "Tested & Compatible Hardware for iNextERP | Printers, Scanners & Terminals",
@@ -59,7 +64,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ITHardwarePage() {
+export default async function ITHardwarePage() {
+  const logos = await getClientLogos();
+
   return (
     <>
       {/* JSON-LD Schema Injected on the Server */}
@@ -69,7 +76,7 @@ export default function ITHardwarePage() {
       />
 
       {/* The Interactive UI Component */}
-      <ITHardwareClient />
+      <ITHardwareClient logos={logos} />
     </>
   );
 }

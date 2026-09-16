@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ManufacturingClient from "./ManufacturingClient";
+import { getClientLogos } from "@/lib/clientLogos";
 
 // --- FAQ SCHEMA FOR SEO ---
 const FAQ_DATA = [
@@ -50,6 +51,10 @@ const faqSchema = {
   })),
 };
 
+// Revalidate periodically so Trusted Logos edits in Sanity Studio show up
+// without a full redeploy (this page is otherwise statically generated).
+export const revalidate = 300;
+
 export const metadata: Metadata = {
   title: "Discrete & Process Manufacturing ERP Software with Multi-Level BOM | iNextERP",
   description:
@@ -67,7 +72,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ManufacturingPage() {
+export default async function ManufacturingPage() {
+  const logos = await getClientLogos();
+
   return (
     <>
       {/* JSON-LD Schema Injected on the Server */}
@@ -77,7 +84,7 @@ export default function ManufacturingPage() {
       />
 
       {/* The Interactive UI Component */}
-      <ManufacturingClient />
+      <ManufacturingClient logos={logos} />
     </>
   );
 }

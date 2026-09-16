@@ -32,6 +32,8 @@ import {
 } from "lucide-react";
 import { Faq } from "@/components/sections/Faq";
 import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
+import { FlagshipCustomers } from "@/components/sections/FlagshipCustomers";
+import type { ClientLogo } from "@/components/sections/TrustedLogos";
 
 // --- WORKFLOW DATA ---
 const WORKFLOW_STEPS = [
@@ -179,7 +181,7 @@ const fadeUp: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 };
 
-export default function SupplyChainClient() {
+export default function SupplyChainClient({ logos }: { logos: ClientLogo[] }) {
   return (
     <main className="flex-1 flex flex-col w-full bg-white font-sans">
       {/* 1. HERO SECTION (Dark accent band) */}
@@ -283,6 +285,8 @@ export default function SupplyChainClient() {
           </motion.div>
         </div>
       </section>
+
+      <FlagshipCustomers logos={logos} />
 
       {/* 2. TRUST BADGES / STATS STRIP */}
       <section className="bg-white border-b border-ink-150 py-6">

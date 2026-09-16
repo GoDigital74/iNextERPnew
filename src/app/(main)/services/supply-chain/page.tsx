@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SupplyChainClient from "./SupplyChainClient";
+import { getClientLogos } from "@/lib/clientLogos";
 
 // --- FAQ DATA & SCHEMA ---
 const FAQ_DATA = [
@@ -50,6 +51,10 @@ const faqSchema = {
   }))
 };
 
+// Revalidate periodically so Trusted Logos edits in Sanity Studio show up
+// without a full redeploy (this page is otherwise statically generated).
+export const revalidate = 300;
+
 // --- NEXT.JS METADATA ---
 export const metadata: Metadata = {
   title: "Supply Chain Management Software for Procurement & Logistics | iNextERP",
@@ -66,7 +71,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SupplyChainPage() {
+export default async function SupplyChainPage() {
+  const logos = await getClientLogos();
+
   return (
     <>
       {/* JSON-LD Schema Injected on the Server */}
@@ -76,7 +83,7 @@ export default function SupplyChainPage() {
       />
 
       {/* The Interactive UI Component */}
-      <SupplyChainClient />
+      <SupplyChainClient logos={logos} />
     </>
   );
 }

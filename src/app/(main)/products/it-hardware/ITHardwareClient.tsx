@@ -22,6 +22,8 @@ import {
   X,
 } from "lucide-react";
 import { Faq } from "@/components/sections/Faq";
+import { FlagshipCustomers } from "@/components/sections/FlagshipCustomers";
+import type { ClientLogo } from "@/components/sections/TrustedLogos";
 
 // --- DATA CONFIGURATION ---
 const TRUST_BADGES = [
@@ -147,7 +149,7 @@ const itemVariants: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 };
 
-export default function ITHardwareClient() {
+export default function ITHardwareClient({ logos }: { logos: ClientLogo[] }) {
   return (
     <main className="w-full bg-white font-sans text-ink-900">
       {/* 1. HERO SECTION */}
@@ -237,6 +239,8 @@ export default function ITHardwareClient() {
           </motion.div>
         </div>
       </section>
+
+      <FlagshipCustomers logos={logos} />
 
       {/* 2. SOLUTION BOX: WHY HARDWARE COMPATIBILITY MATTERS */}
       <section className="bg-white py-10 md:py-10 lg:py-18">

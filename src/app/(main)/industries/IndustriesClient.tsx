@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import CountUp from "react-countup";
+import { FlagshipCustomers } from "@/components/sections/FlagshipCustomers";
+import type { ClientLogo } from "@/components/sections/TrustedLogos";
 import {
   Settings, TrendingUp, Cloud, ShieldCheck,
   Shirt, ShoppingBag, Smartphone, Package, Truck, Factory, ArrowRight,
@@ -95,7 +97,7 @@ const SOLUTIONS = [
 // ==========================================
 // MAIN PAGE COMPONENT
 // ==========================================
-export default function IndustriesClient() {
+export default function IndustriesClient({ logos }: { logos: ClientLogo[] }) {
   // Moved hooks from the sub-components to the top level of the page component
   const statsRef = useRef(null);
   const isStatsInView = useInView(statsRef, { once: true, margin: "-50px" });
@@ -150,6 +152,8 @@ export default function IndustriesClient() {
           </div>
         </div>
       </section>
+
+      <FlagshipCustomers logos={logos} />
 
       {/* --- INDUSTRIES GRID SECTION --- */}
       <section className="py-20 bg-white">

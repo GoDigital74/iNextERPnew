@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import CrmClient from "./CrmClient";
+import { getClientLogos } from "@/lib/clientLogos";
+
+// Revalidate periodically so Trusted Logos edits in Sanity Studio show up
+// without a full redeploy (this page is otherwise statically generated).
+export const revalidate = 300;
 
 // --- FAQ DATA & SCHEMA ---
 const FAQ_DATA = [
@@ -68,7 +73,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function CRMPage() {
+export default async function CRMPage() {
+  const logos = await getClientLogos();
+
   return (
     <>
       {/* JSON-LD Schema Injected on the Server */}
@@ -78,7 +85,7 @@ export default function CRMPage() {
       />
 
       {/* The Interactive UI Component */}
-      <CrmClient />
+      <CrmClient logos={logos} />
     </>
   );
 }
