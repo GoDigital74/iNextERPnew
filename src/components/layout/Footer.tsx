@@ -9,13 +9,17 @@ import {
   FaApple,
   FaGooglePlay,
 } from "react-icons/fa6";
-
 const FOOTER_LINKS = {
-  products: [
-    { name: "Features", href: "#" },
+    resources: [
+    { name: "Blog", href: "/blog" },
+    { name: "Support", href: "/support" },
     { name: "Pricing", href: "/pricing" },
+  ],
+  products: [
+    { name: "IT Hardware", href: "/products/it-hardware" },
     { name: "Integrations", href: "/services/erp-integrations" },
-    { name: "Modules", href: "#" },
+    { name: "Cloud Service", href: "/products/cloud-service" },
+    { name: "ERP Software", href: "/products/erp-software" },
   ],
   industries: [
     { name: "Retail industry", href: "/industries/retail-erp-software" },
@@ -29,13 +33,7 @@ const FOOTER_LINKS = {
       href: "/industries/apparel-garment-erp-software",
     },
   ],
-  resources: [
-    { name: "Blog", href: "/blog" },
-    { name: "Case Studies", href: "#" },
-    { name: "Help Center", href: "#" },
-    { name: "Guides & Tutorials", href: "#" },
-    
-  ],
+
   company: [
     { name: "About Us", href: "/about" },
     { name: "Careers", href: "/careers" },
@@ -173,9 +171,10 @@ export function Footer() {
           </div>
 
           {/* Links Columns */}
+           <FooterColumn title="Resources" links={FOOTER_LINKS.resources} />
           <FooterColumn title="Products" links={FOOTER_LINKS.products} />
           <FooterColumn title="Industries" links={FOOTER_LINKS.industries} />
-          <FooterColumn title="Resources" links={FOOTER_LINKS.resources} />
+         
           <FooterColumn title="Company" links={FOOTER_LINKS.company} />
 
           {/* Download App */}
@@ -210,9 +209,9 @@ export function Footer() {
               rights reserved.
             </p>
 
-            <span aria-hidden className="hidden h-3.5 w-px bg-white/15 sm:block" />
+            {/* <span aria-hidden className="hidden h-3.5 w-px bg-white/15 sm:block" /> */}
 
-            <p className="text-sm text-white/50">
+            {/* <p className="text-sm text-white/50">
               Designed by{" "}
               <a
                 href="https://www.godigitalagency.in/"
@@ -222,7 +221,7 @@ export function Footer() {
               >
                 GoDigital Agency
               </a>
-            </p>
+            </p> */}
           </div>
 
           <div className="flex items-center gap-5">
