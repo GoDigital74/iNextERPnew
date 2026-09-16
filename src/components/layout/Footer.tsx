@@ -12,7 +12,7 @@ import {
 const FOOTER_LINKS = {
     resources: [
     { name: "Blog", href: "/blog" },
-    { name: "Support", href: "/support" },
+    { name: "Support", href: "https://support.inexterpsolutions.in/login" },
     { name: "Pricing", href: "/pricing" },
   ],
   products: [
@@ -76,17 +76,22 @@ function FooterColumn({
         {title}
       </h4>
       <ul className="flex flex-col gap-3.5">
-        {links.map((link) => (
-          <li key={link.name}>
-            <Link
-              href={link.href}
-              className="group inline-flex items-center text-sm text-white/55 transition-colors duration-200 hover:text-white"
-            >
-              <span className="mr-0 h-px w-0 bg-accent-400 transition-all duration-200 ease-out group-hover:mr-2 group-hover:w-3" />
-              {link.name}
-            </Link>
-          </li>
-        ))}
+        {links.map((link) => {
+          const isExternal = link.href.startsWith("http");
+          return (
+            <li key={link.name}>
+              <Link
+                href={link.href}
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noopener noreferrer" : undefined}
+                className="group inline-flex items-center text-sm text-white/55 transition-colors duration-200 hover:text-white"
+              >
+                <span className="mr-0 h-px w-0 bg-accent-400 transition-all duration-200 ease-out group-hover:mr-2 group-hover:w-3" />
+                {link.name}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

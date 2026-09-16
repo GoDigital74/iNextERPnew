@@ -325,7 +325,7 @@ export function Navbar() {
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
-              href="https://www.inexterpsolutions.com/contact"
+              href="https://support.inexterpsolutions.in/login"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_20px_-6px_rgba(24,129,196,0.4)] transition-all hover:bg-brand-600 hover:shadow-[0_10px_24px_-4px_rgba(24,129,196,0.45)] active:scale-[0.98]"
@@ -474,7 +474,7 @@ export function Navbar() {
             {/* Mobile Footer */}
             <div className="mt-auto border-t border-ink-150 bg-white px-6 py-6 sticky bottom-0 flex flex-col gap-3">
               <Link
-                href="https://www.inexterpsolutions.com/contact"
+                href="https://support.inexterpsolutions.in/login"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeMobileMenu}
