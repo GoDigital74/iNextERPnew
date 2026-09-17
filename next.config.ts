@@ -20,11 +20,11 @@ const securityHeaders = [
 const isDev = process.env.NODE_ENV === "development";
 const contentSecurityPolicy = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com${isDev ? " 'unsafe-eval'" : ""}`,
+  `script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com https://www.googletagmanager.com${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: https://cdn.sanity.io https://images.unsplash.com https://i.pravatar.cc",
+  "img-src 'self' data: https://cdn.sanity.io https://images.unsplash.com https://i.pravatar.cc https://www.googletagmanager.com",
   "font-src 'self' data:",
-  "connect-src 'self' https://*.sanity.io https://va.vercel-scripts.com",
+  "connect-src 'self' https://*.sanity.io https://va.vercel-scripts.com https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
