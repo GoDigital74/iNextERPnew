@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Urbanist, Manrope } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import "./globals.css";
 
 // Manrope for highly readable body text
@@ -68,9 +69,11 @@ export default function RootLayout({
       lang="en"
       className={`${manrope.variable} ${urbanist.variable} h-full antialiased`}
     >
+      <GoogleTagManager gtmId="GTM-KHGF9B2Z" />
       <body className="min-h-full flex flex-col font-sans bg-ink-50 selection:bg-brand-200 selection:text-brand-900">
         {children}
         <Analytics />
+        <GoogleAnalytics gaId="G-6G1FKS8TK2" />
       </body>
     </html>
   );

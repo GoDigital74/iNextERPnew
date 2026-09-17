@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Script from "next/script";
 
-export const CALENDLY_URL = "https://calendly.com/godigital74/30min";
+export const CALENDLY_URL = "https://calendly.com/inexterpsolutionspvtltd";
 
 declare global {
   interface Window {

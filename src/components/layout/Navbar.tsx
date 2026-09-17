@@ -61,6 +61,7 @@ const NAV_LINKS: NavLink[] = [
       { name: "Manufacturing", href: "/industries/manufacturing-erp-software" },
     ],
   },
+  { name: "Our Clients", href: "/customers" },
   { name: "Pricing", href: "/pricing" },
   { name: "Blog", href: "/blog" },
   { name: "Partnership", href: "/partnership" },
@@ -246,7 +247,7 @@ export function Navbar() {
   // Memoized nav classes
   const navClasses = useMemo(
     () =>
-      `relative mx-auto flex max-w-7xl items-center justify-between rounded-2xl border px-5 py-3 shadow-lg transition-colors duration-300 ${
+      `relative mx-auto flex max-w-[100rem] items-center justify-between rounded-2xl border px-5 py-3 shadow-lg transition-colors duration-300 ${
         scrolled || mobileOpen
           ? "border-ink-150 bg-white/95 shadow-ink-900/8 backdrop-blur-xl"
           : "border-ink-150/60 bg-white/70 shadow-ink-900/4 backdrop-blur-md"
@@ -288,7 +289,7 @@ export function Navbar() {
                   <Link
                     href={link.href || "#"}
                     onClick={link.href === "/" ? handleHomeClick : undefined}
-                    className={`flex items-center gap-1 rounded-lg px-3.5 py-2 text-[16px] font-medium transition-colors hover:text-brand-600 ${
+                    className={`flex items-center gap-1 rounded-lg px-2.5 py-2 text-[15px] font-medium transition-colors hover:text-brand-600 ${
                       isActive || hoveredNav === link.name
                         ? "text-brand-600"
                         : "text-ink-900"
