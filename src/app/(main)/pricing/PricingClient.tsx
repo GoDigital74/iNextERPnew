@@ -587,7 +587,7 @@ export default function PricingClient() {
 
             <div className="relative min-h-75 w-full border-t border-white/5 md:w-1/2 md:border-l md:border-t-0">
               <Image
-                src="/dashboard/iNext Report 1.png"
+                src="/dashboard/iNext Report 1.jpeg"
                 alt="iNextERP pricing and analytics dashboard"
                 fill
                 sizes="(min-width: 768px) 50vw, 100vw"

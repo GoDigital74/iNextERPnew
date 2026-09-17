@@ -126,7 +126,7 @@ const DEPARTMENTS = [
     title: "Reports & Analytics",
     desc: "Custom dashboards and reports across every module, so what matters is always visible.",
     link: "#",
-    image: "/dashboard/iNext Report 1.png",
+    image: "/dashboard/iNext Report 1.jpeg",
   },
   {
     icon: Plug,

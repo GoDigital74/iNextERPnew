@@ -11,7 +11,7 @@ const TABS = [ "Reports & Analytics", "POS Billing","Inventory Management"];
 const TAB_IMAGES: Record<string, string> = {
   "POS Billing": "/dashboard/iNext Bill 1.png",
   "Inventory Management": "/dashboard/iNext Inventory 1.png",
-  "Reports & Analytics": "/dashboard/iNext Report 1.png",
+  "Reports & Analytics": "/dashboard/iNext Report 1.jpeg",
 };
 
 export function DashboardShowcase() {
