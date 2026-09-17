@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import ERPSoftwareClient from "./ERPSoftwareClient";
-import { getClientLogos } from "@/lib/clientLogos";
 
 // --- FAQ SCHEMA FOR SEO ---
 const FAQ_DATA = [
@@ -80,8 +79,6 @@ export const metadata: Metadata = {
 };
 
 export default async function ERPSoftwarePage() {
-  const logos = await getClientLogos();
-
   return (
     <>
       {/* JSON-LD Schema Injected on the Server */}
@@ -91,7 +88,7 @@ export default async function ERPSoftwarePage() {
       />
 
       {/* The Interactive UI Component */}
-      <ERPSoftwareClient logos={logos} />
+      <ERPSoftwareClient />
     </>
   );
 }

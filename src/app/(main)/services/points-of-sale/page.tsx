@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import PointsOfSaleClient from "./PointsOfSaleClient";
-import { getClientLogos } from "@/lib/clientLogos";
 
 // --- FAQ DATA & SCHEMA ---
 const FAQ_DATA = [
@@ -81,8 +80,6 @@ export const metadata: Metadata = {
 };
 
 export default async function PointsOfSalePage() {
-  const logos = await getClientLogos();
-
   return (
     <>
       {/* JSON-LD Schema Injected on the Server */}
@@ -92,7 +89,7 @@ export default async function PointsOfSalePage() {
       />
 
       {/* The Interactive UI Component */}
-      <PointsOfSaleClient logos={logos} />
+      <PointsOfSaleClient />
     </>
   );
 }

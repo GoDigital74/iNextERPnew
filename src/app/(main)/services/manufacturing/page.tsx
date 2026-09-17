@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import ManufacturingClient from "./ManufacturingClient";
-import { getClientLogos } from "@/lib/clientLogos";
 
 // --- FAQ SCHEMA FOR SEO ---
 const FAQ_DATA = [
@@ -73,8 +72,6 @@ export const metadata: Metadata = {
 };
 
 export default async function ManufacturingPage() {
-  const logos = await getClientLogos();
-
   return (
     <>
       {/* JSON-LD Schema Injected on the Server */}
@@ -84,7 +81,7 @@ export default async function ManufacturingPage() {
       />
 
       {/* The Interactive UI Component */}
-      <ManufacturingClient logos={logos} />
+      <ManufacturingClient />
     </>
   );
 }

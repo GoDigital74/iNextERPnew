@@ -38,8 +38,6 @@ import {
 } from "lucide-react";
 import { Faq } from "@/components/sections/Faq";
 import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
-import { FlagshipCustomers } from "@/components/sections/FlagshipCustomers";
-import type { ClientLogo } from "@/components/sections/TrustedLogos";
 
 // --- DATA CONFIGURATION ---
 
@@ -238,7 +236,7 @@ const itemVariants: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 };
 
-export default function ERPSoftwareClient({ logos }: { logos: ClientLogo[] }) {
+export default function ERPSoftwareClient() {
   const statsRef = useRef(null);
   const statsInView = useInView(statsRef, { once: true, margin: "-80px" });
   const impactRef = useRef(null);
@@ -363,8 +361,6 @@ export default function ERPSoftwareClient({ logos }: { logos: ClientLogo[] }) {
           </motion.div>
         </div>
       </section>
-
-      <FlagshipCustomers logos={logos} />
 
       {/* Floating stats bridge */}
       <section className="relative z-20 -mt-12 lg:-mt-14">

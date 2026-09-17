@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import CloudServiceClient from "./CloudServiceClient";
-import { getClientLogos } from "@/lib/clientLogos";
 
 // --- FAQ DATA & SCHEMA ---
 const FAQ_DATA = [
@@ -74,8 +73,6 @@ export const metadata: Metadata = {
 };
 
 export default async function CloudServicePage() {
-  const logos = await getClientLogos();
-
   return (
     <>
       {/* JSON-LD Schema Injected on the Server */}
@@ -85,7 +82,7 @@ export default async function CloudServicePage() {
       />
 
       {/* The Interactive UI Component */}
-      <CloudServiceClient logos={logos} />
+      <CloudServiceClient />
     </>
   );
 }

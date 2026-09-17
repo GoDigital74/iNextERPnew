@@ -13,9 +13,6 @@ import {
   Plug,
 } from "lucide-react";
 import { Faq } from "@/components/sections/Faq";
-import { getClientLogos } from "@/lib/clientLogos";
-import { FlagshipCustomers } from "@/components/sections/FlagshipCustomers";
-import type { ClientLogo } from "@/components/sections/TrustedLogos";
 
 // Revalidate periodically so Trusted Logos edits in Sanity Studio show up
 // without a full redeploy (this page is otherwise statically generated).
@@ -84,7 +81,7 @@ const faqSchema = {
   })),
 };
 
-function ApparelClient({ logos }: { logos: ClientLogo[] }) {
+function ApparelClient() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -158,8 +155,6 @@ function ApparelClient({ logos }: { logos: ClientLogo[] }) {
           </div>
         </div>
       </section>
-
-      <FlagshipCustomers logos={logos} />
 
       {/* Trust & Migration Banner */}
       <section className="bg-white pt-10 pb-6">
@@ -400,15 +395,13 @@ function ApparelClient({ logos }: { logos: ClientLogo[] }) {
 }
 
 export default async function ApparelIndustryPage() {
-  const logos = await getClientLogos();
-
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <ApparelClient logos={logos} />
+      <ApparelClient />
     </>
   );
 }

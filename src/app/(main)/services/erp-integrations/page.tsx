@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import IntegrationsClient from "./IntegrationsClient";
-import { getClientLogos } from "@/lib/clientLogos";
 
 // Revalidate periodically so Trusted Logos edits in Sanity Studio show up
 // without a full redeploy (this page is otherwise statically generated).
@@ -105,8 +104,6 @@ export const metadata: Metadata = {
 };
 
 export default async function ERPIntegrationsPage() {
-  const logos = await getClientLogos();
-
   return (
     <>
       {/* JSON-LD Schemas Injected on the Server */}
@@ -120,7 +117,7 @@ export default async function ERPIntegrationsPage() {
       />
 
       {/* The Interactive UI Component */}
-      <IntegrationsClient logos={logos} />
+      <IntegrationsClient />
     </>
   );
 }

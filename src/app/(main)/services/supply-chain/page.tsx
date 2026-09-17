@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import SupplyChainClient from "./SupplyChainClient";
-import { getClientLogos } from "@/lib/clientLogos";
 
 // --- FAQ DATA & SCHEMA ---
 const FAQ_DATA = [
@@ -72,8 +71,6 @@ export const metadata: Metadata = {
 };
 
 export default async function SupplyChainPage() {
-  const logos = await getClientLogos();
-
   return (
     <>
       {/* JSON-LD Schema Injected on the Server */}
@@ -83,7 +80,7 @@ export default async function SupplyChainPage() {
       />
 
       {/* The Interactive UI Component */}
-      <SupplyChainClient logos={logos} />
+      <SupplyChainClient />
     </>
   );
 }

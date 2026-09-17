@@ -20,8 +20,6 @@ import {
   Car,
 } from 'lucide-react';
 import { Faq } from '@/components/sections/Faq';
-import { getClientLogos } from '@/lib/clientLogos';
-import { FlagshipCustomers } from '@/components/sections/FlagshipCustomers';
 
 // Revalidate periodically so Trusted Logos edits in Sanity Studio show up
 // without a full redeploy (this page is otherwise statically generated).
@@ -145,8 +143,6 @@ const SUB_INDUSTRIES = [
 ];
 
 export default async function ManufacturingERPPage() {
-  const logos = await getClientLogos();
-
   return (
     <>
       <script
@@ -227,8 +223,6 @@ export default async function ManufacturingERPPage() {
             </div>
           </div>
         </section>
-
-        <FlagshipCustomers logos={logos} />
 
         {/* Intro — SEO definition */}
         <section className="bg-white py-14">

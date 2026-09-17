@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import IndustriesClient from "./IndustriesClient";
-import { getClientLogos } from "@/lib/clientLogos";
 
 // Revalidate periodically so Trusted Logos edits in Sanity Studio show up
 // without a full redeploy (this page is otherwise statically generated).
@@ -24,7 +23,5 @@ export const metadata: Metadata = {
 };
 
 export default async function IndustriesPage() {
-  const logos = await getClientLogos();
-
-  return <IndustriesClient logos={logos} />;
+  return <IndustriesClient />;
 }

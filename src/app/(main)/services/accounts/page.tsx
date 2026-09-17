@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import AccountsClient from "./AccountsClient";
-import { getClientLogos } from "@/lib/clientLogos";
 
 // Revalidate periodically so Trusted Logos edits in Sanity Studio show up
 // without a full redeploy (this page is otherwise statically generated).
@@ -73,8 +72,6 @@ export const metadata: Metadata = {
 };
 
 export default async function AccountingPage() {
-  const logos = await getClientLogos();
-
   return (
     <>
       {/* JSON-LD Schema Injected on the Server */}
@@ -84,7 +81,7 @@ export default async function AccountingPage() {
       />
 
       {/* The Interactive UI Component */}
-      <AccountsClient logos={logos} />
+      <AccountsClient />
     </>
   );
 }

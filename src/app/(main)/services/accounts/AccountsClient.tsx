@@ -30,8 +30,6 @@ import {
 } from "lucide-react";
 import { Faq } from "@/components/sections/Faq";
 import { openCalendlyPopup } from "@/components/sections/CalendlyPopup";
-import { FlagshipCustomers } from "@/components/sections/FlagshipCustomers";
-import type { ClientLogo } from "@/components/sections/TrustedLogos";
 
 // --- WORKFLOW DATA ---
 const WORKFLOW_STEPS = [
@@ -121,7 +119,7 @@ const fadeUp: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 };
 
-export default function AccountsClient({ logos }: { logos: ClientLogo[] }) {
+export default function AccountsClient() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
@@ -198,8 +196,6 @@ export default function AccountsClient({ logos }: { logos: ClientLogo[] }) {
           </motion.div>
         </div>
       </section>
-
-      <FlagshipCustomers logos={logos} />
 
       {/* 1B. TRUST BADGES STRIP */}
       <section className="bg-ink-50 border-b border-ink-150 py-4">

@@ -19,9 +19,6 @@ import {
   BarChart3,
   Plug,
 } from "lucide-react";
-import { getClientLogos } from "@/lib/clientLogos";
-import type { ClientLogo } from "@/components/sections/TrustedLogos";
-import { FlagshipCustomers } from "@/components/sections/FlagshipCustomers";
 import { Faq } from "@/components/sections/Faq";
 
 // Revalidate periodically so Trusted Logos edits in Sanity Studio show up
@@ -137,7 +134,7 @@ const jsonLd = {
   })),
 };
 
-function RetailStoreClient({ logos }: { logos: ClientLogo[] }) {
+function RetailStoreClient() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -211,8 +208,6 @@ function RetailStoreClient({ logos }: { logos: ClientLogo[] }) {
           </div>
         </div>
       </section>
-
-      <FlagshipCustomers logos={logos} />
 
       {/* What is Retail ERP Software? */}
       <section className="bg-white py-14">
@@ -487,15 +482,13 @@ function RetailStoreClient({ logos }: { logos: ClientLogo[] }) {
 }
 
 export default async function Page() {
-  const logos = await getClientLogos();
-
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <RetailStoreClient logos={logos} />
+      <RetailStoreClient />
     </>
   );
 }
