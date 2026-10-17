@@ -350,7 +350,7 @@ export default function PrivacyPolicyClient() {
         label: "Terms & Conditions",
         description:
           "Review the terms that govern your access to and use of our website and services.",
-        href: "/terms-and-conditions",
+        href: "/term",
       }}
     />
   );

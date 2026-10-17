@@ -26,7 +26,7 @@ const STATIC_ROUTES = [
   "/services/inventory-management",
   "/services/manufacturing",
   "/services/points-of-sale",
-  "/terms-and-conditions",
+  "/term",
 ];
 
 const SLUGS_QUERY = `{
