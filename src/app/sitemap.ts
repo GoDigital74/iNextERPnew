@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { client } from "@/sanity/lib/client";
 
-const SITE_URL = "https://www.inexterp.com";
+const SITE_URL = "https://www.inexterpsolutions.com/";
 
 const STATIC_ROUTES = [
   "",
