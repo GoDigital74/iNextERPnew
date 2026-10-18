@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     "Multi-Branch ERP",
   ],
   alternates: {
-    canonical: "https://www.inexterp.com/products/erp-software",
+    canonical: "https://www.inexterpsolutions.com/products/erp-software",
   },
   openGraph: {
     title: "Complete Cloud ERP Software for Retail, Wholesale & Manufacturing | iNextERP",
