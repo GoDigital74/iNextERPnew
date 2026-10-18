@@ -62,13 +62,13 @@ export const metadata: Metadata = {
   description:
     "Complete ERP solution for POS, Inventory, Billing, Accounting, CRM & more. Built for Retail, Wholesale, Distribution & Growing Businesses.",
   alternates: {
-    canonical: "https://www.inexterp.com/",
+    canonical: "https://www.inexterpsolutions.com/",
   },
   openGraph: {
     title: "iNextERP - Complete ERP, POS & Business Management Software",
     description:
       "Complete ERP solution for POS, Inventory, Billing, Accounting, CRM & more. Built for Retail, Wholesale, Distribution & Growing Businesses.",
-    url: "https://www.inexterp.com/",
+    url: "https://www.inexterpsolutions.com/",
     type: "website",
   },
 };
