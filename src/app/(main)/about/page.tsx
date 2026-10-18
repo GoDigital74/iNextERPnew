@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "iNextERP was built with a simple belief — businesses deserve powerful software that is easy to use, affordable to scale, and built to grow with them.",
   alternates: {
-    canonical: "https://www.inexterp.com/about",
+    canonical: "https://www.inexterpsolutions.com/about",
   },
   openGraph: {
     title: "About Us | iNextERP",
